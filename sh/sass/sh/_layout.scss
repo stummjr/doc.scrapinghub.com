@@ -1,0 +1,160 @@
+@import "sh/vars";
+
+#header {
+    @include linear-gradient(color-stops($background-start-color, $background-stop-color));
+    @include single-box-shadow($sh-lightest-gray, 1px, 2px, 9px);
+    font-family: 'Inder', 'Asul', 'serif';
+    height: $header-height;
+    font-size: .9em;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+
+    #scrapinghub {
+        @include sh-hide-text;
+        background: transparent url(logo.png) no-repeat;
+        margin: .5em 0 0 1em;
+        padding-right: .6em;
+        width: 200px;
+        height: 64px;
+    }
+
+    > ul {
+        @include inline-block;
+        font-size: 1.3em;
+        margin-left: 0;
+        padding-left: 0;
+        padding-top: 0;
+
+        li {
+            @include inline-block;
+            margin-left: 0;
+            padding: 0 1.3em 0 .6em;
+
+            a {
+                @include sh-light-text-shadow;
+                color: $sh-dark-gray;
+
+                &:hover, &.current-section {
+                    color: $sh-blue;
+                }
+            }
+        }
+    }
+
+    form {
+        @include inline-block;
+        position: absolute;
+        top: 1em;
+        right: 2em;
+
+        input[type="submit"] {
+            height: 2.1em;
+            vertical-align: top;
+        }
+    }
+}
+
+#content {
+    margin-top: $header-height + 1em;
+    padding-left: 5px;
+    padding-bottom: 4em;
+
+    #leftbar {
+        position: fixed;
+        top: $header-height;
+        width: $sidebar-width;
+        z-index: 0;
+        @import "sh/sidebar";
+    }
+
+    #body {
+        display: block;
+        padding-bottom: 1em;
+        margin-left: $sidebar-width + 1em;
+        margin-right: .5em;
+        font-size: 110%;
+
+        #{headings(all)} {
+            .headerlink {
+                display: none;
+                margin-left: .3em;
+            }
+            &:hover {
+                .headerlink {
+                    display: inline;
+                }
+            }
+        }
+
+        .section {
+            margin-top: 1.3em;
+
+            > .section > .section {
+                margin: 1.1em 0 0 1em;
+            }
+
+            ul.simple {
+                margin-left: 1em;
+
+                ul {
+                    margin-left: 1em;
+                }
+            }
+        }
+
+        .admonition {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 7px;
+
+            dt {
+                font-weight: bold;
+            }
+
+            dl {
+                margin-bottom: 0;
+            }
+
+            .admonition-title {
+                display: inline;
+                margin: 0px 10px 5px 0px;
+                font-weight: bold;
+
+                &:after {
+                    content: ":";
+                }
+
+                & + p {
+                    display: inline;
+                }
+            }
+        }
+
+        .warning {
+            background-color: $sh-pink;
+            border: 1px solid $sh-red;
+        }
+
+        .note {
+            background-color: $sh-lightest-gray;
+            border: 1px solid $sh-light-gray;
+        }
+
+        .seealso {
+            background-color: #ffc;
+            border: 1px solid #ff6;
+        }
+
+        #scrapinghub-documentation {
+            ul {
+                padding-left: 1em;
+
+                ul {
+                    padding-left: 1em;
+                }
+            }
+        }
+    }
+}

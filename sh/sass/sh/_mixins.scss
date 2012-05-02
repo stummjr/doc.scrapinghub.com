@@ -1,0 +1,31 @@
+@mixin sh-light-text-shadow {
+    @include single-text-shadow($sh-light-text-shadow-color, 1px, 1px, 1px);
+}
+
+@mixin sh-box {
+    @include box-shadow(rgba(125, 125, 125, 0.8) 0 1px 5px 0px inset,
+                        rgba(255, 255, 255, 0.1) 0 1px 0);
+    @include border-radius;
+
+    background-color: $sh-lightest-gray;
+    line-height: 1.3em;
+    padding: 0.5em 2em;
+}
+
+@mixin sh-content-font {
+    font-size: $font-size !important;
+    font-family: 'Lucida Grande', Arial, sans-serif;
+    font-color: #333;
+}
+
+@mixin fixed-width-font {
+    font-family: monospace;
+    line-height: 1.4em;
+    font-size: 1.1em;
+}
+
+@mixin sh-hide-text {
+    @include inline-block;
+    text-indent: 10000px;
+    overflow: hidden;
+}

@@ -1,0 +1,112 @@
+@import "sh/vars";
+
+@include font-face('Inder', font-files('Inder.woff', woff));
+@include font-face('Asul', font-files('Asul.woff', woff));
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fff;
+    @include sh-content-font;
+    color: $sh-dark-gray;
+}
+
+h1, h2 {
+    color: $sh-dark-gray;
+    margin-right: 0;
+    padding: 0;
+    border-bottom: 1px solid $sh-lightest-gray;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: $sh-darkest-gray;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: lighten($sh-darkest-gray, 10%);
+}
+
+h3 {
+    font-weight: bold;
+    font-size: 1em !important;
+    color: lighten($sh-darkest-gray, 20%);
+}
+
+h4 {
+    font-size: .9em !important;
+}
+
+a, h1, h2, h3, h4, h5, h6 {
+    @include sh-light-text-shadow;
+}
+
+a, a:visited {
+    color: $sh-blue;
+    text-decoration: none;
+}
+
+p {
+    line-height: 2.3em;
+    color: $sh-darkest-gray;
+}
+
+em {
+    font-style: italic;
+    color: $sh-dark-gray;
+}
+
+ol {
+    padding-left: 3em;
+}
+
+tt {
+    background-color: $sh-lightest-gray;
+    padding: 1px 5px;
+    font-size: 0.95em;
+}
+
+strong {
+    font-weight: bold;
+}
+
+input[type="text"] {
+    @include border-radius(4px);
+    background: white;
+    border: 1px solid #e2e2e2;
+    color: #474747;
+    padding: 7px 5px 3px;
+    height: 1.3em;
+
+    @include single-box-shadow(rgba(0, 0, 0, 0.05), 1px, 2px, 3px, $default-box-shadow-spread, true);
+
+    &:focus {
+        @include single-box-shadow($sh-red, 0px, 0px, 6px);
+    }
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style-type: none;
+        padding: .6em 0 0;
+    }
+}
+
+pre {
+    @include sh-box;
+    @include fixed-width-font;
+    padding: .5em 1em;
+    overflow: auto;
+    overflow-y: hidden;  /* fixes display issues on Chrome browsers */
+}
