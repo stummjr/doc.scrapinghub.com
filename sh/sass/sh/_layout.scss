@@ -1,8 +1,7 @@
 @import "sh/vars";
 
 #header {
-    @include linear-gradient(color-stops($background-start-color, $background-stop-color));
-    @include single-box-shadow($sh-lightest-gray, 1px, 2px, 9px);
+    @include background-image(linear-gradient(color-stops($background-start-color, $background-stop-color)));
     font-family: 'Inder', 'Asul', 'serif';
     height: $header-height;
     font-size: .9em;
@@ -17,7 +16,7 @@
         margin: .5em 0 0 1em;
         padding-right: .6em;
         width: 200px;
-        height: 64px;
+        height: 41px;
     }
 
     > ul {
