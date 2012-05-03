@@ -16,7 +16,7 @@ tinkering with download delays, concurrent requests, user agents, cookies or
 referrers to avoid getting banned from sites, you just configure the proxy and
 fire up your crawler of choice and start scraping.
 
-For more information, including pricing, check the `ProxyHub`_ page.
+For more information, including pricing, check the `ProxyHub page`_.
 
 Usage
 =====
@@ -32,4 +32,4 @@ http://scrapinghub.com::
 Where ``USER`` and ``PASS`` should be replaced by the credentials you got when
 you signed up for the ProxyHub service.
 
-.. _ProxyHub: http://www.scrapinghub.com/proxyhub.html
+.. _ProxyHub page: http://www.scrapinghub.com/proxyhub.html

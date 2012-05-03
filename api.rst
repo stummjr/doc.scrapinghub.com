@@ -1,8 +1,8 @@
 .. _api:
 
-===============
-Scrapinghub API
-===============
+===
+API
+===
 
 All API calls require authentication using either cookies (which you typically
 use from the browser) or `HTTP Basic access authentication`_ (typically used

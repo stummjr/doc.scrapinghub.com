@@ -56,10 +56,10 @@
   </head>
   <body>
     <div id="header">
-      <a id="scrapinghub" href="/">scrapinghub</a>
+      <a id="scrapinghub" href="{{ pathto('index') }}">scrapinghub</a>
 
       <ul>
-          <li><a href="/">Help &amp; documentation</a></li>
+          <li><a href="{{ pathto('index') }}">Help &amp; documentation</a></li>
       </ul>
 
       {%- include "searchbox.html" %}

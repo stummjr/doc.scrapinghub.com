@@ -1,6 +1,8 @@
-===============
-Using the Panel
-===============
+.. _panel:
+
+=========
+The Panel
+=========
 
 The Scrapinghub panel allows you to control and monitor your spiders. This page
 contains information on how to use it.
