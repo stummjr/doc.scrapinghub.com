@@ -1,7 +1,5 @@
-Scrapinghub documentation
-=========================
-
-Contents:
+Help Contents
+=============
 
 .. toctree::
    :maxdepth: 2
@@ -9,4 +7,5 @@ Contents:
    panel
    api
    cloud
+   proxyhub
    FAQ <faq>
