@@ -1,0 +1,10 @@
+syntax: glob
+_build
+*.pyc
+*.pyo
+*.orig
+*.bak
+*.swp
+*.beam
+.scrapy
+.sass-cache/
