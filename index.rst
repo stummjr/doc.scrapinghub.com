@@ -8,6 +8,7 @@ Products & services
 -------------------
 
 * :doc:`panel`
+* :doc:`autoscraping`
 * :doc:`cloud`
 * :doc:`proxyhub`
 * :doc:`api`
