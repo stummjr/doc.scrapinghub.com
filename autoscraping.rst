@@ -40,12 +40,22 @@ because the html source can have important differences. So, a less better case w
 
 In most cases you don't need to run a new annotating job, as the captured pages in this mode are reusable. Each time
 you add a template or modify one, these changes will be reflected in extracted items after you reload the captured
-pages.
+pages. But there are situations when you may need to run a new annotating job.
 
-But there are situations when you may need to run a new annotating job. Right now, annotating jobs are limited by number of pages
+Right now, annotating jobs are limited by number of pages
 (1000 by default). This is a very important mechanism in order to avoid infinite crawling loop traps under certain conditions. The
 normal jobs are also limited, but in a different way, which consist on checking the number of items extracted each hour. And if this
 count does not accomplish a given threshold, then the job will be automatically stopped.
+
+Because of this reason, usually you will get much more crawled pages in a normal job than in the annotating job, and so you can discover
+that there are some items not extracted, or not correctly extracted, in a normal job, but you can't annotate it because it was not
+captured in the annotating job, and so you have to try a new annotating job with spider link filters in order to avoid to capture
+unnecessary pages and so leave place for capturing the important ones.
+
+Link filters are a very important issue in spider development, not only because they allow to capture more relevant pages in annotating 
+jobs, but also because they will greatly improve the performance of normal jobs, as avoiding to crawl unnecessary pages will not only 
+yield to complete the site crawling in less time, but also to an increase of the item/hour rate, thus reducing the risk of unexpected 
+early stop of job as result of an unaccomplished item/hour rate threshold.
 
 This section has been a basic, but very important, overview of general concepts that you must know in order to better understand
 the detailed description that will come on following sections.
