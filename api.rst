@@ -63,7 +63,7 @@ Retrieve information about spiders.
 
 * Filtering parameters:
 
-  * ``project`` (required) - the project name
+  * ``project`` (required) - the project id
 
   * ``spider`` - a spider name
 
@@ -90,7 +90,7 @@ Schedules a job.
 
 * Parameters:
 
-  * ``project`` (required) - the project name
+  * ``project`` (required) - the project id
   * ``spider`` (required) - the spider name
   * ``add_tag`` (optional) - add tag to the job (can be given multiple times)
   * any other parameter is passed as spider argument
@@ -112,7 +112,7 @@ Retrieve information about jobs.
 
 * Filtering parameters:
 
-  * ``project`` (required) - the project name
+  * ``project`` (required) - the project id
 
   * ``job`` - the id of a specific job to retrieve
 
@@ -225,7 +225,7 @@ Retrieve the scraped items of a job.
 
 * Parameters:
 
-  * ``project`` (required) - the project name
+  * ``project`` (required) - the project id
 
   * ``job`` or ``spider`` (required) - the job or spider to retrieve items
     from. If you specify a job, the items scraped on that job will be returned.
@@ -272,7 +272,7 @@ Retrieve the log of a job.
 
 * Parameters:
 
-  * ``project`` (required) - the project name
+  * ``project`` (required) - the project id
 
   * ``job`` (required) - the job to retrieve items from
 
@@ -309,7 +309,7 @@ Add a Python egg to the project.
 
 * Parameters:
 
-  * ``project`` (required) - the project name
+  * ``project`` (required) - the project id
 
   * ``name`` (required) - the egg name
 
@@ -332,7 +332,7 @@ Delete a Python egg from the project.
 
 * Parameters:
 
-  * ``project`` (required) - the project name
+  * ``project`` (required) - the project id
 
   * ``name`` (required) - the egg name
 
@@ -352,7 +352,7 @@ List eggs contained in a project.
 
 * Parameters:
 
-  * ``project`` (required) - the project name
+  * ``project`` (required) - the project id
 
 Examples:
 
