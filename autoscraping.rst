@@ -55,8 +55,89 @@ unnecessary pages and so leave place for capturing the important ones.
 Link filters are a very important issue in spider development, not only because they allow to capture more relevant pages in annotating 
 jobs, but also because they will greatly improve the performance of normal jobs, as avoiding to crawl unnecessary pages will not only 
 yield to complete the site crawling in less time, but also to an increase of the item/hour rate, thus reducing the risk of unexpected 
-early stop of job as result of an unaccomplished item/hour rate threshold.
+premature stop of job as result of an unaccomplished item/hour rate threshold.
 
 This section has been a basic, but very important, overview of general concepts that you must know in order to better understand
-the detailed description that will come on following sections.
+the detailed description that will come on following sections. Also please take a time to watch the AS tour video in 
+http://scrapinghub.com/autoscraping.html before continue. Will be of great help.
 
+Step 1. Item fields
+===================
+
+Before adding the first spider, you must carefully design the item fields set you will need. A wrong design and AS will not work at all.
+
+You can create as many different item types as you need for the different spiders of your project. Item types can be added, edited, and 
+removed in the **Items** subsection of **Settings** section. When you add a new item, it will come with *url* field already defined as 
+default. The url field is defined by default in the item type definition because the AS backend automatically adds it to every scraped 
+item in a job. The specifications of this field are not editable, because it already has the necessary flags and type specifications.
+
+The most important parameters are the type of data and two flags, *Required* and *Vary*.
+
+Field data type
+_______________
+
+The type of data specifies some basic patterns that the corresponding target region in the target page must fulfill (extraction pattern) in order to actually be extracted. This feature helps the main extraction algorithm to spot the correct region in the page and resolve possible ambiguities. Additionally, it contains specifications on how to render the field value in the item browser, a feature that is used also when coping with code spiders (or manual spiders, MS, as opposition with autoscraping spiders), which are out of the scope of this tutorial. Lets enumerate the available item types:
+
+geopoint
+  This is a special field type with no special extraction pattern, and only serves for the purpose of rendering a tuple of 
+  latitude/longitude. This type is currently not supported in AS and is only used for rendering purposes in MS, so you can safely ignore 
+  this one.
+
+image
+  This field type demands the spotted html code to fulfill the format of an image url and renders as an image in the item browser.
+
+number
+  The spotted html code must have a number, and only the number part will be extracted.
+
+price
+  It is like the number type but will also consider common formatting on price expressions in order to match.
+
+raw html
+  The html code as it is. It matches anything except an empty string.
+
+safe html
+  Matches any html code which has no empty text content. Also performs some transformation and cleaning over the extracted data in
+  order to safely show the html code correctly formatted in a web page.
+
+text
+  Matches any html code which has no empty text content, and only extract that text content.
+
+url
+  Matches any url expression and renders as a link in the item browser.
+
+Field flags
+___________
+
+There are two field flags that modifies the behavior of extraction and item creation:
+
+Required
+  When a field is marked as **Required**, it means that the extracted item must contain the field in order to be actually accepted. We 
+  will be back to this concept in the description about how extraction is performed.
+
+Vary
+  AS has a duplicates item detection system, which will reject any item that was already scraped before. In order to accomplish this 
+  task, the duplicates detector needs to know which fields it must check in order to effectively find a duplicated item, and all the 
+  fields are checked, except those marked  as **Vary**. Lets illustrate with an example, and lets suppose we have an item type with 
+  fields *name*, *price*, *description*, *category* and *url*, and *category* and *url* are marked as **Vary**. Lets suppose the AS bot 
+  has first scraped the following item:
+
+  *name*: Louis XIV Table
+  *price*: 1000.00
+  *description*: Very high quality Louis XIV style table
+  *category*: Tables
+  *url*: \http://www.furniture.com/tables/louis-xiv-table.html
+
+  And further, it extracted this item but in a different place in the site:
+
+  *name*: Louis XIV Table
+  *price*: 1000.00
+  *description*: Very high quality Louis XIV style table
+  *category*: Living Room
+  *url*: \http://www.furniture.com/living-room/louis-xiv-table.html
+
+  It is, of course, the same product, but the specific map of the site makes it appear in two different places, under different 
+  product categories. Because *url* and *category* are marked as **Vary**, only *name*, *price* and *description* are checked by the 
+  duplicates detector. And as all them has the same value in both items, the second one is considered as a duplicate of the first, and 
+  rejected. Observe that if *url* and *category* were not marked as **Vary**, then the duplicates detection system would consider both
+  as different products, and so both would be generated. The term "Vary" is used then to indicate that those fields can vary its values 
+  but still be the same item.
