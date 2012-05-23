@@ -97,7 +97,7 @@ Schedules a job.
 
 Example request::
 
-    $ curl http://panel.scrapinghub.com/api/schedule.json -d project=mybot -d spider=somespider -d add_tag=sometag
+    $ curl http://panel.scrapinghub.com/api/schedule.json -d project=123 -d spider=somespider -d add_tag=sometag
 
 Example response::
 
