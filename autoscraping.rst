@@ -30,13 +30,13 @@ or even add new ones, because current one/s are not suitable for extracting data
 to extract data. And even this can be the case regardless how similar the target pages looks in the browser,
 because the html source can have important differences. So, a less better case would be:
 
-    #. Create the spider and configure (minimal configuration is the name of the spider and the starting url)
-    #. Run in annotating mode
-    #. Go to captured pages and find one from which you need scraped data
-    #. Add a template, and annotate it
-    #. Go back to captured pages and check how items are extracted from them
-    #. Eventually improve current template and/or jump to step 4.
-    #. Run in normal mode and get the items
+    1. Create the spider and configure (minimal configuration is the name of the spider and the starting url)
+    2. Run in annotating mode
+    3. Go to captured pages and find one from which you need scraped data
+    4. Add a template, and annotate it
+    5. Go back to captured pages and check how items are extracted from them
+    6. Eventually improve current template and/or jump to step 4.
+    7. Run in normal mode and get the items
 
 In most cases you don't need to run a new annotating job, as the captured pages in this mode are reusable. Each time
 you add a template or modify one, these changes will be reflected in extracted items after you reload the captured
@@ -61,8 +61,8 @@ This section has been a basic, but very important, overview of general concepts 
 the detailed description that will come on following sections. Also please take a time to watch the AS tour video in 
 http://scrapinghub.com/autoscraping.html before continue. Will be of great help.
 
-Step 1. Item fields
-===================
+Item fields
+===========
 
 Before adding the first spider, you must carefully design the item fields set you will need. A wrong design and AS will not work at all.
 
@@ -111,8 +111,8 @@ ___________
 There are two field flags that modifies the behavior of extraction and item creation:
 
 Required
-  When a field is marked as **Required**, it means that the extracted item must contain the field in order to be actually accepted. We 
-  will be back to this concept in the description about how extraction is performed.
+  When a field is marked as **Required**, it means that the extracted item must contain the field in order to be actually extracted. We 
+  will be back to this concept in the next section.
 
 Vary
   AS has a duplicates item detection system, which will reject any item that was already scraped before. In order to accomplish this 
@@ -121,19 +121,19 @@ Vary
   fields *name*, *price*, *description*, *category* and *url*, and *category* and *url* are marked as **Vary**. Lets suppose the AS bot 
   has first scraped the following item:
 
-  *name*: Louis XIV Table
-  *price*: 1000.00
-  *description*: Very high quality Louis XIV style table
-  *category*: Tables
-  *url*: \http://www.furniture.com/tables/louis-xiv-table.html
+  * *name*: Louis XIV Table
+  * *price*: 1000.00
+  * *description*: Very high quality Louis XIV style table
+  * *category*: Tables
+  * *url*: \http://www.furniture.com/tables/louis-xiv-table.html
 
   And further, it extracted this item but in a different place in the site:
 
-  *name*: Louis XIV Table
-  *price*: 1000.00
-  *description*: Very high quality Louis XIV style table
-  *category*: Living Room
-  *url*: \http://www.furniture.com/living-room/louis-xiv-table.html
+  * *name*: Louis XIV Table
+  * *price*: 1000.00
+  * *description*: Very high quality Louis XIV style table
+  * *category*: Living Room
+  * *url*: \http://www.furniture.com/living-room/louis-xiv-table.html
 
   It is, of course, the same product, but the specific map of the site makes it appear in two different places, under different 
   product categories. Because *url* and *category* are marked as **Vary**, only *name*, *price* and *description* are checked by the 
@@ -141,3 +141,23 @@ Vary
   rejected. Observe that if *url* and *category* were not marked as **Vary**, then the duplicates detection system would consider both
   as different products, and so both would be generated. The term "Vary" is used then to indicate that those fields can vary its values 
   but still be the same item.
+
+How templates are used in the extraction process
+================================================
+
+If your spider has only one template, the process is very simple: a scan is performed on every target page using the annotations in the 
+template, and if all **Required** fields are extracted, based on a relative positional algorithm and the extraction rules defined by the 
+field data type described in previous section, then the complete item is extracted. If some of the fields marked as **Required** was not 
+found in the target, then the item is not extracted. And if the item is extracted, it still must pass the duplicates detector check, 
+which will decide, as already described, if the extracted item will be finally accepted or rejected.
+
+If your spider has more than one template, then templates are tried sequentially until the first success extraction occurs. And then, 
+duplicates detector is applied over the extracted item, if so. The order in which templates are tried **is not** the same order as they 
+were created (as you see them in the panel), but instead, they are sorted by the number of annotations it contains, in decreasing order. 
+Only if a subset of templates has the same number of annotations, they will be tried according to age (first created, first). The rule 
+to try templates according to number of annotations improves the efficiency of the general extraction algorithm, as the less annotations 
+has a template, more easily can be successful in extracting an item by mistake, because there are less constraints to fulfill. So, this 
+rule reduces the probability of getting a false positive with the wrong template. Also, the alternatives to handle this kind of false 
+positives are easier to implement with this rule, because as template has more annotations, it has the chance to add more constraints.
+
+
