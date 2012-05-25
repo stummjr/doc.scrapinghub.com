@@ -20,6 +20,7 @@ Table of contents
    :maxdepth: 2
 
    panel
+   autoscraping
    cloud
    proxyhub
    api

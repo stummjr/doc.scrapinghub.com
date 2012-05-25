@@ -142,14 +142,20 @@ Vary
   as different products, and so both would be generated. The term "Vary" is used then to indicate that those fields can vary its values 
   but still be the same item.
 
+Shortcut Key
+____________
+
+You can add a field shortcut key in order to quickly select a field when you are within the annotation tool. We will go back to field 
+shortcuts in more  detail in the section about the annotation tool (still not redacted)
+
 How templates are used in the extraction process
 ================================================
-
+	
 If your spider has only one template, the process is very simple: a scan is performed on every target page using the annotations in the 
 template, and if all **Required** fields are extracted, based on a relative positional algorithm and the extraction rules defined by the 
 field data type described in previous section, then the complete item is extracted. If some of the fields marked as **Required** was not 
 found in the target, then the item is not extracted. And if the item is extracted, it still must pass the duplicates detector check, 
-which will decide, as already described, if the extracted item will be finally accepted or rejected.
+which will decide, as already described, whether the extracted item will be finally accepted or rejected.
 
 If your spider has more than one template, then templates are tried sequentially until the first success extraction occurs. And then, 
 duplicates detector is applied over the extracted item, if so. The order in which templates are tried **is not** the same order as they 
@@ -158,6 +164,101 @@ Only if a subset of templates has the same number of annotations, they will be t
 to try templates according to number of annotations improves the efficiency of the general extraction algorithm, as the less annotations 
 has a template, more easily can be successful in extracting an item by mistake, because there are less constraints to fulfill. So, this 
 rule reduces the probability of getting a false positive with the wrong template. Also, the alternatives to handle this kind of false 
-positives are easier to implement with this rule, because as template has more annotations, it has the chance to add more constraints.
+positives are easier to implement with this rule, because as template has more annotations, user has the chance to add more constraints.
+
+Spider parameters
+=================
+
+When you create a new spider, the minimal attributes you have to fill in order to run the first crawling job, are the spider name and 
+the starting URLs (at least one). The first job you will run for a just created spider will be an "annotating" mode job, because the 
+obvious first task for every new spider is to add templates. Also, the first (and successive) jobs will give you a better idea about how 
+to improve crawling performance by adding url filters. Url filters are optional but in most cases are strongly recommended, as we 
+explained in the section about basic concepts.
+
+URL Filters
+___________
+
+There is a filter that is always applied, and two kind of custom filters. The always applied filter is the offsite filter. This filter 
+avoids the bot to escape from outside the target site/s. Without this kind of filter, the bot would crawl links from the entire web, 
+avoiding to focus on our target. And if there weren't other kind of filters, it indeed would crawl all the web.
+
+The offsite filter restricts the bot to only visit links that belong to the web domains in the start URLs, and in the templates (if any) 
+URLs, and filters out everything else. It has precedence over any other kind of URL filter.
+
+The other two kind of URL filters are user custom: **Exclude Pattern** and **Follow Patterns**, bot configurable from the Autoscraping 
+Spider properties.
+
+**Exclude Patterns** allow to filter out URL patterns (regular expressions) that must not be visited. You can add as many as you want, one per line in the corresponding widget. **Exclude Patterns** has precedence over **Follow Patterns**.
+
+You can select between 3 modes of link following:
+
+  *. *Follow all links within the spider domains* (except, as already said, those defined in **Excluded Patterns**). Here the spider domains means the ones described above: domains in start URLs and template URLs. As already said, 
+  *. *Don't follow links*. Just limit crawling to the starting URLs.
+  *. *Follow links that matches the following patterns*. When you select this mode, a new text widget will become visible where you can write the **Follow Patterns** (again, regular expressions) that links has to match in order to be followed.
+
+Advanced Tools
+==============
+
+The tools and procedures described until now are enough in order to solve most cases. However, it is common to have cases for which we don't get the expected results. Annotations that extract the wrong region on some targets, templates that are not used for the target pages we expected, or data extracted from pages that we don't want to extract anything, are among the most common trouble we may cope with. The main source of problems is the fact that the html code layout can present many variations or similarities among different target pages, which introduces ambiguities for the extraction algorithm. Also, as we can have multiple templates for the same spider, all them intended to be used for different subset of target pages, sometimes it is quite tricky to make the correct template to be applied to the correct target (Remember `How templates are used in the extraction process`_). In order to assist on the resolution of these problems, some extra constraints has to be imposed to template annotations.
+
+Extra required attributes
+=========================
+
+Example 1.
+__________
+
+Consider the following case. We have
+  * an item type which includes *name*, *price*, *description* and *manufacturer*, where *name* and *price* are required fields, and
+  * a template with annotations for all 4 of them
+
+The result in the captured pages are many items correctly scraped (target set A), but many others (target set B) which has no a 
+manufacturer but, because of their particular layout, the algorithm matches the item description with the *manufacturer* annotation, 
+while the field *description* is not extracted at all because its annotation does not match any similar region in the target. Visually, 
+we can roughly illustrate the situation as follow:
+
+layout A: 
+
++------------+-----------+
+|    name    |  -price-  |
++------------+-----------+
+|      manufacturer      |
++------------------------+
+|      description       |
++------------------------+
+
+layout B:
+
++------------+-----------+
+|    name    |  -price-  |
++------------+-----------+
+|      description       |
++------------------------+
+
+So, you add a new template from one of pages of target set B, and annotate *name*, *price* and *description*. You would expect that 
+adding this new template, problem will be fixed. But actually is not the case. Because the first template has more annotations than the 
+second, it will be tried first. And because it will extract all required data, *name* and *price*, the item will still be created with 
+the wrong data, and the second template will never be applied.
+
+You have to add a new constraint. If you open the first template in the annotation tool, you can mark the *description* annotation as 
+required. And because in the targets of set B the description is not extracted with this template, then the items will not be created at 
+all with it. So the algorithm tries with the second template, which now will correctly extract the three fields.
+
+Observe that, if the templates were not tried in decreasing count of annotations, it may happen that the template with three annotations be tried first, and as a result we get wrong extracted data from the pages of set A. In particular, you most probably will get the manufacturer data in *description* field, and get missed the real description. But in this case, if there is no other way to differentiate among a description and a manufactured data, it is not possible to apply any constraint. In the first approach you can constrain the application of the template with four annotations to require to extract the missing field, because with target set A you extract four fields, and with target set B you extract three. But in the second approach, the first template tried, the one with three annotations, will extract three fields for both sets of targets.
+
+As said before, the more annotations we have, the more constraints we can add.
+
+Example 2.
+__________
+
+The less required fields you have, the most easy you can match wrong targets. As a consequence, you not only can match desired targets with wrong template, as in the previous example. But you also can match undesired targets which has layout similarities with the desired ones.
+
+Sticky annotations
+==================
 
 
+Template Extractors
+===================
+
+
+Ignored regions
+===============
