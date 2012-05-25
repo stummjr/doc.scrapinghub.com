@@ -220,8 +220,8 @@ all them intended to be used for different subset of target pages, sometimes it 
 applied to the correct target (Remember `How templates are used in the extraction process`_). In order to assist on the resolution of 
 these problems, some extra constraints has to be imposed to template annotations.
 
-Extra required attributes
-=========================
+Extra required annotations
+==========================
 
 Example 1.
 __________
@@ -289,10 +289,64 @@ on the site particularities and your needs.
 Sticky annotations
 ==================
 
+Another resource that helps to solve some particular problems, is the use of sticky annotations, which are available in the annotation 
+tool as "_stickyN" (being N a number) together with the field names. Sticky annotations can be used each time you need additional 
+annotations without generating additional extracted data. For example, when you are extracting undesired targets with some of the 
+templates, and you don't have the choice to filter by URL or mark some annotations as required, you can still add new annotations in the 
+template, that matches particular features of the desired targets that does not exists in the undesired ones: a particular logo, an 
+image, a button or a piece of text, for example.
+
+Sticky annotations are implicitly required, and you can add as many ones as you need. Also, consider that by adding more annotations, 
+the template may increase its precedence in the templates try sequence.
 
 Template Extractors
 ===================
 
+Consider the following situation. You have a set of target pages which consists on user profiles, containing tabulated data of the same type: *name*, *gender*, *occupation*, *country*, *favorite books* and *favorite movies*. But, except the page we chosen for template:
 
-Ignored regions
-===============
++--------------+-------------------+
+|      Name:   |       Olive       |
++--------------+-------------------+
+|    Gender:   |      Female       |
++--------------+-------------------+
+|  Occupation: |     FBI Agent     |
++--------------+-------------------+
+|   Country:   |       USA         |
++--------------+-------------------+
+|  Fav.Books:  | The First People  |
++--------------+-------------------+
+|  Fav.Movies: |    Casablanca     |
++--------------+-------------------+
+
+fields are not required to appear in all the user profiles. This condition will make a mere positional matching to fail, and you will 
+have mixed data as result. For example, if a user did not provide the *occupation* and *country*, you will get the favorite books in the 
+*occupation* field, the favorite movies in the *country* field, and nothing in the fields *favorite books* and *favorite movies*.
+
+You can't mark as required any of the annotation because actually all them are optional (and also would not solve the positional problem 
+anyway)
+
+Here the template extractors come to help, by adding pattern constraints to the template annotations. First, you must annotate, instead 
+of the field value cell ("Olive", "Female", etc) the entire field row ("Name: Olive", "Gender: Female", and so on). Then, in the 
+template properties, add Regular Expression extractors for each field, in the form:
+
++------------+------------------+-------------------+
+| Field name |       Type       |   Specification   |
++============+==================+===================+
+|  *name*    |Regular expression|   Name:\s+(.*?)   |
++------------+------------------+-------------------+
+| *gender*   |Regular expression|  Gender:\s+(.*?)  |
++------------+------------------+-------------------+
+|*occupation*|Regular expression|Occupation:\s*(.*?)|
++------------+------------------+-------------------+
+|    ...     |       ...        |        ...        |
++------------+------------------+-------------------+
+
+And so on.
+
+When you choose a Regular expression extractor, the specification must consist on a regular expression pattern that must match the 
+extracted data for the corresponding field. If the extracted data does not match the pattern, then the field is not extracted. If the 
+extracted data does match the pattern, then it is replaced by the match group enclosed between parenthesis (or a concatenation of all 
+them, if more than one group given). This way, you will ensure that correct annotation match the correct target row, and you will only 
+extract the part that you are interested in.
+
+Of course, this tactic will be useful only if you can annotate a region that has some key word or repeated pattern, but different for each field.
