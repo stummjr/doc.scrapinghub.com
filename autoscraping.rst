@@ -349,4 +349,22 @@ extracted data does match the pattern, then it is replaced by the match group en
 them, if more than one group given). This way, you will ensure that correct annotation match the correct target row, and you will only 
 extract the part that you are interested in.
 
-Of course, this tactic will be useful only if you can annotate a region that has some key word or repeated pattern, but different for each field.
+Of course, this tactic will be useful only if you can annotate a region that has some key word or repeated pattern, and all be different for each field.
+
+Autoscraping and ScrapingHub API
+================================
+
+If you want to manage AS job scheduling using the ScrapingHub :doc:`api`, AS bot supports to pass start_urls as a list of URLs separated by new lines. This feature is very useful for passing a list of URLs from a text file.
+
+For example, if you have all your start URLs in a file named start_urls.txt, one per line, you can do, from a linux console::
+
+    curl http://panel.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls="$(cat start_urls.txt)"
+
+or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapinghub>`_::
+
+    >>> from scrapinghub import Connection
+    >>> conn = Connection('<your api key>')
+    >>> project = conn["155"]
+    >>> project.schedule("myspider", start_urls=open("start_urls.txt").read())
+
+
