@@ -183,7 +183,10 @@ avoids the bot to escape from outside the target site/s. Without this kind of fi
 avoiding to focus on our target. And if there weren't other kind of filters, it indeed would crawl all the web.
 
 The offsite filter restricts the bot to only visit links that belong to the web domains in the start URLs, and in the templates (if any) 
-URLs, and filters out everything else. It has precedence over any other kind of URL filter.
+URLs, and filters out everything else. It has precedence over any other kind of URL filter. One can ask whether there is not a 
+redundancy in adding template URLs domains, as templates were obtained from a crawling limited to the start URLs domains. Well, in most 
+cases, this is true, but also can happen that you use one start url for creating templates, and a different one for scraping items, and 
+both be from different domains.
 
 The other two kind of URL filters are user custom: **Exclude Pattern** and **Follow Patterns**, bot configurable from the Autoscraping 
 Spider properties.
@@ -196,10 +199,26 @@ You can select between 3 modes of link following:
   *. *Don't follow links*. Just limit crawling to the starting URLs.
   *. *Follow links that matches the following patterns*. When you select this mode, a new text widget will become visible where you can write the **Follow Patterns** (again, regular expressions) that links has to match in order to be followed.
 
+The **Follow Patterns** are the filters with the less precedence. This fact means that you can't force to follow links on a different 
+domain by adding it in this category of filters. The only domains that will be accepted are, as said, those contained in the start URLs 
+and those contained in the template URLs.
+
+Despite the simplicity that may seem adding patterns in order to focus only in the desired targets, you must be warned about possible 
+unexpected consequences of the usage of URL filters. It is easy to fall in the trap of excluding the visit of pages that you thought you 
+didn't need, but when you run a new job the result could be that you also didn't get the ones you do need, because some of the first 
+ones contains the links to the second ones, thus cutting the path to them.
+
 Advanced Tools
 ==============
 
-The tools and procedures described until now are enough in order to solve most cases. However, it is common to have cases for which we don't get the expected results. Annotations that extract the wrong region on some targets, templates that are not used for the target pages we expected, or data extracted from pages that we don't want to extract anything, are among the most common trouble we may cope with. The main source of problems is the fact that the html code layout can present many variations or similarities among different target pages, which introduces ambiguities for the extraction algorithm. Also, as we can have multiple templates for the same spider, all them intended to be used for different subset of target pages, sometimes it is quite tricky to make the correct template to be applied to the correct target (Remember `How templates are used in the extraction process`_). In order to assist on the resolution of these problems, some extra constraints has to be imposed to template annotations.
+The tools and procedures described until now are enough in order to solve most cases. However, it is common to have cases for which we 
+don't get the expected results. Annotations that extract the wrong region on some targets, templates that are not used for the target 
+pages we expected, or data extracted from pages that we don't want to extract anything, are among the most common trouble we may cope 
+with. The main source of problems is the fact that the html code layout can present many variations or similarities among different 
+target pages, which introduces ambiguities for the extraction algorithm. Also, as we can have multiple templates for the same spider, 
+all them intended to be used for different subset of target pages, sometimes it is quite tricky to make the correct template to be 
+applied to the correct target (Remember `How templates are used in the extraction process`_). In order to assist on the resolution of 
+these problems, some extra constraints has to be imposed to template annotations.
 
 Extra required attributes
 =========================
@@ -243,14 +262,29 @@ You have to add a new constraint. If you open the first template in the annotati
 required. And because in the targets of set B the description is not extracted with this template, then the items will not be created at 
 all with it. So the algorithm tries with the second template, which now will correctly extract the three fields.
 
-Observe that, if the templates were not tried in decreasing count of annotations, it may happen that the template with three annotations be tried first, and as a result we get wrong extracted data from the pages of set A. In particular, you most probably will get the manufacturer data in *description* field, and get missed the real description. But in this case, if there is no other way to differentiate among a description and a manufactured data, it is not possible to apply any constraint. In the first approach you can constrain the application of the template with four annotations to require to extract the missing field, because with target set A you extract four fields, and with target set B you extract three. But in the second approach, the first template tried, the one with three annotations, will extract three fields for both sets of targets.
+Observe that, if the templates were not tried in decreasing count of annotations, it may happen that the template with three annotations 
+be tried first, and as a result we get wrong extracted data from the pages of set A. In particular, you most probably will get the 
+manufacturer data in *description* field, and get missed the real description. But in this case, if there is no other way to 
+differentiate among a description and a manufactured data, it is not possible to apply any constraint. In the first approach you can 
+constrain the application of the template with four annotations to require to extract the missing field, because with target set A you 
+extract four fields, and with target set B you extract three. But in the second approach, the first template tried, the one with three 
+annotations, will extract three fields for both sets of targets.
 
 As said before, the more annotations we have, the more constraints we can add.
 
 Example 2.
 __________
 
-The less required fields you have, the most easy you can match wrong targets. As a consequence, you not only can match desired targets with wrong template, as in the previous example. But you also can match undesired targets which has layout similarities with the desired ones.
+The less required fields you have, the less constraints you are imposing, and so the most easy you can match wrong targets. As a 
+consequence, you not only can match desired targets with wrong template, as in the previous example. But you can also match undesired 
+targets which has layout similarities with one or more templates. If you have this problem, a possible approach can be to check whether 
+you can mark as required some annotations in the problematic templates, which are not extracted in the undesired targets, and without 
+affecting the extraction of desired ones (which still can have those as optional attributes), thus avoiding to create items for them.
+
+But this is not the only approach you can try for this case. May be it is possible to filter out those undesired pages with excluded 
+URLs, without affecting the crawling of the site (as mentioned before, could happen that those pages are the ones which contains the 
+links to desired pages). This is the most desirable approach in terms of efficiency gain, but not always available. It depends entirely 
+on the site particularities and your needs.
 
 Sticky annotations
 ==================
