@@ -360,6 +360,37 @@ To add an egg from a project::
 
     curl -u USER:PASS "http://panel.scrapinghub.com/api/eggs/list.json?project=123"
 
+.. _reports-api:
+
+Reports API
+===========
+
+This API allows you to upload reports which are attached to scraping job. Job
+reports can be accessed through the "Reports" tab in the job page.
+
+Multiple reports can be attached to a single job. Each report is uniquely
+identified by a key (within a given job).
+
+reports/add.json
+----------------
+
+Upload a report and attach it to a job. The report content must be uploaded in
+`reStructuredText`_ format.
+
+* Supported Request Methods: ``POST``
+
+* Parameters:
+   * ``project`` (required) - the project id
+   * ``job`` (required) - the job id to which the report will be attached
+   * ``key`` (required) - a key that uniquely identifies the report within the job
+   * ``content`` (required) - the report content in `reStructuredText`_ format.
+      the content type ``text/x-rst`` must be specified as well.
+
+Example to upload a report assuming you have the report content (in
+`reStructuredText`_ format) in a ``report.rst`` file::
+
+   curl -u USER:PASS http://panel.scrapinghub.com/api/reports/add.json -F project=123 -F job=4fb0e9e5bbddbd7b460005f2 -F key=qareport -F 'content=@report.rst;type=text/r-rst'
+
 .. _pagination:
 
 Paginating API results
@@ -409,3 +440,4 @@ There is a Python client library for Scrapinghub API available here:
 .. _curl: http://curl.haxx.se/
 .. _HTTP Basic access authentication: http://en.wikipedia.org/wiki/Basic_access_authentication
 .. _JSONView extension: http://benhollis.net/software/jsonview/
+.. _reStructuredText: http://en.wikipedia.org/wiki/ReStructuredText
