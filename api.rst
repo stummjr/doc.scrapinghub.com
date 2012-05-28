@@ -378,13 +378,12 @@ Upload a report and attach it to a job. The report content must be uploaded in
 `reStructuredText`_ format.
 
 * Supported Request Methods: ``POST``
-
 * Parameters:
    * ``project`` (required) - the project id
    * ``job`` (required) - the job id to which the report will be attached
    * ``key`` (required) - a key that uniquely identifies the report within the job
    * ``content`` (required) - the report content in `reStructuredText`_ format.
-      the content type ``text/x-rst`` must be specified as well.
+     The content should be uploaded as a file with content type ``text/x-rst``.
 
 Example to upload a report assuming you have the report content (in
 `reStructuredText`_ format) in a ``report.rst`` file::
