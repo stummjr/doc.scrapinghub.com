@@ -388,7 +388,7 @@ Upload a report and attach it to a job. The report content must be uploaded in
 Example to upload a report assuming you have the report content (in
 `reStructuredText`_ format) in a ``report.rst`` file::
 
-   curl -u USER:PASS http://panel.scrapinghub.com/api/reports/add.json -F project=123 -F job=4fb0e9e5bbddbd7b460005f2 -F key=qareport -F 'content=@report.rst;type=text/r-rst'
+   curl -u USER:PASS http://panel.scrapinghub.com/api/reports/add.json -F project=123 -F job=4fb0e9e5bbddbd7b460005f2 -F key=qareport -F 'content=@report.rst;type=text/x-rst'
 
 .. _pagination:
 
