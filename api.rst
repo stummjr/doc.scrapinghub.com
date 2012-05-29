@@ -374,21 +374,24 @@ identified by a key (within a given job).
 reports/add.json
 ----------------
 
-Upload a report and attach it to a job. The report content must be uploaded in
-`reStructuredText`_ format.
+Upload a report and attach it to a job. The supported formats are
+`reStructuredText`_ plain text.
 
 * Supported Request Methods: ``POST``
 * Parameters:
    * ``project`` (required) - the project id
    * ``job`` (required) - the job id to which the report will be attached
    * ``key`` (required) - a key that uniquely identifies the report within the job
-   * ``content`` (required) - the report content in `reStructuredText`_ format.
-     The content should be uploaded as a file with content type ``text/x-rst``.
+   * ``content`` (required) - the report content in the format specified by
+     ``content_type`` parameter
+   * ``content_type`` (required) - the format of the content. Supported formats
+     are ``text/x-rst`` for `reStructuredText`_ and ``text/plain`` for plain
+     text.
 
 Example to upload a report assuming you have the report content (in
 `reStructuredText`_ format) in a ``report.rst`` file::
 
-   curl -u USER:PASS http://panel.scrapinghub.com/api/reports/add.json -F project=123 -F job=4fb0e9e5bbddbd7b460005f2 -F key=qareport -F 'content=@report.rst;type=text/x-rst'
+   curl -u USER:PASS http://panel.scrapinghub.com/api/reports/add.json -F project=123 -F job=4fb0e9e5bbddbd7b460005f2 -F key=qareport -F content_type=text/x-rst -F @report.rst
 
 .. _pagination:
 
