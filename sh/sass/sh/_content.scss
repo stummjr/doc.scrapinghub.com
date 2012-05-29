@@ -21,6 +21,8 @@ h1, h2 {
     margin-right: 0;
     padding: 0;
     border-bottom: 1px solid $sh-lightest-gray;
+    margin-top: 2em !important;
+    margin-bottom: .5em;
 }
 
 h1 {
@@ -39,6 +41,7 @@ h3 {
     font-weight: bold;
     font-size: 1em !important;
     color: lighten($sh-darkest-gray, 20%);
+    margin: 1.5em 0 1em;
 }
 
 h4 {
@@ -55,23 +58,31 @@ a, a:visited {
 }
 
 p {
-    line-height: 2.3em;
-    color: $sh-darkest-gray;
+    line-height: 1.5em;
+    color: $sh-black;
 }
 
 em {
     font-style: italic;
-    color: $sh-dark-gray;
+    color: $sh-black;
 }
 
 ol {
     padding-left: 3em;
+
+    li {
+        list-style-type: decimal;
+        color: $sh-black;
+    }
 }
 
 tt {
-    background-color: $sh-lightest-gray;
     padding: 1px 5px;
     font-size: 0.95em;
+
+    .pre {
+        background-color: $sh-lightest-gray;
+    }
 }
 
 strong {
@@ -94,12 +105,14 @@ input[type="text"] {
 }
 
 ul {
-    margin: 0;
+    margin-bottom: 1em;
     padding: 0;
 
     li {
-        list-style-type: none;
+        list-style-type: disc;
         padding: .6em 0 0;
+        margin-left: 2em;
+        color: $sh-black;
     }
 }
 
@@ -109,4 +122,13 @@ pre {
     padding: .5em 1em;
     overflow: auto;
     overflow-y: hidden;  /* fixes display issues on Chrome browsers */
+    margin: .5em 2em 1em;
+}
+
+.pre {
+    @include fixed-width-font;
+}
+
+.highlight {
+    background-color: white !important;
 }

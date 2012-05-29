@@ -1,10 +1,13 @@
 @import "sh/vars";
 
 > ul {
+    margin-bottom: 0;
+
     > li {
+        list-style-type: none;
         line-height: 2.2em;
         font-weight: bold;
-        color: $sh-dark-gray;
+        margin-left: 0;
 
         a {
             @include inline-block;
