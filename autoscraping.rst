@@ -329,17 +329,17 @@ Here the template extractors come to help, by adding pattern constraints to the 
 of the field value cell ("Olive", "Female", etc) the entire field row ("Name: Olive", "Gender: Female", and so on). Then, in the 
 template properties, add Regular Expression extractors for each field, in the form:
 
-+------------+------------------+-------------------+
-| Field name |       Type       |   Specification   |
-+============+==================+===================+
-|  *name*    |Regular expression|   Name:\s+(.*?)   |
-+------------+------------------+-------------------+
-| *gender*   |Regular expression|  Gender:\s+(.*?)  |
-+------------+------------------+-------------------+
-|*occupation*|Regular expression|Occupation:\s*(.*?)|
-+------------+------------------+-------------------+
-|    ...     |       ...        |        ...        |
-+------------+------------------+-------------------+
++--------------+--------------------+--------------------+
+|  Field name  |        Type        |    Specification   |
++==============+====================+====================+
+|    *name*    | Regular expression |    Name:\s+(.*)    |
++--------------+--------------------+--------------------+
+|   *gender*   | Regular expression |   Gender:\s+(.*)   |
++--------------+--------------------+--------------------+
+| *occupation* | Regular expression | Occupation:\s*(.*) |
++--------------+--------------------+--------------------+
+|     ...      |        ...         |        ...         |
++--------------+--------------------+--------------------+
 
 And so on.
 
