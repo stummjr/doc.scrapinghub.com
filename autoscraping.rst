@@ -195,9 +195,9 @@ Spider properties.
 
 You can select between 3 modes of link following:
 
-  *. *Follow all links within the spider domains* (except, as already said, those defined in **Excluded Patterns**). Here the spider domains means the ones described above: domains in start URLs and template URLs. As already said, 
-  *. *Don't follow links*. Just limit crawling to the starting URLs.
-  *. *Follow links that matches the following patterns*. When you select this mode, a new text widget will become visible where you can write the **Follow Patterns** (again, regular expressions) that links has to match in order to be followed.
+  * *Follow all links within the spider domains* (except, as already said, those defined in **Excluded Patterns**). Here the spider domains means the ones described above: domains in start URLs and template URLs. As already said, 
+  * *Don't follow links*. Just limit crawling to the starting URLs.
+  * *Follow links that matches the following patterns*. When you select this mode, a new text widget will become visible where you can write the **Follow Patterns** (again, regular expressions) that links has to match in order to be followed.
 
 The **Follow Patterns** are the filters with the less precedence. This fact means that you can't force to follow links on a different 
 domain by adding it in this category of filters. The only domains that will be accepted are, as said, those contained in the start URLs 
