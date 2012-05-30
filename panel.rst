@@ -18,7 +18,7 @@ Jobs dashboard
 
 The jobs dashboard can be used to monitor and control your spiders.
 
-The schedule a spider for running select the spider in the `Scheduler spider`
+To schedule a spider for running select the spider in the `Scheduler spider`
 box and click the `Schedule` button.
 
 Pending Jobs
