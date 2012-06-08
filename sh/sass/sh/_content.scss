@@ -104,10 +104,12 @@ input[type="text"] {
     }
 }
 
-ul {
+ul, ol {
     margin-bottom: 1em;
-    padding: 0;
+}
 
+ul {
+    padding: 0;
     li {
         list-style-type: disc;
         padding: .6em 0 0;
@@ -123,6 +125,67 @@ pre {
     overflow: auto;
     overflow-y: hidden;  /* fixes display issues on Chrome browsers */
     margin: .5em 2em 1em;
+}
+
+table {
+    width: 100%;
+    //border-collapse: separate;
+    //border: 1px solid $sh-light-gray;
+    background-color: white;
+    //@include border-radius($border-radius);
+
+    th {
+        color: black;
+        font-weight: bold;
+    }
+
+    th, td {
+        padding: .4em;
+    }
+
+    tbody {
+        tr {
+            &:nth-child(even) { background-color: $sh-odd; }
+            &:nth-child(odd)  { background-color: $sh-even; }
+        }
+    }
+
+    thead {
+        tr {
+            th {
+                border-bottom: 1px solid $sh-light-gray;
+            }
+        }
+    }
+
+    tfoot {
+        tr {
+            td {
+                border-top: 1px solid $sh-light-gray;
+            }
+        }
+    }
+
+    thead, tfoot {
+        tr {
+            background-color: $sh-odd !important;
+        }
+    }
+}
+
+dl {
+    margin-top: .5em;
+
+    dt {
+        color: $sh-darkest-gray;
+        font-weight: bold;
+    }
+
+    dd {
+        margin-top: .3em;
+        margin-left: 1.3em;
+        margin-bottom: .5em;
+    }
 }
 
 .pre {
