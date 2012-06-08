@@ -129,10 +129,8 @@ pre {
 
 table {
     width: 100%;
-    //border-collapse: separate;
-    //border: 1px solid $sh-light-gray;
     background-color: white;
-    //@include border-radius($border-radius);
+    margin: 1em 0;
 
     th {
         color: black;
