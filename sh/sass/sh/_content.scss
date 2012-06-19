@@ -107,15 +107,25 @@ input[type="text"] {
 
 ul, ol {
     margin-bottom: 1em;
+    margin-left: 1em;
+
+    li {
+        line-height: 1.5em;
+    }
 }
 
 ul {
     padding: 0;
+
     li {
         list-style-type: disc;
         padding: .6em 0 0;
         margin-left: 2em;
         color: $sh-black;
+
+        li {
+            list-style-type: circle;
+        }
     }
 }
 
