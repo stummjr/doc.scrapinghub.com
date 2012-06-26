@@ -33,3 +33,34 @@ Where ``USER`` and ``PASS`` should be replaced by the credentials you got when
 you signed up for the ProxyHub service.
 
 .. _ProxyHub page: http://www.scrapinghub.com/proxyhub.html
+
+Using ProxyHub with Scrapy
+==========================
+
+There is a downloader middleware for using Scrapy with ProxyHub called
+`HubProxyMiddleware`_, provided in the `scrapylib` project.
+
+Download the `scrapylib` project, and enable the middleware by adding this to
+your Scrapy settings::
+
+    DOWNLOADER_MIDDLEWARES = {'scrapylib.hubproxy.HubProxyMiddleware': 1}
+
+Then configure your HubProxy username and password by adding following
+settings::
+
+    HUBPROXY_USER = 'john'
+    HUBPROXY_PASS = 'secret'
+
+
+Finally, set the ``use_proxy`` attributes in the spiders that you want to use
+ProxyHub. For example::
+
+    class MySpider(BaseSpider):
+
+        start_urls = ['...']
+        use_proxy = True
+
+        # ...
+
+.. _scrapylib: https://github.com/scrapinghub/scrapylib
+.. _HubProxyMiddleware: https://github.com/scrapinghub/scrapylib/blob/master/scrapylib/hubproxy.py
