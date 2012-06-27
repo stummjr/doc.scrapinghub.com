@@ -58,7 +58,7 @@ ProxyHub. For example::
     class MySpider(BaseSpider):
 
         start_urls = ['...']
-        use_proxy = True
+        use_hubproxy = True
 
         # ...
 
