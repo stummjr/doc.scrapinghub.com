@@ -292,6 +292,11 @@ log.json
 Similar to `log.txt` but returns the log entries as a list of JSON objects
 containing the properties: ``logLevel``, ``message`` and ``time``.
 
+log.jl
+--------
+
+Similar to `log.json` but returns the log entries in `JSONLines format`_.
+
 .. _eggs-api:
 
 Eggs API
