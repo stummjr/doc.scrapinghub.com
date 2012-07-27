@@ -203,10 +203,23 @@ The **Follow Patterns** are the filters with the less precedence. This fact mean
 domain by adding it in this category of filters. The only domains that will be accepted are, as said, those contained in the start URLs 
 and those contained in the template URLs.
 
+Considerations when using URL filters
+-------------------------------------
+
 Despite the simplicity that may seem adding patterns in order to focus only in the desired targets, you must be warned about possible 
 unexpected consequences of the usage of URL filters. It is easy to fall in the trap of excluding the visit of pages that you thought you 
 didn't need, but when you run a new job the result could be that you also didn't get the ones you do need, because some of the first 
-ones contains the links to the second ones, thus cutting the path to them.
+ones contains the links to the second ones, thus cutting the path to them. The results depends a lot on the target site topology.
+
+Let's suppose the following simple example:
+
+    #. your starting url is *http://www.example.com*
+    #. the starting url has a link to a product listing, lets say *http://www.example.com/bathrooom/*
+    #. the product listing above has links to two products, *http://www.example.com/products/1* and *http://www.example.com/products/2*
+
+If you add a filter for only follow pattern */products/*, you will exclude *http://www.example.com/bathrooom/*
+and so the links with pattern */product/* will never be reached (unless there are some products linked from
+the starting page, but you anyway will most probably loose most of them)
 
 Advanced Tools
 ==============
