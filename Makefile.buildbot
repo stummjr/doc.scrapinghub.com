@@ -1,0 +1,5 @@
+build:
+	make html
+
+publish:
+	s3cmd sync -P _build/html/ s3://help.scrapinghub.com/
