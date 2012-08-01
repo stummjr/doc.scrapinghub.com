@@ -188,7 +188,7 @@ redundancy in adding template URLs domains, as templates were obtained from a cr
 cases, this is true, but also can happen that you use one start url for creating templates, and a different one for scraping items, and 
 both be from different domains.
 
-The other two kind of URL filters are user custom: **Exclude Pattern** and **Follow Patterns**, bot configurable from the Autoscraping 
+The other two kind of URL filters are user custom: **Exclude Pattern** and **Follow Patterns**, both configurable from the Autoscraping 
 Spider properties.
 
 **Exclude Patterns** allow to filter out URL patterns (regular expressions) that must not be visited. You can add as many as you want, one per line in the corresponding widget. **Exclude Patterns** has precedence over **Follow Patterns**.
@@ -266,9 +266,9 @@ layout B:
 |      description       |
 +------------------------+
 
-So, you add a new template from one of pages of target set B, and annotate *name*, *price* and *description*. You would expect that 
-adding this new template, problem will be fixed. But actually is not the case. Because the first template has more annotations than the 
-second, it will be tried first. And because it will extract all required data, *name* and *price*, the item will still be created with 
+So, you add a new template from one of the pages of target set B, and annotate *name*, *price* and *description*. You would expect that 
+by adding this new template, problem will be fixed. But this is not the case because the first template has more annotations than the 
+second, so it will be tried first. And because it will extract all required data, *name* and *price*, the item will still be created with 
 the wrong data, and the second template will never be applied.
 
 You have to add a new constraint. If you open the first template in the annotation tool, you can mark the *description* annotation as 
