@@ -16,23 +16,31 @@ Supported libraries
 These are the libraries (and versions) available out of the box in the
 cloud that you can use in your spiders:
 
+.. warning:: These available libraries and versions may change without prior
+   notice. If you need to rely on a specific library & version, always upload
+   the specific version of the library as an egg (in Settings -> Project Eggs)
+   or using the :ref:`Eggs API <eggs-api>`.
+
 * `Scrapy`_ (trunk)
 * `w3lib`_ (trunk)
 * `scrapely`_ (trunk)
-* `lxml`_ 2.2.6
-* `Beautiful Soup`_ 3.1.0
+* `lxml`_ 2.3.2
+* `Beautiful Soup`_ 3.2.0
 * `Python Imaging Library (PIL)`_ 1.1.7
-* `NumPy`_ 1.3.0
-* `pymongo`_ 1.10.1
-* `MySQLdb`_ 1.2.2
-* `boto`_ 1.9b
+* `NumPy`_ 1.6.1
+* `pymongo`_ 2.1.1
+* `MySQLdb`_ 1.2.3
+* `boto`_ 2.5.2
 * `SimpleParse`_ 2.1.0a1
-* `nltk`_ 2.0b8
+* `nltk`_ 2.0b9
+* `mxDateTime`_ 3.2.1
+* `msgpack`_ 0.2.0
 
 If your project requires other external library, or a different version from
 the one provided by default, you can upload them either using the Panel (in
 Settings -> Project Eggs) or the :ref:`Eggs API <eggs-api>`. Binary/native
-Python modules are not supported yet.
+Python modules or zip-unsafe eggs are not supported yet, contact
+support@scrapinghub.com if you need one of them.
 
 Deploying your project
 ======================
@@ -121,5 +129,7 @@ This variability can be improved by purchasing dedicated servers. Check the
 .. _NumPy: http://numpy.scipy.org/
 .. _SimpleParse: http://simpleparse.sourceforge.net/
 .. _nltk: http://www.nltk.org/
+.. _mxDateTime: http://www.egenix.com/products/python/mxBase/mxDateTime/
+.. _msgpack: http://msgpack.org
 .. _declaring field serializers: http://doc.scrapy.org/topics/exporters.html#declaring-a-serializer-in-the-field
 .. _Pricing page: http://scrapinghub.com/pricing.html
