@@ -34,6 +34,15 @@ you signed up for the ProxyHub service.
 
 .. _ProxyHub page: http://www.scrapinghub.com/proxyhub.html
 
+Monitoring Usage
+================
+
+ProyHub provides usage reports with details of how many requests were performed
+by day and month. You can view them by logging into the panel and clicking on
+the ProxyHub item in the top navigation bar.
+
+The graphs are updated once a day (at around 6am UTC).
+
 Using ProxyHub with Scrapy
 ==========================
 
