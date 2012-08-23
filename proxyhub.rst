@@ -18,8 +18,17 @@ fire up your crawler of choice and start scraping.
 
 For more information, including pricing, check the `ProxyHub page`_.
 
-Usage
-=====
+Monitoring Usage
+================
+
+ProyHub provides usage reports with details of how many requests were performed
+by day and month. You can view them by logging into `the panel`_ and clicking
+on the ProxyHub item in the top navigation bar.
+
+.. note:: The graphs are updated once a day (at around 6am UTC).
+
+Using ProxyHub with curl
+========================
 
 ProxyHub provides a standard HTTP proxy interface so you can use it with any
 software that supports them.
@@ -32,22 +41,24 @@ http://scrapinghub.com::
 Where ``USER`` and ``PASS`` should be replaced by the credentials you got when
 you signed up for the ProxyHub service.
 
-.. _ProxyHub page: http://www.scrapinghub.com/proxyhub.html
+Using ProxyHub with other unix commands
+=======================================
 
-Monitoring Usage
-================
+Several Unix commands (like ``wget`` and ``curl``) and applications (including
+Scrapy) support the ``http_proxy`` environment variable to configure the HTTP
+proxy to use.
 
-ProyHub provides usage reports with details of how many requests were performed
-by day and month. You can view them by logging into the panel and clicking on
-the ProxyHub item in the top navigation bar.
+You can configure before running your command with::
 
-The graphs are updated once a day (at around 6am UTC).
+    export http_proxy=http://USER:PASS@proxy.scrapinghub.com:8010
 
 Using ProxyHub with Scrapy
 ==========================
 
-There is a downloader middleware for using Scrapy with ProxyHub called
-`HubProxyMiddleware`_, provided in the `scrapylib` project.
+To use ProxyHub with Scrapy you could just set the ``http_proxy`` environment
+setting (as explained in the previous section). However, if you need more
+functionality (like configuring which spiders to send through the proxy) you
+can use the  `HubProxyMiddleware`_, provided in the `scrapylib` project.
 
 Download the `scrapylib` project, and enable the middleware by adding this to
 your Scrapy settings::
@@ -73,3 +84,5 @@ ProxyHub. For example::
 
 .. _scrapylib: https://github.com/scrapinghub/scrapylib
 .. _HubProxyMiddleware: https://github.com/scrapinghub/scrapylib/blob/master/scrapylib/hubproxy.py
+.. _ProxyHub page: http://www.scrapinghub.com/proxyhub.html
+.. _the panel: http://panel.scrapinghub.com
