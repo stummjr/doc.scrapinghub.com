@@ -63,7 +63,7 @@ Retrieve information about spiders.
 
 * Filtering parameters:
 
-  * ``project`` (required) - the project id
+  * ``project`` (required) - the project numeric id
 
   * ``spider`` - a spider name
 
@@ -90,7 +90,7 @@ Schedules a job.
 
 * Parameters:
 
-  * ``project`` (required) - the project id
+  * ``project`` (required) - the project numeric id
   * ``spider`` (required) - the spider name
   * ``add_tag`` (optional) - add tag to the job (can be given multiple times)
   * any other parameter is passed as spider argument
@@ -112,7 +112,7 @@ Retrieve information about jobs.
 
 * Filtering parameters:
 
-  * ``project`` (required) - the project id
+  * ``project`` (required) - the project numeric id
 
   * ``job`` - the id of a specific job to retrieve
 
@@ -225,7 +225,7 @@ Retrieve the scraped items of a job.
 
 * Parameters:
 
-  * ``project`` (required) - the project id
+  * ``project`` (required) - the project numeric id
 
   * ``job`` or ``spider`` (required) - the job or spider to retrieve items
     from. If you specify a job, the items scraped on that job will be returned.
@@ -272,7 +272,7 @@ Retrieve the log of a job.
 
 * Parameters:
 
-  * ``project`` (required) - the project id
+  * ``project`` (required) - the project numeric id
 
   * ``job`` (required) - the job to retrieve items from
 
@@ -314,7 +314,7 @@ Add a Python egg to the project.
 
 * Parameters:
 
-  * ``project`` (required) - the project id
+  * ``project`` (required) - the project numeric id
 
   * ``name`` (required) - the egg name
 
@@ -337,7 +337,7 @@ Delete a Python egg from the project.
 
 * Parameters:
 
-  * ``project`` (required) - the project id
+  * ``project`` (required) - the project numeric id
 
   * ``name`` (required) - the egg name
 
@@ -357,7 +357,7 @@ List eggs contained in a project.
 
 * Parameters:
 
-  * ``project`` (required) - the project id
+  * ``project`` (required) - the project numeric id
 
 Examples:
 
@@ -384,7 +384,7 @@ Upload a report and attach it to a job. The supported formats are
 
 * Supported Request Methods: ``POST``
 * Parameters:
-   * ``project`` (required) - the project id
+   * ``project`` (required) - the project numeric id
    * ``job`` (required) - the job id to which the report will be attached
    * ``key`` (required) - a key that uniquely identifies the report within the job
    * ``content`` (required) - the report content in the format specified by
