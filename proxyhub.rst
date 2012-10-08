@@ -82,6 +82,8 @@ ProxyHub. For example::
 
         # ...
 
+Alternativelly, you can set ``HUBPROXY_ENABLED`` to *True* in the spider (or global) scrapy settings section in the scrapinghub panel.
+
 .. _scrapylib: https://github.com/scrapinghub/scrapylib
 .. _HubProxyMiddleware: https://github.com/scrapinghub/scrapylib/blob/master/scrapylib/hubproxy.py
 .. _ProxyHub page: http://www.scrapinghub.com/proxyhub.html

@@ -21,7 +21,7 @@ Right now the best case procedure, in short, is:
     #. Create the spider and configure (minimal configuration is the name of the spider and the starting url)
     #. Run in annotating mode
     #. Go to captured pages and find one from which you need scraped data
-    #. Add a template, and annotate it
+    #. Add a template, and annotate it (see section `Annotating a template`_)
     #. Go back to captured pages and check how items are extracted from them
     #. Run in normal mode and get the items
 
@@ -221,6 +221,50 @@ If you add a filter for only follow pattern */products/*, you will exclude *http
 and so the links with pattern */product/* will never be reached (unless there are some products linked from
 the starting page, but you anyway will most probably loose most of them)
 
+Annotating a template
+=====================
+
+The process of annotating a template consists on annotating elements on it, that is, marking elements in the template and map them to a
+given item field. At its most basical level, the autoscraping extraction consists on trying to match the annotated elements in the
+templates, into the target pages, extract the data from the matching regions, and assign it to the field specified in the corresponding
+annotation. The process is repeated with all the annotations in the template, and the final item is built from all the extracted data.
+
+The usual way to annotate an element is by clicking on it. An annotation window popup will raise in order to set up the different
+options: where the data must be extracted from (the text content of the element, or some of its attributes), the field that the
+extracted data must be assigned to, and other options that will be described later, on this section and following ones.
+
+Partial annotations
+___________________
+
+Another way to annotate a region in the template is using partial annotations. Instead of clicking on an existing element defined by the
+page layout, you can instead paint a piece of text with the mouse. A confirmation dialog will raise, and then the annotation window
+popup.
+
+There are some restrictions about using partial annotations. The painted region must fall inside a layout element, in other words you
+cannot include in the painted region, text from more than one page element (you will be prevented by the annotation tool for performing
+the partial annotation if this happens).
+
+Also, the tool is intended for extracting text inside a repetitive pattern. That is, in order to work, there should be, at the sides
+of the painted region, either a common prefix, either a common suffix, or both, in all the target pages. For example, if in the template
+you have the following text on a page element::
+
+        Veris in temporibus sub Aprilis idibus habuit concilium Romarici montium
+
+And in the target page you have the following text in the same place::
+
+        Cui dono lepidum novum libellum arido modo pumice expolitum?
+
+Don't expect that if you annotate the word ``Aprilis`` in the template, you will extract something in the target. But if you have instead
+this text in the target::
+
+        Veris in temporibus sub Januarii idibus habuit concilium Romarici montium
+
+you will for sure extract ``Januarii``, as the rest of the text at both sides are equal. Leaving freak, but illustrative, examples aside,
+partial annotations are useful for extracting patterns like the significant part on the string ``item #: 27624M6``. If you expect that
+the ``item #: <rest of string>`` pattern will appear always in the same place, you may paint and annotate the ``<rest of string>``
+pattern, and the ``item #:`` part will be forced to match in the target as part of the context, but only the text that corresponds to
+the painted region will be extracted.
+
 Advanced Tools
 ==============
 
@@ -363,6 +407,47 @@ them, if more than one group given). This way, you will ensure that correct anno
 extract the part that you are interested in.
 
 Of course, this tactic will be useful only if you can annotate a region that has some key word or repeated pattern, and all be different for each field.
+
+Extending the autoscraping bot
+==============================
+
+The autoscraping method is limited by its nature. Sometimes you need to do some custom things that are out of the scope of the AS core,
+tasks that can be performed by extending the bot capabilities in some way, and can be reduced to a post-processing task.
+
+Scrapinghub provides some standard components which perform common tasks, that can be enabled and configured from panel, called Addons.
+Many of them are generic for any project, but other are thought as autoscraping specific. See :doc:`addons` documentation for more
+info.
+
+Another way to extend an autoscraping project with more custom post processing, is by deploying a custom scrapy project (see
+:doc:`cloud` for details) with the extensions, middlewares and settings written for your specific needs. As inside the same scrapy
+project you may have your own coded spiders and different settings for them, you will need a way to separate them from the settings
+for your autoscraping spiders.
+
+For this purpose you can resort to some environment variables setted up by scrapinghub backend. The most generic structure of a
+project ``setting.py`` file that separates the configuration for the autoscraping spiders is::
+
+    import os
+
+    ...
+    <common settings>
+    ...
+
+    SHUB_JOB_TAGS = os.environ.get('SHUB_JOB_TAGS')
+    SHUB_SPIDER_TYPE = os.environ.get('SHUB_SPIDER_TYPE')
+
+    if SHUB_SPIDER_TYPE == 'auto':
+        if "annotating" in SHUB_JOB_TAGS:
+            <import annotating mode settings module>
+        else:
+            <import autoscraping normal mode settings module>
+    else:
+        <import not-autoscraping project settings module>
+
+The environment variable ``SHUB_SPIDER_TYPE`` will be set to *auto* if the spider that loads the basic settings module is an
+autoscraping spider. And if it runs in annotating mode, the word *annotating* will be found in the environment variable
+``SHUB_JOB_TAGS``. As easy as that. Of course, it will be even simpler if your scrapy project only contains components for your
+autoscraping spiders. But you still will need to separate settings for the annotating and the normal mode, as extracted data post
+process components are normal mode specific, while those that changes the crawling behaviour of the bot are commonly needed by both.
 
 Autoscraping and ScrapingHub API
 ================================

@@ -12,6 +12,7 @@ Products & services
 * :doc:`cloud`
 * :doc:`proxyhub`
 * :doc:`api`
+* :doc:`addons`
 
 Table of contents
 -----------------
@@ -24,3 +25,4 @@ Table of contents
    cloud
    proxyhub
    api
+   addons
