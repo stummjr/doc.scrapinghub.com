@@ -31,7 +31,7 @@ thus producing a "delta crawl" containing only new items. For algorithm details 
 
 The only setting directly associated with this addon is
 
-* **DELTAFETCH_ENABLED** - If True, enables addon.
+* **DELTAFETCH_ENABLED** - If ``True``, enables addon.
 
 However, this addon depends also on `DotScrapy Persistence`_ addon (and thus, on its specific settings), so be sure to also enable it
 and provided its required settings for proper working.
@@ -62,8 +62,8 @@ storage.
 
 Settings list:
 
-* **DOTSCRAPYPERSISTENCE_ENABLED** - If True, enables addon.
-* **AWS_ACCESS_KEY_ID **
+* **DOTSCRAPYPERSISTENCE_ENABLED** - If ``True``, enables addon.
+* **AWS_ACCESS_KEY_ID**
 * **AWS_SECRET_ACCESS_KEY**
 
 ProxyHub
@@ -88,6 +88,13 @@ Observe that you can specify a list of parameter names by using the | (OR) regex
 ``search|login|postid`` will match query parameters *search*, *login* and *postid*. This is by far the most common usage case.
 Another typical usage case is the complete removal of all the url query, thus you will set **QUERYCLEANER_DENIED_PATTERN** value to
 ``.*``
+
+Settings list:
+
+* **QUERYCLEANER_DENIED_PATTERN**
+* **QUERYCLEANER_ALLOWED_PATTERN**
+
+The addon is implicitly enabled when one of these settings is provided.
 
 .. _Scrapy: https://github.com/scrapy/scrapy
 .. _Scrapylib: https://github.com/scrapinghub/scrapylib/
