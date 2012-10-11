@@ -89,7 +89,7 @@ ProxyHub. For example::
 Alternativelly, you can set ``HUBPROXY_ENABLED`` to *True* in the spider (or global) scrapy settings section in the scrapinghub panel.
 
 Extra settings
-______________
+==============
 
 The `HubProxyMiddleware`_ allows to control the maximal delay that the scrapy downloader will wait for the response to a request sent
 to the ProxyHub, before raising a timeout exception. Usually you will need to set this timeout to a bigger value than default one, as
