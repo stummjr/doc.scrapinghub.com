@@ -63,7 +63,11 @@ can use the  `HubProxyMiddleware`_, provided in the `scrapylib` project.
 Download the `scrapylib` project, and enable the middleware by adding this to
 your Scrapy settings::
 
-    DOWNLOADER_MIDDLEWARES = {'scrapylib.hubproxy.HubProxyMiddleware': 1}
+    DOWNLOADER_MIDDLEWARES = {'scrapylib.hubproxy.HubProxyMiddleware': 600}
+
+**Important note**: The logic of `HubProxyMiddleware`_ controlled by the parameter ``maxbans`` (see below)
+will not work if this middleware is placed behind (from the downloader point of view) of the `RetryMiddleware`, so its positional
+value must be higher than the last. A position number of 600 is ok under current defaults.
 
 Then configure your HubProxy username and password by adding following
 settings::
@@ -84,7 +88,25 @@ ProxyHub. For example::
 
 Alternativelly, you can set ``HUBPROXY_ENABLED`` to *True* in the spider (or global) scrapy settings section in the scrapinghub panel.
 
+Extra settings
+______________
+
+The `HubProxyMiddleware`_ allows to control the maximal delay that the scrapy downloader will wait for the response to a request sent
+to the ProxyHub, before raising a timeout exception. Usually you will need to set this timeout to a bigger value than default one, as
+ProxyHub long latencies has a different meaning that long latencies that yields from crawling the target site directly. Under some
+situations where many proxy slaves are banned by the target site, the proxyHub need to try many slaves before finding a suitable
+one, and in such cases its response latency could be quite important the first tries.
+
+This timeout delay can be controlled by the setting ``HUBPROXY_DOWNLOAD_TIMEOUT`` or spider attribute ``hubproxy_download_timeout``,
+and its default value is 1800 seconds.
+
+Another important parameter is the maximal number of banned status responses returned by the ProxyHub that will be accepted
+before giving up and close the spider. This parameter is set up with the setting ``HUBPROXY_MAXBANS`` or spider attribute
+``hubproxy_maxbans``.
+
+
 .. _scrapylib: https://github.com/scrapinghub/scrapylib
 .. _HubProxyMiddleware: https://github.com/scrapinghub/scrapylib/blob/master/scrapylib/hubproxy.py
 .. _ProxyHub page: http://www.scrapinghub.com/proxyhub.html
 .. _the panel: http://panel.scrapinghub.com
+.. _RetryMiddleware: http://doc.scrapy.org/en/latest/topics/downloader-middleware.html#module-scrapy.contrib.downloadermiddleware.retry
