@@ -260,6 +260,25 @@ To retrieve all items scraped by job ``4ca37770a1a3a24c45000005``::
 
     curl -u USER:PASS "http://panel.scrapinghub.com/api/items.jl?project=123&job=4ca37770a1a3a24c45000005"
 
+items.csv
+---------
+
+Similar in usage to `items.json`_ and `items.jl`_, but returns items in CSV format and requires two extra parameters *fields*
+and *include_headers*.
+
+* Extra Parameters:
+
+    * ``fields`` (required) - a comma separated list of item fields to include in the exported csv file.
+
+    * ``include_headers`` (required) - Either ``0`` or ``1``. If ``1``, inserts a first row with fields headers in CSV.
+
+Examples:
+
+To retrieve all items scraped by job ``4ca37770a1a3a24c45000005``, this time in CSV format, no header, and dump name, url and price
+fields::
+
+    curl -u USER:PASS "http://panel.scrapinghub.com/api/items.csv?project=123&job=4ca37770a1a3a24c45000005&include_headers=0&fields=name,url,price"
+
 Log API
 =======
 
