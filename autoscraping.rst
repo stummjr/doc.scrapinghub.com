@@ -265,6 +265,47 @@ the ``item #: <rest of string>`` pattern will appear always in the same place, y
 pattern, and the ``item #:`` part will be forced to match in the target as part of the context, but only the text that corresponds to
 the painted region will be extracted.
 
+Variants
+________
+
+One of the options you have available in the annotation window when you click on some page element, is the variant you want the
+annotation to be assigned to. By default, the variant used is ``Base (0)``, which means to assign the extracted data of the annotation
+to the base item. If all annotations are assigned to the base item, then a single, plain item will be generated on extraction.
+
+But consider the situation when your item is a product with different possible sizes, and in the product page they are
+presented as a table, like:
+
++---------+------+
+| Single  | $300 |
++---------+------+
+| Double  | $500 |
++---------+------+
+|  Queen  | $650 |
++---------+------+
+|  King   | $800 |
++---------+------+
+
+But the rest of the data you want to extract are found in a common unique element (like the name of the product, the description,
+or the company). So, you annotate as base item the common data, and then annotate the table using variants. Usually it is enough
+to annotate only the first and the last row of the table (the algorithm will infer the rest between), so you can annotate the
+**Single** cell as variant 1 size, the **$300** cell as variant 1 price, the **King** cell as variant 2 size, and the **$800** cell
+as variant 2 price. The resulting extracted data will be assigned to the base item special field ``variants``, which is a list of objects
+similar to an item. An example of an item extracted in this way could be::
+
+    {'name': 'Louis XV Bed',
+     'description': 'Very cool bed for anyone',
+     'company': 'Potter Beds Inc.',
+     'variants': [{'size': 'Single', 'price': '300'},
+                  {'size': 'Double', 'price': '500'},
+                  {'size': 'Queen', 'price': '650'},
+                  {'size': 'King', 'price': '800'}]
+    }
+
+Of course, it is viable to include in the project a post processor (See `Extending the autoscraping bot`_) that split an item with variants into separated items. This can be
+very useful for example when you have a page with a list of items. In this case, you would assign all annotations to some variant, and
+in extraction you will get an item with a single field ``variants``, which at its turn is a list of all the items in the page. A variant
+splitting post processor will separate them into different items.
+
 Advanced Tools
 ==============
 
