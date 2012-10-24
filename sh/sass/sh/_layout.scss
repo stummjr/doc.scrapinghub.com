@@ -11,7 +11,7 @@
     top: 0;
 
     #scrapinghub {
-        @include sh-hide-text;
+        @include sh-hide-text(-100000px);
         background: transparent url(logo.png) no-repeat;
         margin: .5em 0 0 1em;
         padding-right: .6em;

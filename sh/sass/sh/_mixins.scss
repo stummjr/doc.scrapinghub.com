@@ -24,8 +24,8 @@
     font-size: 1.1em;
 }
 
-@mixin sh-hide-text {
+@mixin sh-hide-text($indent: 10000px) {
     @include inline-block;
-    text-indent: 10000px;
+    text-indent: $indent;
     overflow: hidden;
 }
