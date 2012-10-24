@@ -30,12 +30,14 @@ For details see `Scrapy Autothrottle`_ documentation
 DeltaFetch
 ==========
 
-The purpose of this addon is to ignore requests to pages containing items seen in previous crawls of the same spider,
-thus producing a "delta crawl" containing only new items. For algorithm details see deltafetch code in `Scrapylib`_ repository.
+The purpose of this addon is to ignore requests to pages containing items seen
+in previous crawls of the same spider, thus producing a "delta crawl"
+containing only new items. For more details on the algorithm, you can check the
+`DeltaFetch code`_.
 
-The only setting directly associated with this addon is
+There is a single setting for controlling this addon:
 
-* **DELTAFETCH_ENABLED** - If ``True``, enables addon.
+* **DELTAFETCH_ENABLED** - weather the addon is enabled
 
 However, this addon depends also on `DotScrapy Persistence`_ addon (and thus, on its specific settings), so be sure to also enable it
 and provided its required settings for proper working.
@@ -111,7 +113,7 @@ and we want to leave only the parameter ``pid``. We can specify this in two ways
 solution depends on particular conditions.
 
 .. _Scrapy: https://github.com/scrapy/scrapy
-.. _Scrapylib: https://github.com/scrapinghub/scrapylib/
+.. _DeltaFetch code:  https://github.com/scrapinghub/scrapylib/blob/master/scrapylib/deltafetch.py
 .. _`Scrapy Autothrottle`: https://scrapy.readthedocs.org/en/latest/topics/autothrottle.html
 .. _`ProxyHub documentation`: http://help.scrapinghub.com/proxyhub.html
 
