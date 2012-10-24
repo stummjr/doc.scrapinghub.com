@@ -75,6 +75,8 @@ ProxyHub
 Query Cleaner
 _____________
 
+**(Will be available on next release)**
+
 Query Cleaner addon allows to clean request url get query parameters at the output of the spider, according to patterns provided
 by the user.
 
