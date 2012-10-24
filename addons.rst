@@ -7,24 +7,28 @@ Addons
 Addons allow to extend bot capabilities and configure them easily from the panel. Each addon provides a particular feature.
 There are two flavours of addons: builtin addons and user addons. Builtin addons are always enabled and cannot be disabled by users.
 
-There are some generic addons, and there are specific addons for facilitating some common tasks in autoscraping spiders in order to
-fastly apply without need to write and deploy code in the project. And many addons are just a wrapper of some standard `Scrapy`_ or
-`Scrapylib`_ components.
+Addons are very popular among Autoscraping users, because it allows to enable additional functionality without writing any code. Scrapy Cloud users often tend to write the extensions themselves. In fact, addons are no more than a fancy UI to configure `Scrapy`_ extensions.
 
-The effective enabling of an addon consist at least on two steps: adding the addon to the project, and enabling
-by means of a setting, either at project or spider level, thus allowing a fine tunning. Further steps may include the provision of
-required and not required settings for configuring the addon behaviour.
+To enable an addon, you have to:
 
-.. toctree::
+1. add it to your project, by going to Settings -> Addons in the Scrapinghub panel
+
+2. enable it. Some addons are enabled automatically when added, while others
+   require to configure a setting (like ADDON_ENABLED). It should be clear from
+   the addon page (in the panel) which case it is.
+
+You can also enable addons per spider, instead of project wide, by going to the
+spider page in the panel, and adding the ADDON_ENABLED setting in the
+"Settings" section of that spider.
 
 Autothrottle
-____________
+============
 
 Allows bot to crawl the target site more gently, by adjusting request concurrency and delay according to site lag and user control parameters.
 For details see `Scrapy Autothrottle`_ documentation
 
 DeltaFetch
-__________
+==========
 
 The purpose of this addon is to ignore requests to pages containing items seen in previous crawls of the same spider,
 thus producing a "delta crawl" containing only new items. For algorithm details see deltafetch code in `Scrapylib`_ repository.
@@ -37,7 +41,7 @@ However, this addon depends also on `DotScrapy Persistence`_ addon (and thus, on
 and provided its required settings for proper working.
 
 DotScrapy Persistence
-_____________________
+=====================
 
 Allows the crawler to access a persistent storage and share data among different runs of a spider, by syncing the local project
 data dir into s3 storage.
@@ -67,13 +71,13 @@ Settings list:
 * **AWS_SECRET_ACCESS_KEY**
 
 ProxyHub
---------
+========
 
  ProxyHub provides an HTTP proxy, with a pool of rotating IPs, designed specifically for scraping purposes. For details see
  `ProxyHub documentation`_.
 
 Query Cleaner
-_____________
+=============
 
 **(Will be available on next release)**
 
