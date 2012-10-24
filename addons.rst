@@ -98,6 +98,14 @@ Settings list:
 
 The addon is implicitly enabled when one of these settings is provided.
 
+Lets suppose that the spider extracts urls like::
+
+    http://www.example.com/product.php?pid=135&cid=12&ttda=12
+
+and we want to leave only the parameter ``pid``. We can specify this in two ways, either using **QUERYCLEANER_DENIED_PATTERN** or
+**QUERYCLEANER_ALLOWED_PATTERN**. In the first case, the pattern used would be ``cid|ttda``. In the second case, ``pid``. The best
+solution depends on particular conditions.
+
 .. _Scrapy: https://github.com/scrapy/scrapy
 .. _Scrapylib: https://github.com/scrapinghub/scrapylib/
 .. _`Scrapy Autothrottle`: https://scrapy.readthedocs.org/en/latest/topics/autothrottle.html
