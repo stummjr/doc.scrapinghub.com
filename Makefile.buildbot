@@ -2,4 +2,5 @@ build:
 	make html
 
 publish:
+	! python -c 'import magic' 2>/dev/null
 	s3cmd sync -P _build/html/ s3://help.scrapinghub.com/
