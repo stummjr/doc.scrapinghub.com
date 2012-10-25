@@ -57,19 +57,23 @@
   </head>
   <body>
     <div id="header">
-      <a id="scrapinghub" href="{{ pathto('index') }}">scrapinghub</a>
+        <div class="content-wrapper">
+            <a id="scrapinghub" href="{{ pathto('index') }}">scrapinghub</a>
 
-      <ul>
-          <li><a href="{{ pathto('index') }}">Help &amp; documentation</a></li>
-      </ul>
+            <ul>
+                <li><a href="{{ pathto('index') }}">Help &amp; documentation</a></li>
+            </ul>
 
-      {%- include "searchbox.html" %}
+            {%- include "searchbox.html" %}
+        </div>
     </div>
 
     <div id="content">
-        <div id="leftbar">{{ toctree() }}</div>
-        <div id="body">
-            {% block body %}{{ super() }}{% endblock %}
+        <div class="content-wrapper">
+            <div id="leftbar">{{ toctree() }}</div>
+            <div id="body">
+                {% block body %}{{ super() }}{% endblock %}
+            </div>
         </div>
     </div>
   </body>

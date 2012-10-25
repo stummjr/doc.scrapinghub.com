@@ -1,56 +1,63 @@
 @import "sh/vars";
 
+.content-wrapper {
+    width: $content-width;
+    margin: 0 auto;
+}
+
 #header {
     @include background-image(linear-gradient(color-stops($background-start-color, $background-stop-color)));
     font-family: 'Inder', 'Asul', 'serif';
     height: $header-height;
     font-size: .9em;
-    width: 1280px;
+    width: 100%;
 
     position: fixed;
     top: 0;
 
-    #scrapinghub {
-        @include sh-hide-text(-100000px);
-        background: transparent url(logo.png) no-repeat;
-        margin: .5em 0 0 1em;
-        padding-right: .6em;
-        width: 200px;
-        height: 41px;
-    }
+    .content-wrapper {
+        #scrapinghub {
+            @include sh-hide-text(-100000px);
+            background: transparent url(logo.png) no-repeat;
+            margin: .5em 0 0 1em;
+            padding-right: .6em;
+            width: 200px;
+            height: 41px;
+        }
 
-    > ul {
-        @include inline-block;
-        font-size: 1.3em;
-        margin-left: 0;
-        padding-left: 0;
-        padding-top: 0;
-
-        li {
+        > ul {
             @include inline-block;
+            font-size: 1.3em;
             margin-left: 0;
-            padding: 0 1.3em 0 .6em;
+            padding-left: 0;
+            padding-top: 0;
+            vertical-align: baseline;
 
-            a {
-                @include sh-light-text-shadow;
-                color: $sh-dark-gray;
+            li {
+                @include inline-block;
+                margin-left: 0;
+                padding: 0 1.3em 0 .6em;
 
-                &:hover, &.current-section {
-                    color: $sh-blue;
+                a {
+                    @include sh-light-text-shadow;
+                    color: $sh-dark-gray;
+
+                    &:hover, &.current-section {
+                        color: $sh-blue;
+                    }
                 }
             }
         }
-    }
 
-    form {
-        @include inline-block;
-        position: absolute;
-        top: 1em;
-        right: 2em;
+        form {
+            @include inline-block;
+            float: right;
+            margin-top: .7em;
 
-        input[type="submit"] {
-            height: 2.1em;
-            vertical-align: top;
+            input[type="submit"] {
+                height: 2.1em;
+                vertical-align: top;
+            }
         }
     }
 }

@@ -14,9 +14,6 @@ body {
     background-color: #fff;
     @include sh-content-font;
     color: $sh-dark-gray;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 h1, h2 {
