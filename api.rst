@@ -316,6 +316,26 @@ log.jl
 
 Similar to `log.json` but returns the log entries in `JSONLines format`_.
 
+.. _autoscraping-api:
+
+Autoscraping API
+================
+
+as/project-slybot.zip
+---------------------
+
+Retrieves the project specifications in slybot format, zip compressed. By default includes the specification of all the spiders in
+the project.
+
+* Supported Request Methods: ``GET``
+
+* Parameters:
+
+  * ``project`` (required) - the project numeric id
+
+  * ``spiders`` (optional) - a comma separated list of spiders. If present, include only the specifications of given spiders.
+
+
 .. _eggs-api:
 
 Eggs API
