@@ -2,8 +2,14 @@ $(function () {
     var headerHeight = $('#header').height(),
         body = $('body');
 
-    $('a[href^="#"]').click(function (e) {
-        e.preventDefault();
-        body.scrollTop($($(this).attr('href')).offset().top - headerHeight);
+    $('a[href^="#"]').each(function () {
+        var link = $(this);
+        var target = $(link.attr('href'));
+        var pos = target.offset().top - headerHeight;
+
+        link.on('click', function (e) {
+            e.preventDefault();
+            $.scrollTo(pos);
+        });
     });
 });
