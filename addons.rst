@@ -24,8 +24,34 @@ spider page in the panel, and adding the ADDON_ENABLED setting in the
 Autothrottle
 ============
 
-Allows bot to crawl the target site more gently, by adjusting request concurrency and delay according to site lag and user control parameters.
-For details see `Scrapy Autothrottle`_ documentation
+Allows bot to crawl the target site more gently, by dynamically adjusting request concurrency and delay according to site lag and user
+control parameters. For details see `Scrapy Autothrottle`_ documentation
+
+This addon is loaded by default on any panel project. In short, The basic two settings are
+
+* ``AUTOTHROTTLE_MAX_CONCURRENCY`` - Limits the maximum number of concurrent requests sent to the same host domain. Default value is 2.
+* ``AUTOTHROTTLE_MIN_DOWNLOAD_DELAY`` - Limits the minimal download delay (in seconds) between each burst of requests. Default value is 0.
+* ``AUTOTHROTTLE_ENABLED`` - Enables or disables the autothrottle addon. It is ``True`` (enabled) by default.
+
+Both described settings are autothrottle specific. However, you can also use instead the standard scrapy settings ``CONCURRENT_REQUESTS_PER_DOMAIN``
+(or ``CONCURRENT_REQUESTS_PER_IP``) and ``DOWNLOAD_DELAY``. Autothrottle will respect them also, so if autothrottle is enabled, both the
+autothrottle specific and the standard scrapy counterparts are equivalent. An important issue to notice when you go to the `Scrapy Autothrottle`_
+documentation, is that scrapy default values are different from scrapinghub default values, defined above.
+
+**How to adjust these parameters?** There are not values that will work for any target server, and they also depends much on your needs.
+The default values are in general a good starting point and most servers tolerate them. But you can still be blocked and you will need
+to slow down the crawling rate, or may be you want more speed and so want to crawl faster (but with the increasing risk of being
+blocked).
+
+In short, you can slow down the crawling rate from defaults by adjusting the maximum concurrency to 1, and arbitrarily
+increasing the minimal download delay, or you may speed up it by arbitrarily increasing maximum concurrency,
+although the maximum effective crawling rate will of course be limited to the target server response rate.
+
+As autothrottle adjusts dynamically delay and concurrency depending on site lag, the parameters only sets limits, but does not
+force them to have a given value. The minimal download delay value will not avoid the effective download delay take greater values
+during crawling, and the maximal concurrency value will not avoid the effective concurrency take lower ones. If you really want to
+avoid autothrottle to adjust effective parameters during crawling, and want to set them to fixed values, you need to disable the addon
+by setting ``AUTOTHROTTLE_ENABLED`` to ``False``, and using the scrapy standard settings mentioned above.
 
 DeltaFetch
 ==========
@@ -76,7 +102,7 @@ ProxyHub
 Query Cleaner
 =============
 
-**(Will be available on next release)**
+**(Will be available in future)**
 
 Query Cleaner addon allows to clean request url get query parameters at the output of the spider, according to patterns provided
 by the user.
