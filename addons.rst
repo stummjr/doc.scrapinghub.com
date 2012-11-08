@@ -102,12 +102,10 @@ specifically for crawling purposes. For details see the `ProxyHub documentation`
 Query Cleaner
 =============
 
-**(Will be available in future)**
-
 Query Cleaner addon allows to clean request url get query parameters at the output of the spider, according to patterns provided
 by the user.
 
-In order to enable, use at least one of the addon specific settings, ``QUERYCLEANER_DENIED_PATTERN`` or ``QUERYCLEANER_ALLOWED_PATTERN``.
+In order to enable, use at least one of the addon specific settings, ``QUERYCLEANER_REMOVE`` or ``QUERYCLEANER_ALLOW``.
 The first one specifies a pattern (regular expression) that must match any query parameter name in order to be removed from the url
 (everyone else will be accepted), and the second one, a pattern that must match any query parameter name in order to be included in the
 url (everyone else will be removed). You can combine both if you want to allow some query parameters pattern, except some other one.
@@ -115,13 +113,13 @@ The denied pattern has precedence over the allowed one.
 
 Observe that you can specify a list of parameter names by using the | (OR) regex operator. For example, the pattern
 ``search|login|postid`` will match query parameters *search*, *login* and *postid*. This is by far the most common usage case.
-Another typical usage case is the complete removal of all the url query, thus you will set ``QUERYCLEANER_DENIED_PATTERN`` value to
+Another typical usage case is the complete removal of all the url query, thus you will set ``QUERYCLEANER_REMOVE`` value to
 ``.*``
 
 Supported settings:
 
-* ``QUERYCLEANER_DENIED_PATTERN``
-* ``QUERYCLEANER_ALLOWED_PATTERN``
+* ``QUERYCLEANER_REMOVE``
+* ``QUERYCLEANER_ALLOW``
 
 The addon is implicitly enabled when one of these settings is provided.
 
@@ -129,9 +127,9 @@ Lets suppose that the spider extracts urls like::
 
     http://www.example.com/product.php?pid=135&cid=12&ttda=12
 
-and we want to leave only the parameter ``pid``. We can specify this in two ways, either using ``QUERYCLEANER_DENIED_PATTERN`` or
-``QUERYCLEANER_ALLOWED_PATTERN``. In the first case, the pattern used would be ``cid|ttda``. In the second case, ``pid``. The best
-solution depends on particular conditions.
+and we want to leave only the parameter ``pid``. We can specify this in two ways, either using ``QUERYCLEANER_REMOVE`` or
+``QUERYCLEANER_ALLOW``. In the first case, the pattern used would be ``cid|ttda``. In the second case, ``pid``. The best
+solution depends on particular case, that is, how the query filters will affect any other url that the spider is expected to crawl.
 
 .. _Scrapy: https://github.com/scrapy/scrapy
 .. _DeltaFetch code:  https://github.com/scrapinghub/scrapylib/blob/master/scrapylib/deltafetch.py
