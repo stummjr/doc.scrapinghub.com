@@ -96,8 +96,8 @@ Supported settings:
 ProxyHub
 ========
 
- ProxyHub provides an HTTP proxy, with a pool of rotating IPs, designed
- specifically for crawling purposes. For details see the `ProxyHub documentation`_.
+ProxyHub provides an HTTP proxy, with a pool of rotating IPs, designed
+specifically for crawling purposes. For details see the `ProxyHub documentation`_.
 
 Query Cleaner
 =============
