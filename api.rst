@@ -192,7 +192,7 @@ Example:
 
 To mark job ``4ca37770a1a3a24c45000005`` of project ``123`` with the tag ``consumed``::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/jobs/update.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d add_tag=consumed"
+    curl -u USER:PASS http://panel.scrapinghub.com/api/jobs/update.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d add_tag=consumed"
 
 jobs/delete.json
 ----------------
@@ -203,6 +203,8 @@ Delete one or more jobs.
 
 * Parameters:
 
+  * ``project`` (required) - the project numeric id
+
   * ``job`` - the id of a job to delete. Can be repeated.
 
 Example:
@@ -210,8 +212,28 @@ Example:
 To delete jobs ``4ca37770a1a3a24c45000005`` and ``4ca33330a1a3a24c45000005`` of
 project ``123``::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/jobs/delete.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d job=4ca33330a1a3a24c45000005"
+    curl -u USER:PASS http://panel.scrapinghub.com/api/jobs/delete.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d job=4ca33330a1a3a24c45000005"
 
+
+jobs/stop.json
+----------------
+
+Stop one or more running jobs.
+
+* Supported Request Methods: ``POST``
+
+* Parameters:
+
+  * ``project`` (required) - the project numeric id
+
+  * ``job`` - the id of a job to stop. Can be repeated.
+
+Example:
+
+To stop jobs ``4ca37770a1a3a24c45000005`` and ``4ca33330a1a3a24c45000005`` of
+project ``123``::
+
+    curl -u USER:PASS http://panel.scrapinghub.com/api/jobs/stop.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d job=4ca33330a1a3a24c45000005"
 
 Items API
 =========
