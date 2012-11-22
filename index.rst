@@ -10,7 +10,6 @@ Products & services
 * :doc:`panel`
 * :doc:`autoscraping`
 * :doc:`cloud`
-* :doc:`proxyhub`
 * :doc:`api`
 * :doc:`addons`
 
@@ -23,6 +22,5 @@ Table of contents
    panel
    autoscraping
    cloud
-   proxyhub
    api
    addons

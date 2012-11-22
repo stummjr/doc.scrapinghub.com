@@ -94,12 +94,6 @@ Supported settings:
 
 * ``DOTSCRAPY_ENABLED`` - set it to enable the DotScrapy addon (either project-wide or per spider)
 
-ProxyHub
-========
-
-ProxyHub provides an HTTP proxy, with a pool of rotating IPs, designed
-specifically for crawling purposes. For details see the `ProxyHub documentation`_.
-
 Query Cleaner
 =============
 
