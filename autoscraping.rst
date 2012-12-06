@@ -44,8 +44,9 @@ pages. But there are situations when you may need to run a new annotating job.
 
 Right now, annotating jobs are limited by number of pages
 (1000 by default). This is a very important mechanism in order to avoid infinite crawling loop traps under certain conditions. The
-normal jobs are also limited, but in a different way, which consist on checking the number of items extracted each hour. And if this
-count does not accomplish a given threshold, then the job will be automatically stopped.
+normal jobs are also limited, but in a different way, which consist on checking the number of items extracted each fixed period of time.
+And if this count does not reach a given threshold, then the job will be automatically stopped with status
+``slybot_fewitems_scraped``. See `Job outcomes`_ for details.
 
 Because of this reason, usually you will get much more crawled pages in a normal job than in the annotating job. So you can discover
 that there are some items not extracted or not correctly extracted in a normal job, but you can't annotate it because it was not
@@ -447,7 +448,32 @@ extracted data does match the pattern, then it is replaced by the match group en
 them, if more than one group given). This way, you will ensure that correct annotation match the correct target row, and you will only 
 extract the part that you are interested in.
 
-Of course, this tactic will be useful only if you can annotate a region that has some key word or repeated pattern, and all be different for each field.
+Of course, this tactic will be useful only if you can annotate a region that has some key word or repeated pattern, and all them are
+different for each field.
+
+Job outcomes
+============
+
+Aside the generic job outcomes that indicates the reason why a job finished (see :doc:`panel`), there is an autoscraping specific
+outcome, ``slybot_fewitems_scraped``. 
+
+AS spiders has a safety measure to avoid infinite crawling loops. It consists in closing the job when over a given period of time,
+the number of items scraped did not reach a minimal threshold. By default, the period is one hour and the minimal items scraped in that
+period must be 200.
+
+If you are crawling a big site with thousands of pages, of which only a small portion of them generates an item with current templates,
+it usually happens that the bot can consume long periods of time crawling thousands of pages but in the same interval it scraped only
+few items. Another reason that leads to the same situation is that the bot is spending lot of time scraping duplicated products
+(see *Vary* flag in section `Field flags`_) which are dropped instead of issued and so they don't count for the minimal items threshold.
+In both cases the spider may unexpectedly stop with ``slybot_fewitems_scraped`` condition.
+
+The solution depends on what is exactly happening. So in order to diagnose the problem, the first thing to do is to switch the
+``LOG_LEVEL`` setting for the spider to the value ``DEBUG``, and start a new job, so this time the bot will generate lot of debug data
+that you can browse in the job log.
+
+In ``DEBUG`` log level you will see, among other info, a line for each crawled page, and for each dropped product, so you can decide
+whether to add more templates, or add url filters to avoid unneeded pages to be crawled (url filters must be designed with care if 
+you don't want to unwittingly block pages that leads to the pages you want).
 
 Extending the autoscraping bot
 ==============================

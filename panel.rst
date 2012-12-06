@@ -58,6 +58,9 @@ These are the most common job outcomes and their meanings:
 * ``killed`` - the job was killed by Scrapinghub because it failed to respond
   or because it failed to shutdown gracefully
 
+* ``slybot_fewitems_scraped`` - this is an autoscraping specific outcome. Please refer
+  to the :doc:`autoscraping` help document.
+
 Getting CSV exports
 ===================
 
