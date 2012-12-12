@@ -124,6 +124,16 @@ ProxyHub. For example::
 
 Alternativelly, you can set ``HUBPROXY_ENABLED`` to *True* in the spider (or global) scrapy settings section in the scrapinghub panel.
 
+Enabling ProxyHub in Panel
+==========================
+
+ProxyHub can easily be enabled for a given spider using the Panel user interface. Once we provided you the required user and password
+for using ProxyHub, follow these steps:
+
+1. Go to your project addons control interface, and add ProxyHub addon.
+2. Go to Proxyhub addon settings, and add the user and password we will provide you (with settings ``HUBPROXY_USER`` and ``HUBPROXY_PASS``).
+3. For each spider you need to use ProxyHub, go to its settings control, add the setting ``HUBPROXY_ENABLED`` and switch it on (ensure you are using the spider settings interface, not the project one, unless you really want to enable ProxyHub for every spider in your project. Remember it usage generates extra price charge)
+
 Extra settings
 ==============
 
