@@ -260,15 +260,19 @@ Examples:
 
 To retrieve the items scraped by job ``4ca37770a1a3a24c45000005``::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/items.json?project=123&job=4ca37770a1a3a24c45000005"
+    curl -L -u USER:PASS "http://panel.scrapinghub.com/api/items.json?project=123&job=4ca37770a1a3a24c45000005"
 
 .. warning:: This only returns the first 100 items. See :ref:`pagination`. If
    you want to return all items in one stream, you can use `items.jl`_.
 
+To retrieve the items scraped by the last job of the spider ``myspider``::
+
+    curl -L -u USER:PASS "http://panel.scrapinghub.com/api/items.json?project=123&spider=myspider"
+
 To retrieve the latest 20 items of job ``4ca37770a1a3a24c45000005`` (*this
 works even if the job is running*)::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/items.json?project=123&job=4ca37770a1a3a24c45000005&count=-20"
+    curl -L -u USER:PASS "http://panel.scrapinghub.com/api/items.json?project=123&job=4ca37770a1a3a24c45000005&count=-20"
 
 items.jl
 --------
@@ -280,7 +284,7 @@ Examples:
 
 To retrieve all items scraped by job ``4ca37770a1a3a24c45000005``::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/items.jl?project=123&job=4ca37770a1a3a24c45000005"
+    curl -L -u USER:PASS "http://panel.scrapinghub.com/api/items.jl?project=123&job=4ca37770a1a3a24c45000005"
 
 items.csv
 ---------
@@ -299,7 +303,7 @@ Examples:
 To retrieve all items scraped by job ``4ca37770a1a3a24c45000005``, this time in CSV format, no header, and dump name, url and price
 fields::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/items.csv?project=123&job=4ca37770a1a3a24c45000005&include_headers=0&fields=name,url,price"
+    curl -L -u USER:PASS "http://panel.scrapinghub.com/api/items.csv?project=123&job=4ca37770a1a3a24c45000005&include_headers=0&fields=name,url,price"
 
 Log API
 =======
