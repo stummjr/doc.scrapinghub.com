@@ -265,7 +265,7 @@ To retrieve the items scraped by job ``4ca37770a1a3a24c45000005``::
 .. warning:: This only returns the first 100 items. See :ref:`pagination`. If
    you want to return all items in one stream, you can use `items.jl`_.
 
-To retrieve the items scraped by the last job of the spider ``myspider``::
+To retrieve the items scraped by the *last finished job* of the spider ``myspider``::
 
     curl -L -u USER:PASS "http://panel.scrapinghub.com/api/items.json?project=123&spider=myspider"
 
