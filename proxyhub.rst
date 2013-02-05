@@ -134,6 +134,9 @@ for using ProxyHub, follow these steps:
 2. Go to Proxyhub addon settings, and add the user and password we will provide you (with settings ``HUBPROXY_USER`` and ``HUBPROXY_PASS``).
 3. For each spider you need to use ProxyHub, go to its settings control, add the setting ``HUBPROXY_ENABLED`` and switch it on (ensure you are using the spider settings interface, not the project one, unless you really want to enable ProxyHub for every spider in your project. Remember it usage generates extra price charge)
 
+You can also follow these steps in order to setup up your own proxy server. In that case you have also to change the default value of the
+setting ``HUBPROXY_URL``.
+
 Extra settings
 ==============
 
