@@ -5,9 +5,13 @@ Addons
 ======
 
 Addons allow to extend bot capabilities and configure them easily from the panel. Each addon provides a particular feature.
-There are two flavours of addons: builtin addons and user addons. Builtin addons are always enabled and cannot be disabled by users.
+There are two flavours of addons: builtin addons and user addons. Builtin addons are always added and cannot be removed by users.
 
-Addons are very popular among Autoscraping users, because it allows to enable additional functionality without writing any code. Scrapy Cloud users often tend to write the extensions themselves. In fact, addons are no more than a fancy UI to configure `Scrapy`_ extensions.
+Addons are very popular among Autoscraping users, because it allows to enable additional functionality without writing any code.
+Scrapy Cloud users often tend to write the extensions themselves. In fact, addons are no more than a fancy UI to configure `Scrapy`_ extensions.
+
+There is only one exception to this rule: the :ref:`Spiderlets <spiderlets>` addon, its only purpose being to allow to attach a
+piece of code to a particular spider, following specific rules.
 
 To enable an addon, you have to:
 
@@ -125,6 +129,7 @@ Lets suppose that the spider extracts urls like::
 and we want to leave only the parameter ``pid``. We can specify this in two ways, either using ``QUERYCLEANER_REMOVE`` or
 ``QUERYCLEANER_KEEP``. In the first case, the pattern used would be ``cid|ttda``. In the second case, ``pid``. The best
 solution depends on particular case, that is, how the query filters will affect any other url that the spider is expected to extract.
+
 
 .. _Scrapy: https://github.com/scrapy/scrapy
 .. _DeltaFetch code:  https://github.com/scrapinghub/scrapylib/blob/master/scrapylib/deltafetch.py
