@@ -68,3 +68,31 @@ You can get scraped data in CSV format by clicking the CSV link when browsing
 items.
 
 The fields used for the CSV can be configured in Settings -> Project Details.
+
+.. _deploy-egg:
+
+Deploying eggs
+==============
+
+If your project needs code from an external python library, you can deploy a python egg by using the panel interface.
+See `setuptools` for details about egg concepts, preparation and building. If you want to provide to your project your own library,
+the first steps are, in short:
+
+#. Write your code,
+#. add a setup.py file in the base package folder, e.g.:
+
+::
+
+    from setuptools import setup, find_packages
+    setup(
+        name = "mylibrary",
+        version = "0.1",
+        packages = find_packages(),
+    )
+
+And, in order to deploy in your project:
+
+#. Run ``python setup.py bdist_egg``,
+#. In the panel, go to Settings -> Eggs -> Add Egg, and fill the requested data in the upload form.
+
+.. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
