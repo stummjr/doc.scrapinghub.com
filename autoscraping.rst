@@ -475,7 +475,27 @@ In ``DEBUG`` log level you will see, among other info, a line for each crawled p
 whether to add more templates, or add url filters to avoid unneeded pages to be crawled (url filters must be designed with care if 
 you don't want to unwittingly block pages that leads to the pages you want).
 
+
+Autoscraping and ScrapingHub API
+================================
+
+If you want to manage AS job scheduling using the ScrapingHub :doc:`api`, AS bot supports to pass start_urls as a list of URLs separated by new lines. This feature is very useful for passing a list of URLs from a text file.
+
+For example, if you have all your start URLs in a file named start_urls.txt, one per line, you can do, from a linux console::
+
+    curl http://panel.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls="$(cat start_urls.txt)"
+
+or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapinghub>`_::
+
+    >>> from scrapinghub import Connection
+    >>> conn = Connection('<your api key>')
+    >>> project = conn["155"]
+    >>> project.schedule("myspider", start_urls=open("start_urls.txt").read())
+
+
+
 .. _Extending the autoscraping bot:
+
 
 Extending the autoscraping bot - I. Generalities
 ================================================
@@ -517,24 +537,6 @@ autoscraping spider. And if it runs in annotating mode, the word *annotating* wi
 ``SHUB_JOB_TAGS``. As easy as that. Of course, it will be even simpler if your scrapy project only contains components for your
 autoscraping spiders. But you still will need to separate settings for the annotating and the normal mode, as extracted data post
 process components are normal mode specific, while those that changes the crawling behaviour of the bot are commonly needed by both.
-
-
-Autoscraping and ScrapingHub API
-================================
-
-If you want to manage AS job scheduling using the ScrapingHub :doc:`api`, AS bot supports to pass start_urls as a list of URLs separated by new lines. This feature is very useful for passing a list of URLs from a text file.
-
-For example, if you have all your start URLs in a file named start_urls.txt, one per line, you can do, from a linux console::
-
-    curl http://panel.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls="$(cat start_urls.txt)"
-
-or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapinghub>`_::
-
-    >>> from scrapinghub import Connection
-    >>> conn = Connection('<your api key>')
-    >>> project = conn["155"]
-    >>> project.schedule("myspider", start_urls=open("start_urls.txt").read())
-
 
 
 .. _spiderlets:
