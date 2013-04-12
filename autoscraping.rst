@@ -40,7 +40,8 @@ because the html source can have important differences. So, the average case wou
 
 In most cases you don't need to run a new annotating job, as the captured pages in this mode are reusable. Each time
 you add a template or modify one, these changes will be reflected in extracted items after you reload the captured
-pages. But there are situations when you may need to run a new annotating job.
+pages. So this is a very important concept: annotating mode is not only intended for adding new templates. It also allows you to test
+them without need to run a new job each time you perform a change in the templates.
 
 Right now, annotating jobs are limited by number of pages
 (1000 by default). This is a very important mechanism in order to avoid infinite crawling loop traps under certain conditions. The
