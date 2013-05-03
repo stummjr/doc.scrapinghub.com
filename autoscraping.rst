@@ -63,6 +63,24 @@ This section has been a basic, but very important, overview of general concepts 
 the detailed description that will come on following sections. Also please take a time to watch the AS tour video in 
 http://scrapinghub.com/autoscraping.html before continuing. Will be of great help.
 
+How templates are used in the extraction process
+================================================
+	
+If your spider has only one template, the process is very simple: a scan is performed on every target page using the annotations in the 
+template. If all **Required** fields are extracted, based on a relative positional algorithm and the extraction rules defined by the 
+field data type described in previous section, then the complete item is extracted. If some of the fields marked as **Required** are not 
+found in the target, the item is not extracted. And if the item is extracted, it still must pass the duplicates detector check, 
+which will decide, as already described, whether the extracted item will be finally accepted or rejected.
+
+If your spider has more than one template, then templates are tried sequentially until the first success extraction occurs. Then 
+duplicates detector is applied over the extracted item. The order in which templates are tried **is not** the same order as they 
+were created (as you see them in the panel), but instead, they are sorted by the number of annotations it contains in decreasing order. 
+Only if a subset of templates has the same number of annotations, they will be tried according to age (first created, first). The rule 
+to try templates according to number of annotations improves the efficiency of the general extraction algorithm, as the less annotations 
+has a template, more easily can be successful in extracting an item by mistake, because there are less constraints to fulfill. So, this 
+rule reduces the probability of getting a false positives with the wrong template. Also, the alternatives to handle this kind of false 
+positives are easier to implement with this rule, because as a template has more annotations, user has the chance to add more constraints.
+
 Item fields
 ===========
 
@@ -149,24 +167,6 @@ ____________
 
 You can add a field shortcut key in order to quickly select a field when you are within the annotation tool. We will go back to field 
 shortcuts in more  detail in the section about the annotation tool (still not redacted)
-
-How templates are used in the extraction process
-================================================
-	
-If your spider has only one template, the process is very simple: a scan is performed on every target page using the annotations in the 
-template. If all **Required** fields are extracted, based on a relative positional algorithm and the extraction rules defined by the 
-field data type described in previous section, then the complete item is extracted. If some of the fields marked as **Required** are not 
-found in the target, the item is not extracted. And if the item is extracted, it still must pass the duplicates detector check, 
-which will decide, as already described, whether the extracted item will be finally accepted or rejected.
-
-If your spider has more than one template, then templates are tried sequentially until the first success extraction occurs. Then 
-duplicates detector is applied over the extracted item. The order in which templates are tried **is not** the same order as they 
-were created (as you see them in the panel), but instead, they are sorted by the number of annotations it contains in decreasing order. 
-Only if a subset of templates has the same number of annotations, they will be tried according to age (first created, first). The rule 
-to try templates according to number of annotations improves the efficiency of the general extraction algorithm, as the less annotations 
-has a template, more easily can be successful in extracting an item by mistake, because there are less constraints to fulfill. So, this 
-rule reduces the probability of getting a false positives with the wrong template. Also, the alternatives to handle this kind of false 
-positives are easier to implement with this rule, because as a template has more annotations, user has the chance to add more constraints.
 
 Spider parameters
 =================
