@@ -137,7 +137,12 @@ Required
 Vary
   AS has a duplicates item detection system which will reject any item that was already scraped before. In order to accomplish this 
   task the duplicates detector needs to know which fields must be checked in order to effectively find duplicate items. If a field is marked 
-  as **Vary**, it is not included in the checks to detect duplicates. Lets illustrate with an example, and lets suppose we have an item type with 
+  as **Vary**, it is not included in the checks to detect duplicates. This means that two items that has the same data in all fields except in those marked 
+  as **Vary**, will be considered the same one, and so the second one will be dropped. That is the reason why the *url* field must always be marked as
+  **Vary** and the user interface does not allow to unmark it: if it wouldn't, then items with different urls would always be considered different items, and the
+  duplicates detector would never work.
+
+  Lets illustrate with an example, and lets suppose we have an item type with 
   fields *name*, *price*, *description*, *category* and *url*, and the fields *category* and *url* are marked as **Vary**. Lets suppose the AS bot 
   has first scraped the following item:
 
