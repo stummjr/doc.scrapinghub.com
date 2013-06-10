@@ -111,6 +111,8 @@ The following are more sophisticated and tunes the behavior of the addon:
 * ``HUBPROXY_MAXBANS`` - How many consecutive bans will ignore before close the spider. The default value is 20.
 * ``HUBPROXY_DOWNLOAD_TIMEOUT`` - How much time wait for each response from the proxy service before raising a timeout error for a given request. Default value is 1800 seconds.
 
+.. _querycleaner:
+
 Query Cleaner
 =============
 

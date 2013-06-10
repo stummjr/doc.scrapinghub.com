@@ -60,8 +60,11 @@ complete in less time and the item/hour rate will increase, reducing the risk of
 unaccomplished item/hour rate threshold.
 
 This section has been a basic, but very important, overview of general concepts that you must know in order to better understand
-the detailed description that will come on following sections. Also please take a time to watch the AS tour video in 
-http://scrapinghub.com/autoscraping.html before continuing. Will be of great help.
+the detailed description that will come on following sections. At the end of this document there is a section that enumerates common good
+practices for best results with less effort.
+
+Also please take a time to watch the AS tour video in 
+http://scrapinghub.com/autoscraping.html before continue. Will be of great help.
 
 How templates are used in the extraction process
 ================================================
@@ -539,4 +542,25 @@ or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapin
     >>> project = conn["155"]
     >>> project.schedule("myspider", start_urls=open("start_urls.txt").read())
 
+Good practices for best results with less effort
+================================================
 
+Autoscraping is an advanced set of tools which for some cases requires a bit of practice and experience in order to avoid common mistakes and get
+the best results faster. Every resource is thoroughly described in the previous sections. But below we provide a fast guide which summarizes important tips
+that you must have in mind when developing an autoscraping spider and improve the learning curve:
+
+1. **In the definition of the item fields, only mark as required those fields that you are really sure that will be present in all items of that class**. Required fields are very important in order to avoid templates to extract data from wrong targets, but if you don't annotate a required field in a given template, then the template will never extract anything.
+
+2. **Don't assume that only one template is enough for extracting every product you need**. Usually there are some differences among target html layouts (although not visibly evident when rendered in a browser) that make some templates not being perfectly suitable for some targets.
+
+3. **The pages captured in the annotating mode allows you to test how will behave the extraction at any time with the current set of templates, without need to run additional jobs**. Each time you add a new template or modify an existing one, after you reload the list of captured pages the extracted data is updated according to the new state of templates.
+
+4. **When a target is not being extracted by current templates, remember the development cycle described in first section**. First step is to identify a target page that does not contain extracted data, add a new template from it, and annotate. Then you check again the set of captured pages and see whether still there are products pages with no data extracted which require additional templates. Once you are satisfied, remove the 'annotating' tag and run a new job.
+
+5. **Usually you can find the opposite case: data extracted from pages you don't want to extract anything, or the incorrect template used for some product pages**. Both cases are improved by adding extra required fields in the template that is being used. In particular, for those fields that are not being extracted by it. That will make the result from the given template being discarded, as not all required fields were extracted using it.
+
+6. **Check for url patterns which can be safely filtered out using follow or excluded regex patterns**. Safely means that you can filter out them without risk to block the way to a desired page. That improves greatly the performance in many cases, because the bot will not waste time visiting pages that you don't need at all.
+
+7. **By using the setting LOG_LEVEL = DEBUG you will see extra information in logs that allows to identify many problems**, like items dropped by the duplicates detector, and help you to elaborate better url filters in complex cases.
+
+8. **The** :ref:`querycleaner` **addon also helps a lot in url filtering**. It is usual to have situations in which some URL parameters can be removed from the URL without changing results, and the bot waste time visiting the same pages lot of times, because each time they are visited with a different set of parameters. Lot of dropped duplicated items is usually a sympton of this condition.
