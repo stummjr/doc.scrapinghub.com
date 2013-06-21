@@ -136,10 +136,10 @@ Retrieve information about jobs.
 
 * Tagging parameters (``POST`` requests only):
 
-  * ``add_tag`` - adds the given tag to the projects selected by the filtering
+  * ``add_tag`` - adds the given tag to the jobs selected by the filtering
     parameters
 
-  * ``remove_tag`` - removes the given tag to the projects selected by the
+  * ``remove_tag`` - removes the given tag to the jobs selected by the
     filter parameters
 
 Examples:
