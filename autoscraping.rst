@@ -10,6 +10,14 @@ Autoscraping (AS) allow to visually develop a spider without programming knowled
 Basic concepts and procedures
 =============================
 
+**Important note: Annotating mode will be soon deprecated. We already provide a new version of panel which will replace the actual one. In this new version there are
+no more autoscraping and normal modes. Every job can be used either to extract items (former "normal" mode) or to test extraction and create templates (former
+"annotating" mode), as all jobs will capture crawled pages and extract items. In the new version, captured pages for test extraction and template addition are accesible
+using the links in the "Pages" column (the same function than *Items* column links in "annotating" mode), while the links in the *Items* column are exclusive for final
+extracted items (as "Items" column links in normal mode). We are actually performing a progressive migration of projects from old panel to new one, which includes many
+other general interface improvements. If you are interested in migrating now your project to this newpanel, please contact us. Note however that as it is in development
+status it may have some bugs.**
+
 When working with an AS spider, there are two kinds of job modes: annotating mode and normal mode. Annotating mode
 allows to add templates and test them before actually running a normal mode job, which is a job that
 will actually generate the items. In near future this model will be simplified for better usability,
