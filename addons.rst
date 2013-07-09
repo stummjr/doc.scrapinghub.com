@@ -94,25 +94,6 @@ Supported settings:
 
 * ``DOTSCRAPY_ENABLED`` - set it to enable the DotScrapy addon (either project-wide or per spider)
 
-ProxyHub
-========
-
-This addon allows to setup a proxy service for using with the bot that runs your spiders. You can setup scrapinghub for using any proxy service you want,
-by providing its url, the user and password. Also you can enable it for your entire project or just the selected spiders, depending where you use the
-``HUBPROXY_ENABLED`` setting. The following basic settings are self explanatory:
-
-* ``HUBPROXY_URL``
-* ``HUBPROXY_USER``
-* ``HUBPROXY_PASS``
-* ``HUBPROXY_ENABLED``
-
-The following are more sophisticated and tunes the behavior of the addon:
-
-* ``HUBPROXY_MAXBANS`` - How many consecutive bans will ignore before close the spider. The default value is 20.
-* ``HUBPROXY_DOWNLOAD_TIMEOUT`` - How much time wait for each response from the proxy service before raising a timeout error for a given request. Default value is 1800 seconds.
-
-.. _querycleaner:
-
 Query Cleaner
 =============
 
