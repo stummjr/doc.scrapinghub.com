@@ -94,6 +94,8 @@ Supported settings:
 
 * ``DOTSCRAPY_ENABLED`` - set it to enable the DotScrapy addon (either project-wide or per spider)
 
+.. _querycleaner:
+
 Query Cleaner
 =============
 
