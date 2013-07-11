@@ -13,75 +13,12 @@ the Scrapinghub cloud.
 Supported libraries
 ===================
 
-These are the libraries (and versions) available out of the box in the
-cloud that you can use in your spiders:
-
-.. warning:: These available libraries and versions may change without prior
-   notice. If you need to rely on a specific library & version, always upload
-   the specific version of the library as an egg (in Settings -> Project Eggs)
-   or using the :ref:`Eggs API <eggs-api>`.
-
-* `Scrapy`_ (trunk)
-* `w3lib`_ (trunk)
-* `scrapely`_ (trunk)
-* `lxml`_ 2.3.2
-* `Beautiful Soup`_ 3.2.0
-* `Python Imaging Library (PIL)`_ 1.1.7
-* `NumPy`_ 1.6.1
-* `pymongo`_ 2.1.1
-* `MySQLdb`_ 1.2.3
-* `boto`_ 2.5.2
-* `SimpleParse`_ 2.1.0a1
-* `nltk`_ 2.0b9
-* `mxDateTime`_ 3.2.1
-* `msgpack`_ 0.2.0
-
-If your project requires other external library, or a different version from
-the one provided by default, you can upload them either using the Panel (in
-Settings -> Project Eggs) or the :ref:`Eggs API <eggs-api>`. Binary/native
-Python modules or zip-unsafe eggs are not supported yet, contact
-support@scrapinghub.com if you need one of them.
+See http://support.scrapinghub.com/topic/205467-supported-libraries-on-scrapy-cloud/
 
 Deploying your project
 ======================
 
-You can use Scrapinghub as a deployment target of the `scrapy deploy`_ command
-(available since Scrapy 0.11). For more information see `Deploying your
-project`_ in the `Scrapyd`_ documentation.
-
-Single private projects
------------------------
-
-To deploy your project in Scrapinghub just follow these simple steps:
-
-1. Select your project in the panel, and then go to Settings -> Scrapy Deploy
-2. Copy the snippet and paste it into your project's ``scrapy.cfg`` file
-3. Run: ``scrapy deploy``
-
-Working on teams
-----------------
-
-If you're working on a project with a team, where more than one person can
-deploy, it's recommended not to store your credentials in the main project
-``scrapy.cfg`` file and instead store them in a private file in your home
-folder. That file is ``~/.scrapy.cfg``, where ``~`` is refers to your home
-directory.
-
-So, assuming your Scrapinghub user name is ``john`` and your password
-``secret``, this is how your ``~/.scrapy.cfg`` would look like::
-
-    [deploy]
-    username = john
-    password = secret
-
-And in your project ``scrapy.cfg`` you would only write the options relevant to
-the deployment url and project identifier.
-
-Example of project ``scrapy.cfg`` file::
-
-    [deploy]
-    url = http://panel.scrapinghub.com/api/scrapyd/
-    project = 999
+See http://support.scrapinghub.com/topic/205471-deploying-your-project-to-scrapy-cloud/
 
 Frequently Asked Questions
 ==========================
@@ -112,24 +49,5 @@ This variability can be improved by purchasing dedicated servers. Check the
 
 .. _BSON: http://bsonspec.org/
 .. _JSON: http://www.json.org/
-.. _declaring field serializers: http://doc.scrapy.org/topics/exporters.html#declaring-a-serializer-in-the-field
-.. _Pricing page: http://scrapinghub.com/pricing.html
-.. _scrapy deploy: http://doc.scrapy.org/topics/commands.html#command-deploy
-.. _Deploying your project: http://doc.scrapy.org/topics/scrapyd.html#deploying-your-project
-.. _Scrapyd: http://doc.scrapy.org/topics/scrapyd.html
-.. _Scrapy: http://scrapy.org
-.. _w3lib: https://github.com/scrapy/w3lib
-.. _lxml: http://lxml.de/
-.. _Python Imaging Library (PIL): http://www.pythonware.com/products/pil/
-.. _Beautiful Soup: http://www.crummy.com/software/BeautifulSoup/
-.. _scrapely: https://github.com/scrapy/scrapely
-.. _pymongo: http://api.mongodb.org/python/
-.. _MySQLdb: http://mysql-python.sourceforge.net/MySQLdb.html
-.. _boto: https://github.com/boto/boto
-.. _NumPy: http://numpy.scipy.org/
-.. _SimpleParse: http://simpleparse.sourceforge.net/
-.. _nltk: http://www.nltk.org/
-.. _mxDateTime: http://www.egenix.com/products/python/mxBase/mxDateTime/
-.. _msgpack: http://msgpack.org
 .. _declaring field serializers: http://doc.scrapy.org/topics/exporters.html#declaring-a-serializer-in-the-field
 .. _Pricing page: http://scrapinghub.com/pricing.html
