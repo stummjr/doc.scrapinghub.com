@@ -364,6 +364,22 @@ the project.
 
 .. _eggs-api:
 
+as/spider-properties.json
+-------------------------
+
+Retrieves or updates spider properties. If no update parameters are given, the call returns the current properties of the spider.
+
+Basic parameters:
+
+  * ``project``  (required) - the project numeric id
+
+  * ``spider`` (required) - the spider name
+
+Update parameters:
+
+  * ``start_url`` (optional) - set given start url (parameter can be given multiple times). Updates ``start_urls`` property with the given values.
+
+
 Eggs API
 ========
 

@@ -550,6 +550,8 @@ or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapin
     >>> project = conn["155"]
     >>> project.schedule("myspider", start_urls=open("start_urls.txt").read())
 
+For more features, check specific :ref:`autoscraping-api`.
+
 Good practices for best results with less effort
 ================================================
 
