@@ -361,13 +361,20 @@ the project.
 
   * ``spiders`` (optional) - a comma separated list of spiders. If present, include only the specifications of given spiders.
 
+Examples:
 
-.. _eggs-api:
+To download the entire project (with all spiders) with id 123::
+
+    curl -u APIKEY: "http://dash.scrapinghub.com/api/as/project-slybot.zip?project=123"
+
+To download only the spider with name 'myspider'::
+
+    curl -u APIKEY: "http://dash.scrapinghub.com/api/as/project-slybot.zip?project=123&spiders=myspider"
 
 as/spider-properties.json
 -------------------------
 
-Retrieves or updates spider properties. If no update parameters are given, the call returns the current properties of the spider.
+Retrieves or updates autoscraping spider properties. If no update parameters are given, the call returns the current properties of the spider.
 
 Basic parameters:
 
@@ -379,6 +386,17 @@ Update parameters:
 
   * ``start_url`` (optional) - set given start url (parameter can be given multiple times). Updates ``start_urls`` property with the given values.
 
+Examples:
+
+To get the properties of the spider 'myspider'::
+
+    curl -u APIKEY: "http://dash.scrapinghub.com/api/as/spider-properties.json?project=123&spider=myspider"
+
+To update the start urls of a spider::
+
+    curl -u APIKEY: --get --data-urlencode 'start_url=http://www.example.com/listA' --data-urlencode 'start_url=http://www.example.com/listB' "http://dash.scrapinghub.com/api/as/spider-properties.json?project=123&spider=myspider"
+
+.. _eggs-api:
 
 Eggs API
 ========
