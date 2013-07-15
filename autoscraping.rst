@@ -574,3 +574,5 @@ that you must have in mind when developing an autoscraping spider and improve th
 7. **By using the setting LOG_LEVEL = DEBUG you will see extra information in logs that allows to identify many problems**, like items dropped by the duplicates detector, and help you to elaborate better url filters in complex cases.
 
 8. **The** :ref:`querycleaner` **addon also helps a lot in url filtering**. It is usual to have situations in which some URL parameters can be removed from the URL without changing results, and the bot waste time visiting the same pages lot of times, because each time they are visited with a different set of parameters. Lot of dropped duplicated items is usually a sympton of this condition.
+
+Additional articles for best performance and practices can be found at `Autoscraping articles in support forum <http://support.scrapinghub.com/list/19086-general/?category=4878>`_.
