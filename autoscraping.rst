@@ -10,62 +10,31 @@ Autoscraping (AS) allow to visually develop a spider without programming knowled
 Basic concepts and procedures
 =============================
 
-**Important note: Annotating mode will be soon deprecated. We already provide a new version of panel which will replace the actual one. In this new version there are
-no more annotating and normal modes. Every job can be used either to extract items (former "normal" mode) or to test extraction and create templates (former
-"annotating" mode), as all jobs will capture crawled pages and extract items. In the new version, captured pages for test extraction and template addition are accesible
-using the links in the "Pages" column (the same function than *Items* column links in "annotating" mode), while the links in the *Items* column are exclusive for final
-extracted items (as "Items" column links in normal mode). We are actually performing a progressive migration of projects from old panel to new one, which includes many
-other general interface improvements. If you are interested in migrating now your project to this newpanel, please contact us. Note however that as it is in development
-status it may have some bugs.**
+Each time you run a new job, two processes occur: items are extracted and visited pages are captured (stored). Extracted items are what you actually want as a final result.
+Captured pages allow you to add templates and test extraction each time there are changes in the template set, without need to run again the spider.
 
-When working with an AS spider, there are two kinds of job modes: annotating mode and normal mode. Annotating mode
-allows to add templates and test them before actually running a normal mode job, which is a job that
-will actually generate the items. In near future this model will be simplified for better usability,
-and there will be only one running mode. But general concepts and procedures for creating a spider
-will be the same.
-
-Right now the best case procedure, in short, is:
+The general procedure for creating an autospider is the following one:
 
     #. Create the spider and configure (minimal configuration is the name of the spider and the starting url)
-    #. Run in annotating mode
-    #. Go to captured pages and find one from which you need scraped data
-    #. Add a template, and annotate it (see section `Annotating a template`_)
-    #. Go back to captured pages and check how items are extracted from them
-    #. Run in normal mode and get the items
+    #. Run it.
+    #. Go to captured pages (see pages tab of the job) and find one from which you need scraped data.
+    #. Add a template, and annotate it.
+    #. Go back to captured pages and check how items are extracted from them.
+    #. Eventually improve current templates and/or jump to step 4.
+    #. Once you feel templates set is completed, run the job again in order to generate items.
 
-But usually things are not so easy. In many cases you need to perform some improvements in the template,
-or even add new ones, because current one/s are not suitable for extracting data from all the pages you need
-to extract data. And even this can be the case regardless how similar the target pages looks in the browser,
-because the html source can have important differences. So, the average case would be:
+In most cases you would need to perform some improvements in the templates, or even add new ones, because current one/s are not suitable for extracting data from all the
+pages you need to extract data. This can be the case regardless how similar the target pages looks in the browser, because the html source can have
+important differences.
 
-    1. Create the spider and configure (minimal configuration is the name of the spider and the starting url)
-    2. Run in annotating mode
-    3. Go to captured pages and find one from which you need scraped data
-    4. Add a template, and annotate it
-    5. Go back to captured pages and check how items are extracted from them
-    6. Eventually improve current template and/or jump to step 4.
-    7. Run in normal mode and get the items
+Jobs running time is limited by some criterias. This is a very important mechanism in order to avoid infinite crawling loop traps under certain conditions.
+The limitation consist on checking the number of items extracted each fixed period of time. And if this count does not reach a given threshold, then the job will be
+automatically closed with status ``slybot_fewitems_scraped``. See `Job outcomes`_ for details.
 
-In most cases you don't need to run a new annotating job, as the captured pages in this mode are reusable. Each time
-you add a template or modify one, these changes will be reflected in extracted items after you reload the captured
-pages. So this is a very important concept: annotating mode is not only intended for adding new templates. It also allows you to test
-them without need to run a new job each time you perform a change in the templates.
-
-Right now, annotating jobs are limited by number of pages
-(1000 by default). This is a very important mechanism in order to avoid infinite crawling loop traps under certain conditions. The
-normal jobs are also limited, but in a different way, which consist on checking the number of items extracted each fixed period of time.
-And if this count does not reach a given threshold, then the job will be automatically stopped with status
-``slybot_fewitems_scraped``. See `Job outcomes`_ for details.
-
-Because of this reason, usually you will get much more crawled pages in a normal job than in the annotating job. So you can discover
-that there are some items not extracted or not correctly extracted in a normal job, but you can't annotate it because it was not
-captured in the annotating job. You have to try a new annotating job with spider link filters in order to avoid capturing
-unnecessary pages and so leave place for capturing the important ones.
-
-Link filters are a very important issue in spider development, not only because they allow to capture more relevant pages in annotating 
-jobs, but also because they will greatly improve the performance of normal jobs. By avoiding unnecessary pages the crawling will 
-complete in less time and the item/hour rate will increase, reducing the risk of premature stop of the job as result of an 
-unaccomplished item/hour rate threshold.
+You can also discover that in some cases the spider may consume lot of time crawling pages that you don't need, thus reducing the ratio items/pages and so the spider
+efficiency. By default, the autoscraping spider extracts every link it finds, and follows it. So a very important feature in spider development are Link filters. By
+avoiding to visit unnecessary pages the crawling will complete in less time and the items/pages rate will increase, reducing the risk of premature stop of the job as
+result of an unaccomplished rate threshold.
 
 This section has been a basic, but very important, overview of general concepts that you must know in order to better understand
 the detailed description that will come on following sections. At the end of this document there is a section that enumerates common good
@@ -476,8 +445,9 @@ Aside the generic job outcomes that indicates the reason why a job finished (see
 outcome, ``slybot_fewitems_scraped``. 
 
 AS spiders has a safety measure to avoid infinite crawling loops. It consists in closing the job when over a given period of time,
-the number of items scraped did not reach a minimal threshold. By default, the period is one hour and the minimal items scraped in that
-period must be 200.
+the number of items scraped did not reach a minimal threshold. By default, the period is 3600 seconds and the minimal items scraped in that
+period must be 200. Both values are controlled by the settings ``SLYCLOSE_SPIDER_CHECK_PERIOD`` (seconds) and ``SLYCLOSE_SPIDER_PERIOD_ITEMS``
+(minimal items scraped in the defined period).
 
 If you are crawling a big site with thousands of pages, of which only a small portion of them generates an item with current templates,
 it usually happens that the bot can consume long periods of time crawling thousands of pages but in the same interval it scraped only
@@ -541,7 +511,7 @@ If you want to manage AS job scheduling using the ScrapingHub :doc:`api`, AS bot
 
 For example, if you have all your start URLs in a file named start_urls.txt, one per line, you can do, from a linux console::
 
-    curl http://panel.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls="$(cat start_urls.txt)"
+    curl http://dash.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls="$(cat start_urls.txt)"
 
 or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapinghub>`_::
 
