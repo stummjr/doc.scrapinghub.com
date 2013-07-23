@@ -32,7 +32,7 @@ Credentials with HTTP Auth
 You can pass your Scrapinghub credentials using HTTP auth. For example, with
 curl::
 
-    curl http://panel.scrapinghub.com/api/jobs.json?project=123 -u john:secret
+    curl http://dash.scrapinghub.com/api/jobs.json?project=123 -u john:secret
 
 API key with HTTP Auth
 ----------------------
@@ -40,16 +40,16 @@ API key with HTTP Auth
 You can use your API key instead of your credentials, and pass it using HTTP
 auth with an empty password::
 
-    curl http://panel.scrapinghub.com/api/jobs.json?project=123 -u e8f825a5fb634a8fa17f3ca54a5daa11:
+    curl http://dash.scrapinghub.com/api/jobs.json?project=123 -u e8f825a5fb634a8fa17f3ca54a5daa11:
 
-You can get your API key from the Panel by going to Account -> API Keys.
+You can get your API key from the Scrapinghub Dash by going to Account -> API Keys.
 
 API key as URL argument
 -----------------------
 
 You can also pass your API key as a URL argument::
 
-    curl http://panel.scrapinghub.com/api/jobs.json?project=123&apikey=e8f825a5fb634a8fa17f3ca54a5daa11
+    curl http://dash.scrapinghub.com/api/jobs.json?project=123&apikey=e8f825a5fb634a8fa17f3ca54a5daa11
 
 Spiders API
 ===========
@@ -71,11 +71,11 @@ Examples:
 
 To retrieve the all spiders in project ``123``::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/spiders/list.json?project=123"
+    curl -u USER:PASS "http://dash.scrapinghub.com/api/spiders/list.json?project=123"
 
 To retrieve spiders ``aspider`` and ``bspider`` for project ``123``::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/spiders/list.json?project=123&spider=aspider&spider=bspider"
+    curl -u USER:PASS "http://dash.scrapinghub.com/api/spiders/list.json?project=123&spider=aspider&spider=bspider"
 
 
 Jobs API
@@ -97,7 +97,7 @@ Schedules a job.
 
 Example request::
 
-    $ curl http://panel.scrapinghub.com/api/schedule.json -d project=123 -d spider=somespider -d add_tag=sometag
+    $ curl http://dash.scrapinghub.com/api/schedule.json -d project=123 -d spider=somespider -d add_tag=sometag
 
 Example response::
 
@@ -146,19 +146,19 @@ Examples:
 
 To retrieve the latest 10 finished jobs in project ``123``, for spider ``somespider``::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/jobs/list.json?project=123&spider=somespider&state=finished&count=-10"
+    curl -u USER:PASS "http://dash.scrapinghub.com/api/jobs/list.json?project=123&spider=somespider&state=finished&count=-10"
 
 To retrieve all currently running jobs for project ``123``::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/jobs/list.json?project=123&state=running"
+    curl -u USER:PASS "http://dash.scrapinghub.com/api/jobs/list.json?project=123&state=running"
 
 To retrieve all jobs from project ``123``, finished after job ``4ca37770a1a3a24c45000005``::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/jobs/list.json?project=123&state=finished&after=4ca37770a1a3a24c45000005"
+    curl -u USER:PASS "http://dash.scrapinghub.com/api/jobs/list.json?project=123&state=finished&after=4ca37770a1a3a24c45000005"
 
 To get all jobs not marked with tag ``consumed`` from project ``123``::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/jobs/list.json?project=123&lacks_tag=consumed"
+    curl -u USER:PASS "http://dash.scrapinghub.com/api/jobs/list.json?project=123&lacks_tag=consumed"
 
 jobs/list.jl
 ------------
@@ -192,7 +192,7 @@ Example:
 
 To mark job ``4ca37770a1a3a24c45000005`` of project ``123`` with the tag ``consumed``::
 
-    curl -u USER:PASS http://panel.scrapinghub.com/api/jobs/update.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d add_tag=consumed"
+    curl -u USER:PASS http://dash.scrapinghub.com/api/jobs/update.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d add_tag=consumed"
 
 jobs/delete.json
 ----------------
@@ -212,7 +212,7 @@ Example:
 To delete jobs ``4ca37770a1a3a24c45000005`` and ``4ca33330a1a3a24c45000005`` of
 project ``123``::
 
-    curl -u USER:PASS http://panel.scrapinghub.com/api/jobs/delete.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d job=4ca33330a1a3a24c45000005"
+    curl -u USER:PASS http://dash.scrapinghub.com/api/jobs/delete.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d job=4ca33330a1a3a24c45000005"
 
 
 jobs/stop.json
@@ -233,7 +233,7 @@ Example:
 To stop jobs ``4ca37770a1a3a24c45000005`` and ``4ca33330a1a3a24c45000005`` of
 project ``123``::
 
-    curl -u USER:PASS http://panel.scrapinghub.com/api/jobs/stop.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d job=4ca33330a1a3a24c45000005"
+    curl -u USER:PASS http://dash.scrapinghub.com/api/jobs/stop.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d job=4ca33330a1a3a24c45000005"
 
 Items API
 =========
@@ -260,19 +260,19 @@ Examples:
 
 To retrieve the items scraped by job ``4ca37770a1a3a24c45000005``::
 
-    curl -L -u USER:PASS "http://panel.scrapinghub.com/api/items.json?project=123&job=4ca37770a1a3a24c45000005"
+    curl -L -u USER:PASS "http://dash.scrapinghub.com/api/items.json?project=123&job=4ca37770a1a3a24c45000005"
 
 .. warning:: This only returns the first 100 items. See :ref:`pagination`. If
    you want to return all items in one stream, you can use `items.jl`_.
 
 To retrieve the items scraped by the *last finished job* of the spider ``myspider``::
 
-    curl -L -u USER:PASS "http://panel.scrapinghub.com/api/items.json?project=123&spider=myspider"
+    curl -L -u USER:PASS "http://dash.scrapinghub.com/api/items.json?project=123&spider=myspider"
 
 To retrieve the latest 20 items of job ``4ca37770a1a3a24c45000005`` (*this
 works even if the job is running*)::
 
-    curl -L -u USER:PASS "http://panel.scrapinghub.com/api/items.json?project=123&job=4ca37770a1a3a24c45000005&count=-20"
+    curl -L -u USER:PASS "http://dash.scrapinghub.com/api/items.json?project=123&job=4ca37770a1a3a24c45000005&count=-20"
 
 items.jl
 --------
@@ -284,7 +284,7 @@ Examples:
 
 To retrieve all items scraped by job ``4ca37770a1a3a24c45000005``::
 
-    curl -L -u USER:PASS "http://panel.scrapinghub.com/api/items.jl?project=123&job=4ca37770a1a3a24c45000005"
+    curl -L -u USER:PASS "http://dash.scrapinghub.com/api/items.jl?project=123&job=4ca37770a1a3a24c45000005"
 
 items.csv
 ---------
@@ -303,7 +303,7 @@ Examples:
 To retrieve all items scraped by job ``4ca37770a1a3a24c45000005``, this time in CSV format, no header, and dump name, url and price
 fields::
 
-    curl -L -u USER:PASS "http://panel.scrapinghub.com/api/items.csv?project=123&job=4ca37770a1a3a24c45000005&include_headers=0&fields=name,url,price"
+    curl -L -u USER:PASS "http://dash.scrapinghub.com/api/items.csv?project=123&job=4ca37770a1a3a24c45000005&include_headers=0&fields=name,url,price"
 
 Log API
 =======
@@ -329,7 +329,7 @@ Examples:
 
 To retrieve the log of job ``4ca37770a1a3a24c45000005`` in plain text format::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/log.txt?project=123&job=4ca37770a1a3a24c45000005"
+    curl -u USER:PASS "http://dash.scrapinghub.com/api/log.txt?project=123&job=4ca37770a1a3a24c45000005"
 
 log.json
 --------
@@ -425,7 +425,7 @@ Examples:
 
 To add an egg to a project::
 
-    curl -u USER:PASS http://panel.scrapinghub.com/api/eggs/add.json -F project=123 -F name=somelib -F version=1.0 -F egg=@somelib-1.0.py2.6.egg
+    curl -u USER:PASS http://dash.scrapinghub.com/api/eggs/add.json -F project=123 -F name=somelib -F version=1.0 -F egg=@somelib-1.0.py2.6.egg
 
 eggs/delete.json
 ----------------
@@ -445,7 +445,7 @@ Examples:
 
 To add an egg from a project::
 
-    curl -u USER:PASS http://panel.scrapinghub.com/api/eggs/delete.json -d project=123 -d name=somelib
+    curl -u USER:PASS http://dash.scrapinghub.com/api/eggs/delete.json -d project=123 -d name=somelib
 
 eggs/list.json
 --------------
@@ -462,7 +462,7 @@ Examples:
 
 To add an egg from a project::
 
-    curl -u USER:PASS "http://panel.scrapinghub.com/api/eggs/list.json?project=123"
+    curl -u USER:PASS "http://dash.scrapinghub.com/api/eggs/list.json?project=123"
 
 .. _reports-api:
 
@@ -495,7 +495,7 @@ Upload a report and attach it to a job. The supported formats are
 Example to upload a report assuming you have the report content (in
 `reStructuredText`_ format) in a ``report.rst`` file::
 
-   curl -u USER:PASS http://panel.scrapinghub.com/api/reports/add.json -F project=123 -F job=4fb0e9e5bbddbd7b460005f2 -F key=qareport -F content_type=text/x-rst -F @report.rst
+   curl -u USER:PASS http://dash.scrapinghub.com/api/reports/add.json -F project=123 -F job=4fb0e9e5bbddbd7b460005f2 -F key=qareport -F content_type=text/x-rst -F @report.rst
 
 .. _pagination:
 
