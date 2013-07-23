@@ -491,18 +491,12 @@ project ``setting.py`` file that separates the configuration for the autoscrapin
     SHUB_SPIDER_TYPE = os.environ.get('SHUB_SPIDER_TYPE')
 
     if SHUB_SPIDER_TYPE == 'auto':
-        if "annotating" in SHUB_JOB_TAGS:
-            <import annotating mode settings module>
-        else:
-            <import autoscraping normal mode settings module>
+        <import autoscraping normal mode settings module>
     else:
         <import not-autoscraping project settings module>
 
-The environment variable ``SHUB_SPIDER_TYPE`` will be set to *auto* if the spider that loads the basic settings module is an
-autoscraping spider. And if it runs in annotating mode, the word *annotating* will be found in the environment variable
-``SHUB_JOB_TAGS``. As easy as that. Of course, it will be even simpler if your scrapy project only contains components for your
-autoscraping spiders. But you still will need to separate settings for the annotating and the normal mode, as extracted data post
-process components are normal mode specific, while those that changes the crawling behaviour of the bot are commonly needed by both.
+The environment variable ``SHUB_SPIDER_TYPE`` will be set to *auto* by the scrapinghub backend if the spider that loads the basic settings module is an
+autoscraping spider.
 
 Autoscraping and ScrapingHub API
 ================================
@@ -533,9 +527,9 @@ that you must have in mind when developing an autoscraping spider and improve th
 
 2. **Don't assume that only one template is enough for extracting every product you need**. Usually there are some differences among target html layouts (although not visibly evident when rendered in a browser) that make some templates not being perfectly suitable for some targets.
 
-3. **The pages captured in the annotating mode allows you to test how will behave the extraction at any time with the current set of templates, without need to run additional jobs**. Each time you add a new template or modify an existing one, after you reload the list of captured pages the extracted data is updated according to the new state of templates.
+3. **The captured pages browser allows you to test how will behave the extraction at any time with the current set of templates, without need to run additional jobs**. Each time you add a new template or modify an existing one, after you reload the list of captured pages the extracted data is updated according to the new state of templates.
 
-4. **When a target is not being extracted by current templates, remember the development cycle described in first section**. First step is to identify a target page that does not contain extracted data, add a new template from it, and annotate. Then you check again the set of captured pages and see whether still there are products pages with no data extracted which require additional templates. Once you are satisfied, remove the 'annotating' tag and run a new job.
+4. **When a target is not being extracted by current templates, remember the development cycle described in first section**. First step is to identify a target page that does not contain extracted data, add a new template from it, and annotate. Then you check again the set of captured pages and see whether still there are products pages with no data extracted which require additional templates. Once you are satisfied with the current template set, run a new job in order to generate the items.
 
 5. **Usually you can find the opposite case: data extracted from pages you don't want to extract anything, or the incorrect template used for some product pages**. Both cases are improved by adding extra required fields in the template that is being used. In particular, for those fields that are not being extracted by it. That will make the result from the given template being discarded, as not all required fields were extracted using it.
 
