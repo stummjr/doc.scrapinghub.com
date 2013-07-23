@@ -54,7 +54,7 @@ which will decide, as already described, whether the extracted item will be fina
 
 If your spider has more than one template, then templates are tried sequentially until the first success extraction occurs. Then 
 duplicates detector is applied over the extracted item. The order in which templates are tried **is not** the same order as they 
-were created (as you see them in the panel), but instead, they are sorted by the number of annotations it contains in decreasing order. 
+were created (as you see them in the Scrapinghub Dash), but instead, they are sorted by the number of annotations it contains in decreasing order. 
 Only if a subset of templates has the same number of annotations, they will be tried according to age (first created, first). The rule 
 to try templates according to number of annotations improves the efficiency of the general extraction algorithm, as the less annotations 
 has a template, more easily can be successful in extracting an item by mistake, because there are less constraints to fulfill. So, this 
@@ -469,7 +469,7 @@ Extending the autoscraping bot
 The autoscraping method is limited by its nature. Sometimes you need to do some custom things that are out of the scope of the AS core,
 tasks that can be performed by extending the bot capabilities in some way, and can be reduced to a post-processing task.
 
-Scrapinghub provides some standard components which perform common tasks, that can be enabled and configured from panel, called Addons.
+Scrapinghub provides some standard components which perform common tasks, that can be enabled and configured from Scrapinghub Dash, called Addons.
 Many of them are generic for any project, but other are thought as autoscraping specific. See :doc:`addons` documentation for more
 info.
 
