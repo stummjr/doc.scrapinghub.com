@@ -130,10 +130,6 @@ Retrieve information about jobs.
 
   * ``lacks_tag`` - return only jobs not containing the given tag. May be repeated.
 
-* Pagination parameters:
-
-  * ``count`` and ``offset`` - see :ref:`pagination`
-
 * Tagging parameters (``POST`` requests only):
 
   * ``add_tag`` - adds the given tag to the jobs selected by the filtering
