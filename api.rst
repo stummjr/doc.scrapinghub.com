@@ -108,10 +108,6 @@ Retrieve information about jobs.
 
   * ``job`` - the id of a specific job to retrieve
 
-  * ``after`` - a job id. Only jobs whose id is greater than this will be
-    returned. The job ids are generated using timestamps, so a job scheduled
-    after another one will have a greater job id.
-
   * ``spider`` - a spider name. On jobs belonging to this spider will be
     returned
   
