@@ -32,7 +32,7 @@ API key with HTTP Auth
 You can use your API key instead of your credentials, and pass it using HTTP
 auth with an empty password::
 
-    curl http://dash.scrapinghub.com/api/jobs.json?project=123 -u e8f825a5fb634a8fa17f3ca54a5daa11:
+    curl http://dash.scrapinghub.com/api/jobs/list.json?project=123 -u e8f825a5fb634a8fa17f3ca54a5daa11:
 
 You can get your API key from the Scrapinghub Dash by going to Account -> API Keys.
 
@@ -41,7 +41,7 @@ API key as URL argument
 
 You can also pass your API key as a URL argument::
 
-    curl http://dash.scrapinghub.com/api/jobs.json?project=123&apikey=e8f825a5fb634a8fa17f3ca54a5daa11
+    curl http://dash.scrapinghub.com/api/jobs/list.json?project=123&apikey=e8f825a5fb634a8fa17f3ca54a5daa11
 
 Spiders API
 ===========
