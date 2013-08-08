@@ -118,27 +118,15 @@ Retrieve information about jobs.
 
   * ``lacks_tag`` - return only jobs not containing the given tag. May be repeated.
 
-* Tagging parameters (``POST`` requests only):
-
-  * ``add_tag`` - adds the given tag to the jobs selected by the filtering
-    parameters
-
-  * ``remove_tag`` - removes the given tag to the jobs selected by the
-    filter parameters
-
 Examples:
 
 To retrieve the latest 10 finished jobs in project ``123``, for spider ``somespider``::
 
-    curl -u APIKEY: "http://dash.scrapinghub.com/api/jobs/list.json?project=123&spider=somespider&state=finished&count=-10"
+    curl -u APIKEY: "http://dash.scrapinghub.com/api/jobs/list.json?project=123&spider=somespider&state=finished&count=10"
 
 To retrieve all currently running jobs for project ``123``::
 
     curl -u APIKEY: "http://dash.scrapinghub.com/api/jobs/list.json?project=123&state=running"
-
-To retrieve all jobs from project ``123``, finished after job ``4ca37770a1a3a24c45000005``::
-
-    curl -u APIKEY: "http://dash.scrapinghub.com/api/jobs/list.json?project=123&state=finished&after=4ca37770a1a3a24c45000005"
 
 To get all jobs not marked with tag ``consumed`` from project ``123``::
 
@@ -150,8 +138,7 @@ jobs/list.jl
 Similar to `jobs/list.json`_ but returns the jobs in `JSONLines format`_, which
 allows to retrieve all jobs without having to paginate the results.
 
-The first line of the result is special and contains metadata (like total
-number of jobs).
+The first line of the result is special and contains metadata.
 
 See `jobs/list.json` for examples.
 
