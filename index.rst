@@ -1,26 +1,19 @@
-Welcome
-=======
+Scrapinghub documentation
+=========================
 
-This is the help site of Scrapinghub, where you can find information about how
-to use our services.
+Here you will find reference documentation. For articles, guides and other help
+resouces please visit the `Support site`_ and look for the Articles section of
+each product.
 
-Products & services
--------------------
-
-* :doc:`panel`
-* :doc:`autoscraping`
-* :doc:`cloud`
-* :doc:`api`
-* :doc:`addons`
-
-Table of contents
------------------
+Contents
+--------
 
 .. toctree::
    :maxdepth: 2
 
-   panel
-   autoscraping
-   cloud
+   dash
    api
+   autoscraping
    addons
+
+.. _Support site: http://support.scrapinghub.com

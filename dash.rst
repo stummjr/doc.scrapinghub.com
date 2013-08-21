@@ -1,11 +1,11 @@
-.. _panel:
+.. _dash:
 
-=========
-The Panel
-=========
+========
+The Dash
+========
 
-The Scrapinghub panel allows you to control and monitor your spiders. This page
-contains information on how to use it.
+The Scrapinghub dashboard (or "Dash" for short) allows you to control and
+monitor your spiders. This page contains information on how to use it.
 
 Projects, spiders and jobs
 ==========================
@@ -48,7 +48,7 @@ These are the most common job outcomes and their meanings:
 
 * ``finished`` - the job finished successfully (it may contain errors though)
 
-* ``shutdown`` - the job was cancelled, either from the panel or due to
+* ``shutdown`` - the job was cancelled, either from the dash or due to
   Scrapinghub internal maintenance
 
 * ``failed`` - the job failed for some reason. The most likely situation is
@@ -74,7 +74,7 @@ The fields used for the CSV can be configured in Settings -> Project Details.
 Deploying eggs
 ==============
 
-If your project needs code from an external python library, you can deploy a python egg by using the panel interface.
+If your project needs code from an external python library, you can deploy a python egg by using dash.
 See `setuptools` for details about egg concepts, preparation and building. If you want to provide to your project your own library,
 the first steps are, in short:
 
@@ -93,6 +93,6 @@ the first steps are, in short:
 And, in order to deploy in your project:
 
 #. Run ``python setup.py bdist_egg``,
-#. In the panel, go to Settings -> Eggs -> Add Egg, and fill the requested data in the upload form.
+#. In dash, go to Settings -> Eggs -> Add Egg, and fill the requested data in the upload form.
 
 .. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools

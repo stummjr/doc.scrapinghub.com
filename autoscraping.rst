@@ -441,7 +441,7 @@ different for each field.
 Job outcomes
 ============
 
-Aside the generic job outcomes that indicates the reason why a job finished (see :doc:`panel`), there is an autoscraping specific
+Aside the generic job outcomes that indicates the reason why a job finished (see :doc:`dash`), there is an autoscraping specific
 outcome, ``slybot_fewitems_scraped``. 
 
 AS spiders has a safety measure to avoid infinite crawling loops. It consists in closing the job when over a given period of time,
@@ -473,8 +473,7 @@ Scrapinghub provides some standard components which perform common tasks, that c
 Many of them are generic for any project, but other are thought as autoscraping specific. See :doc:`addons` documentation for more
 info.
 
-Another way to extend an autoscraping project with more custom post processing, is by deploying a custom scrapy project (see
-:doc:`cloud` for details) with the extensions, middlewares and settings written for your specific needs. As inside the same scrapy
+Another way to extend an autoscraping project with more custom post processing, is by deploying a custom scrapy project with the extensions, middlewares and settings written for your specific needs. As inside the same scrapy
 project you may have your own coded spiders and different settings for them, you will need a way to separate them from the settings
 for your autoscraping spiders.
 
