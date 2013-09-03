@@ -330,7 +330,7 @@ the project.
 
   * ``project`` (required) - the project numeric id
 
-  * ``spiders`` (optional) - a comma separated list of spiders. If present, include only the specifications of given spiders.
+  * ``spider`` (optional and multiple) - If present, include only the specifications of given spiders.
 
 Examples:
 
@@ -340,22 +340,36 @@ To download the entire project (with all spiders) with id 123::
 
 To download only the spider with name 'myspider'::
 
-    curl -u APIKEY: "http://dash.scrapinghub.com/api/as/project-slybot.zip?project=123&spiders=myspider"
+    curl -u APIKEY: "http://dash.scrapinghub.com/api/as/project-slybot.zip?project=123&spider=myspider"
 
 as/spider-properties.json
 -------------------------
 
 Retrieves or updates autoscraping spider properties. If no update parameters are given, the call returns the current properties of the spider.
 
-Basic parameters:
+Retrieves autoscraping spider properties.
+
+* Supported Methods: ``GET``
+
+* Parameters:
 
   * ``project``  (required) - the project numeric id
 
   * ``spider`` (required) - the spider name
 
-Update parameters:
+Update autoscraping spider properties.
 
-  * ``start_url`` (optional) - set given start url (parameter can be given multiple times). Updates ``start_urls`` property with the given values.
+* Supported Methods: ``POST``
+
+* Parameters:
+
+  * ``project``  (required) - the project numeric id
+
+  * ``spider`` (required) - the spider name
+
+  * ``start_url`` (optional and multiple) - set given start url. 
+    Updates ``start_urls`` property with the given values.
+
 
 Examples:
 
@@ -365,7 +379,11 @@ To get the properties of the spider 'myspider'::
 
 To update the start urls of a spider::
 
-    curl -u APIKEY: --get --data-urlencode 'start_url=http://www.example.com/listA' --data-urlencode 'start_url=http://www.example.com/listB' "http://dash.scrapinghub.com/api/as/spider-properties.json?project=123&spider=myspider"
+    curl -u APIKEY: -d project=123 -d spider=myspider \
+            -d start_url=http://www.example.com/listA \
+            -d start_url=http://www.example.com/listB \
+            http://dash.scrapinghub.com/api/as/spider-properties.json
+
 
 .. _eggs-api:
 
