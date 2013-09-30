@@ -92,6 +92,25 @@ Supported settings:
 
 .. _querycleaner:
 
+Images
+======
+
+This addon downloads images from extracted image urls and stores them into an Amazon S3 storage. In order to enable, you must set the ``IMAGES_STORE`` setting,
+define a field *image_urls* with type *image*, which you will use to annotate image urls in the template, and a field *image* (field type does not matter), where the addon
+will add important information about the stored image, including the s3 path relative to the ``IMAGES_STORE`` setting.
+
+Settings:
+
+* ``IMAGES_STORE`` - Provide the complete S3 base path (in format *s3://<bucket name>/<base path>/*) where to store images.
+* ``IMAGES_MIN_WIDTH`` - Images with less than this width (in pixels) are ignored (0 by default)
+* ``IMAGES_MIN_HEIGHT`` - Images with less than this height (in pixels) are ignored (0 by default)
+* ``IMAGES_EXPIRES`` - When image is already in store, update it only when its age is older than this value (in days) (90 by default).
+
+You will also need to provide the standard ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY`` settings so the addon will be able to upload the images in your
+s3 storage.
+
+For more details, the Images Addon is actually based on the `Scrapy Images Pipeline`_.
+
 Query Cleaner
 =============
 
@@ -127,4 +146,4 @@ solution depends on particular case, that is, how the query filters will affect 
 .. _Scrapy: https://github.com/scrapy/scrapy
 .. _DeltaFetch code:  https://github.com/scrapinghub/scrapylib/blob/master/scrapylib/deltafetch.py
 .. _`Scrapy Autothrottle`: https://scrapy.readthedocs.org/en/latest/topics/autothrottle.html
-
+.. _`Scrapy Images Pipeline`: http://doc.scrapy.org/en/latest/topics/images.html
