@@ -206,6 +206,76 @@ project ``123``::
 
     curl -u APIKEY: http://dash.scrapinghub.com/api/jobs/stop.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d job=4ca33330a1a3a24c45000005"
 
+Periodic Jobs API
+=================
+
+What a periodic job looks like:
+
+    {
+        _id: "123456789012345678901234",
+        day: "*",
+        disabled: false,
+        hour: "*",
+        month: 3,
+        spiders: [{
+            args: {
+                foo: 'bar',
+                baz: 'qux',
+            },
+            name: 'one_spider',
+            priority: 3
+        },],
+    }
+
+GET: periodic_jobs
+------------------
+
+Retrieve periodic jobs for a specific project.
+
+* Parameters:
+
+  * ``project`` (required) - the project numeric id
+
+POST: periodic_jobs
+-------------------
+
+Create a new periodic job.
+
+* Parameters:
+
+  * ``project`` (required) - the project numeric id
+
+Send complte representation of periodic job on body as JSON.
+
+GET: periodic_jobs/:id
+--------------------------
+
+Retrive a specific periodic job by it's ``id``.
+
+* Parameters:
+
+  * ``project`` (required) - the project numeric id
+
+PUT: periodic_jobs/:job_id
+--------------------------
+
+Update a specific periodic job by it's ``id``.
+
+* Parameters:
+
+  * ``project`` (required) - the project numeric id
+
+Send complte representation of periodic job on body as JSON.
+
+DELETE: periodic_jobs/:job_id
+-----------------------------
+
+Delete a specific periodic job by it's ``id``.
+
+* Parameters:
+
+  * ``project`` (required) - the project numeric id
+
 Items API
 =========
 
