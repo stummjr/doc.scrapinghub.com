@@ -85,7 +85,9 @@ Schedules a job.
   * ``project`` (required) - the project numeric id
   * ``spider`` (required) - the spider name
   * ``add_tag`` (optional) - add tag to the job (can be given multiple times)
-  * any other parameter is passed as spider argument
+  * ``priority`` (optional) - set job priority,
+    possible vaules in range 0 (lowest priority) to 4 (highest priority), default is 2.
+  * Any other parameter is passed as spider argument
 
 Example request::
 
