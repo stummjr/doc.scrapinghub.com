@@ -96,15 +96,21 @@ Images
 ======
 
 This addon downloads images from extracted image urls and stores them into an Amazon S3 storage. In order to enable, you must set the ``IMAGES_STORE`` setting,
-define a field *image_urls* with type *image*, which you will use to annotate image urls in the template, and a field *image* (field type does not matter), where the addon
-will add important information about the stored image, including the s3 path relative to the ``IMAGES_STORE`` setting.
+and define two item fields:
+
+* a field ``image_urls`` with type ``image``, which you will use to annotate image urls in the template. This will be the source field from which the addon will get the urls of the images to be downloaded.
+* a field ``images`` (type doesn't matter, as it is written by the pipeline, not by the AS extraction algorithm), where the addon will save important information about the stored image, including the s3 path relative to the ``IMAGES_STORE`` setting.
+
+Those field names are the defaults, but can be overriden with the settings ``IMAGES_URLS_FIELD`` and ``IMAGES_RESULT_FIELD``.
 
 Settings:
 
 * ``IMAGES_STORE`` - Provide the complete S3 base path (in format *s3://<bucket name>/<base path>/*) where to store images.
-* ``IMAGES_MIN_WIDTH`` - Images with less than this width (in pixels) are ignored (0 by default)
-* ``IMAGES_MIN_HEIGHT`` - Images with less than this height (in pixels) are ignored (0 by default)
-* ``IMAGES_EXPIRES`` - When image is already in store, update it only when its age is older than this value (in days) (90 by default).
+* ``IMAGES_MIN_WIDTH`` - Images with less than this width (in pixels) are ignored. Default value is 0.
+* ``IMAGES_MIN_HEIGHT`` - Images with less than this height (in pixels) are ignored. Default value is 0.
+* ``IMAGES_EXPIRES`` - When image is already in store, update it only when its age is older than this value (in days). Default value is 90.
+* ``IMAGES_URLS_FIELD`` - Specify the item field from which the addon will read the image urls to download/store. Default value is ``image_urls``.
+* ``IMAGES_RESULT_FIELD`` - Specify the item field where the addon will save the stored image information. Default value is ``images``.
 
 You will also need to provide the standard ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY`` settings so the addon will be able to upload the images in your
 s3 storage.
