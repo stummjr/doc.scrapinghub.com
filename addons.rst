@@ -99,7 +99,7 @@ This addon downloads images from extracted image urls and stores them into an Am
 and define two item fields:
 
 * a field ``image_urls`` with type ``image``, which you will use to annotate image urls in the template. This will be the source field from which the addon will get the urls of the images to be downloaded.
-* a field ``images`` (type doesn't matter, as it is written by the pipeline, not by the AS extraction algorithm), where the addon will save important information about the stored image, including the s3 path relative to the ``IMAGES_STORE`` setting.
+* a field ``images``, where the addon will save important information about the stored image, including the s3 path relative to the ``IMAGES_STORE`` setting. The type of this field doesn't matter, as it is written by the pipeline, not by the AS extraction algorithm, but because of that, be sure that it is **NOT** flagged as required, otherwise you will not get extracted data, because you will not annotate this field in the templates.
 
 Those field names are the defaults, but can be overriden with the settings ``IMAGES_URLS_FIELD`` and ``IMAGES_RESULT_FIELD``.
 
