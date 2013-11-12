@@ -95,7 +95,7 @@ Example request::
 
 Example response::
 
-    {"status": "ok", "jobid": "4c59c056bda4a41f9d000002"}
+    {"status": "ok", "jobid": "123/1/1"}
 
 jobs/list.json
 --------------
@@ -163,9 +163,9 @@ Updates information about jobs.
 
 Example:
 
-To mark job ``4ca37770a1a3a24c45000005`` of project ``123`` with the tag ``consumed``::
+To mark job ``123/1/2`` of project ``123`` with the tag ``consumed``::
 
-    curl -u APIKEY: http://dash.scrapinghub.com/api/jobs/update.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d add_tag=consumed"
+    curl -u APIKEY: http://dash.scrapinghub.com/api/jobs/update.json -d project=123 -d job=123/1/2 -d add_tag=consumed"
 
 jobs/delete.json
 ----------------
@@ -182,10 +182,10 @@ Delete one or more jobs.
 
 Example:
 
-To delete jobs ``4ca37770a1a3a24c45000005`` and ``4ca33330a1a3a24c45000005`` of
+To delete jobs ``123/1/2`` and ``123/1/3`` of
 project ``123``::
 
-    curl -u APIKEY: http://dash.scrapinghub.com/api/jobs/delete.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d job=4ca33330a1a3a24c45000005"
+    curl -u APIKEY: http://dash.scrapinghub.com/api/jobs/delete.json -d project=123 -d job=123/1/2 -d job=123/1/3"
 
 
 jobs/stop.json
@@ -203,10 +203,10 @@ Stop one or more running jobs.
 
 Example:
 
-To stop jobs ``4ca37770a1a3a24c45000005`` and ``4ca33330a1a3a24c45000005`` of
+To stop jobs ``123/1/1`` and ``123/1/2`` of
 project ``123``::
 
-    curl -u APIKEY: http://dash.scrapinghub.com/api/jobs/stop.json -d project=123 -d job=4ca37770a1a3a24c45000005 -d job=4ca33330a1a3a24c45000005"
+    curl -u APIKEY: http://dash.scrapinghub.com/api/jobs/stop.json -d project=123 -d job=123/1/1 -d job=123/1/2"
 
 Items API
 =========
@@ -231,9 +231,9 @@ Retrieve the scraped items of a job.
 
 Examples:
 
-To retrieve the items scraped by job ``4ca37770a1a3a24c45000005``::
+To retrieve the items scraped by job ``123/1/4``::
 
-    curl -L -u APIKEY: "http://dash.scrapinghub.com/api/items.json?project=123&job=4ca37770a1a3a24c45000005"
+    curl -L -u APIKEY: "http://dash.scrapinghub.com/api/items.json?project=123&job=123/1/4"
 
 .. warning:: This only returns the first 100 items. See :ref:`pagination`. If
    you want to return all items in one stream, you can use `items.jl`_.
@@ -242,10 +242,10 @@ To retrieve the items scraped by the *last finished job* of the spider ``myspide
 
     curl -L -u APIKEY: "http://dash.scrapinghub.com/api/items.json?project=123&spider=myspider"
 
-To retrieve the latest 20 items of job ``4ca37770a1a3a24c45000005`` (*this
+To retrieve the latest 20 items of job ``123/1/4`` (*this
 works even if the job is running*)::
 
-    curl -L -u APIKEY: "http://dash.scrapinghub.com/api/items.json?project=123&job=4ca37770a1a3a24c45000005&count=-20"
+    curl -L -u APIKEY: "http://dash.scrapinghub.com/api/items.json?project=123&job=123/1/4&count=-20"
 
 items.jl
 --------
@@ -255,9 +255,9 @@ allows to retrieve all items without having to paginate the results.
 
 Examples:
 
-To retrieve all items scraped by job ``4ca37770a1a3a24c45000005``::
+To retrieve all items scraped by job ``123/1/4``::
 
-    curl -L -u APIKEY: "http://dash.scrapinghub.com/api/items.jl?project=123&job=4ca37770a1a3a24c45000005"
+    curl -L -u APIKEY: "http://dash.scrapinghub.com/api/items.jl?project=123&job=123/1/4"
 
 items.csv
 ---------
@@ -273,10 +273,10 @@ and *include_headers*.
 
 Examples:
 
-To retrieve all items scraped by job ``4ca37770a1a3a24c45000005``, this time in CSV format, no header, and dump name, url and price
+To retrieve all items scraped by job ``123/1/4``, this time in CSV format, no header, and dump name, url and price
 fields::
 
-    curl -L -u APIKEY: "http://dash.scrapinghub.com/api/items.csv?project=123&job=4ca37770a1a3a24c45000005&include_headers=0&fields=name,url,price"
+    curl -L -u APIKEY: "http://dash.scrapinghub.com/api/items.csv?project=123&job=123/1/4&include_headers=0&fields=name,url,price"
 
 Log API
 =======
@@ -300,9 +300,9 @@ Retrieve the log of a job.
 
 Examples:
 
-To retrieve the log of job ``4ca37770a1a3a24c45000005`` in plain text format::
+To retrieve the log of job ``123/1/4`` in plain text format::
 
-    curl -u APIKEY: "http://dash.scrapinghub.com/api/log.txt?project=123&job=4ca37770a1a3a24c45000005"
+    curl -u APIKEY: "http://dash.scrapinghub.com/api/log.txt?project=123&job=123/1/4"
 
 log.json
 --------
@@ -486,7 +486,7 @@ Upload a report and attach it to a job. The supported formats are
 Example to upload a report assuming you have the report content (in
 `reStructuredText`_ format) in a ``report.rst`` file::
 
-   curl -u APIKEY: http://dash.scrapinghub.com/api/reports/add.json -F project=123 -F job=4fb0e9e5bbddbd7b460005f2 -F key=qareport -F content_type=text/x-rst -F @report.rst
+   curl -u APIKEY: http://dash.scrapinghub.com/api/reports/add.json -F project=123 -F job=123/1/4 -F key=qareport -F content_type=text/x-rst -F @report.rst
 
 .. _pagination:
 
