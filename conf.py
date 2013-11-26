@@ -91,7 +91,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  Major themes that come with
 # Sphinx are currently 'default' and 'sphinxdoc'.
-#html_theme = 'default'
+html_theme = 'default'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -209,34 +209,10 @@ latex_documents = [
 # If false, no module index is generated.
 #latex_use_modindex = True
 
-# Scrapinghub Theme
-html_theme = 'sh'
-html_theme_path = ['.']
-html_static_path = ['sh/static']
-#html_theme_options = {
-    #'relbarbgcolor': '#eee',
-    #'relbartextcolor': '#333',
-    #'relbarlinkcolor': '#e13c4f',
-
-    #'sidebarbgcolor': '#fff',
-    #'sidebarbtncolor': '',
-    #'sidebartextcolor': '#333',
-    #'sidebarlinkcolor': '#e13c4f',
-
-    #'headbgcolor': '#fff',
-    #'headtextcolor': '#333',
-    #'headlinkcolor': '#e13c4f',
-
-    #'footerbgcolor': '#fff',
-    #'footertextcolor': '#333',
-
-    #'linkcolor': '#e13c4f',
-    #'visitedlinkcolor': '#e13c4f',
-    #'textcolor': '#333',
-#}
-#bgcolor (CSS color): Body background color.
-#codebgcolor (CSS color): Background color for code blocks.
-#codetextcolor (CSS color): Default text color for code blocks,
-#                           if not set differently by the highlighting style.
-#bodyfont (CSS font-family): Font for normal text.
-#headfont (CSS font-family): Font for headings.
+if 'READTHEDOCS' not in os.environ:
+    try:
+        import sphinx_rtd_theme
+        html_theme = "sphinx_rtd_theme"
+        html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+    except ImportError:
+        pass
