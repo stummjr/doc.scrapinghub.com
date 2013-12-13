@@ -73,6 +73,8 @@ To retrieve spiders ``aspider`` and ``bspider`` for project ``123``::
 Jobs API
 ========
 
+.. _schedule-api:
+
 schedule.json
 -------------
 

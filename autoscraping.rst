@@ -500,9 +500,9 @@ autoscraping spider.
 Autoscraping and ScrapingHub API
 ================================
 
-If you want to manage AS job scheduling using the ScrapingHub :doc:`api`, AS bot supports to pass start_urls as a list of URLs separated by new lines. This feature is very useful for passing a list of URLs from a text file.
-
-For example, if you have all your start URLs in a file named start_urls.txt, one per line, you can do, from a linux console::
+If you want to manage AS job scheduling using the ScrapingHub schedule :ref:`schedule-api`, AS spider supports additional parameters in order to override the spider
+properties per job. For example, you may want to set a list of start urls for a specific job, or scrape only one specific url.
+You can pass ``start_urls`` as a list of URLs separated by new lines. This feature is very useful for passing a list of URLs from a text file, one URL per line. Example::
 
     curl http://dash.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls="$(cat start_urls.txt)"
 
@@ -513,7 +513,21 @@ or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapin
     >>> project = conn["155"]
     >>> project.schedule("myspider", start_urls=open("start_urls.txt").read())
 
-For more features, check specific :ref:`autoscraping-api`.
+In the same way you can override per job, specs like ``follow_patterns`` (list of regular expressions that links must match in order to be followed), ``exclude_pattern``
+(exclude links that match them), and ``allowed_domains`` (list of extra domains to be accepted).
+
+Another parameter you can override is ``links_to_follow``. This parameter governs whether or not to follow links, and can take two values: ``none`` or ``patterns``. The
+first disables link extraction, the second enables it (thus applying follow and exclude patterns, if given). Overriding this parameter can be useful for example, if your
+spider is ran periodically for crawling an entire site (thus, it follows links), but you may want also to trigger jobs for updating specific items. So, if you want to
+scrape a single item, lets say, ``http://example.com/myproduct``, you could do::
+
+    curl http://dash.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls=http://example.com/myproduct -d links_to_follow=none
+
+Or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapinghub>`_::
+
+    >>> project.schedule("myspider", start_urls="http://example.com/myproduct", links_to_follow="none")
+
+For specific Autoscraping API calls, check :ref:`autoscraping-api`.
 
 Good practices for best results with less effort
 ================================================
