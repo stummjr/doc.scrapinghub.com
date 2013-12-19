@@ -115,16 +115,16 @@ Required
   will be back to this concept in the next section.
 
 Vary
-  AS has a duplicates item detection system which will reject any item that was already scraped before. In order to accomplish this 
-  task the duplicates detector needs to know which fields must be checked in order to effectively find duplicate items. If a field is marked 
+  Autoscraping has a duplicate item detection system which will reject any item that has already been scraped. In order to accomplish this 
+  task the duplicates detector needs to know which fields must be compared in order to effectively find duplicate items. If a field is marked 
   as **Vary**, is not included in the checks to detect duplicates. This means that two items that has the same data in all fields except in those marked 
-  as **Vary**, will be considered the same one, and so the second one will be dropped. Or, said in another way, when you mark a field as **Vary** you are declaring
-  that the same item may be found with different values in that field, and you only want one version of it, and drop the other. That is the reason why the *url*
-  field must always be marked as **Vary** and the user interface does not allow to unmark it: if it wasn't a **Vary** field, then items with different urls
-  would always be considered different, and the duplicates detector would never work.
+  as **Vary**, will be considered the same and therefore second one scraped will be dropped. Or, to put it another way, when you mark a field as **Vary** you are declaring
+  that the same item may be found with different values in that field. That is the reason why the *url*
+  field must always be marked as **Vary** and the user interface does not allow to unselect it: if it wasn't a **Vary** field, then items from different urls
+  would always be considered different and the duplicates detector would never work.
 
-  Lets illustrate with an example, and lets suppose we have an item type with 
-  fields *name*, *price*, *description*, *category* and *url*, and the fields *category* and *url* are marked as **Vary**. Lets suppose the AS bot 
+  Let's illustrate with an example, suppose we have an item type with 
+  fields *name*, *price*, *description*, *category* and *url*, with the fields *category* and *url* are marked as **Vary**. Now suppose that the Autoscraping bot
   has first scraped the following item:
 
   * *name*: Louis XIV Table
@@ -133,7 +133,7 @@ Vary
   * *category*: Tables
   * *url*: \http://www.furniture.com/tables/louis-xiv-table.html
 
-  And further, it extracted this item but in a different place in the site:
+  Then later it extracts this item in a different place in the site:
 
   * *name*: Louis XIV Table
   * *price*: 1000.00
