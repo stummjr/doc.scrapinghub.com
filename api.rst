@@ -488,7 +488,7 @@ Upload a report and attach it to a job. The supported formats are
 Example to upload a report assuming you have the report content (in
 `reStructuredText`_ format) in a ``report.rst`` file::
 
-   curl -u APIKEY: http://dash.scrapinghub.com/api/reports/add.json -F project=123 -F job=123/1/4 -F key=qareport -F content_type=text/x-rst -F @report.rst
+   curl -u APIKEY: http://dash.scrapinghub.com/api/reports/add.json -F project=123 -F job=123/1/4 -F key=qareport -F content_type=text/x-rst -F content=@report.rst
 
 .. _pagination:
 
