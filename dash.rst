@@ -4,8 +4,10 @@
 The Dash
 ========
 
-The Scrapinghub dashboard (or "Dash" for short) allows you to control and
+The Scrapinghub dashboard, or Dash_ for short, allows you to control and
 monitor your spiders. This page contains information on how to use it.
+
+.. _Dash: https://dash.scrapinghub.com/
 
 Projects, spiders and jobs
 ==========================
