@@ -4,7 +4,7 @@
 The Dash
 ========
 
-The Scrapinghub dashboard, or Dash_ for short, allows you to control and
+The Scrapinghub dashboard, or `Dash`_ for short, allows you to control and
 monitor your spiders. This page contains information on how to use it.
 
 .. _Dash: https://dash.scrapinghub.com/
@@ -77,7 +77,7 @@ Deploying eggs
 ==============
 
 If your project needs code from an external python library, you can deploy a python egg by using dash.
-See `setuptools` for details about egg concepts, preparation and building. If you want to provide to your project your own library,
+See `setuptools`_ for details about egg concepts, preparation and building. If you want to provide to your project your own library,
 the first steps are, in short:
 
 #. Write your code,
