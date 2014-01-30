@@ -504,7 +504,7 @@ If you want to manage AS job scheduling using the ScrapingHub schedule :ref:`sch
 properties per job. For example, you may want to set a list of start urls for a specific job, or scrape only one specific url.
 You can pass ``start_urls`` as a list of URLs separated by new lines. This feature is very useful for passing a list of URLs from a text file, one URL per line. Example::
 
-    curl http://dash.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls="$(cat start_urls.txt)"
+    curl https://dash.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls="$(cat start_urls.txt)"
 
 or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapinghub>`_::
 
@@ -521,7 +521,7 @@ first disables link extraction, the second enables it (thus applying follow and 
 spider is ran periodically for crawling an entire site (thus, it follows links), but you may want also to trigger jobs for updating specific items. So, if you want to
 scrape a single item, lets say, ``http://example.com/myproduct``, you could do::
 
-    curl http://dash.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls=http://example.com/myproduct -d links_to_follow=none
+    curl https://dash.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls=http://example.com/myproduct -d links_to_follow=none
 
 Or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapinghub>`_::
 
