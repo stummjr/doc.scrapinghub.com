@@ -1,50 +1,74 @@
 .. _dash:
 
-========
-The Dash
-========
+=========
+Dashboard
+=========
 
-The `Scrapinghub dashboard`_, or **Dash** for short, allows you to control and
-monitor your spiders. This page contains information on how to use it.
+The `Scrapinghub dashboard`_ (or "Dash" for short) allows you to control and
+monitor your spiders, as well as other Scrapinghub services such as Crawlera.
 
-.. _`Scrapinghub dashboard`: https://dash.scrapinghub.com/
+When you login to dash, you go to your home page (also known as your profile
+page). There you can see all your Scrapy Cloud projects and Crawlera users:
 
-Projects, spiders and jobs
-==========================
+.. image:: _static/dash-home.png
+   :width: 500px
 
-A project consists of many spiders, that can be run. Each spider run is called
-a "Job".
-
-Jobs dashboard
+The search bar
 ==============
+
+You can use the search bar to jump quickly to any project, user or Crawlera
+account.
+
+.. image:: _static/dash-searchbar.png
+   :width: 200px
 
 The jobs dashboard can be used to monitor and control your spiders.
 
 To schedule a spider for running select the spider in the `Scheduler spider`
 box and click the `Schedule` button.
 
-Pending Jobs
-------------
+Jobs dashboard
+==============
 
-Pending jobs is the list of jobs that are waiting to start. Jobs may not start
-immediately after scheduled, sometimes they must wait for resources to be
-available.
+If you click on any project you go to the jobs dashboard page where you will
+see the spider jobs that are running, pending to run and finished.
 
-Running Jobs
-------------
+.. image:: _static/dash-jobs.png
+   :width: 500px
 
-Runing jobs is the list of jobs that are currently running.
+* **Pending Jobs** - the jobs that are waiting to start. Jobs may not start
+  immediately after being scheduled, sometimes they must wait for resources to
+  be available. If you need better capacity guarantees consider purchasing a
+  dedicated server.
 
-Completed jobs
---------------
+* **Running Jobs** - running jobs is the list of jobs that are currently
+  running.
 
-Completed jobs contains the latest completed jobs.
+* **Completed jobs** - the latest completed jobs.
+
+Job page
+========
+
+Clicking on any job ID:
+
+.. image:: _static/dash-job-click.png
+   :width: 500px
+
+Will take you to the job page where you can see stats about the job alongside
+items scraped from it:
+
+.. image:: _static/dash-jobpage.png
+   :width: 500px
 
 Job outcomes
 ============
 
 The job outcome indicates whether the job succeeded or failed. By default, it
-contains the value of the spider close reason in Scrapy.
+contains the value of the spider close reason from Scrapy. It's available in
+table of finished jobs:
+
+.. image:: _static/dash-outcome.png
+   :width: 500px
 
 These are the most common job outcomes and their meanings:
 
@@ -63,38 +87,25 @@ These are the most common job outcomes and their meanings:
 * ``slybot_fewitems_scraped`` - this is an autoscraping specific outcome. Please refer
   to the :doc:`autoscraping` help document.
 
-Getting CSV exports
-===================
+Items browser
+=============
 
-You can get scraped data in CSV format by clicking the CSV link when browsing
-items.
+You can review items by clicking on the Items tab:
 
-The fields used for the CSV can be configured in Settings -> Project Details.
+.. image:: _static/dash-items.png
+   :width: 500px
 
-.. _deploy-egg:
+You can also download the items in CSV or JSON format through the Items menu:
 
-Deploying eggs
-==============
+.. image:: _static/dash-items-download.png
+   :width: 500px
 
-If your project needs code from an external python library, you can deploy a python egg by using Dash.
-See `setuptools`_ for details about egg concepts, preparation and building. If you want to provide to your project your own library,
-the first steps are, in short:
+This covers the basics of the dashboard, but there is much more. Feel free to
+play around and check our `knowledge base`_ for more information on specific
+topics. If you have any question, don't hesitate to ask in the `support
+forum`_.
 
-#. Write your code,
-#. add a setup.py file in the base package folder, e.g.:
 
-::
-
-    from setuptools import setup, find_packages
-    setup(
-        name = "mylibrary",
-        version = "0.1",
-        packages = find_packages(),
-    )
-
-And, in order to deploy in your project:
-
-#. Run ``python setup.py bdist_egg``,
-#. In Dash, go to Settings -> Eggs -> Add Egg, and fill the requested data in the upload form.
-
-.. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
+.. _`Scrapinghub dashboard`: https://dash.scrapinghub.com/
+.. _`knowledge base`: http://support.scrapinghub.com/
+.. _`support forum`: http://support.scrapinghub.com/
