@@ -93,7 +93,7 @@ Schedules a job.
 
 Example request::
 
-    $ curl https://dash.scrapinghub.com/api/schedule.json -d project=123 -d spider=somespider -d add_tag=sometag
+    $ curl -u APIKEY: https://dash.scrapinghub.com/api/schedule.json -d project=123 -d spider=somespider -d add_tag=sometag
 
 Example response::
 
