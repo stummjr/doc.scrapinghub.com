@@ -490,9 +490,9 @@ project ``setting.py`` file that separates the configuration for the autoscrapin
     SHUB_SPIDER_TYPE = os.environ.get('SHUB_SPIDER_TYPE')
 
     if SHUB_SPIDER_TYPE == 'auto':
-        <import autoscraping normal mode settings module>
+        <import/set autoscraping settings>
     else:
-        <import not-autoscraping project settings module>
+        <import/set not-autoscraping project settings>
 
 The environment variable ``SHUB_SPIDER_TYPE`` will be set to *auto* by the scrapinghub backend if the spider that loads the basic settings module is an
 autoscraping spider.
