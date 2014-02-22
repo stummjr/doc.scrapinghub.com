@@ -10,8 +10,7 @@ from code). That means you can access the API from a browser (if you're already
 logged into Scrapinghub), but you'll need to use HTTP authentication if you're
 accessing it from command line or code.
 
-All examples use `curl`_, a widely available HTTP client, to illustrate with a
-reproducible example.
+To ensure reproducibility all examples use `curl`_, a widely available HTTP client.
 
 We highly recommend installing the `JSONView extension`_ (available for Firefox
 and Chrome) for visualizing API responses.
@@ -22,12 +21,9 @@ Authentication
 
 There are several ways to authenticate the API calls. If you're using
 the browser to see the responses, then you'll be already authenticated using
-your web browser session.
+your web browser session. If you plan to access the API from another system (outside your browser), you can use two authentication mechanisms described below.
 
-If you plan to access the API from another system (outside your browser), you
-can use two authentication mechanisms described below.
-
-API key with HTTP Auth
+API Key with HTTP Auth
 ----------------------
 
 You can use your API key instead of your credentials, and pass it using *HTTP
@@ -37,7 +33,7 @@ Auth* with an empty password::
 
 You can get your API key from the Scrapinghub Dash by going to *Account -> API Keys*.
 
-API key as URL argument
+API Key as URL Argument
 -----------------------
 
 You can also pass your API key as a URL argument::
@@ -88,7 +84,7 @@ Schedules a job.
   * ``project`` *(required)* - the project's numeric ID
   * ``spider`` *(required)* - the spider name
   * ``add_tag`` - add tag to the job (can be given multiple times)
-  * ``priority`` - set the job priority: possible vaules in range between 0 (lowest priority) and 4 (highest priority), default is 2
+  * ``priority`` - set the job priority: possible values range from ``0`` (lowest priority) to ``4`` (highest priority), default is ``2``
   * any other parameter is passed as a spider argument
 
 Example request::
@@ -205,27 +201,26 @@ Items API
 items.json
 ----------
 
-Retrieves the scraped items of a job.
+Retrieves scraped items of a job.
 
 * Supported Request Methods: ``GET``
 
 * Parameters:
 
   * ``project`` *(required)* - the project's numeric ID
-  * ``job`` or ``spider`` *(required)* - the job or spider to retrieve items from
-        If you specify a job, the items scraped on that job will be returned. If you specify a spider, the items scraped on the *last finished job* of that spider will be returned.
+  * ``job`` or ``spider`` *(required)* - the job or spider to retrieve items from. If you specify a job, the items scraped on that job will be returned. If you specify a spider, the items scraped on the *last finished job* of that spider will be returned.
   * ``count`` and ``offset`` - see :ref:`pagination`
 
 *Examples:*
 
-To retrieve the items scraped by job ``123/1/4``::
+To retrieve items scraped by job ``123/1/4``::
 
     curl -L -u APIKEY: "https://dash.scrapinghub.com/api/items.json?project=123&job=123/1/4"
 
 .. warning:: This only returns the first 100 items. See :ref:`pagination`. If
    you want to return all items in one stream, you can use `items.jl`_.
 
-To retrieve the items scraped by the *last finished job* of the spider ``myspider``::
+To retrieve items scraped by the *last finished job* of the spider ``myspider``::
 
     curl -L -u APIKEY: "https://dash.scrapinghub.com/api/items.json?project=123&spider=myspider"
 
@@ -252,8 +247,8 @@ Similar in usage to `items.json`_ and `items.jl`_, but returns items in CSV form
 
 * Extra Parameters:
 
-    * ``fields`` *(required)* - a comma separated list of item fields to include in the exported CSV file
-    * ``include_headers`` *(required)* - ``1`` if the exported CSV file should contain fields' headers in the first row, ``0`` otherwise
+  * ``fields`` *(required)* - a comma separated list of item fields to include in the exported CSV file
+  * ``include_headers`` *(required)* - ``1`` if the exported CSV file should contain fields' headers in the first row, ``0`` otherwise
 
 *Examples:*
 
@@ -289,7 +284,7 @@ log.json
 --------
 
 Similar to `log.txt` but returns the log entries as a list of JSON objects
-containing the properties: ``logLevel``, ``message`` and ``time``.
+containing the properties ``logLevel``, ``message`` and ``time``.
 
 log.jl
 --------
@@ -372,7 +367,7 @@ These API calls provide a means for uploading Python eggs (typically used for ma
 eggs/add.json
 -------------
 
-Adds a Python egg to the project.
+Adds a Python egg to a project.
 
 * Supported Request Methods: ``POST``
 
@@ -392,7 +387,7 @@ To add ``somelib`` egg to project ``123``::
 eggs/delete.json
 ----------------
 
-Deletes a Python egg from the project.
+Deletes a Python egg from a project.
 
 * Supported Request Methods: ``POST``
 
@@ -448,8 +443,7 @@ Uploads a report and attaches it to a job. The supported formats are `reStructur
   * ``job`` *(required)* - the ID of the job to which the report will be attached
   * ``key`` *(required)* - a key that uniquely identifies the report within the job
   * ``content`` *(required)* - the report content in the format specified by ``content_type`` parameter
-  * ``content_type`` *(required)* - the format of the content
-        Supported formats are ``text/x-rst`` for `reStructuredText`_ and ``text/plain`` for plain text.
+  * ``content_type`` *(required)* - the format of the content: supported formats are ``text/x-rst`` for `reStructuredText`_ and ``text/plain`` for plain text
 
 *Example:*
 
@@ -467,8 +461,7 @@ All API calls that return multiple items in JSON format are limited to return
 100 items per call, at most. These API calls support two parameters that can be
 used for paginating the results. Those are:
 
-* ``count`` - limit the number of results to return
-    Negative counts are supported as well making it possible to return the *latest* entries, instead of the first ones.
+* ``count`` - limit the number of results to return: negative counts are supported as well making it possible to return the *latest* entries, instead of the first ones
 * ``offset`` - a number of results to skip from the beginning
 
 

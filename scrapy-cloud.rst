@@ -85,7 +85,7 @@ review the scraped data and other information about the job:
 Dependencies and External Libraries
 ===================================
 
-If your project needs code from an external python library, you need to upload
+If your project needs code from an external Python library, you need to upload
 a Python egg of that dependency.
 
 See `setuptools`_ for details about egg concepts, preparation and building. If
