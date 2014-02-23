@@ -4,30 +4,22 @@
 API
 ===
 
-All API calls require authentication using either cookies (which you typically
-use from the browser) or `HTTP basic access authentication`_ (typically used
-from code). That means you can access the API from a browser (if you're already
-logged into Scrapinghub), but you'll need to use HTTP authentication if you're
-accessing it from command line or code.
+All API calls require authentication using either cookies (which you typically use from the browser) or `HTTP basic access authentication`_ (typically used from code). That means you can access the API from a browser (if you're already logged into Scrapinghub), but you'll need to use HTTP authentication if you're accessing it from command line or code.
 
 To ensure reproducibility all examples use `curl`_, a widely available HTTP client.
 
-We highly recommend installing the `JSONView extension`_ (available for Firefox
-and Chrome) for visualizing API responses.
+We highly recommend installing the `JSONView extension`_ (available for Firefox and Chrome) for visualizing API responses.
 
 
 Authentication
 ==============
 
-There are several ways to authenticate the API calls. If you're using
-the browser to see the responses, then you'll be already authenticated using
-your web browser session. If you plan to access the API from another system (outside your browser), you can use two authentication mechanisms described below.
+There are several ways to authenticate the API calls. If you're using the browser to see the responses, then you'll be already authenticated using your web browser session. If you plan to access the API from another system (outside your browser), you can use two authentication mechanisms described below.
 
 API Key with HTTP Auth
 ----------------------
 
-You can use your API key instead of your credentials, and pass it using *HTTP
-Auth* with an empty password::
+You can use your API key instead of your credentials, and pass it using *HTTP Auth* with an empty password::
 
     curl https://dash.scrapinghub.com/api/jobs/list.json?project=123 -u e8f825a5fb634a8fa17f3ca54a5daa11:
 
@@ -128,8 +120,7 @@ To get all jobs not marked with tag ``consumed`` from project ``123``::
 jobs/list.jl
 ------------
 
-Similar to `jobs/list.json`_ but returns the jobs in `JSONLines format`_, which
-allows to retrieve all jobs without having to paginate the results.
+Similar to `jobs/list.json`_ but returns the jobs in `JSONLines format`_, which allows to retrieve all jobs without having to paginate the results.
 
 The first line of the result is special and contains metadata.
 
@@ -146,10 +137,8 @@ Updates information about jobs.
 
 * Tagging parameters:
 
-  * ``add_tag`` - adds the given tag to the projects selected by the filtering
-    parameters
-  * ``remove_tag`` - removes the given tag from the projects selected by the
-    filter parameters
+  * ``add_tag`` - adds the given tag to the projects selected by the filtering parameters
+  * ``remove_tag`` - removes the given tag from the projects selected by the filter parameters
 
 *Example:*
 
@@ -217,8 +206,7 @@ To retrieve items scraped by job ``123/1/4``::
 
     curl -L -u APIKEY: "https://dash.scrapinghub.com/api/items.json?project=123&job=123/1/4"
 
-.. warning:: This only returns the first 100 items. See :ref:`pagination`. If
-   you want to return all items in one stream, you can use `items.jl`_.
+.. warning:: This only returns the first 100 items. See :ref:`pagination`. If you want to return all items in one stream, you can use `items.jl`_.
 
 To retrieve items scraped by the *last finished job* of the spider ``myspider``::
 
@@ -231,8 +219,7 @@ To retrieve the latest 20 items of job ``123/1/4`` *(this works even while the j
 items.jl
 --------
 
-Similar to `items.json`_ but returns the items in `JSONLines format`_, which
-allows to retrieve all items without having to paginate the results.
+Similar to `items.json`_ but returns the items in `JSONLines format`_, which allows to retrieve all items without having to paginate the results.
 
 *Example:*
 
@@ -283,8 +270,7 @@ To retrieve the log of job ``123/1/4`` in plain text format::
 log.json
 --------
 
-Similar to `log.txt` but returns the log entries as a list of JSON objects
-containing the properties ``logLevel``, ``message`` and ``time``.
+Similar to `log.txt` but returns the log entries as a list of JSON objects containing the properties ``logLevel``, ``message`` and ``time``.
 
 log.jl
 --------
@@ -425,8 +411,7 @@ To list all eggs in project ``123``::
 Reports API
 ===========
 
-This API provides a means for uploading reports which are attached to a scraping job. Job
-reports can be accessed through the *Reports* tab on the job page.
+This API provides a means for uploading reports which are attached to a scraping job. Job reports can be accessed through the *Reports* tab on the job page.
 
 Multiple reports can be attached to a single job. Each report is uniquely identified by a key (within a given job).
 
@@ -457,9 +442,7 @@ To upload a report contained in ``report.rst`` file (in `reStructuredText`_ form
 Paginating API Results
 ======================
 
-All API calls that return multiple items in JSON format are limited to return
-100 items per call, at most. These API calls support two parameters that can be
-used for paginating the results. Those are:
+All API calls that return multiple items in JSON format are limited to return 100 items per call, at most. These API calls support two parameters that can be used for paginating the results. Those are:
 
 * ``count`` - limit the number of results to return: negative counts are supported as well making it possible to return the *latest* entries, instead of the first ones
 * ``offset`` - a number of results to skip from the beginning
@@ -480,10 +463,7 @@ While this is the same data in JSON Lines format::
     {"name": "world", "price": "540"}
 
 
-To avoid memory problems, all API calls that return JSON data (for example,
-`items.json`_) are limited to a maximum of 100 results, and may need the client
-to paginate over them. However, this limitation doesn't apply to JSON Lines
-format (for example, `items.jl`).
+To avoid memory problems, all API calls that return JSON data (for example, `items.json`_) are limited to a maximum of 100 results, and may need the client to paginate over them. However, this limitation doesn't apply to JSON Lines format (for example, `items.jl`).
 
 
 Python Library

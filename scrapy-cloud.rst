@@ -2,21 +2,17 @@
 Scrapy Cloud
 ============
 
-*Scrapy Cloud* is a service provided by the Scrapinghub platform that allows to
-deploy and run `Scrapy`_ spiders.
+*Scrapy Cloud* is a service provided by the Scrapinghub platform that allows to deploy and run `Scrapy`_ spiders.
 
 
 Creating A Scrapy Spider
 ========================
 
-Let's start by creating our Scrapy spider. If you already have a Scrapy
-project, you can skip this section.
+Let's start by creating our Scrapy spider. If you already have a Scrapy project, you can skip this section.
 
-This assumes you have Scrapy already installed, otherwise please refer to the
-`Scrapy installation guide`_.
+This assumes you have Scrapy already installed, otherwise please refer to the `Scrapy installation guide`_.
 
-For this example, we will build a spider to scrape the *CrunchBase* directory.
-For simplicity sake, we are going to restrict it to the *Pets* category:
+For this example, we will build a spider to scrape the *CrunchBase* directory. For simplicity sake, we are going to restrict it to the *Pets* category:
 
     http://www.crunchbase.com/companies?q=pets
 
@@ -44,8 +40,7 @@ For more information about Scrapy please refer to the `Scrapy documentation`_.
 Deploying A Scrapy Spider
 =========================
 
-The next step is to edit ``scrapy.cfg`` file of your project and configure
-Scrapinghub as deployment target::
+The next step is to edit ``scrapy.cfg`` file of your project and configure Scrapinghub as deployment target::
 
     [settings]
     default = companies.settings
@@ -77,8 +72,7 @@ Now you should go to your project page and schedule the spider to run:
    :width: 300px
 
 
-Once the job has finished, or while it's running, you can click on the job to
-review the scraped data and other information about the job:
+Once the job has finished, or while it's running, you can click on the job to review the scraped data and other information about the job:
 
 .. image:: _static/sc-items-scraped.png
    :width: 500px
@@ -87,11 +81,9 @@ review the scraped data and other information about the job:
 Dependencies And External Libraries
 ===================================
 
-If your project needs code from an external Python library, you need to upload
-a Python egg of that dependency.
+If your project needs code from an external Python library, you need to upload a Python egg of that dependency.
 
-See `setuptools`_ for details about egg concepts, preparation and building. If
-you want to provide your own library for your project, proceed as described below:
+See `setuptools`_ for details about egg concepts, preparation and building. If you want to provide your own library for your project, proceed as described below:
 
 #. Write your code.
 #. Add a ``setup.py`` file in the base package folder, e.g.::

@@ -10,8 +10,7 @@ Autoscraping (*AS* for short) allows to visually develop a spider without progra
 Basic Concepts And Procedures
 =============================
 
-Each time you run a new job, two processes occur: items are extracted and visited pages are captured (stored). Extracted items are what you actually want as a final result.
-Captured pages allow you to add templates and test extraction each time there are changes in the template set, without the need to run the spider again.
+Each time you run a new job, two processes occur: items are extracted and visited pages are captured (stored). Extracted items are what you actually want as a final result. Captured pages allow you to add templates and test extraction each time there are changes in the template set, without the need to run the spider again.
 
 The general procedure for creating an autospider is the following one:
 
@@ -23,8 +22,7 @@ The general procedure for creating an autospider is the following one:
     #. Eventually improve current templates and/or jump to step 4.
     #. Once you feel the templates set is completed, run the job again in order to generate items.
 
-In most cases you would need to perform some improvements in the templates, or even add new ones, because current one(s) are not suitable for extracting data from all the
-pages you need to extract data. This can be the case regardless of how similar the target pages look in the browser, because the HTML source can have important differences.
+In most cases you would need to perform some improvements in the templates, or even add new ones, because current one(s) are not suitable for extracting data from all the pages you need to extract data. This can be the case regardless of how similar the target pages look in the browser, because the HTML source can have important differences.
 
 The running time of jobs is limited by predefined criterias. This is a very important mechanism in order to avoid infinite crawling loop traps under certain conditions.
 The limitation is required for checking the number of items extracted each fixed period of time. If this count does not reach a given threshold, the job will be automatically closed with status ``slybot_fewitems_scraped``. See `Job outcomes`_ for details.
@@ -33,8 +31,7 @@ You can also discover that in some cases the spider may consume a lot of time cr
 
 This section has been a basic, but very important, overview of the general concepts that you must know in order to better understand a more detailed description that will follow in the next sections. At the end of this document there is a list of common good practices for getting best results with less effort.
 
-Also please take a time to watch the AS tour video in 
-http://scrapinghub.com/autoscraping.html before continuing, it will be of great help.
+Also please take a time to watch the AS tour video in http://scrapinghub.com/autoscraping.html before continuing, it will be of great help.
 
 
 How Templates Are Used In The Extraction Process
@@ -121,11 +118,7 @@ You can add a field shortcut key in order to quickly select a field when you are
 Spider Parameters
 =================
 
-When you create a new spider, the minimal attributes you have to fill in order to run the first crawling job, are the spider name and 
-the starting URLs (at least one). The first job you will run for a just created spider will be an "annotating" mode job, because the 
-obvious first task for every new spider is to add templates. Also, the first (and successive) jobs will give you a better idea about how 
-to improve crawling performance by adding url filters. Url filters are optional but in most cases are strongly recommended, as we 
-explained in the section about basic concepts.
+When you create a new spider, the minimal attributes you have to fill in order to run the first crawling job, are the spider name and the starting URLs (at least one). The first job you will run for a just created spider will be an "annotating" mode job, because the obvious first task for every new spider is to add templates. Also, the first (and successive) jobs will give you a better idea about how to improve crawling performance by adding url filters. Url filters are optional but in most cases are strongly recommended, as we explained in the section about basic concepts.
 
 URL Filters
 ___________
