@@ -4,128 +4,97 @@
 Autoscraping
 ============
 
-Autoscraping (AS) allow to visually develop a spider without programming knowledge.
+Autoscraping (*AS* for short) allows to visually develop a spider without programming knowledge.
 
 
-Basic concepts and procedures
+Basic Concepts And Procedures
 =============================
 
 Each time you run a new job, two processes occur: items are extracted and visited pages are captured (stored). Extracted items are what you actually want as a final result.
-Captured pages allow you to add templates and test extraction each time there are changes in the template set, without need to run again the spider.
+Captured pages allow you to add templates and test extraction each time there are changes in the template set, without the need to run the spider again.
 
 The general procedure for creating an autospider is the following one:
 
-    #. Create the spider and configure (minimal configuration is the name of the spider and the starting url)
+    #. Create and configure the spider (minimal configuration requires a name for the spider and the starting URL).
     #. Run it.
-    #. Go to captured pages (see pages tab of the job) and find one from which you need scraped data.
-    #. Add a template, and annotate it.
+    #. Go to captured pages (see *Pages* tab of the job) and find the one from which you need the scraped data.
+    #. Add and annotate a template.
     #. Go back to captured pages and check how items are extracted from them.
     #. Eventually improve current templates and/or jump to step 4.
-    #. Once you feel templates set is completed, run the job again in order to generate items.
+    #. Once you feel the templates set is completed, run the job again in order to generate items.
 
-In most cases you would need to perform some improvements in the templates, or even add new ones, because current one/s are not suitable for extracting data from all the
-pages you need to extract data. This can be the case regardless how similar the target pages looks in the browser, because the html source can have
-important differences.
+In most cases you would need to perform some improvements in the templates, or even add new ones, because current one(s) are not suitable for extracting data from all the
+pages you need to extract data. This can be the case regardless of how similar the target pages look in the browser, because the HTML source can have important differences.
 
-Jobs running time is limited by some criterias. This is a very important mechanism in order to avoid infinite crawling loop traps under certain conditions.
-The limitation consist on checking the number of items extracted each fixed period of time. And if this count does not reach a given threshold, then the job will be
-automatically closed with status ``slybot_fewitems_scraped``. See `Job outcomes`_ for details.
+The running time of jobs is limited by predefined criterias. This is a very important mechanism in order to avoid infinite crawling loop traps under certain conditions.
+The limitation is required for checking the number of items extracted each fixed period of time. If this count does not reach a given threshold, the job will be automatically closed with status ``slybot_fewitems_scraped``. See `Job outcomes`_ for details.
 
-You can also discover that in some cases the spider may consume lot of time crawling pages that you don't need, thus reducing the ratio items/pages and so the spider
-efficiency. By default, the autoscraping spider extracts every link it finds, and follows it. So a very important feature in spider development are Link filters. By
-avoiding to visit unnecessary pages the crawling will complete in less time and the items/pages rate will increase, reducing the risk of premature stop of the job as
-result of an unaccomplished rate threshold.
+You can also discover that in some cases the spider may consume a lot of time crawling pages that you don't need, thus reducing the items/pages ratio and, therefore, the spider's efficiency. By default, the autoscraping spider extracts every link it finds, and follows it. So a very important feature in spider development are *Link* filters. By avoiding unnecessary pages the crawling will complete in less time and the items/pages ratio will increase, reducing the risk of a premature stop of the job as a result of an unaccomplished rate threshold.
 
-This section has been a basic, but very important, overview of general concepts that you must know in order to better understand
-the detailed description that will come on following sections. At the end of this document there is a section that enumerates common good
-practices for best results with less effort.
+This section has been a basic, but very important, overview of the general concepts that you must know in order to better understand a more detailed description that will follow in the next sections. At the end of this document there is a list of common good practices for getting best results with less effort.
 
 Also please take a time to watch the AS tour video in 
-http://scrapinghub.com/autoscraping.html before continue. Will be of great help.
+http://scrapinghub.com/autoscraping.html before continuing, it will be of great help.
 
-How templates are used in the extraction process
+
+How Templates Are Used In The Extraction Process
 ================================================
 	
-If your spider has only one template, the process is very simple: a scan is performed on every target page using the annotations in the 
-template. If all **Required** fields are extracted, based on a relative positional algorithm and the extraction rules defined by the 
-field data type described in previous section, then the complete item is extracted. If some of the fields marked as **Required** are not 
-found in the target, the item is not extracted. And if the item is extracted, it still must pass the duplicates detector check, 
-which will decide, as already described, whether the extracted item will be finally accepted or rejected.
+If your spider has only one template, the process is very simple: a scan is performed on every target page using the annotations in the template. If all **Required** fields are extracted in accordance with the relative positional algorithm and the extraction rules defined by the field data type (as described in the previous section), then the complete item is extracted. If some of the fields marked as **Required** are not found in the target, the item is not extracted. And if the item is extracted, it still must pass the duplicates detector check, which will decide, as aforesaid, whether the extracted item will be finally accepted or rejected.
 
-If your spider has more than one template, then templates are tried sequentially until the first success extraction occurs. Then 
-duplicates detector is applied over the extracted item. The order in which templates are tried **is not** the same order as they 
-were created (as you see them in the Scrapinghub Dash), but instead, they are sorted by the number of annotations it contains in decreasing order. 
-Only if a subset of templates has the same number of annotations, they will be tried according to age (first created, first). The rule 
-to try templates according to number of annotations improves the efficiency of the general extraction algorithm, as the less annotations 
-has a template, more easily can be successful in extracting an item by mistake, because there are less constraints to fulfill. So, this 
-rule reduces the probability of getting a false positives with the wrong template. Also, the alternatives to handle this kind of false 
-positives are easier to implement with this rule, because as a template has more annotations, user has the chance to add more constraints.
+If your spider has more than one template, then templates are tried sequentially until the first success extraction occurs. Then the duplicates detector is applied over the extracted item. The order in which templates are tried **is not** the same order in which they were created (as they appear in *Scrapinghub Dash*), but instead, they are sorted by the number of annotations they contain in order of descending. Only if a subset of templates has the same number of annotations, they will be tried according to their age (beginning with those created first). The rule of trying templates according to the number of annotations improves the efficiency of the general extraction algorithm, as the less annotations a template has, the more likely it is to extract an item by mistake (because there are less constraints to fulfill). So, this rule reduces the probability of getting a false positive with the wrong template. Also, the alternatives to handle this kind of false positives are easier to implement with this rule, because as a template has more annotations, the user has a chance to add more constraints.
 
-Item fields
+
+Item Fields
 ===========
 
-Before adding the first spider, you must carefully design the item fields set you will need. A wrong design and AS will not work at all.
+Before adding the first spider, you must carefully design the set of item fields you will need. AS might not work at all if the design is wrong.
 
-You can create as many different item types as you need for the different spiders of your project. Item types can be added, edited, and 
-removed in the **Items** subsection of **Settings** section. When you add a new item, it will come with *url* field already defined as 
-default. The url field is defined by default in the item type definition because the AS backend automatically adds it to every scraped 
-item in a job. The specifications of this field are not editable, because it already has the necessary flags and type specifications.
+You can create as many different item types as you need for different spiders of your project. Item types can be added, edited, and removed in the **Items** subsection of **Settings** section. When you add a new item, it will come with *url* field already defined by default, because AS backend automatically adds it to every scraped item in a job. The specifications of this field are not editable, because it already has the necessary flags and type specifications.
 
 The most important parameters are the type of data and two flags, *Required* and *Vary*.
 
-Field data type
-_______________
+Field Data Type
+---------------
 
-The type of data specifies some basic extraction patterns that the corresponding target region in the selected page must fulfill in order to actually be extracted. This feature helps the main extraction algorithm to spot the correct region in the page and resolve possible ambiguities. Additionally, it contains specifications on how to render the field value in the item browser, a feature that is used also when coping with code spiders (or manual spiders -MS- as opposition with autoscraping spiders -AS-), which are out of the scope of this tutorial. Lets enumerate the available item types:
+The type of data specifies basic extraction patterns that the corresponding target region in the selected page must fulfill in order to actually be extracted. This feature helps the main extraction algorithm to spot the correct region in the page and resolve possible ambiguities. Additionally, it contains specifications on how to render the field value in the item browser, a feature that is used also when coping with code spiders (or manual spiders *MS*, as opposed to autoscraping spiders *AS*), which are out of the scope of this tutorial. Let's enumerate the available item types:
 
 geopoint
-  This is a special field type with no special extraction pattern, and only serves for the purpose of rendering a tuple of 
-  latitude/longitude. This type is currently not supported in AS and is only used for rendering purposes in MS, so you can safely ignore 
-  this one.
+  This is a special field type with no special extraction pattern, only serving for the purpose of rendering a tuple of latitude/longitude. This type is not currently supported in AS and only used for rendering purposes in MS, so you can safely ignore this one.
 
 image
-  This field type demands the spotted html code to fulfill the format of an image url and renders as an image in the item browser.
+  This field type demands the spotted HTML code to fulfill the format of an image URL and renders as an image in the item browser.
 
 number
-  The spotted html code must have a number, and only the number part will be extracted.
+  The spotted HTML code must have a number, and only the number part will be extracted.
 
 price
-  It is like the number type but will also consider common formatting on price expressions in order to match.
+  Similar to the number type but will also consider common formatting of price expressions in order to match.
 
 raw html
-  The html code as it is. It matches anything except an empty string.
+  The HTML code as it is. It matches anything except an empty string.
 
 safe html
-  Matches any html code which has no empty text content. Also performs some transformation and cleaning over the extracted data in
-  order to safely show the html code correctly formatted in a web page.
+  Matches any HTML code which has no empty text content. Also performs some transformation and cleaning over the extracted data in order to safely show the correctly formatted HTML code on a web page.
 
 text
-  Matches any html code which has no empty text content, and only extract that text content.
+  Matches any HTML code which has no empty text content, and only extracts that text content.
 
 url
-  Matches any url expression and renders as a link in the item browser.
+  Matches any URL expression and renders as a link in the item browser.
 
-Field flags
-___________
+Field Flags
+-----------
 
-There are two field flags that modifies the behavior of extraction and item creation:
+There are two field flags that modify the behavior of extraction and item creation:
 
 Required
-  When a field is marked as **Required**, it means that the extracted item must contain the field in order to be actually extracted. We 
-  will be back to this concept in the next section.
+  When a field is marked as **Required**, it means that an extracted item must contain the field in order to be actually extracted. We will return to this concept in the next section.
 
 Vary
-  Autoscraping has a duplicate item detection system which will reject any item that has already been scraped. In order to accomplish this 
-  task the duplicates detector needs to know which fields must be compared in order to effectively find duplicate items. If a field is marked 
-  as **Vary**, is not included in the checks to detect duplicates. This means that two items that has the same data in all fields except in those marked 
-  as **Vary**, will be considered the same and therefore second one scraped will be dropped. Or, to put it another way, when you mark a field as **Vary** you are declaring
-  that the same item may be found with different values in that field. That is the reason why the *url*
-  field must always be marked as **Vary** and the user interface does not allow to unselect it: if it wasn't a **Vary** field, then items from different urls
-  would always be considered different and the duplicates detector would never work.
+  Autoscraping has a duplicate item detection system which will reject any item that has already been scraped. In order to accomplish this task the duplicates detector needs to know which fields must be compared in order to effectively find duplicate items. If a field is marked as **Vary**, it is not included in the checks to detect duplicates. This means that two items that have the same data in all fields except those marked as **Vary**, will be considered identical and, therefore, the second scraped item will be dropped. Or, to put it another way, when you mark a field as **Vary** you are declaring that the same item may be found with different values in this field. It is for this reason that *url* field must always be marked as **Vary** (and the user interface does not allow to unselect it): if it wasn't a **Vary** field, then items from different URLs would always be considered different and the duplicates detector would never work.
 
-  Let's illustrate with an example, suppose we have an item type with 
-  fields *name*, *price*, *description*, *category* and *url*, with the fields *category* and *url* are marked as **Vary**. Now suppose that the Autoscraping bot
-  has first scraped the following item:
+  Let's illustrate with an example. Suppose we have an item type with fields *name*, *price*, *description*, *category* and *url*, while the fields *category* and *url* are marked as **Vary**. Now suppose that the Autoscraping bot has scraped the following item first:
 
   * *name*: Louis XIV Table
   * *price*: 1000.00
@@ -133,7 +102,7 @@ Vary
   * *category*: Tables
   * *url*: \http://www.furniture.com/tables/louis-xiv-table.html
 
-  Then later it extracts this item in a different place in the site:
+  Then later it extracts the following item in a different place on the site:
 
   * *name*: Louis XIV Table
   * *price*: 1000.00
@@ -141,20 +110,15 @@ Vary
   * *category*: Living Room
   * *url*: \http://www.furniture.com/living-room/louis-xiv-table.html
 
-  It is, of course, the same product, but the specific map of the site makes it appear in two different places under different 
-  product categories. Because *url* and *category* are marked as **Vary**, only *name*, *price* and *description* are checked by the 
-  duplicates detector. As all of them have the same value in both items, the second one is considered a duplicate of the first, and so
-  it is rejected. Observe that if *url* and *category* were not marked as **Vary**, then the duplicates detection system would consider 
-  them as different products, and so both would be generated. The term "Vary" is used to indicate that those fields can vary its values 
-  but still be the same item.
+  It is, of course, the same product, but the specific map of the site allows it to appear in two different places under different product categories. Because *url* and *category* are marked as **Vary**, only *name*, *price* and *description* are checked by the duplicates detector. Since all of these fields have the same value in both items, the second one is considered a duplicate of the first, and so it is rejected. Note that if *url* and *category* were not marked as **Vary**, then the duplicates detection system would consider them as different products, and so both would be generated. The term *Vary* is used to indicate that fields marked in this way may vary their values, still allowing items to be treated as identical.
 
 Shortcut Key
-____________
+------------
 
-You can add a field shortcut key in order to quickly select a field when you are within the annotation tool. We will go back to field 
-shortcuts in more  detail in the section about the annotation tool (still not redacted)
+You can add a field shortcut key in order to quickly select a field when you are inside the annotation tool. We will return to field shortcuts in more detail in the section about the annotation tool (which is not redacted yet).
 
-Spider parameters
+
+Spider Parameters
 =================
 
 When you create a new spider, the minimal attributes you have to fill in order to run the first crawling job, are the spider name and 

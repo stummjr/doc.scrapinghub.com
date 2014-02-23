@@ -27,6 +27,7 @@ The *Jobs* dashboard can be used to monitor and control your spiders.
 To schedule a spider for running select the spider in the `Schedule spider`
 box and click the `Schedule` button.
 
+
 Jobs Dashboard
 ==============
 
@@ -45,6 +46,7 @@ see the spider jobs that are running, pending to run and finished.
 * **Running Jobs** - the list of jobs that are currently running.
 
 * **Completed Jobs** - the latest completed jobs.
+
 
 Job Page
 ========
@@ -84,6 +86,7 @@ These are the most common job outcomes and their meanings:
 
 * ``slybot_fewitems_scraped`` - this is an autoscraping specific outcome. Please refer
   to the :doc:`autoscraping` help document.
+
 
 Items Browser
 =============
