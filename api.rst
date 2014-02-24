@@ -124,7 +124,7 @@ Similar to `jobs/list.json`_ but returns the jobs in `JSONLines format`_, which 
 
 The first line of the result is special and contains metadata.
 
-See `jobs/list.json` for examples.
+See `jobs/list.json`_ for examples.
 
 jobs/update.json
 ----------------
@@ -163,7 +163,6 @@ Deletes one or more jobs.
 To delete jobs ``123/1/2`` and ``123/1/3`` of project ``123``::
 
     curl -u APIKEY: https://dash.scrapinghub.com/api/jobs/delete.json -d project=123 -d job=123/1/2 -d job=123/1/3
-
 
 jobs/stop.json
 ----------------

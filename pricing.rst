@@ -2,10 +2,10 @@
 Plans & Pricing
 ===============
 
-Pay As You Go Plan
+Pay-as-You-Go Plan
 ==================
 
-The *Pay As You Go* plan runs your spiders on shared servers that are allocated to deal with the capacity demand of all Scrapinghub users.
+The *Pay-as-You-Go* plan runs your spiders on shared servers that are allocated to deal with the capacity demand of all Scrapinghub users.
 
 Dedicated Server Plan
 =====================

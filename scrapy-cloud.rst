@@ -5,7 +5,7 @@ Scrapy Cloud
 *Scrapy Cloud* is a service provided by the Scrapinghub platform that allows to deploy and run `Scrapy`_ spiders.
 
 
-Creating A Scrapy Spider
+Creating a Scrapy Spider
 ========================
 
 Let's start by creating our Scrapy spider. If you already have a Scrapy project, you can skip this section.
@@ -37,7 +37,7 @@ Here is the code (for simplicity we are defining the item in the same file):
 For more information about Scrapy please refer to the `Scrapy documentation`_.
 
 
-Deploying A Scrapy Spider
+Deploying a Scrapy Spider
 =========================
 
 The next step is to edit ``scrapy.cfg`` file of your project and configure Scrapinghub as deployment target::
@@ -78,7 +78,7 @@ Once the job has finished, or while it's running, you can click on the job to re
    :width: 500px
 
 
-Dependencies And External Libraries
+Dependencies and External Libraries
 ===================================
 
 If your project needs code from an external Python library, you need to upload a Python egg of that dependency.

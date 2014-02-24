@@ -6,8 +6,9 @@ Autoscraping
 
 Autoscraping (*AS* for short) allows to visually develop a spider without programming knowledge.
 
+.. _as-basic-concepts:
 
-Basic Concepts And Procedures
+Basic Concepts and Procedures
 =============================
 
 Each time you run a new job, two processes occur: items are extracted and visited pages are captured (stored). Extracted items are what you actually want as a final result. Captured pages allow you to add templates and test extraction each time there are changes in the template set, without the need to run the spider again.
@@ -34,7 +35,7 @@ This section has been a basic, but very important, overview of the general conce
 Also please take a time to watch the AS tour video in http://scrapinghub.com/autoscraping.html before continuing, it will be of great help.
 
 
-How Templates Are Used In The Extraction Process
+How Templates Are Used in the Extraction Process
 ================================================
 	
 If your spider has only one template, the process is very simple: a scan is performed on every target page using the annotations in the template. If all **Required** fields are extracted in accordance with the relative positional algorithm and the extraction rules defined by the field data type (as described in the previous section), then the complete item is extracted. If some of the fields marked as **Required** are not found in the target, the item is not extracted. And if the item is extracted, it still must pass the duplicates detector check, which will decide, as aforesaid, whether the extracted item will be finally accepted or rejected.
@@ -118,107 +119,77 @@ You can add a field shortcut key in order to quickly select a field when you are
 Spider Parameters
 =================
 
-When you create a new spider, the minimal attributes you have to fill in order to run the first crawling job, are the spider name and the starting URLs (at least one). The first job you will run for a just created spider will be an "annotating" mode job, because the obvious first task for every new spider is to add templates. Also, the first (and successive) jobs will give you a better idea about how to improve crawling performance by adding url filters. Url filters are optional but in most cases are strongly recommended, as we explained in the section about basic concepts.
+When you create a new spider, the minimal attributes you have to fill in order to run the first crawling job, are the spider name and the starting URLs (at least one). The first job for a newly created spider should be an *annotating mode* job, because the obvious first task for every new spider is to add templates. The results of the first job and all successive ones will give you a better idea about improving the crawling performance by adding URL filters. URL filters are optional, but strongly recommended in most cases, as we have explained in the section about `basic concepts`_.
 
 URL Filters
-___________
+-----------
 
-There is a filter that is always applied, and two kind of custom filters. The always applied filter is the offsite filter. This filter 
-avoids the bot to escape from outside the target site/s. Without this kind of filter, the bot would crawl links from the entire web, 
-avoiding to focus on our target. And if there weren't other kinds of filters, it indeed would crawl all the web.
+There is a filter that is always applied, and two kinds of custom filters. The former is the offsite filter that makes sure the bot cannot go beyond the bounds of the target site(s). Without this kind of filter, the bot would crawl links from the entire web, avoiding to focus on the target. And if there weren't other kinds of filters, it indeed would crawl all the web.
 
-The offsite filter restricts the bot to only visit links that belong to the web domains in the start URLs, and in the templates (if any) 
-URLs, and filters out everything else. It has precedence over any other kind of URL filter. One can ask whether there is not a 
-redundancy in adding template URLs domains, as templates were obtained from a crawling limited to the start URLs domains. Well, in most 
-cases, this is true, but also can happen that you use one start url for creating templates, and a different one for scraping items, and 
-both be from different domains.
+The offsite filter restricts the bot to only visit links that belong to the web domains specified in the start URLs and the template URLs (if any), everything else gets filtered out. It has precedence over any other kind of URL filter. One might wonder whether there is a redundancy in adding template URLs domains, since the templates were obtained from the crawling limited to the start URLs domains. This is true in most cases, but it also can happen that you use one start URL for creating templates and a different one for scraping items, both being from different domains.
 
-The other two kind of URL filters are user custom: **Exclude Pattern** and **Follow Patterns**, both configurable from the Autoscraping 
-Spider properties.
+The other two kinds of URL filters are user custom ones: **Exclude Pattern** and **Follow Patterns**, both configurable in the Autoscraping Spider properties.
 
-**Exclude Patterns** allow to filter out URL patterns (regular expressions) that must not be visited. You can add as many as you want, one per line in the corresponding widget. **Exclude Patterns** has precedence over **Follow Patterns**.
+**Exclude Patterns** option allows to filter out URL patterns (regular expressions) that must not be visited. You can add as many as you want, one per line in the corresponding widget. **Exclude Patterns** has precedence over **Follow Patterns**.
 
 You can select between 3 modes of link following:
 
-  * *Follow all links within the spider domains* (except, as already said, those defined in **Excluded Patterns**). Here the spider domains means the ones described above: domains in start URLs and template URLs. As already said, 
-  * *Don't follow links*. Just limit crawling to the starting URLs.
-  * *Follow links that matches the following patterns*. When you select this mode, a new text widget will become visible where you can write the **Follow Patterns** (again, regular expressions) that links has to match in order to be followed.
+  * **Follow all links within the spider domains** *(except those defined in *Excluded Patterns*)* - here the spider domains mean the ones described above: domains specified in start URLs and template URLs 
+  * **Don't follow links** - limit crawling to the start URLs only
+  * **Follow links that match the following patterns** - when this mode is selected, a new text widget becomes visible where you can write the *Follow Patterns* (regular expressions) that the links have to match in order to be followed
 
-The **Follow Patterns** are the filters with the less precedence. This fact means that you can't force to follow links on a different 
-domain by adding it in this category of filters. The only domains that will be accepted are, as said, those contained in the start URLs 
-and those contained in the template URLs.
+The **Follow Patterns** are the filters with less precedence. It means that you can't force a spider to follow links on a different domain by adding it in this category of filters. The only domains that will be accepted are those contained in the start URLs and the template URLs.
 
-Considerations when using URL filters
+Considerations When Using URL Filters
 -------------------------------------
 
-Despite the simplicity that may seem adding patterns in order to focus only in the desired targets, you must be warned about possible 
-unexpected consequences of the usage of URL filters. It is easy to fall in the trap of excluding the visit of pages that you thought you 
-didn't need, but when you run a new job the result could be that you also didn't get the ones you do need, because some of the first 
-ones contains the links to the second ones, thus cutting the path to them. The results depends a lot on the target site topology.
+Despite the seeming simplicity of adding patterns in order to focus only on the desired targets, you must be warned about possible unexpected consequences of applying the URL filters. It is easy to fall into the trap of excluding the pages that you deemed unnecessary, just to discover later that the pages you needed are missing from a new job's results. This may happen because some excluded pages contained the links to the needed ones, thus cutting the path to them. The results depend a lot on the target site topology.
 
-Let's suppose the following simple example:
+Consider the following simple example:
 
-    #. your starting url is *http://www.example.com*
-    #. the starting url has a link to a product listing, lets say *http://www.example.com/bathrooom/*
-    #. the product listing above has links to two products, *http://www.example.com/products/1* and *http://www.example.com/products/2*
+    #. Your start URL is ``http://www.example.com``.
+    #. The start URL has a link to a product listing, let's say ``http://www.example.com/bathrooom/``.
+    #. The product listing above has links to two products: ``http://www.example.com/products/1`` and ``http://www.example.com/products/2``.
 
-If you add a filter for only follow pattern */products/*, you will exclude *http://www.example.com/bathrooom/*
-and so the links with pattern */product/* will never be reached (unless there are some products linked from
-the starting page, but you anyway will most probably loose most of them)
+If you add a filter to follow only the pattern ``/products/``, you will exclude ``http://www.example.com/bathrooom/``, therefore the links matching the pattern ``/product/`` will never be reached (unless there are products linked from the starting page, but you will probably lose most of them anyway).
 
-Annotating a template
+
+Annotating a Template
 =====================
 
-The process of annotating a template consists on annotating elements on it, that is, marking elements in the template and map them to a
-given item field. At its most basical level, the autoscraping extraction consists on trying to match the annotated elements in the
-templates, into the target pages, extract the data from the matching regions, and assign it to the field specified in the corresponding
-annotation. The process is repeated with all the annotations in the template, and the final item is built from all the extracted data.
+The process of annotating a template consists in annotating elements on it, that is, marking elements in the template and mapping them to a given item field. At its most basical level, the autoscraping extraction involves trying to match the annotated elements in the templates to the target pages, extract the data from the matching regions, and assign it to the field specified in the corresponding annotation. The process is repeated with all the annotations in the template, and the final item is built using all the extracted data.
 
-The usual way to annotate an element is by clicking on it. An annotation window popup will raise in order to set up the different
-options: where the data must be extracted from (the text content of the element, or some of its attributes), the field that the
-extracted data must be assigned to, and other options that will be described later, on this section and following ones.
+The usual way to annotate an element is by clicking on it. An annotation window will pop up enabling the user to set up various options: where the data must be extracted from (the text content of an element, or some of its attributes), the field that the extracted data must be assigned to, and other options that will be described later in this section and the following ones.
 
-Partial annotations
-___________________
+Partial Annotations
+-------------------
 
-Another way to annotate a region in the template is using partial annotations. Instead of clicking on an existing element defined by the
-page layout, you can instead paint a piece of text with the mouse. A confirmation dialog will raise, and then the annotation window
-popup.
+Another way to annotate a region in the template is using partial annotations. Instead of clicking on an existing element defined by the page layout, you can instead paint a piece of text with the mouse. A confirmation dialog will appear, followed by the annotation window pop-up.
 
-There are some restrictions about using partial annotations. The painted region must fall inside a layout element, in other words you
-cannot include in the painted region, text from more than one page element (you will be prevented by the annotation tool for performing
-the partial annotation if this happens).
+Certain restrictions apply when using partial annotations. The painted region must fall inside a layout element. In other words, you cannot include in the painted region a text from more than one page element (your attempts to do so will be prevented by the annotation tool).
 
-Also, the tool is intended for extracting text inside a repetitive pattern. That is, in order to work, there should be, at the sides
-of the painted region, either a common prefix, either a common suffix, or both, in all the target pages. For example, if in the template
-you have the following text on a page element::
+The tool is also intended for extracting a text inside a repetitive pattern. In order for it to work, there should be either a common prefix or a common suffix (or both) at the sides of the painted region in all the target pages. For example, if a template contains the following text inside a page element::
 
         Veris in temporibus sub Aprilis idibus habuit concilium Romarici montium
 
-And in the target page you have the following text in the same place::
+And the target page contains the following text in the same place::
 
         Cui dono lepidum novum libellum arido modo pumice expolitum?
 
-Don't expect that if you annotate the word ``Aprilis`` in the template, you will extract something in the target. But if you have instead
-this text in the target::
+Don't expect that if you annotate the word ``Aprilis`` in the template, you will extract something from the target. But if instead the target's text looks like this::
 
         Veris in temporibus sub Januarii idibus habuit concilium Romarici montium
 
-you will for sure extract ``Januarii``, as the rest of the text at both sides are equal. Leaving freak, but illustrative, examples aside,
-partial annotations are useful for extracting patterns like the significant part on the string ``item #: 27624M6``. If you expect that
-the ``item #: <rest of string>`` pattern will appear always in the same place, you may paint and annotate the ``<rest of string>``
-pattern, and the ``item #:`` part will be forced to match in the target as part of the context, but only the text that corresponds to
-the painted region will be extracted.
+You will extract ``Januarii`` for sure, as the rest of the text on both sides of the word is the same.
+
+Partial annotations are useful for extracting patterns like a significant part of the string ``item #: 27624Mb``. If you expect that ``item #: <rest of string>`` pattern will always appear in the same place, you may paint and annotate ``<rest of string>`` pattern, and the ``item #:`` part in the target will be forced to match as a part of the context. But only the text that corresponds to the painted region will be extracted.
 
 Variants
-________
+--------
 
-One of the options you have available in the annotation window when you click on some page element, is the variant you want the
-annotation to be assigned to. By default, the variant used is ``Base (0)``, which means to assign the extracted data of the annotation
-to the base item. If all annotations are assigned to the base item, then a single, plain item will be generated on extraction.
+One of the options available in the annotation window when clicking on a page element is a variant you want the annotation to be assigned to. By default, the variant used is ``Base (0)``, which means that the extracted data of the annotation is to be assigned to the base item. If all annotations are assigned to the base item, then a single plain item will be generated on extraction.
 
-But consider the situation when your item is a product with different possible sizes, and in the product page they are
-presented as a table, like:
+But consider the situation when your item is a product with different possible sizes presented on the product page as a table, e.g.:
 
 +---------+------+
 | Single  | $300 |
@@ -230,9 +201,7 @@ presented as a table, like:
 |  King   | $800 |
 +---------+------+
 
-But the rest of the data you want to extract are found in a common unique element (like the name of the product, the description,
-or the company). So, you annotate as base item the common data, and then annotate the table using variants. Usually it is enough
-to annotate only the first and the last row of the table (the algorithm will infer the rest between), so you can annotate the
+And the rest of the data you want to extract is found inside a common unique element (like the name of the product, the description, or the company). In this case you should annotate the common data as a base item, and then annotate the table using variants. Usually it is enough to annotate only the first and the last row of the table (the algorithm will infer about the rest in between), so you can annotate the
 **Single** cell as variant 1 size, the **$300** cell as variant 1 price, the **King** cell as variant 2 size, and the **$800** cell
 as variant 2 price. The resulting extracted data will be assigned to the base item special field ``variants``, which is a list of objects
 similar to an item. An example of an item extracted in this way could be::
