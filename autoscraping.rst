@@ -201,10 +201,7 @@ But consider the situation when your item is a product with different possible s
 |  King   | $800 |
 +---------+------+
 
-And the rest of the data you want to extract is found inside a common unique element (like the name of the product, the description, or the company). In this case you should annotate the common data as a base item, and then annotate the table using variants. Usually it is enough to annotate only the first and the last row of the table (the algorithm will infer about the rest in between), so you can annotate the
-**Single** cell as variant 1 size, the **$300** cell as variant 1 price, the **King** cell as variant 2 size, and the **$800** cell
-as variant 2 price. The resulting extracted data will be assigned to the base item special field ``variants``, which is a list of objects
-similar to an item. An example of an item extracted in this way could be::
+And the rest of the data you want to extract is found inside a common unique element (like the name of the product, the description, or the company). In this case you should annotate the common data as a base item, and then annotate the table using variants. Usually it is enough to annotate only the first and the last row of the table (the algorithm will infer about the rest in between), so you can annotate the **Single** cell as variant 1 size, the **$300** cell as variant 1 price, the **King** cell as variant 2 size, and the **$800** cell as variant 2 price. The resulting extracted data will be assigned to the base item's special field ``variants``, which is a list of objects similar to an item. An example of an item extracted in this way could be::
 
     {'name': 'Louis XV Bed',
      'description': 'Very cool bed for anyone',
@@ -215,39 +212,29 @@ similar to an item. An example of an item extracted in this way could be::
                   {'size': 'King', 'price': '800'}]
     }
 
-Of course, it is viable to include in the project a post processor (See `Extending the autoscraping bot`_) that split an item with variants into separated items. This can be
-very useful for example when you have a page with a list of items. In this case, you would assign all annotations to some variant, and
-in extraction you will get an item with a single field ``variants``, which at its turn is a list of all the items in the page. A variant
-splitting post processor will separate them into different items.
+Of course, it is viable to include a post processor in the project (see `Extending the autoscraping bot`_) that will split an item with variants into separate items. This can be very useful, for example, when you have a page with a list of items. In this case, you would assign all annotations to a variant, and during the extraction you will get an item with a single field ``variants``, which in turn is a list of all the items on the page. A variant splitting post processor will separate them into different items.
+
 
 Advanced Tools
 ==============
 
-The tools and procedures described until now are enough in order to solve most cases. However, it is common to have cases for which we 
-don't get the expected results. Annotations that extract the wrong region on some targets, templates that are not used for the target 
-pages we expected, or data extracted from pages that we don't want to extract anything, are among the most common trouble we may cope 
-with. The main source of problems is the fact that the html code layout can present many variations or similarities among different 
-target pages, which introduces ambiguities for the extraction algorithm. Also, as we can have multiple templates for the same spider, 
-all them intended to be used for different subset of target pages, sometimes it is quite tricky to make the correct template to be 
-applied to the correct target (Remember `How templates are used in the extraction process`_). In order to assist on the resolution of 
-these problems, some extra constraints has to be imposed to template annotations.
+The tools and procedures described until now are enough in order to solve most cases. However, there are instances when we don't get the expected results. Among the most common problems we may encounter are annotations that extract a wrong region on some targets, templates that are not used for the target pages we expected, or data extracted from irrelevant pages. The main source of these problems is the fact that HTML layout can contain many variations and similarities across different target pages, which can introduce ambiguities for the extraction algorithm. Also, as we can have multiple templates for the same spider, all of them intended to be used for different subsets of target pages, sometimes it is quite tricky to make the correct template to be applied to the correct target (remember `How Templates Are Used in the Extraction Process`_). In order to assist with the resolution of these problems, certain extra constraints have to be imposed on the template annotations.
 
-Extra required annotations
-==========================
 
-Example 1.
-__________
+Extra Requirements for Annotations
+==================================
 
-Consider the following case. We have
-  * an item type which includes *name*, *price*, *description* and *manufacturer*, where *name* and *price* are required fields, and
+Example 1
+---------
+
+Consider the following case. We have:
+
+  * item types which include *name*, *price*, *description* and *manufacturer*, where *name* and *price* are required fields
   * a template with annotations for all 4 of them
 
-The result in the captured pages are many items correctly scraped (target set A), but many others (target set B) which has no a 
-manufacturer but, because of their particular layout, the algorithm matches the item description with the *manufacturer* annotation, 
-while the field *description* is not extracted at all because its annotation does not match any similar region in the target. Visually, 
-we can roughly illustrate the situation as follow:
+The result of the extraction: captured pages contain many items correctly scraped (from target set A), and many others (from target set B) which have no manufacturer, but, owing to their particular layout, the algorithm matched the items description with the *manufacturer* annotation, while the field *description* was not extracted at all because its annotation did not match any similar region in the target. We can illustrate the situation visually as follows:
 
-layout A: 
+Layout A: 
 
 +------------+-----------+
 |    name    |  -price-  |
@@ -257,7 +244,7 @@ layout A:
 |      description       |
 +------------------------+
 
-layout B:
+Layout B:
 
 +------------+-----------+
 |    name    |  -price-  |
@@ -265,56 +252,35 @@ layout B:
 |      description       |
 +------------------------+
 
-So, you add a new template from one of the pages of target set B, and annotate *name*, *price* and *description*. You would expect that 
-by adding this new template, problem will be fixed. But this is not the case because the first template has more annotations than the 
-second, so it will be tried first. And because it will extract all required data, *name* and *price*, the item will still be created with 
-the wrong data, and the second template will never be applied.
+In a related move, we add a new template to one of the pages of the target set B, and annotate *name*, *price* and *description*. We would expect that 
+by adding this new template, the problem will be fixed. But this is not the case because the first template has more annotations than the second, so it will be tried first. And since all required fields (*name* and *price*) will be extracted, the item will still be created with the wrong data because the second template will never be applied.
 
-You have to add a new constraint. If you open the first template in the annotation tool, you can mark the *description* annotation as 
-required. And because in the targets of set B the description is not extracted with this template, then the items will not be created at 
-all with it. So the algorithm tries with the second template, which now will correctly extract the three fields.
+We have to add a new constraint by opening the first template in the annotation tool and marking the *description* annotation as required. With this in place the items of target set B will not be created by the first template because *description* field will not be extracted with it. So the algorithm will try the second template, which now will correctly extract three fields.
 
-Observe that, if the templates were not tried in decreasing count of annotations, it may happen that the template with three annotations 
-be tried first, and as a result we get wrong extracted data from the pages of set A. In particular, you most probably will get the 
-manufacturer data in *description* field, and get missed the real description. But in this case, if there is no other way to 
-differentiate among a description and a manufactured data, it is not possible to apply any constraint. In the first approach you can 
-constrain the application of the template with four annotations to require to extract the missing field, because with target set A you 
-extract four fields, and with target set B you extract three. But in the second approach, the first template tried, the one with three 
-annotations, will extract three fields for both sets of targets.
+Note that the template with three annotations could be tried first if the templates were not tried in decreasing order of annotations quantity. As a result we could get erroneously extracted data from the pages of target set A. In particular, we would most probably get the manufacturer data in *description* field while missing the actual description. But in this case, if there is no other way to differentiate between description and manufacturer data, it is not possible to apply any constraint. The first approach would be you to constrain the application of the template with four annotations by requiring to extract the missing field, because from target set A we extract four fields, and from target set B we extract three. The second approach would be to allow the first tried template (the one with three annotations) extract three fields for both target sets.
 
-As said before, the more annotations we have, the more constraints we can add.
+As previously stated, the more annotations we have, the more constraints we can add.
 
-Example 2.
-__________
+Example 2
+---------
 
-The less required fields you have, the less constraints you are imposing, and so the most easy you can match wrong targets. As a 
-consequence, you not only can match desired targets with wrong template, as in the previous example. But you can also match undesired 
-targets which has layout similarities with one or more templates. If you have this problem, a possible approach can be to check whether 
-you can mark as required some annotations in the problematic templates, which are not extracted in the undesired targets, and without 
-affecting the extraction of desired ones (which still can have those as optional attributes), thus avoiding to create items for them.
+The less required fields you have, the less constraints you are imposing, and, as a result, the easier it is to match wrong targets. As the previous example showed, not only we can match desired targets with a wrong template, but we can also match undesired targets which have layouts similar to one or more templates. When faced with such problem, one possible approach is to check whether we can mark certain annotations as required in those problematic templates. In particular, we should focus on the annotations which are not extracted from the undesired targets, and which do not affect the extraction of desired ones (but still can have those as optional attributes), thus avoiding the creation of items for them.
 
-But this is not the only approach you can try for this case. May be it is possible to filter out those undesired pages with excluded 
-URLs, without affecting the crawling of the site (as mentioned before, could happen that those pages are the ones which contains the 
-links to desired pages). This is the most desirable approach in terms of efficiency gain, but not always available. It depends entirely 
-on the site particularities and your needs.
+This is not the only approach to try in this instance though. It may be possible to filter out those undesired pages with excluded URLs, not affecting the crawling of the site (as mentioned before, those pages could contain the links to desired pages). This is the most preferable approach in terms of efficiency gain, but it's not always feasible. It depends entirely on the site particularities and your needs.
 
-Sticky annotations
+
+Sticky Annotations
 ==================
 
-Another resource that helps to solve some particular problems, is the use of sticky annotations, which are available in the annotation 
-tool as "_stickyN" (being N a number) together with the field names. Sticky annotations can be used each time you need additional 
-annotations without generating additional extracted data. For example, when you are extracting undesired targets with some of the 
-templates, and you don't have the choice to filter by URL or mark some annotations as required, you can still add new annotations in the 
-template, that matches particular features of the desired targets that does not exists in the undesired ones: a particular logo, an 
-image, a button or a piece of text, for example.
+Another instrument for solving certain problems is the use of *sticky annotations*, available in the annotation tool as "_stickyN" (N being a number) together with the field names. Sticky annotations can be used for creating additional annotations without generating additional extracted data. For example, when you are extracting undesired targets with some of the templates, and you don't have the choice to filter by URL or mark certain annotations as required, you can still add new annotations in the template to match particular features of the desired targets that do not exist in the undesired ones: a particular logo, an image, a button, a piece of text, etc.
 
-Sticky annotations are implicitly required, and you can add as many ones as you need. Also, consider that by adding more annotations, 
-the template may increase its precedence in the templates try sequence.
+Sticky annotations are assigned implicitly, and can be added as many as needed. It's to be recalled that adding more annotations to a template increases its precedence level in the template try sequence.
+
 
 Template Extractors
 ===================
 
-Consider the following situation. You have a set of target pages which consists on user profiles, containing tabulated data of the same type: *name*, *gender*, *occupation*, *country*, *favorite books* and *favorite movies*. But, except the page we chosen for template:
+Consider the following situation. We have a set of target pages containing user profiles, in turn consisting of tabulated data of the same type -- *name*, *gender*, *occupation*, *country*, *favorite books* and *favorite movies*:
 
 +--------------+-------------------+
 |      Name:   |       Olive       |
@@ -330,16 +296,9 @@ Consider the following situation. You have a set of target pages which consists 
 |  Fav.Movies: |    Casablanca     |
 +--------------+-------------------+
 
-fields are not required to appear in all the user profiles. This condition will make a mere positional matching to fail, and you will 
-have mixed data as result. For example, if a user did not provide the *occupation* and *country*, you will get the favorite books in the 
-*occupation* field, the favorite movies in the *country* field, and nothing in the fields *favorite books* and *favorite movies*.
+Fields are not required to be filled out in all user profiles, except the page we have chosen for our template. This condition will make a positional matching on its own to fail, and we will obtain mixed data as a result. For example, if a user did not provide the *occupation* and *country*, we will get the favorite books in the *occupation* field, the favorite movies in the *country* field, and nothing in the fields *favorite books* and *favorite movies*. We can't mark as required any of the annotations because actually all of them are optional (besides, it would not solve the positional problem anyway).
 
-You can't mark as required any of the annotation because actually all them are optional (and also would not solve the positional problem 
-anyway)
-
-Here the template extractors come to help, by adding pattern constraints to the template annotations. First, you must annotate, instead 
-of the field value cell ("Olive", "Female", etc) the entire field row ("Name: Olive", "Gender: Female", and so on). Then, in the 
-template properties, add Regular Expression extractors for each field, in the form:
+Here the template extractors come to help, by adding pattern constraints to the template annotations. First, we annotate the entire field row ("Name: Olive", "Gender: Female", etc.) instead of the field value cell ("Olive", "Female", etc.). Then, in the template properties, we add *Regular Expression* extractors for each field in the following form:
 
 +--------------+--------------------+--------------------+
 |  Field name  |        Type        |    Specification   |
@@ -355,56 +314,32 @@ template properties, add Regular Expression extractors for each field, in the fo
 
 And so on.
 
-When you choose a Regular expression extractor, the specification must consist on a regular expression pattern that must match the 
-extracted data for the corresponding field. If the extracted data does not match the pattern, then the field is not extracted. If the 
-extracted data does match the pattern, then it is replaced by the match group enclosed between parenthesis (or a concatenation of all 
-them, if more than one group given). This way, you will ensure that correct annotation match the correct target row, and you will only 
-extract the part that you are interested in.
+When you choose a *Regular Expression* extractor, the specification must contain a regular expression pattern that must match the extracted data for the corresponding field. If the extracted data does not match the pattern, then the field is not extracted. If the extracted data does match the pattern, then it is replaced by the match group enclosed between parentheses (or a concatenation of all of them, if more than one group given). This way, you will ensure that correct annotation matches the correct target row, and you will only extract the part that you are interested in.
 
-Of course, this tactic will be useful only if you can annotate a region that has some key word or repeated pattern, and all them are
-different for each field.
+Of course, this method will only be useful if you can annotate a region that has a certain key word or a repeated pattern, and all of them differ for each field.
 
-Job outcomes
+
+Job Outcomes
 ============
 
-Aside the generic job outcomes that indicates the reason why a job finished (see :doc:`dash`), there is an autoscraping specific
-outcome, ``slybot_fewitems_scraped``. 
+Apart from generic job outcomes that indicate a reason of a job termination (see :doc:`dash`), there is an autoscraping specific outcome, ``slybot_fewitems_scraped``.
 
-AS spiders has a safety measure to avoid infinite crawling loops. It consists in closing the job when over a given period of time,
-the number of items scraped did not reach a minimal threshold. By default, the period is 3600 seconds and the minimal items scraped in that
-period must be 200. Both values are controlled by the settings ``SLYCLOSE_SPIDER_CHECK_PERIOD`` (seconds) and ``SLYCLOSE_SPIDER_PERIOD_ITEMS``
-(minimal items scraped in the defined period).
+AS spiders have a safety measure to avoid infinite crawling loops: if the number of scraped items did not reach a minimum threshold over a given period of time, the job is closed. By default, the period is 3600 seconds and the minimum number of items scraped during this period must be 200. Both values are controlled by the settings ``SLYCLOSE_SPIDER_CHECK_PERIOD`` (seconds) and ``SLYCLOSE_SPIDER_PERIOD_ITEMS`` (minimum number of items scraped during the defined period).
 
-If you are crawling a big site with thousands of pages, of which only a small portion of them generates an item with current templates,
-it usually happens that the bot can consume long periods of time crawling thousands of pages but in the same interval it scraped only
-few items. Another reason that leads to the same situation is that the bot is spending lot of time scraping duplicated products
-(see *Vary* flag in section `Field flags`_) which are dropped instead of issued and so they don't count for the minimal items threshold.
-In both cases the spider may unexpectedly stop with ``slybot_fewitems_scraped`` condition.
+If you are crawling a big site with thousands of pages, of which only a small portion generates items with current templates, the bot can consume long periods of time crawling while scraping only a few items. Another reason that leads to the same situation is that the bot spends a lot of time scraping duplicated products
+(see *Vary* flag in `Field Flags`_ section) which are dropped instead of issued, and so they don't count for the minimum threshold of items. In both cases the spider may unexpectedly stop with ``slybot_fewitems_scraped`` outcome.
 
-The solution depends on what is exactly happening. So in order to diagnose the problem, the first thing to do is to switch the
-``LOG_LEVEL`` setting for the spider to the value ``DEBUG``, and start a new job, so this time the bot will generate lot of debug data
-that you can browse in the job log.
+The solution depends on what exactly happens. In order to diagnose the problem, the first move would be to switch the ``LOG_LEVEL`` setting for the spider to ``DEBUG``, and start a new job. This way the bot will generate a lot of debugging data that you can browse in the job log. In ``DEBUG`` log level you will see, among other information, a line for each crawled page and each dropped product, enabling you to decide whether it's worth adding more templates and URL filters to avoid unneeded pages during the crawling (URL filters must be designed with care so as not to unintentionally block pages leading to the pages you want).
 
-In ``DEBUG`` log level you will see, among other info, a line for each crawled page, and for each dropped product, so you can decide
-whether to add more templates, or add url filters to avoid unneeded pages to be crawled (url filters must be designed with care if 
-you don't want to unwittingly block pages that leads to the pages you want).
 
-Extending the autoscraping bot
+Extending the Autoscraping Bot
 ==============================
 
-The autoscraping method is limited by its nature. Sometimes you need to do some custom things that are out of the scope of the AS core,
-tasks that can be performed by extending the bot capabilities in some way, and can be reduced to a post-processing task.
+The autoscraping method is limited by its nature. Sometimes there's a need to do custom operations that are beyond the scope of AS core, tasks that can be performed by extending the bot's capabilities in some fashion, and can be reduced to a post-processing task.
 
-Scrapinghub provides some standard components which perform common tasks, that can be enabled and configured from Scrapinghub Dash, called Addons.
-Many of them are generic for any project, but other are thought as autoscraping specific. See :doc:`addons` documentation for more
-info.
+Scrapinghub provides *Addons*, standard components for performing common tasks, which can be enabled and configured from Scrapinghub Dash. Many of them are generic for any project, but others are considered as autoscraping specific. See :doc:`addons` documentation for more information.
 
-Another way to extend an autoscraping project with more custom post processing, is by deploying a custom scrapy project with the extensions, middlewares and settings written for your specific needs. As inside the same scrapy
-project you may have your own coded spiders and different settings for them, you will need a way to separate them from the settings
-for your autoscraping spiders.
-
-For this purpose you can resort to some environment variables setted up by scrapinghub backend. The most generic structure of a
-project ``setting.py`` file that separates the configuration for the autoscraping spiders is::
+Another way to extend an autoscraping project with custom post-processing is by deploying a custom scrapy project with extensions, middlewares and settings written for your specific needs. Since a scrapy project may contain both autoscraping spiders and your custom coded ones, you will need a way to separate their settings. For this purpose you can resort to environment variables set up by Scrapinghub backend. The most generic structure of a project ``setting.py`` file that separates the configuration for the autoscraping spiders is as follows::
 
     import os
 
@@ -420,15 +355,15 @@ project ``setting.py`` file that separates the configuration for the autoscrapin
     else:
         <import/set not-autoscraping project settings>
 
-The environment variable ``SHUB_SPIDER_TYPE`` will be set to *auto* by the scrapinghub backend if the spider that loads the basic settings module is an
+The environment variable ``SHUB_SPIDER_TYPE`` will be set to *auto* by Scrapinghub backend if the spider that loads the basic settings module is an
 autoscraping spider.
+
 
 Autoscraping and ScrapingHub API
 ================================
 
-If you want to manage AS job scheduling using the ScrapingHub schedule :ref:`schedule-api`, AS spider supports additional parameters in order to override the spider
-properties per job. For example, you may want to set a list of start urls for a specific job, or scrape only one specific url.
-You can pass ``start_urls`` as a list of URLs separated by new lines. This feature is very useful for passing a list of URLs from a text file, one URL per line. Example::
+If you want to manage AS job scheduling with the use of ScrapingHub :ref:`schedule-api`, AS spiders support additional parameters in order to override the spider
+properties per job. For instance, you may want to set a list of start URLs for a specific job, or scrape only one specific URL. You can pass ``start_urls`` as a list of URLs separated by new lines. This feature is very useful for passing a list of URLs from a text file, one URL per line. Example::
 
     curl https://dash.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls="$(cat start_urls.txt)"
 
@@ -439,13 +374,10 @@ or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapin
     >>> project = conn["155"]
     >>> project.schedule("myspider", start_urls=open("start_urls.txt").read())
 
-In the same way you can override per job, specs like ``follow_patterns`` (list of regular expressions that links must match in order to be followed), ``exclude_pattern``
-(exclude links that match them), and ``allowed_domains`` (list of extra domains to be accepted).
+In the same way you can override per job specifications like ``follow_patterns`` (a list of regular expressions that links must match in order to be followed), ``exclude_pattern`` (exclude links that match them) and ``allowed_domains`` (a list of extra domains to be accepted).
 
-Another parameter you can override is ``links_to_follow``. This parameter governs whether or not to follow links, and can take two values: ``none`` or ``patterns``. The
-first disables link extraction, the second enables it (thus applying follow and exclude patterns, if given). Overriding this parameter can be useful for example, if your
-spider is ran periodically for crawling an entire site (thus, it follows links), but you may want also to trigger jobs for updating specific items. So, if you want to
-scrape a single item, lets say, ``http://example.com/myproduct``, you could do::
+Another overridable parameter is ``links_to_follow``. This parameter governs whether or not to follow links, and can take two values: ``none`` or ``patterns``. The
+first value disables the link extraction, the second one enables it (thus applying follow and exclude patterns, if given). Overriding this parameter can be useful, for example, when your spider is run periodically to crawl an entire site (thus, it follows links), but you want also to trigger jobs for updating specific items. So, if you want to scrape a single item, let's say, ``http://example.com/myproduct``, you could do::
 
     curl https://dash.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls=http://example.com/myproduct -d links_to_follow=none
 
@@ -454,6 +386,7 @@ Or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapin
     >>> project.schedule("myspider", start_urls="http://example.com/myproduct", links_to_follow="none")
 
 For specific Autoscraping API calls, check :ref:`autoscraping-api`.
+
 
 Good practices for best results with less effort
 ================================================
