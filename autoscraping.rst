@@ -388,27 +388,25 @@ Or, using `scrapinghub python api <https://github.com/scrapinghub/python-scrapin
 For specific Autoscraping API calls, check :ref:`autoscraping-api`.
 
 
-Good practices for best results with less effort
+Good Practices for Best Results with Less Effort
 ================================================
 
-Autoscraping is an advanced set of tools which for some cases requires a bit of practice and experience in order to avoid common mistakes and get
-the best results faster. Every resource is thoroughly described in the previous sections. But below we provide a fast guide which summarizes important tips
-that you must have in mind when developing an autoscraping spider and improve the learning curve:
+Autoscraping is an advanced set of tools which for some cases requires a bit of practice and experience in order to avoid common mistakes and get the best results faster. Every resource is thoroughly described in the previous sections. Nevertheless we provide a recap below in order to summarize important tips that you should bear in mind when developing autoscraping spiders as it should improve the learning curve:
 
-1. **In the definition of the item fields, only mark as required those fields that you are really sure that will be present in all items of that class**. Required fields are very important in order to avoid templates to extract data from wrong targets, but if you don't annotate a required field in a given template, then the template will never extract anything.
+1. **When defining the item fields, be sure to mark as required only those fields that you expect to be present in all items of that class.** Required fields are of great importance in governing the templates not to extract data from wrong targets, but if you don't annotate a required field in a given template, then the template will not extract anything.
 
-2. **Don't assume that only one template is enough for extracting every product you need**. Usually there are some differences among target html layouts (although not visibly evident when rendered in a browser) that make some templates not being perfectly suitable for some targets.
+2. **Don't assume that one template is enough for extracting every product you need.** Usually there are certain differences between target HTML layouts (although not visibly evident when rendered in a browser) that make some templates not a perfect fit for some targets.
 
-3. **The captured pages browser allows you to test how will behave the extraction at any time with the current set of templates, without need to run additional jobs**. Each time you add a new template or modify an existing one, after you reload the list of captured pages the extracted data is updated according to the new state of templates.
+3. **The captured pages browser allows you to test how the extraction behaves at any time with the current set of templates, without the need of running additional jobs.** Each time you add a new template or modify an existing one, the extracted data is updated according to the new state of templates after you have reloaded the list of captured pages.
 
-4. **When a target is not being extracted by current templates, remember the development cycle described in first section**. First step is to identify a target page that does not contain extracted data, add a new template from it, and annotate. Then you check again the set of captured pages and see whether still there are products pages with no data extracted which require additional templates. Once you are satisfied with the current template set, run a new job in order to generate the items.
+4. **When a target is not extracted by current set of templates, remember the development cycle described in the first section.** Begin with identifying a target page that does not contain extracted data, then add and annotate a new template from it. Afterwards re-check the set of captured pages and ascertain whether there are still product pages with no data extracted which require additional templates. Once you are satisfied with the current templates set, run a new job in order to generate the items.
 
-5. **Usually you can find the opposite case: data extracted from pages you don't want to extract anything, or the incorrect template used for some product pages**. Both cases are improved by adding extra required fields in the template that is being used. In particular, for those fields that are not being extracted by it. That will make the result from the given template being discarded, as not all required fields were extracted using it.
+5. **You may encounter a contrary case as well, getting data extracted from irrelevant pages, or using an incorrect template for certain product pages.** Both cases may be solved by including additional required fields in the given template -- in particular, the fields that are not being extracted by it. As a result, the template will be discarded, since not all required fields will be extracted using it.
 
-6. **Check for url patterns which can be safely filtered out using follow or excluded regex patterns**. Safely means that you can filter out them without risk to block the way to a desired page. That improves greatly the performance in many cases, because the bot will not waste time visiting pages that you don't need at all.
+6. **Check for URL patterns which can be *safely* filtered out using *follow* or *excluded* regular expression patterns.** We emphasize *safely* here so you would make sure there's no risk of blocking desired pages when using such URL filters. That said, the method greatly improves the performance in many cases allowing the bot not to waste time visiting unnecessary pages.
 
-7. **By using the setting LOG_LEVEL = DEBUG you will see extra information in logs that allows to identify many problems**, like items dropped by the duplicates detector, and help you to elaborate better url filters in complex cases.
+7. **When there's a need to identify problems (e.g. to check the items dropped by the duplicates detector), use the setting LOG_LEVEL = DEBUG for getting extra information in the logs.** It will help you to elaborate better URL filters in complex cases.
 
-8. **The** :ref:`querycleaner` **addon also helps a lot in url filtering**. It is usual to have situations in which some URL parameters can be removed from the URL without changing results, and the bot waste time visiting the same pages lot of times, because each time they are visited with a different set of parameters. Lot of dropped duplicated items is usually a sympton of this condition.
+8. **The** :ref:`querycleaner` **addon also helps a lot in URL filtering**. It's quite common to have certain URL parameters removed from the URL without changing the results, which makes the bot waste time visiting the same pages repeatedly, because each time they are visited with a different set of parameters. Such condition is usually indicated by a large number of dropped duplicated items.
 
-Additional articles for best performance and practices can be found at `Autoscraping articles in support forum <http://support.scrapinghub.com/list/19086-general/?category=4878>`_.
+Additional articles on the subject of best practices and improving performance can be found at `Autoscraping support forum <http://support.scrapinghub.com/list/19086-general/?category=4878>`_.
