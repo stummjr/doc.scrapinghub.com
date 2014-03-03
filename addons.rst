@@ -38,32 +38,21 @@ As _Autothrottle_ dynamically adjusts delay and concurrency depending on the sit
 DeltaFetch
 ==========
 
-The purpose of this addon is to ignore requests to pages containing items seen
-in previous crawls of the same spider, thus producing a "delta crawl"
-containing only new items. For more details on the algorithm, you can check the
-`DeltaFetch code`_.
+The purpose of this addon is to ignore requests to pages containing items seen in previous crawls of the same spider, thus producing a *delta crawl* containing only new items. For more details on the algorithm, you can check `DeltaFetch code`_.
 
 There is a single setting for controlling this addon:
 
-* ``DELTAFETCH_ENABLED`` - set it to enable the DeltaFetch addon (either project-wide or per spider)
+* ``DELTAFETCH_ENABLED`` - enables the DeltaFetch addon (either project-wide or per spider)
 
-Note that this addon depends on the `DotScrapy Persistence`_ addon, so make
-sure to enable it before.
+Note that this addon depends on the `DotScrapy Persistence`_ addon, so make sure it's enabled first.
+
 
 DotScrapy Persistence
 =====================
 
-This addon keeps the content of the ``.scrapy`` directory in a persistent
-store, which is loaded when the spider starts and stored when the spider
-finishes.
+This addon keeps the content of the ``.scrapy`` directory in a persistent store, which is loaded when the spider starts and saved when the spider finishes. It allows spiders to share data between different runs, keeping a state or any kind of data that needs to be persisted.
 
-This allows spiders to share data among different runs, keeping state or any
-kind of any kind of data that needs to be persisted among runs.
-
-The ``.scrapy`` directory is well known in Scrapy and a few extensions use it
-to keep state among runs. The canonical way to work with the ``.scrapy``
-directory is by calling the ``scrapy.utils.project.data_path`` function, as
-illustrated in the following example::
+The ``.scrapy`` directory is well known in Scrapy and a few extensions use it to keep a state between runs. The canonical way to work with the ``.scrapy`` directory is by calling the ``scrapy.utils.project.data_path`` function, as illustrated in the following example::
 
     from scrapy.utils.project import data_path
 
@@ -75,51 +64,42 @@ Supported settings:
 
 * ``DOTSCRAPY_ENABLED`` - set it to enable the DotScrapy addon (either project-wide or per spider)
 
-.. _querycleaner:
 
 Images
 ======
 
-This addon downloads images from extracted image urls and stores them into an Amazon S3 storage. In order to enable, you must set the ``IMAGES_STORE`` setting,
-and define two item fields:
+This addon downloads images from extracted image URLs and stores them into an Amazon S3 storage. The addon is enabled by updating the ``IMAGES_STORE`` setting and defining two item fields:
 
-* a field ``image_urls`` with type ``image``, which you will use to annotate image urls in the template. This will be the source field from which the addon will get the urls of the images to be downloaded.
-* a field ``images``, where the addon will save important information about the stored image, including the s3 path relative to the ``IMAGES_STORE`` setting and the origin image url. The type of this field doesn't matter, as it is written by the pipeline, not by the AS extraction algorithm, but because of that, be sure that it is **NOT** flagged as required, otherwise you will not get extracted data, because you will not annotate this field in the templates.
+* a field ``image_urls`` with type ``image``, which is used for annotating image URLs in the template. This will be the source field from which the addon will get URLs of the images to be downloaded.
+* a field ``images``, where the addon will save important information about the stored image, including Amazon S3 path relative to the ``IMAGES_STORE`` setting and the original image URL. The type of this field doesn't matter, as it is defined by the pipeline, not by the AS extraction algorithm. That said, be sure that it is **NOT** flagged as required, otherwise the data will not be extracted, because you will not be able to annotate this field in the templates.
 
-Those field names are the defaults, but can be overriden with the settings ``IMAGES_URLS_FIELD`` and ``IMAGES_RESULT_FIELD``. The source and target fields defined by
-these two settings does not need to be different ones. You can make both be the same. That avoids you to define an extra field in the item. The addon will just
-overwrite the data extracted by AS, with the data it generates (which is a dict that already includes the origin url).
+Those field names are the default ones, but can be overriden with the settings ``IMAGES_URLS_FIELD`` and ``IMAGES_RESULT_FIELD``. The source and target fields defined by these two settings do not need to be different -- you can make both be the same. It will ease you from defining an additional field in the item. The addon will just overwrite the data extracted by AS with the data it generates (which is a dict already including the origin URL).
 
 Settings:
 
-* ``IMAGES_STORE`` - Provide the complete S3 base path (in format *s3://<bucket name>/<base path>/*) where to store images.
-* ``IMAGES_MIN_WIDTH`` - Images with less than this width (in pixels) are ignored. Default value is 0.
-* ``IMAGES_MIN_HEIGHT`` - Images with less than this height (in pixels) are ignored. Default value is 0.
-* ``IMAGES_EXPIRES`` - When image is already in store, update it only when its age is older than this value (in days). Default value is 90.
-* ``IMAGES_URLS_FIELD`` - Specify the item field from which the addon will read the image urls to download/store. Default value is ``image_urls``.
-* ``IMAGES_RESULT_FIELD`` - Specify the item field where the addon will save the stored image information. Default value is ``images``.
+* ``IMAGES_STORE`` - provide a complete Amazon S3 base path (in format *s3://<bucket name>/<base path>/*) where the images should be stored
+* ``IMAGES_MIN_WIDTH`` - images with a smaller width (in pixels) are ignored; default value is ``0``
+* ``IMAGES_MIN_HEIGHT`` - images with a smaller height (in pixels) are ignored; default value is ``0``
+* ``IMAGES_EXPIRES`` - when an image is already in store, update it only when its age is older than the given value (in days); default value is ``90``
+* ``IMAGES_URLS_FIELD`` - specify the item field from which the addon will read the image URLs to download/store; default value is ``image_urls``
+* ``IMAGES_RESULT_FIELD`` - specify the item field where the addon will save the stored image information; default value is ``images``
 
 You will also need to provide the standard ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY`` settings so the addon will be able to upload the images in your
-s3 storage.
+Amazon S3 storage.
 
-For more details, the Images Addon is actually based on the `Scrapy Images Pipeline`_.
+For more details refer to `Scrapy Images Pipeline`_, since *Images* addon is based on it.
+
+
+.. _querycleaner:
 
 Query Cleaner
 =============
 
-Query Cleaner addon allows to clean request url get query parameters at the output of the spider, according to patterns provided
-by the user.
+*Query Cleaner* addon allows to clean up the request URL GET query parameters at the output of the spider in accordance with the patterns provided by the user.
 
-In order to enable, use at least one of the addon specific settings, ``QUERYCLEANER_REMOVE`` or ``QUERYCLEANER_KEEP``.
-The first one specifies a pattern (regular expression) that must match any query parameter name in order to be removed from the url
-(everyone else will be accepted), and the second one, a pattern that must match any query parameter name in order to be kept in the
-url (everyone else will be removed). You can combine both if you want to keep some query parameters pattern, except some other one.
-The remove pattern has precedence over the keep one.
+In order to enable it, use at least one of the addon-specific settings: ``QUERYCLEANER_REMOVE`` or ``QUERYCLEANER_KEEP``. The first one specifies a pattern (regular expression) that a query parameter name must match in order to be removed from the URL (all the others will be accepted). And the second one specifies a pattern that a query parameter name must match in order to be kept in the URL (all the others will be removed). You can combine both if some query parameters patterns should be kept and some should not. The *remove* pattern has precedence over the *keep* one.
 
-Observe that you can specify a list of parameter names by using the | (OR) regex operator. For example, the pattern
-``search|login|postid`` will match query parameters *search*, *login* and *postid*. This is by far the most common usage case.
-Another typical usage case is the complete removal of all the url query, thus you will set ``QUERYCLEANER_REMOVE`` value to
-``.*``
+Note that you can specify a list of parameter names by using the ``|`` (*OR*) regex operator. For example, the pattern ``search|login|postid`` will match query parameters *search*, *login* and *postid*. This is by far the most common usage case. And by setting ``QUERYCLEANER_REMOVE`` value to ``.*`` you can completely remove all URL queries.
 
 Supported settings:
 
@@ -128,13 +108,11 @@ Supported settings:
 
 The addon is implicitly enabled when one of these settings is provided.
 
-Lets suppose that the spider extracts urls like::
+Let's suppose that the spider extracts URLs like::
 
     http://www.example.com/product.php?pid=135&cid=12&ttda=12
 
-and we want to leave only the parameter ``pid``. We can specify this in two ways, either using ``QUERYCLEANER_REMOVE`` or
-``QUERYCLEANER_KEEP``. In the first case, the pattern used would be ``cid|ttda``. In the second case, ``pid``. The best
-solution depends on particular case, that is, how the query filters will affect any other url that the spider is expected to extract.
+We want to leave only the parameter ``pid``. To achieve this objective we can use either ``QUERYCLEANER_REMOVE`` or ``QUERYCLEANER_KEEP``. In the first case, the pattern would be ``cid|ttda``. In the second case, ``pid``. The best solution depends on a particular case, that is, how the query filters will affect any other URL that the spider is expected to extract.
 
 .. _Scrapy: https://github.com/scrapy/scrapy
 .. _DeltaFetch code:  https://github.com/scrapinghub/scrapylib/blob/master/scrapylib/deltafetch.py
