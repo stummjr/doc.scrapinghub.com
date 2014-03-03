@@ -4,51 +4,36 @@
 Addons
 ======
 
-Addons allow to extend bot capabilities and configure them easily from the panel. Each addon provides a particular feature.
-There are two flavours of addons: builtin addons and user addons. Builtin addons are always enabled and cannot be disabled by users.
+Addons allow to extend bot capabilities and configure them easily from the panel. Each addon provides a particular feature. There are two flavours of addons: builtin addons and user addons. Builtin addons are always enabled and cannot be disabled by users.
 
-Addons are very popular among Autoscraping users, because it allows to enable additional functionality without writing any code. Scrapy Cloud users often tend to write the extensions themselves. In fact, addons are no more than a fancy UI to configure `Scrapy`_ extensions.
+Addons are very popular among Autoscraping users as a way of obtaining additional functionality without writing any code. Scrapy Cloud users often tend to write the extensions themselves. In fact, addons are no more than a fancy UI to configure `Scrapy`_ extensions.
 
-To enable an addon, you have to:
+To put an addon to use, you have to:
 
-1. add it to your project, by going to Settings -> Addons in the Scrapinghub panel
+    #. Add it to your project, by going to Settings -> Addons in the Scrapinghub panel.
+    #. Enable it. Some addons are enabled automatically when added, while others require configuring (e.g. editing ADDON_ENABLED setting). It should be clear from the addon page in the panel which case it is.
 
-2. enable it. Some addons are enabled automatically when added, while others
-   require to configure a setting (like ADDON_ENABLED). It should be clear from
-   the addon page (in the panel) which case it is.
+You can also enable addons per spider, instead of project-wide, by going to the spider page in the panel, and adding the ADDON_ENABLED setting in the _Settings_ section of that spider.
 
-You can also enable addons per spider, instead of project wide, by going to the
-spider page in the panel, and adding the ADDON_ENABLED setting in the
-"Settings" section of that spider.
 
 Autothrottle
 ============
 
-Allows bot to crawl the target site more gently, by dynamically adjusting request concurrency and delay according to site lag and user
-control parameters. For details see `Scrapy Autothrottle`_ documentation
+Allows the bot to crawl the target site with more caution, by dynamically adjusting request concurrency and delay according to the site lag and user control parameters. For details see `Scrapy Autothrottle`_ documentation.
 
-This addon is loaded by default on any panel project. In short, the basic three settings that controls its behaviour are
+This addon is loaded by default on any panel project. The basic settings controlling its behaviour are:
 
-* ``CONCURRENT_REQUESTS_PER_DOMAIN`` - Limits the maximum number of concurrent requests sent to the same host domain. Default value is 8.
-* ``DOWNLOAD_DELAY`` - Limits the minimal download delay (in seconds) between each burst of requests. Default value is 0.
-* ``AUTOTHROTTLE_ENABLED`` - Enables or disables the autothrottle addon. It is ``True`` (enabled) by default. 
+* ``CONCURRENT_REQUESTS_PER_DOMAIN`` - limits the maximum number of concurrent requests sent to the same host domain; default value is ``8``
+* ``DOWNLOAD_DELAY`` - limits the minimum download delay (in seconds) between each burst of requests; default value is ``0``
+* ``AUTOTHROTTLE_ENABLED`` - enables or disables _Autothrottle_ addon; default value is ``True`` (enabled)
 
-**How to adjust these parameters?** There are not values that will work for any target server, and they also depends much on your needs.
-The default values are in general a good starting point and most servers tolerate them. But you can still be blocked and you will need
-to slow down the crawling rate, or may be you want more speed and so want to crawl faster, but with the increasing risk of being
-blocked. 
+**How to adjust these parameters?** The settings greatly depend on the user's needs, there are no values that will work for any target server. The default values are in general a good starting point and most servers tolerate them. Still there's a possibility of blocking and a need to slow down the crawling rate may emerge. Or quite the contrary, you may want the bot to crawl faster, in such instance you should fully realize that the risk of blocking increases. 
 
-In short, you can slow down the crawling rate from defaults by adjusting the maximum concurrency to 1, and arbitrarily
-increasing the minimal download delay. Regarding the maximum effective crawling rate, in practice it will be limited to the target server response rate, but may try to
-speed it up by arbitrarily increasing maximum concurrency (although this has not important effect in practice, as concurrency will be barely bigger than 2 for most sites). But of course, the maximum effective crawling rate will be limited to the target server response rate.
+The crawling rate may be slowed down by adjusting the maximum concurrency ``CONCURRENT_REQUESTS_PER_DOMAIN`` to ``1``, and increasing the minimum download delay ``DOWNLOAD_DELAY`` at will. Regarding the maximum effective crawling rate, in practice it will be limited to the target server response rate, but may try to
+speed it up by randomly increasing maximum concurrency (although in reality it produces no significant effect as concurrency will hardly exceed 2 for most sites).
 
-As autothrottle adjusts dynamically delay and concurrency depending on site lag, the parameters only sets limits, but does not
-force them to have a given value. The minimal download delay value will not avoid the effective download delay take greater values
-during crawling, and the maximal concurrency value will not avoid the effective concurrency take lower ones. If you really want to
-avoid autothrottle to adjust effective parameters during crawling, and want to set them to fixed values, you need to disable the addon
-by setting ``AUTOTHROTTLE_ENABLED`` to ``False``. Under such conditions, the settings ``CONCURRENT_REQUESTS_PER_DOMAIN`` and ``DOWNLOAD_DELAY`` are not limits, but
-forced values. However, if you try to increase the crawling rate by proceeding in this way, you will also increase greatly the probability to be blocked by the target
-site, so do that at your own risk. Also, Scrapinghub want to be polite with crawled sites.
+As _Autothrottle_ dynamically adjusts delay and concurrency depending on the site lag, the parameters only define limits while not forcing values. The minimum download delay value will not let the effective download delay take lower values during crawling, and the maximum concurrency value will not let the effective concurrency take higher ones. If there's a need for fixed values, _Autothrottle_ and its functionality of adjusting effective parameters during crawling have to be disabled by setting ``AUTOTHROTTLE_ENABLED`` to ``False``. Under such conditions, the settings ``CONCURRENT_REQUESTS_PER_DOMAIN`` and ``DOWNLOAD_DELAY`` may be redefined with required values. But be warned, you will be doing so at your own risk -- as stated before, increasing the crawling rate results in considerably increasing the probability to being blocked by the target site. Scrapinghub advocates courtesy when crawling the sites.
+
 
 DeltaFetch
 ==========
