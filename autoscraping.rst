@@ -306,7 +306,7 @@ Here the template extractors come to help, by adding pattern constraints to the 
 +--------------+--------------------+--------------------+
 |   *gender*   | Regular expression |   Gender:\\s+(.*)  |
 +--------------+--------------------+--------------------+
-| *occupation* | Regular expression | Occupation:\\s*(.*)|
+| *occupation* | Regular expression | Occupation:\\s+(.*)|
 +--------------+--------------------+--------------------+
 |     ...      |        ...         |        ...         |
 +--------------+--------------------+--------------------+
