@@ -4,7 +4,7 @@
 API
 ===
 
-All API calls require authentication using either cookies (which you typically use from the browser) or `HTTP basic access authentication`_ (typically used from code). That means you can access the API from a browser (if you're already logged into Scrapinghub), but you'll need to use HTTP authentication if you're accessing it from command line or code.
+All API calls require authentication using either cookies (which you typically use from the browser) or `HTTP basic access authentication`_ (typically used from code). It means you can access the API from a browser if you're already logged into Scrapinghub, but you'll need to use HTTP authentication if you're accessing it from command line or code.
 
 To ensure reproducibility all examples use `curl`_, a widely available HTTP client.
 
@@ -309,7 +309,7 @@ as/spider-properties.json
 
 Retrieves or updates an autoscraping spider properties. If no update parameters are given, the call returns the current properties of the spider.
 
-Retrieves an autoscraping spider properties.
+1. Retrieves an autoscraping spider properties.
 
 * Supported Methods: ``GET``
 
@@ -318,7 +318,7 @@ Retrieves an autoscraping spider properties.
   * ``project`` *(required)* - the project's numeric ID
   * ``spider`` *(required)* - the spider name
 
-Updates an autoscraping spider properties.
+2. Updates an autoscraping spider properties.
 
 * Supported Methods: ``POST``
 

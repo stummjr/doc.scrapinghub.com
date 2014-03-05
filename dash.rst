@@ -4,7 +4,7 @@ Dashboard
 
 The `Scrapinghub Dashboard`_ (or *Dash* for short) allows you to control and monitor your spiders, as well as other Scrapinghub services such as Crawlera.
 
-When you login to dash, you go to your home page (also known as your profile page). There you can see all your Scrapy Cloud projects and Crawlera users:
+When you login to Dash, you go to your home page (also known as your profile page). There you can see all your Scrapy Cloud projects and Crawlera users:
 
 .. image:: _static/dash-home.png
    :width: 500px
@@ -27,7 +27,7 @@ To schedule a spider for running select the spider in the `Schedule spider` box 
 Jobs Dashboard
 ==============
 
-If you click on any project, you go to the *Jobs* dashboard page where you will see the spider jobs that are running, pending to run and finished.
+If you click on any project, you go to the *Jobs* dashboard page where you will see the spider jobs that are completed, running or pending to run.
 
 .. image:: _static/dash-jobs.png
    :width: 500px
@@ -56,7 +56,7 @@ Clicking on any job ID (see the picture above) will take you to the job page, wh
 Job Outcomes
 ============
 
-The job outcome indicates whether the job succeeded or failed. By default, it contains the value of the spider close reason from Scrapy. It's available in the table of finished jobs:
+The job outcome indicates whether the job succeeded or failed. By default, it contains the value of the spider close reason from Scrapy. It's available in the table of completed jobs:
 
 .. image:: _static/dash-outcome.png
    :width: 500px
@@ -68,7 +68,7 @@ These are the most common job outcomes and their meanings:
 
 * ``shutdown`` - the job was cancelled, either from the Dash or due to Scrapinghub internal maintenance
 
-* ``failed`` - the job failed for some reason. The most likely situation is that the crawling process failed to start due to a bug in the project's code. Check the last lines of the job log for more info.
+* ``failed`` - the job failed for some reason. The most likely situation is that the crawling process failed to start due to a bug in the project's code. Check the last lines of the job log for more information.
 
 * ``killed`` - the job was killed by Scrapinghub because it failed to respond or because it failed to shutdown gracefully
 

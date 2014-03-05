@@ -4,16 +4,16 @@
 Addons
 ======
 
-Addons allow to extend bot capabilities and configure them easily from the panel. Each addon provides a particular feature. There are two flavours of addons: builtin addons and user addons. Builtin addons are always enabled and cannot be disabled by users.
+Addons allow to extend bot capabilities and configure them easily from the *Dash*. Each addon provides a particular feature. There are two flavours of addons: builtin addons and user addons. Builtin addons are always enabled and cannot be disabled by users.
 
 Addons are very popular among Autoscraping users as a way of obtaining additional functionality without writing any code. Scrapy Cloud users often tend to write the extensions themselves. In fact, addons are no more than a fancy UI to configure `Scrapy`_ extensions.
 
 To put an addon to use, you have to:
 
-    #. Add it to your project, by going to Settings -> Addons in the Scrapinghub panel.
-    #. Enable it. Some addons are enabled automatically when added, while others require configuring (e.g. editing ADDON_ENABLED setting). It should be clear from the addon page in the panel which case it is.
+    #. Add it to your project, by going to *Settings -> Addons* in the *Scrapinghub Dash*.
+    #. Enable it. Some addons are enabled automatically when added, while others require configuring (e.g. editing ADDON_ENABLED setting). It should be clear from the addon page in the Dash which case it is.
 
-You can also enable addons per spider, instead of project-wide, by going to the spider page in the panel, and adding the ADDON_ENABLED setting in the _Settings_ section of that spider.
+You can also enable addons per spider, instead of project-wide: select the spider in *Spiders* section, click *Settings* tab (next to *Details*), click ``+`` button in the corresponding Addon field to add a new entry and choose ``ADDON_ENABLED`` from the list of options.
 
 
 Autothrottle
@@ -21,18 +21,18 @@ Autothrottle
 
 Allows the bot to crawl the target site with more caution, by dynamically adjusting request concurrency and delay according to the site lag and user control parameters. For details see `Scrapy Autothrottle`_ documentation.
 
-This addon is loaded by default on any panel project. The basic settings controlling its behaviour are:
+This addon is loaded by default in every Dash project. The basic settings controlling its behaviour are:
 
 * ``CONCURRENT_REQUESTS_PER_DOMAIN`` - limits the maximum number of concurrent requests sent to the same host domain; default value is ``8``
 * ``DOWNLOAD_DELAY`` - limits the minimum download delay (in seconds) between each burst of requests; default value is ``0``
-* ``AUTOTHROTTLE_ENABLED`` - enables or disables _Autothrottle_ addon; default value is ``True`` (enabled)
+* ``AUTOTHROTTLE_ENABLED`` - enables or disables *Autothrottle* addon; default value is ``True`` (enabled)
 
 **How to adjust these parameters?** The settings greatly depend on the user's needs, there are no values that will work for any target server. The default values are in general a good starting point and most servers tolerate them. Still there's a possibility of blocking and a need to slow down the crawling rate may emerge. Or quite the contrary, you may want the bot to crawl faster, in such instance you should fully realize that the risk of blocking increases. 
 
 The crawling rate may be slowed down by adjusting the maximum concurrency ``CONCURRENT_REQUESTS_PER_DOMAIN`` to ``1``, and increasing the minimum download delay ``DOWNLOAD_DELAY`` at will. Regarding the maximum effective crawling rate, in practice it will be limited to the target server response rate, but may try to
 speed it up by randomly increasing maximum concurrency (although in reality it produces no significant effect as concurrency will hardly exceed 2 for most sites).
 
-As _Autothrottle_ dynamically adjusts delay and concurrency depending on the site lag, the parameters only define limits while not forcing values. The minimum download delay value will not let the effective download delay take lower values during crawling, and the maximum concurrency value will not let the effective concurrency take higher ones. If there's a need for fixed values, _Autothrottle_ and its functionality of adjusting effective parameters during crawling have to be disabled by setting ``AUTOTHROTTLE_ENABLED`` to ``False``. Under such conditions, the settings ``CONCURRENT_REQUESTS_PER_DOMAIN`` and ``DOWNLOAD_DELAY`` may be redefined with required values. But be warned, you will be doing so at your own risk -- as stated before, increasing the crawling rate results in considerably increasing the probability to being blocked by the target site. Scrapinghub advocates courtesy when crawling the sites.
+As *Autothrottle* dynamically adjusts delay and concurrency depending on the site lag, the parameters only define limits while not forcing values. The minimum download delay value will not let the effective download delay take lower values during crawling, and the maximum concurrency value will not let the effective concurrency take higher ones. If there's a need for fixed values, *Autothrottle* and its functionality of adjusting effective parameters during crawling have to be disabled by setting ``AUTOTHROTTLE_ENABLED`` to ``False``. Under such conditions, the settings ``CONCURRENT_REQUESTS_PER_DOMAIN`` and ``DOWNLOAD_DELAY`` may be redefined with required values. But be warned, you will be doing so at your own risk -- as stated before, increasing the crawling rate results in considerably increasing the probability to being blocked by the target site. Scrapinghub advocates courtesy when crawling the sites.
 
 
 DeltaFetch
@@ -42,7 +42,7 @@ The purpose of this addon is to ignore requests to pages containing items seen i
 
 There is a single setting for controlling this addon:
 
-* ``DELTAFETCH_ENABLED`` - enables the DeltaFetch addon (either project-wide or per spider)
+* ``DELTAFETCH_ENABLED`` - enables or disables *DeltaFetch* addon (either project-wide or per spider)
 
 Note that this addon depends on the `DotScrapy Persistence`_ addon, so make sure it's enabled first.
 
@@ -62,7 +62,7 @@ The ``.scrapy`` directory is well known in Scrapy and a few extensions use it to
 
 Supported settings:
 
-* ``DOTSCRAPY_ENABLED`` - set it to enable the DotScrapy addon (either project-wide or per spider)
+* ``DOTSCRAPY_ENABLED`` - enables or disables *DotScrapy* addon (either project-wide or per spider)
 
 
 Images
