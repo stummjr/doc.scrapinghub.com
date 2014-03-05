@@ -118,7 +118,7 @@ You can add a field shortcut key in order to quickly select a field when you are
 Spider Parameters
 =================
 
-When you create a new spider, the minimum set of attributes you have to fill in order to run the first crawling job are the spider name and the starting URLs (at least one). The first job for a newly created spider should be an *annotating mode* job, because the obvious first task for every new spider is to add templates. The results of the first job and all successive ones will give you a better idea about improving the crawling performance by adding URL filters. URL filters are optional, but strongly recommended in most cases, as we have explained in the section about `Basic Concepts`_.
+When you create a new spider, the minimum set of attributes you have to fill in order to run the first crawling job are the spider name and the starting URLs (at least one). The first job for a newly created spider should be an *annotating mode* job, because the obvious first task for every new spider is to add templates. The results of the first job and all successive ones will give you a better idea about improving the crawling performance by adding URL filters. URL filters are optional, but strongly recommended in most cases, as we have explained in the section about `Basic Concepts and Procedures`_.
 
 URL Filters
 -----------
@@ -302,11 +302,11 @@ Here the template extractors come to help, by adding pattern constraints to the 
 +--------------+--------------------+--------------------+
 |  Field name  |        Type        |    Specification   |
 +==============+====================+====================+
-|    *name*    | Regular expression |    Name:\s+(.*)    |
+|    *name*    | Regular expression |    Name:\\s+(.*)   |
 +--------------+--------------------+--------------------+
-|   *gender*   | Regular expression |   Gender:\s+(.*)   |
+|   *gender*   | Regular expression |   Gender:\\s+(.*)  |
 +--------------+--------------------+--------------------+
-| *occupation* | Regular expression | Occupation:\s*(.*) |
+| *occupation* | Regular expression | Occupation:\\s+(.*)|
 +--------------+--------------------+--------------------+
 |     ...      |        ...         |        ...         |
 +--------------+--------------------+--------------------+

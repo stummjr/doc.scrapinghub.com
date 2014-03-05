@@ -120,7 +120,7 @@ To get all jobs not marked with tag ``consumed`` from project ``123``::
 jobs/list.jl
 ------------
 
-Similar to `jobs/list.json`_ but returns the jobs in `JSONLines format`_, which allows to retrieve all jobs without having to paginate the results.
+Similar to `jobs/list.json`_ but returns the jobs in `JSON Lines Format`_, which allows to retrieve all jobs without having to paginate the results.
 
 The first line of the result is special and contains metadata.
 
@@ -218,7 +218,7 @@ To retrieve the latest 20 items of job ``123/1/4`` *(this works even while the j
 items.jl
 --------
 
-Similar to `items.json`_ but returns the items in `JSONLines format`_, which allows to retrieve all items without having to paginate the results.
+Similar to `items.json`_ but returns the items in `JSON Lines Format`_, which allows to retrieve all items without having to paginate the results.
 
 *Example:*
 
@@ -269,12 +269,12 @@ To retrieve the log of job ``123/1/4`` in plain text format::
 log.json
 --------
 
-Similar to `log.txt` but returns the log entries as a list of JSON objects containing the properties ``logLevel``, ``message`` and ``time``.
+Similar to `log.txt`_ but returns the log entries as a list of JSON objects containing the properties ``logLevel``, ``message`` and ``time``.
 
 log.jl
 --------
 
-Similar to `log.json` but returns the log entries in `JSONLines format`_.
+Similar to `log.json`_ but returns the log entries in `JSON Lines Format`_.
 
 
 .. _autoscraping-api:
