@@ -257,7 +257,7 @@ Retrieves the log of a job.
 
   * ``project`` *(required)* - the project's numeric ID
   * ``job`` *(required)* - the job to retrieve items from
-  * ``level`` - the minimum log level to return (if not given, returns all log levels)
+  * ``level`` - the minimum log level to return, e.g. DEBUG, WARNING, ERROR, etc. (if not given, returns all log levels)
   * ``count`` and ``offset`` - see :ref:`pagination`
 
 *Example:*
