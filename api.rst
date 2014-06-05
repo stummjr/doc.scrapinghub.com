@@ -551,10 +551,10 @@ Reports API
 
 This API provides a means for uploading reports which are attached to an entire project or to a single scraping job:
 
- * Project reports can be accessed through the *Reports* on the left menu.
- * Job reports can be accessed through the *Reports* tab on the job page.
+ * Project reports can be accessed through the *Reports* link on the left menu of the Jobs Dashboard in Dash.
+ * Job reports can be accessed through the *Reports* tab of each Job Page in Dash.
 
-Multiple reports can be attached to a project or job. Each report is uniquely identified by a key (within a given job).
+Multiple reports can be attached to a project or job. Each report is uniquely identified by a key (within a given project or job).
 
 reports/add.json
 ----------------
@@ -563,23 +563,23 @@ Uploads a report and attaches it to a project or a job. The supported formats ar
 
 * Supported Request Methods: ``POST``
 
-If the parameter ``job`` is not given, it means that the report will be attached to the entire project.
+If the parameter ``job`` is not given, it means that the report will be attached to the entire project (project report).
 
 * Parameters:
 
   * ``project`` *(required)* - the project's numeric ID
   * ``job`` - the ID of the job to which the report will be attached (if it's null, the report will be attached to the project specified)
-  * ``key`` *(required)* - a key that uniquely identifies the report within the job
+  * ``key`` *(required)* - a key that uniquely identifies the report within a job or project
   * ``content`` *(required)* - the report content in the format specified by ``content_type`` parameter
-  * ``content_type`` *(required)* - the format of the content: supported formats are ``text/x-rst`` for `reStructuredText`_ and ``text/plain`` for plain text
+  * ``content_type`` *(required)* - the format of the content, supported formats are ``text/x-rst`` for `reStructuredText`_ and ``text/plain`` for plain text
 
 *Example:*
 
-To upload a report contained in ``report.rst`` file (in `reStructuredText`_ format) to job ``123/1/4`` of project ``123``::
+To upload a job report contained in ``report.rst`` (a file in `reStructuredText`_ format) to job ``123/1/4`` of project ``123``::
 
    curl -u APIKEY: https://dash.scrapinghub.com/api/reports/add.json -F project=123 -F job=123/1/4 -F key=qareport -F content_type=text/x-rst -F content=@report.rst
 
-To upload a report contained in ``report.rst`` file (in `reStructuredText`_ format) to project ``123`` (just ignore the job parameter)::
+To upload a project report contained in ``report.rst`` (a file in `reStructuredText`_ format) to project ``123``::
 
    curl -u APIKEY: https://dash.scrapinghub.com/api/reports/add.json -F project=123 -F key=qareport -F content_type=text/x-rst -F content=@report.rst
 
