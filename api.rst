@@ -563,12 +563,10 @@ Uploads a report and attaches it to a project or a job. The supported formats ar
 
 * Supported Request Methods: ``POST``
 
-If the parameter ``job`` is not given, it means that the report will be attached to the entire project (project report).
-
 * Parameters:
 
   * ``project`` *(required)* - the project's numeric ID
-  * ``job`` - the ID of the job to which the report will be attached (if it's null, the report will be attached to the project specified)
+  * ``job`` - the ID of the job to which the report will be attached (if there's no job parameter, the report will be attached to the project specified)
   * ``key`` *(required)* - a key that uniquely identifies the report within a job or project
   * ``content`` *(required)* - the report content in the format specified by ``content_type`` parameter
   * ``content_type`` *(required)* - the format of the content, supported formats are ``text/x-rst`` for reStructuredText and ``text/plain`` for plain text
