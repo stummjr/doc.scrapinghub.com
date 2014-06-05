@@ -571,15 +571,15 @@ If the parameter ``job`` is not given, it means that the report will be attached
   * ``job`` - the ID of the job to which the report will be attached (if it's null, the report will be attached to the project specified)
   * ``key`` *(required)* - a key that uniquely identifies the report within a job or project
   * ``content`` *(required)* - the report content in the format specified by ``content_type`` parameter
-  * ``content_type`` *(required)* - the format of the content, supported formats are ``text/x-rst`` for `reStructuredText`_ and ``text/plain`` for plain text
+  * ``content_type`` *(required)* - the format of the content, supported formats are ``text/x-rst`` for reStructuredText and ``text/plain`` for plain text
 
 *Example:*
 
-To upload a job report contained in ``report.rst`` (a file in `reStructuredText`_ format) to job ``123/1/4`` of project ``123``::
+To upload a job report contained in ``report.rst`` (a file in reStructuredText format) to job ``123/1/4`` of project ``123``::
 
    curl -u APIKEY: https://dash.scrapinghub.com/api/reports/add.json -F project=123 -F job=123/1/4 -F key=qareport -F content_type=text/x-rst -F content=@report.rst
 
-To upload a project report contained in ``report.rst`` (a file in `reStructuredText`_ format) to project ``123``::
+To upload a project report contained in ``report.rst`` (a file in reStructuredText format) to project ``123``::
 
    curl -u APIKEY: https://dash.scrapinghub.com/api/reports/add.json -F project=123 -F key=qareport -F content_type=text/x-rst -F content=@report.rst
 
