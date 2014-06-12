@@ -3,7 +3,7 @@ Running and monitoring jobs
 ===========================
 
 There are two ways to run and monitor jobs in Scrapinghub: manually through
-`dash` or programmatically via the Jobs API that is described below.
+:doc:`dash` or programmatically via the Jobs API that is described below.
 
 .. _jobs-api:
 

@@ -32,6 +32,24 @@ We call the ``projectid/spiderid/jobid/itemid`` path element the item 'key'.
 
 Passing the API key in a ``apikey`` URL argument is also supported.
 
+Available APIs
+==============
+
+This is a summary of the available APIs for reference. It is advised to read
+their respective documentation chapter to understand how they work and how they
+should be used (best practices, etc).
+
+* :ref:`jobs-api`
+* :ref:`items-api`
+* :ref:`logs-api`
+* :ref:`requests-api`
+* :ref:`collections-api`
+* :ref:`reports-api`
+* :ref:`activity-api`
+* :ref:`autoscraping-api`
+* :ref:`eggs-api`
+* :ref:`frontier-api`
+
 HTTP Headers
 ============
 
@@ -43,25 +61,6 @@ encoding.
 A `saveas` request parameter can be used to specify a filename for browser
 downloads. For example, specifying `?saveas=foo.json` will cause a header of
 `Content-Disposition: Attachment; filename=foo.json` to be returned.
-
-Available APIs
-==============
-
-This is a summary of the available APIs for reference. It is advised to read
-their respective documentation section to understand how they work and how they
-should be used (best practices, etc).
-
-* `jobs-api`
-* `items-api`
-* `logs-api`
-* `requests-api`
-* `collections-api`
-* `reports-api`
-* `activity-api`
-* `autoscraping-api`
-* `eggs-api`
-* `frontier-api`
-
 
 .. _formats:
 
@@ -100,4 +99,3 @@ There is a Python client library for Scrapinghub API available here:
 .. _curl: http://curl.haxx.se/
 .. _HTTP basic auth: http://en.wikipedia.org/wiki/Basic_access_authentication
 .. _JSONView extension: http://benhollis.net/software/jsonview/
-.. _reStructuredText: http://en.wikipedia.org/wiki/ReStructuredText

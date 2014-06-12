@@ -42,3 +42,4 @@ To upload a project report contained in ``report.rst`` (a file in reStructuredTe
 
    curl -u APIKEY: https://dash.scrapinghub.com/api/reports/add.json -F project=123 -F key=qareport -F content_type=text/x-rst -F content=@report.rst
 
+.. _reStructuredText: http://en.wikipedia.org/wiki/ReStructuredText

@@ -17,30 +17,17 @@ requests. These can be retrieved through the Requests API.
 These APIs are all described below.
 
 .. note:: Even though these APIs support writing they are most often used for
-   reading. The crawlers running on Scrapinghub are the ones that write to
-   these endpoints.
+   reading. The crawlers running on Scrapinghub cloud are the ones that write
+   to these endpoints. However, both operations are documented here for
+   completion.
 
 .. _items-api:
 
 Items API
----------
+=========
 
-Items are added by POSTing data to a particular JOB, for example::
-
-    $ curl -X POST -T items.jl http://storage.scrapinghub.com/items/53/34/7
-
-The content-range header can be used to specify a start index. This is used in
-the client library to insert in batches.
-
-For example::
-
-    $ curl -X POST -T items.jl -H "content-range: items 500-/*" http://storage.scrapinghub.com/items/53/34/7
-
-In all cases, the server will only return 200 OK when the data has been committed
-to more than one storage server.
-
-There is no limit on the amount of data that can be posted, however, an http
-413 will be returned if any single item is over 1M.
+Reading items
+-------------
 
 The data can be retrieved by performing a GET::
 
@@ -116,55 +103,6 @@ the /stats path element. For example::
 Field names beginning with '_' are considered hidden, and will only be returned if
 an `all` parameter is present.
 
-A `filter` parameter can be specified to filter items, logs or job metadata.
-The argument  is a  JSON encoded array consisting of `field`, `operator`,
-`arguments`, where  arguments is an array of arguments for that filter.
-
-For example::
-
-    $ curl --get --data-urlencode 'filter=["size", ">", [64594]]' \
-        'http://storage.scrapinghub.com/items/1111111?count=2'
-
-The filter parameter may be repeated, in which case all filters must pass for an
-item to be returned. If no arguments are required an empty array should be passed.
-Whenever possible, the type of the data being searched will be converted to an
-appropriate type for the operator and arguments, not the other way around.
-
-When searching logs, the available fields are `level` and `message`, where
-level is an integer between 0 and 127 and message is a string.
-
-The operations and their arguments are:
-
-===================   ======================== ==============
-operator              arguments                description
-===================   ======================== ==============
-=, <, >, <=. >=, !=   value to compare against matches if field OP value is true
-exists                                         matches if the field is present irrespective of the value
-notexists                                      matches if the field is not present, irrespective of the value
-contains              string to search for     matches if the string argument is contained in the field
-icontains             string to search for     matches if the string argument is contained in the field, ignoring case
-isempty                                        matches if the field is empty (types other than string, map & array will never match)
-isnotempty                                     matches if the field is not empty (types other than string, map & array will never match)
-matches               regular expression       matches a regular expression against the field
-haselement            values to search for     matches if any of the the values passed (strings or numbers) is contained in an array field
-hasnotelement         values to search for     matches if none of the values passed are contained in an array field
-===================   ======================== ==============
-
-A `filterany` or `filterall` parameter can be used instead of `filter` with
-items. When an item's field value is multivalued, then it is considered a
-match if the filter matches any, or all, of the items in that field.
-
-A `hash` parameter can be specified to apply an md5 hash to a string value::
-
-    $ curl http://storage.scrapinghub.com/items/1/1/2?count=2&hash=description
-
-when using hashes, less than 40 items must be requested.
-
-Items can be filtered using a JEXL query, passed in the jf parameter::
-
-    $ curl --get --data-urlencode "jf=phone_area_code =~ '0?20'"  \
-        http://storage.scrapinghub.com/items/65/1/1/
-
 Currently, all items data is return in JSONLines format (json records, separated by
 newlines) unless another format is specified in the Accept Header, currently the
 following formats are supported::
@@ -175,13 +113,13 @@ following formats are supported::
 
 for example, to get items in json format using curl::
 
-	$ curl -H "Accept: application/json" http://storage.scrapinghub.com/items/53/34/7/
+    $ curl -H "Accept: application/json" http://storage.scrapinghub.com/items/53/34/7/
 
 An alternative to the Accept Header is to pass in the url the format parameter
 who can take values of `text`, `csv`, `json` or `jl`. It can be used
 interchangeably with the Accept Header::
 
-	$ curl http://storage.scrapinghub.com/items/53/34/7?format=json
+    $ curl http://storage.scrapinghub.com/items/53/34/7?format=json
 
 If csv output format is used, a `fields` parameter must be specified to
 indicate the required fields and their order (comma-separated list). An
@@ -199,25 +137,30 @@ A single value of a field in a job can be retrieved as raw text (or html) data b
 
     $ curl "http://storage.scrapinghub.com/items/53/34/7/fieldname"
 
+Writing items
+-------------
+
+Items are added by POSTing data to a particular JOB, for example::
+
+    $ curl -X POST -T items.jl http://storage.scrapinghub.com/items/53/34/7
+
+The content-range header can be used to specify a start index. This is used in
+the client library to insert in batches.
+
+For example::
+
+    $ curl -X POST -T items.jl -H "content-range: items 500-/*" http://storage.scrapinghub.com/items/53/34/7
+
+In all cases, the server will only return 200 OK when the data has been
+committed securely.
+
+There is no limit on the amount of data that can be posted, however, an HTTP
+413 response will be returned if any single item is over 1M.
+
 .. _logs-api:
 
 Logs API
---------
-
-Logs are also added by POSTing data to a particular JOB, for example::
-
-    $ curl -X POST -T log.jl http://storage.scrapinghub.com/logs/53/34/7
-
-With the restriction that the records in the log.jl file must contain the
-following fields:
-
-* time (number) - the unix timestamp of the log message in *milliseconds* (must
-  be integer)
-
-* level (number) - the numeric value of the log level as defined in the python
-  logging library
-
-* message (string) - the log message
+========
 
 Example log record::
 
@@ -245,15 +188,29 @@ Csv output accepts the same options as with items (`fields` and
 `include_headers` params) with the exception that `fields` is now optional and
 defaults to "time,level,message" (all headers).
 
+Like items, logs are also added by POSTing data to a particular JOB, for example::
+
+    $ curl -X POST -T log.jl http://storage.scrapinghub.com/logs/53/34/7
+
+With the restriction that the records in the log.jl file must contain the
+following fields:
+
+* time (number) - the unix timestamp of the log message in *milliseconds* (must
+  be integer)
+
+* level (number) - the numeric value of the log level as defined in the python
+  logging library
+
+* message (string) - the log message
+
+
+.. _requests-api:
+
 Requests API
-------------
+============
 
 HTTP requests and responses can be tracked using the requests API and can reference
 item data.
-
-Data is inserted by posting json lists::
-
-    $ curl -X POST -T requests.jl http://storage.scrapinghub.com/requests/53/34/7
 
 Here is an example of reading data::
 
@@ -277,10 +234,14 @@ parent      no              The index of the parent request. If unspecified,
                             the request is a start_url
 duration    yes             Request duration in milliseconds
 status      yes             HTTP status code of the response
-method      no              HTTP metod used. If unspecified, GET is used as the
+method      no              HTTP method used. If unspecified, GET is used as the
                             default.
 rs          yes             Response size in bytes
 url         yes             Request URL
 fp          no              Request fingerprint (string)
 =========   ========        ===================================================
+
+Data is inserted by posting json lists::
+
+    $ curl -X POST -T requests.jl http://storage.scrapinghub.com/requests/53/34/7
 

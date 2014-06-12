@@ -39,7 +39,7 @@ To retrieve the latest 20 items of job ``123/1/4`` *(this works even while the j
 items.jl
 --------
 
-Similar to `items.json`_ but returns the items in `JSON Lines Format`_, which allows to retrieve all items without having to paginate the results.
+Similar to `items.json`_ but returns the items in jsonlines format, which allows to retrieve all items without having to paginate the results.
 
 *Example:*
 
@@ -95,7 +95,7 @@ Similar to `log.txt`_ but returns the log entries as a list of JSON objects cont
 log.jl
 --------
 
-Similar to `log.json`_ but returns the log entries in `JSON Lines Format`_.
+Similar to `log.json`_ but returns the log entries in jsonlines format.
 
 
 Old Spiders API

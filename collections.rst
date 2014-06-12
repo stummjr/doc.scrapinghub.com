@@ -1,8 +1,8 @@
-================
-Data Collections
-================
+===========
+Collections
+===========
 
-Data Collections provide a way to store arbitrary number of records indexed by
+Scrapinghub Collections provide a way to store arbitrary number of records indexed by
 a key. They're often used by Scrapinghub projects as a single place to write
 information from multiple scraping jobs.
 
@@ -106,13 +106,4 @@ in a 'values' field:
 
     $ curl 'http://storage.scrapinghub.com/collections/78/s/my_collection/scan?prefix=f&maxscan=1'
     {"values":[{"value":"bar1"}], "nextstart":"foo2"}
-
-All available collections can be listed::
-
-    $ curl 'http://storage.scrapinghub.com/collections/78/list'
-    {"type": "s", "name": "my_collection"}
-
-This returns jsonlist format by default and json is also available.
-
-TODO: the type is not yet correct and pagination is missing.
 

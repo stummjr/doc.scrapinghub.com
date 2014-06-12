@@ -1,10 +1,10 @@
-================
-Project Activity
-================
+============
+Activity Log
+============
 
 Scrapinghub keeps track of certain project event such as when spiders are run
-or new spiders are deployed. This activity log can be accessed in `dash` by
-clicking on Actvity in the left sidebar or programmatically through the
+or new spiders are deployed. This activity log can be accessed in :doc:`dash` by
+clicking on Activity in the left sidebar or programmatically through the
 Activity API described below.
 
 .. _activity-api:

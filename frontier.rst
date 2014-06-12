@@ -1,7 +1,6 @@
-.. _frontier:
-
-The Crawl Frontier
-==================
+==============
+Crawl Frontier
+==============
 
 The Hub Crawl Frontier (HCF) stores pages visited and outstanding requests to
 make. It can be thought of as persistent shared storage for a crawl scheduler.
