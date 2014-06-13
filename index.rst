@@ -5,7 +5,7 @@ Scrapinghub is the most advanced platform for deploying and running web crawlers
 
 Spiders can be written in `Scrapy`_ or built using the `Autoscraping`_ tool, and they are grouped into projects. Each spider run is known as a *job*.
 
-Here you will find reference documentation. For articles, guides and other help resouces please visit our `Support site`_ and look for the *Articles* section of
+Here you will find reference documentation. For articles, guides and other help resources please visit our `Support site`_ and look for the *Articles* section of
 each product.
 
 Table of Contents
