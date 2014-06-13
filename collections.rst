@@ -102,7 +102,7 @@ of scanned records is limited to 500000 in a single request. It can be lowered b
 
 There is a 'scan' endpoint for filtering in batches. This is more appropriate if the filter may
 take a while to run and there is a risk of timeouts. The result is always JSON and is returned
-in a 'values' field:
+in a 'values' field::
 
     $ curl 'http://storage.scrapinghub.com/collections/78/s/my_collection/scan?prefix=f&maxscan=1'
     {"values":[{"value":"bar1"}], "nextstart":"foo2"}
