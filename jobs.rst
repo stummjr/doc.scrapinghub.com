@@ -1,9 +1,10 @@
-===========================
-Running and monitoring jobs
-===========================
+==============
+Job Management
+==============
 
-There are two ways to run and monitor jobs in Scrapinghub: manually through
-:doc:`dash` or programmatically via the Jobs API that is described below.
+There are two ways to run and monitor spiders in Scrapinghub: manually through
+the UI (see :doc:`dash`) or programmatically through the :ref:`jobs-api` that
+is described below.
 
 .. _jobs-api:
 
