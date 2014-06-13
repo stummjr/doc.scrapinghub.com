@@ -49,7 +49,7 @@ and the value of an item field can also be retrieved (text & html mime types sup
     $ curl http://storage.scrapinghub.com/collections/78/s/my_collection/foo/value
     bar
 
-Filtering, pagination and meta parameters work the same as in the items API.
+Filtering, pagination and meta parameters work the same as in the :ref:`items-api`.
 However, there is an additional filter that allows efficient filtering on key
 prefixes::
 
@@ -57,3 +57,8 @@ prefixes::
     {"value":"bar"}
 
 Prefix filters should be used where possible as they use indexes, unlike other filters.
+
+You can also filter by records updated since a given timestamp::
+
+    $ curl http://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000
+    {"value":"bar"}
