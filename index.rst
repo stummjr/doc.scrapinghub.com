@@ -14,12 +14,20 @@ Table of Contents
 .. toctree::
    :maxdepth: 2
 
-   pricing
+   plans
    dash
    scrapy-cloud
    api
+   jobs
+   jobdata
+   comments
    autoscraping
+   reports
+   activity
+   collections
+   frontier
    addons
+   oldapi
 
 .. _Support site: http://support.scrapinghub.com
 .. _Scrapy: http://scrapy.org

@@ -1,6 +1,8 @@
-=========
-Dashboard
-=========
+.. _dash:
+
+====
+Dash
+====
 
 The `Scrapinghub Dashboard`_ (or *Dash* for short) allows you to control and monitor your spiders, as well as other Scrapinghub services such as Crawlera.
 

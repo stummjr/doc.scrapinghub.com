@@ -409,3 +409,69 @@ Autoscraping is an advanced set of tools which for some cases requires a bit of 
 8. **The** :ref:`querycleaner` **addon also helps a lot in URL filtering**. It's quite common to have certain URL parameters removed from the URL without changing the results, which makes the bot waste time visiting the same pages repeatedly, because each time they are visited with a different set of parameters. Such condition is usually indicated by a large number of dropped duplicated items.
 
 Additional articles on the subject of best practices and improving performance can be found at `Autoscraping support forum <http://support.scrapinghub.com/list/19086-general/?category=4878>`_.
+
+.. _autoscraping-api:
+
+Autoscraping API
+================
+
+as/project-slybot.zip
+---------------------
+
+Retrieves the project specifications in slybot format, zip compressed. By default includes the specification of all the spiders in the project.
+
+* Supported Request Methods: ``GET``
+
+* Parameters:
+
+  * ``project`` *(required)* - the project's numeric ID
+  * ``spider`` *(optional and multiple)* - if present, include only the specifications of given spiders
+
+*Examples:*
+
+To download the entire project with ID ``123`` (including all spiders)::
+
+    curl -u APIKEY: "https://dash.scrapinghub.com/api/as/project-slybot.zip?project=123"
+
+To download only the spider with name ``myspider``::
+
+    curl -u APIKEY: "https://dash.scrapinghub.com/api/as/project-slybot.zip?project=123&spider=myspider"
+
+as/spider-properties.json
+-------------------------
+
+Retrieves or updates an autoscraping spider properties. If no update parameters are given, the call returns the current properties of the spider.
+
+1. Retrieves an autoscraping spider properties.
+
+* Supported Methods: ``GET``
+
+* Parameters:
+
+  * ``project`` *(required)* - the project's numeric ID
+  * ``spider`` *(required)* - the spider name
+
+2. Updates an autoscraping spider properties.
+
+* Supported Methods: ``POST``
+
+* Parameters:
+
+  * ``project`` *(required)* - the project's numeric ID
+  * ``spider`` *(required)* - the spider name
+  * ``start_url`` *(optional and multiple)* - set the start URL and update ``start_urls`` property with the given values
+
+*Examples:*
+
+To get the properties of the spider ``myspider``::
+
+    curl -u APIKEY: "https://dash.scrapinghub.com/api/as/spider-properties.json?project=123&spider=myspider"
+
+To update the start URLs of a spider::
+
+    curl -u APIKEY: -d project=123 -d spider=myspider \
+            -d start_url=http://www.example.com/listA \
+            -d start_url=http://www.example.com/listB \
+            https://dash.scrapinghub.com/api/as/spider-properties.json
+
+
