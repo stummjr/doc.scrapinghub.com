@@ -96,5 +96,5 @@ This covers the basics of the dashboard, but there is much more. Feel free to pl
 
 
 .. _`Scrapinghub dashboard`: https://dash.scrapinghub.com/
-.. _`knowledge base`: http://support.scrapinghub.com/
+.. _`knowledge base`: http://support.scrapinghub.com/forum/24895-knowledge-base/
 .. _`support forum`: http://support.scrapinghub.com/
