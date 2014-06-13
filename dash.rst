@@ -21,13 +21,12 @@ You can use the search bar to jump quickly to any project, user or Crawlera acco
    :width: 200px
 
 
+Jobs Dashboard
+==============
+
 The *Jobs* dashboard can be used to monitor and control your spiders.
 
 To schedule a spider for running select the spider in the `Schedule spider` box and click the `Schedule` button.
-
-
-Jobs Dashboard
-==============
 
 If you click on any project, you go to the *Jobs* dashboard page where you will see the spider jobs that are completed, running or pending to run.
 
