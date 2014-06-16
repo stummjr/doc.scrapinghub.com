@@ -59,9 +59,10 @@ in ``~/.scrapy.cfg`` to authenticate::
     [deploy]
     username = APIKEY
 
-Finally, you deploy your spider to Scrapinghub with::
+Finally, you deploy your spider to Scrapinghub with the following command
+(make sure you have `scrapyd installed`_)::
 
-    $ scrapy deploy
+    $ scrapyd-deploy
     Server response (200):
     {"status": "ok", "project": PROJECT_ID, "version": "1391115259", "spiders": 1}
 
@@ -76,6 +77,8 @@ Once the job has finished, or while it's running, you can click on the job to re
 
 .. image:: _static/sc-items-scraped.png
    :width: 500px
+
+.. _`scrapyd installed`: http://scrapyd.readthedocs.org/en/latest/install.html
 
 
 Dependencies and External Libraries
