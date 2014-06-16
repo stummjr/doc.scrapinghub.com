@@ -4,24 +4,20 @@
 API Basics
 ==========
 
-All API calls must be authenticated with a valid Scrapinghub API key, using
-`HTTP basic auth`_ or an ``apikey`` URL argument.
+All API calls must be authenticated with a valid Scrapinghub API key, using `HTTP basic auth`_ or an ``apikey`` URL argument.
 
-We provide `curl`_ examples to illustrate how to use the API.
+* using `HTTP basic auth`_::
 
-You can get your API at: http://dash.scrapinghub.com/account/
+    $ curl -u APIKEY: http://storage.scrapinghub.com/foo
 
-We highly recommend installing the `JSONView extension`_ (available for Firefox and Chrome) for visualizing API responses.
+* using URL argumet::
+
+    $ curl http://storage.scrapinghub.com/foo?apikey=APIKEY
+
+You can get your API key at: http://dash.scrapinghub.com/account/
 
 Using the HTTP API
 ==================
-
-Requests must be authenticated with a valid Scrapinghub API key using HTTP
-basic auth, for example::
-
-    $ curl -u APIKEY: http://storage.scrapinghub.com/...
-
-You can get your API at: http://dash.scrapinghub.com/account/
 
 Resources (items, logs, etc.) are identified by the path element of the URL. It
 has the format::
@@ -30,7 +26,10 @@ has the format::
 
 We call the ``projectid/spiderid/jobid/itemid`` path element the item 'key'.
 
-Passing the API key in a ``apikey`` URL argument is also supported.
+For each API, we provide `curl`_ examples to illustrate the usage.
+
+We highly recommend installing the `JSONView extension`_ (available for Firefox and Chrome) for visualizing API responses.
+
 
 Available APIs
 ==============
