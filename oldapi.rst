@@ -18,7 +18,7 @@ Retrieves scraped items of a job.
 
   * ``project`` *(required)* - the project's numeric ID
   * ``job`` or ``spider`` *(required)* - the job or spider to retrieve items from. If you specify a job, the items scraped on that job will be returned. If you specify a spider, the items scraped on the *last finished job* of that spider will be returned.
-  * ``count`` and ``offset`` - see :ref:`pagination`
+  * ``count`` and ``offset`` - see :ref:`old-pagination`
 
 *Examples:*
 
@@ -123,7 +123,7 @@ To retrieve spiders ``aspider`` and ``bspider`` in project ``123``::
 
     curl -u APIKEY: "https://dash.scrapinghub.com/api/spiders/list.json?project=123&spider=aspider&spider=bspider"
 
-.. _pagination:
+.. _old-pagination:
 
 Paginating API Results
 ======================

@@ -1,8 +1,8 @@
 .. _jobdata:
 
-=================
-Fetching Job Data
-=================
+==================
+Job Data Retrieval
+==================
 
 Each job that runs on Scrapinghub scrapes an arbitrary number of items that are
 automatically captured and stored in Scrapinghub built-in storage. These items
@@ -44,47 +44,8 @@ Get all items for spider 34::
 The spider can be omitted to get all items in the project and if the project
 is omitted then all items in the database are returned.
 
-For JSON and JSON list types, the results can have extra data added upon request, using
-the meta parameter, which may be repeated. The following values are available:
-
-=========       ===========
-parameter       description
-=========       ===========
-_key            unique key for the element
-_ts             timestamp in milliseconds when the item was added
-=========       ===========
-
-For example::
-
-    $ curl http://storage.scrapinghub.com/items/53/34/7?meta=_key&meta=_ts
-    {"_key":"1111111/1/1/0","_ts":1342078473363, ... }
-
-Note that if the data contains fields with the same name as the requested meta
-fields, they will both be output.
-
-Results can be paginated by supplying a `start` (or `startafter`) and a `count`
-parameter. The start parameter is the item key.
-
-Get 10 items, starting from item 20::
-
-    $ curl http://storage.scrapinghub.com/items/53/34/7?start=53/34/7/20&count=10
-
-Get 10 items, starting from item 20 in job 7, this will read job 8, 9, etc. if
-necessary::
-
-    $ curl http://storage.scrapinghub.com/items/53/34?start=53/34/7/20&count=10
-
-The `startafter` parameter starts from the next item following that key. This can
-sometimes be useful, for example, if you pass the key of the last item read.
-
-Specific items can be requested by providing an `index` parameter, which can be
-repeated to request multiple values::
-
-    $ curl http://storage.scrapinghub.com/items/53/34?index=3&index=10
-
-A random sample of results can be fetched by setting the `start` parameter to the
-keyword `random`. The `count` parameter specifies the size of the sample. This
-is limited to up to 20 results and does not work across multiple jobs.
+Pagination and meta parameters are supported. See :ref:`pagination` and
+:ref:`metapar`.
 
 A `nodata` parameter can be added to avoid fetching data. This can be useful,
 for example, when combined with the `meta` parameter if the metadata is all
@@ -203,6 +164,8 @@ following fields:
 
 * message (string) - the log message
 
+Pagination and meta parameters are supported. See :ref:`pagination` and
+:ref:`metapar`.
 
 .. _requests-api:
 
@@ -217,8 +180,10 @@ Here is an example of reading data::
     $ curl http://storage.scrapinghub.com/requests/53/34/7
     {"parent":0,"duration":12,"status":200,"method":"GET","rs":1024,"url":"http://scrapy.org/","time":1351521736957}
 
-Data can be read in json, or jsonlines format. Pagination and filtering is supported. However,
-`method` and `time` fields are not yet implemented.
+Data can be read in json, or jsonlines format. Pagination and meta parameters
+are supported. See :ref:`pagination` and :ref:`metapar`.
+
+.. note:: ``method`` and ``time`` fields are not yet implemented.
 
 Currently, the only stats traced are the count of items inserted and the bytes occupied::
 
