@@ -117,8 +117,9 @@ is limited to up to 20 results and does not work across multiple jobs.
 Meta parameters
 ===============
 
-For JSON and JSON list types, the results can have extra data added upon request, using
-the meta parameter, which may be repeated. The following values are available:
+On many APIs, for JSON and JSON list types, the results can have extra data
+added upon request, using the ``meta`` parameter, which may be repeated. The
+following values are available:
 
 =========       ===========
 parameter       description
