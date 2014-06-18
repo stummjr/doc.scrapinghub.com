@@ -1,7 +1,7 @@
 .. _shub:
 
 ===================
-Command line client
+Command Line Client
 ===================
 
 The Scrapinghub command line client is called ``shub`` and it can be used to
