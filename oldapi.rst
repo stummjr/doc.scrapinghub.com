@@ -18,7 +18,7 @@ Retrieves scraped items of a job.
 
   * ``project`` *(required)* - the project's numeric ID
   * ``job`` or ``spider`` *(required)* - the job or spider to retrieve items from. If you specify a job, the items scraped on that job will be returned. If you specify a spider, the items scraped on the *last finished job* of that spider will be returned.
-  * ``count`` and ``offset`` - see :ref:`old-pagination`
+  * ``count`` - maximum number of records to return
 
 *Examples:*
 
@@ -79,7 +79,7 @@ Retrieves the log of a job.
   * ``project`` *(required)* - the project's numeric ID
   * ``job`` *(required)* - the job to retrieve items from
   * ``level`` - the minimum log level to return, e.g. DEBUG, WARNING, ERROR, etc. (if not given, returns all log levels)
-  * ``count`` and ``offset`` - see :ref:`pagination`
+  * ``count`` - maximum number of records to return
 
 *Example:*
 
@@ -122,14 +122,3 @@ To retrieve all spiders in project ``123``::
 To retrieve spiders ``aspider`` and ``bspider`` in project ``123``::
 
     curl -u APIKEY: "https://dash.scrapinghub.com/api/spiders/list.json?project=123&spider=aspider&spider=bspider"
-
-.. _old-pagination:
-
-Paginating API Results
-======================
-
-All API calls that return multiple items in JSON format are limited to return 100 items per call, at most. These API calls support two parameters that can be used for paginating the results. Those are:
-
-* ``count`` - limit the number of results to return: negative counts are supported as well making it possible to return the *latest* entries, instead of the first ones
-* ``offset`` - a number of results to skip from the beginning
-
