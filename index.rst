@@ -15,6 +15,7 @@ Table of Contents
 
    plans
    dash
+   shub
    scrapy-cloud
    api
    jobs

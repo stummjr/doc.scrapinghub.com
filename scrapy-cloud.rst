@@ -40,13 +40,14 @@ For more information about Scrapy please refer to the `Scrapy documentation`_.
 Deploying a Scrapy Spider
 =========================
 
+.. note:: You will need the :ref:`Scrapinghub command line client <shub>` to deploy projects to Scrapy Cloud, so install it if you haven't done it yet.
+
 The next step is to edit ``scrapy.cfg`` file of your project and configure Scrapinghub as deployment target::
 
     [settings]
     default = companies.settings
 
     [deploy]
-    url = http://dash.scrapinghub.com/api/scrapyd/
     project = PROJECT_ID
 
 ``PROJECT_ID`` is the numeric project ID which you can find in Scrapinghub URL:
@@ -59,13 +60,11 @@ in ``~/.scrapy.cfg`` to authenticate::
     [deploy]
     username = APIKEY
 
-Finally, you deploy your spider to Scrapinghub with the following command
-(make sure you have `scrapyd installed`_)::
+Finally, you deploy your spider to Scrapinghub with the following command::
 
-    $ scrapyd-deploy
+    $ shub deploy
     Server response (200):
     {"status": "ok", "project": PROJECT_ID, "version": "1391115259", "spiders": 1}
-
 
 Now you should go to your project page and schedule the spider to run:
 
@@ -77,8 +76,6 @@ Once the job has finished, or while it's running, you can click on the job to re
 
 .. image:: _static/sc-items-scraped.png
    :width: 500px
-
-.. _`scrapyd installed`: http://scrapyd.readthedocs.org/en/latest/install.html
 
 
 Dependencies and External Libraries
