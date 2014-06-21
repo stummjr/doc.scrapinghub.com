@@ -16,7 +16,7 @@ Collections API
 The Collections API allows storing arbitrary objects in named sets. For example::
 
     $ curl -X POST -d '{"_key": "foo", "value": "bar"}' \
-        http://storage.scrapinghub.com/collections/78/s/my_collection
+        https://storage.scrapinghub.com/collections/78/s/my_collection
 
 Posts an object to the 'my_collection' collection. A string _key field must be specified and
 multiple objects may be posted when separated by newlines.
@@ -35,18 +35,18 @@ vcs     versioned cache store   Multiple copies are retained, and each one expir
 
 Individual items can be read directly (assuming the key is a string)::
 
-    $ curl http://storage.scrapinghub.com/collections/78/s/my_collection/foo
+    $ curl https://storage.scrapinghub.com/collections/78/s/my_collection/foo
     {"value":"bar"}
 
 Or they can be retrieved using a key parameter, which can be present multiple times::
 
-    $ curl http://storage.scrapinghub.com/collections/78/s/my_collection?key=foo1&key=foo2
+    $ curl https://storage.scrapinghub.com/collections/78/s/my_collection?key=foo1&key=foo2
     {"value":"bar1"}
     {"value":"bar2"}
 
 and the value of an item field can also be retrieved (text & html mime types supported)::
 
-    $ curl http://storage.scrapinghub.com/collections/78/s/my_collection/foo/value
+    $ curl https://storage.scrapinghub.com/collections/78/s/my_collection/foo/value
     bar
 
 Pagination and meta parameters are supported. See :ref:`pagination` and
@@ -55,21 +55,21 @@ Pagination and meta parameters are supported. See :ref:`pagination` and
 However, there is an additional filter that allows efficient filtering on key
 prefixes::
 
-    $ curl http://storage.scrapinghub.com/collections/78/s/my_collection?prefix=f
+    $ curl https://storage.scrapinghub.com/collections/78/s/my_collection?prefix=f
     {"value":"bar"}
 
 Prefix filters should be used where possible as they use indexes, unlike other filters. Prefixes may be repeated and a `prefixcount` parameter may be used to specify the maximum number of values to return for each prefix.
 
 You can also filter by records updated since a given timestamp::
 
-    $ curl http://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000
+    $ curl https://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000
     {"value":"bar"}
 
 A common pattern is to download all changes between two timestamps using `startts` and `endts` parameters and the current timestamp can first be retrieved if necessary::
 
-    $ curl http://storage.scrapinghub.com/system/ts
+    $ curl https://storage.scrapinghub.com/system/ts
     1403039369570
-    $ curl 'http://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000&endts=1403039369570'
+    $ curl 'https://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000&endts=1403039369570'
     {"value":"bar"}
 
 Timestamp filters are best used when fetching a large number of records and may have poor performance when selecting a very small number of records from a large collection.
