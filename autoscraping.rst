@@ -31,7 +31,7 @@ You can also discover that in some cases the spider may consume a lot of time cr
 
 This section has been a basic (but essential) overview of the general concepts that you must know in order to better understand a more detailed description that will follow in the next sections. At the end of this document there is a list of common good practices for getting best results with less effort.
 
-Also please take a time to watch the AS tour video in http://scrapinghub.com/autoscraping.html before continuing, it will be of great help.
+Also please take a time to watch the AS tour video in http://scrapinghub.com/autoscraping before continuing, it will be of great help.
 
 
 How Templates Are Used in the Extraction Process
