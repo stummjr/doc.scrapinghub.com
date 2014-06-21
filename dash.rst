@@ -62,20 +62,60 @@ The job outcome indicates whether the job succeeded or failed. By default, it co
 .. image:: _static/dash-outcome.png
    :width: 500px
 
+Here is a summary of the Scrapinghub built-in job outcomes. Click on the name
+for more details about the outcome.
 
-These are the most common job outcomes and their meanings:
+==========================   ===============================================================
+Outcome                      Meaning
+==========================   ===============================================================
+`finished`_                  the job finished successfully
+`failed`_                    the job failed to start
+`shutdown`_                  the job was cancelled manually
+`cancel_timeout`_            the job was cancelled due to inactivity
+`memusage_exceeded`_         the job was cancelled due to high memory usage
+`slybot_fewitems_scraped`_   the job was not scraping enough data (:doc:`autoscraping` specific)
+==========================   ===============================================================
 
-* ``finished`` - the job finished successfully (however, it may contain errors)
+finished
+--------
 
-* ``shutdown`` - the job was cancelled, either from the Dash or due to Scrapinghub internal maintenance
+The job finished successfully. However, it may have produced errors, which you
+can inspect through the logs.
 
-* ``failed`` - the job failed for some reason. The most likely situation is that the crawling process failed to start due to a bug in the project's code. Check the last lines of the job log for more information.
+failed
+------
 
-* ``cancel_timeout`` - the job was closed because either it has failed to shutdown gracefully after cancellation (taking more than 5 minutes) or it hasn't been producing anything (not even log entries) for an hour
+The job failed to start, typically due to a bug in the spider's code. Check the
+last lines of the job log for more information.
 
-* ``memusage_exceeded`` - the memory consumed by the job has exceeded the limit assigned by default (512 Mb), which caused the job to be terminated. This typically happens with spiders that don't use memory efficiently (keeping state or references that grow quickly over time) and it's most often manifested on long spider runs of many pages. This outcome is triggered by Scrapy's `Memory Usage Extension`_.
+shutdown
+--------
 
-* ``slybot_fewitems_scraped`` - this outcome is Autoscraping specific, see :doc:`autoscraping`.
+The job was cancelled manually, either from :ref:`Dash <dash>` or the :ref:`API
+<api>`. Incidentally, this is the same close reason used by Scrapy when
+terminating a spider pressing Ctrl-C.
+
+cancel_timeout
+--------------
+
+The job was cancelled because either it has failed to shutdown gracefully after
+cancellation (taking more than 5 minutes) or it hasn't been producing anything
+(not even log entries) for an hour.
+
+memusage_exceeded
+-----------------
+
+The job was consuming too much memory, exceeding the limit (512 Mb by default),
+and it was cancelled by the system. This typically happens with spiders that
+don't use memory efficiently (keeping state or references that grow quickly
+over time) and it's most often manifested on long spider runs of many pages.
+This outcome is triggered by Scrapy's `Memory Usage Extension`_.
+
+slybot_fewitems_scraped
+-----------------------
+
+The job was cancelled because it wasn't scraping enough new data. This is used
+:ref:`autoscraping` to prevent infinite crawling loops.
 
 Items Browser
 =============
