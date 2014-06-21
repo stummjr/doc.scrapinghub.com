@@ -14,7 +14,7 @@ All API calls must be authenticated with a valid Scrapinghub API key, using `HTT
 
     $ curl https://storage.scrapinghub.com/foo?apikey=APIKEY
 
-You can get your API key at: http://dash.scrapinghub.com/account/
+You can get your API key at: https://dash.scrapinghub.com/account/
 
 Using the HTTP API
 ==================

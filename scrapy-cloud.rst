@@ -14,7 +14,7 @@ This assumes you have Scrapy already installed, otherwise please refer to the `S
 
 For this example, we will build a spider to scrape the *CrunchBase* directory. For simplicity sake, we are going to restrict it to the *Pets* category:
 
-    http://www.crunchbase.com/companies?q=pets
+    https://www.crunchbase.com/companies?q=pets
 
 We begin by creating a Scrapy project which we will call ``companies``::
 
@@ -164,6 +164,6 @@ To list all eggs in project ``123``::
 
 .. _Scrapy: http://scrapy.org
 .. _Scrapy installation guide: http://doc.scrapy.org/en/latest/intro/install.html
-.. _account page: http://dash.scrapinghub.com/account/
+.. _account page: https://dash.scrapinghub.com/account/
 .. _Scrapy documentation: http://doc.scrapy.org/
 .. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
