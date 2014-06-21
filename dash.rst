@@ -71,10 +71,11 @@ These are the most common job outcomes and their meanings:
 
 * ``failed`` - the job failed for some reason. The most likely situation is that the crawling process failed to start due to a bug in the project's code. Check the last lines of the job log for more information.
 
-* ``killed`` - the job was killed by Scrapinghub because it failed to respond or because it failed to shutdown gracefully
+* ``cancel_timeout`` - the job was closed because either it has failed to shutdown gracefully after cancellation (taking more than 5 minutes) or it hasn't been producing anything (not even log entries) for an hour
 
-* ``slybot_fewitems_scraped`` - this is an autoscraping specific outcome. Please refer to the :doc:`autoscraping` help document.
+* ``memusage_exceeded`` - the memory consumed by the job has exceeded the limit assigned by default (512 Mb), which caused the job to be terminated. This typically happens with spiders that don't use memory efficiently (keeping state or references that grow quickly over time) and it's most often manifested on long spider runs of many pages. This outcome is triggered by Scrapy's `Memory Usage Extension`_.
 
+* ``slybot_fewitems_scraped`` - this outcome is autoscraping specific, see :doc:`autoscraping`.
 
 Items Browser
 =============
@@ -97,3 +98,4 @@ This covers the basics of the dashboard, but there is much more. Feel free to pl
 .. _`Scrapinghub dashboard`: https://dash.scrapinghub.com/
 .. _`knowledge base`: http://support.scrapinghub.com/forum/24895-knowledge-base/
 .. _`support forum`: http://support.scrapinghub.com/
+.. _`Memory Usage Extension`: http://doc.scrapy.org/en/latest/topics/extensions.html#module-scrapy.contrib.memusage
