@@ -17,17 +17,17 @@ that they are posted. It supports a count parameter to get the most recent N pos
 
 For example::
 
-    $ curl -d '{"foo": 2}' http://storage.scrapinghub.com/activity/1111111/
-    $ curl -d '{"foo": 3}' http://storage.scrapinghub.com/activity/1111111/
-    $ curl -d '{"foo": 4}' http://storage.scrapinghub.com/activity/1111111/
-    $ curl http://storage.scrapinghub.com/activity/1111111/?count=2
+    $ curl -d '{"foo": 2}' https://storage.scrapinghub.com/activity/1111111/
+    $ curl -d '{"foo": 3}' https://storage.scrapinghub.com/activity/1111111/
+    $ curl -d '{"foo": 4}' https://storage.scrapinghub.com/activity/1111111/
+    $ curl https://storage.scrapinghub.com/activity/1111111/?count=2
     {"foo":4}
     {"foo":3}
 
 You can also get activity across multiple projects::
 
-    $ curl -d '{"bar": 1}' http://storage.scrapinghub.com/activity/2222222/
-    $ curl http://storage.scrapinghub.com/activity/projects/?pcount=1&meta=_project&p=1111111&p=2222222
+    $ curl -d '{"bar": 1}' https://storage.scrapinghub.com/activity/2222222/
+    $ curl https://storage.scrapinghub.com/activity/projects/?pcount=1&meta=_project&p=1111111&p=2222222
     {"_project": 2222222, "bar": 1}
     {"_project": 1111111, "foo": 4}
 

@@ -52,7 +52,7 @@ The next step is to edit ``scrapy.cfg`` file of your project and configure Scrap
 
 ``PROJECT_ID`` is the numeric project ID which you can find in Scrapinghub URL:
 
-    http://dash.scrapinghub.com/p/PROJECT_ID/...
+    https://dash.scrapinghub.com/p/PROJECT_ID/...
 
 Then you should put your API key (which you can get from your `Account page`_)
 in ``~/.scrapy.cfg`` to authenticate::

@@ -8,11 +8,11 @@ All API calls must be authenticated with a valid Scrapinghub API key, using `HTT
 
 * using `HTTP basic auth`_::
 
-    $ curl -u APIKEY: http://storage.scrapinghub.com/foo
+    $ curl -u APIKEY: https://storage.scrapinghub.com/foo
 
 * using URL argumet::
 
-    $ curl http://storage.scrapinghub.com/foo?apikey=APIKEY
+    $ curl https://storage.scrapinghub.com/foo?apikey=APIKEY
 
 You can get your API key at: http://dash.scrapinghub.com/account/
 
@@ -93,12 +93,12 @@ and a `count` parameter. The start parameter is the item key.
 
 Get 10 items, starting from item 20::
 
-    curl http://storage.scrapinghub.com/items/53/34/7?start=53/34/7/20&count=10
+    curl https://storage.scrapinghub.com/items/53/34/7?start=53/34/7/20&count=10
 
 Get 10 items, starting from item 20 in job 7, this will read job 8, 9, etc. if
 necessary::
 
-    curl http://storage.scrapinghub.com/items/53/34?start=53/34/7/20&count=10
+    curl https://storage.scrapinghub.com/items/53/34?start=53/34/7/20&count=10
 
 The `startafter` parameter starts from the next item following that key. This can
 sometimes be useful, for example, if you pass the key of the last item read.
@@ -106,7 +106,7 @@ sometimes be useful, for example, if you pass the key of the last item read.
 Specific items can be requested by providing an `index` parameter, which can be
 repeated to request multiple values::
 
-    curl http://storage.scrapinghub.com/items/53/34?index=3&index=10
+    curl https://storage.scrapinghub.com/items/53/34?index=3&index=10
 
 A random sample of results can be fetched by setting the `start` parameter to the
 keyword `random`. The `count` parameter specifies the size of the sample. This
@@ -130,7 +130,7 @@ _ts             timestamp in milliseconds when the item was added
 
 For example::
 
-    $ curl http://storage.scrapinghub.com/items/53/34/7?meta=_key&meta=_ts
+    $ curl https://storage.scrapinghub.com/items/53/34/7?meta=_key&meta=_ts
     {"_key":"1111111/1/1/0","_ts":1342078473363, ... }
 
 Note that if the data contains fields with the same name as the requested meta
