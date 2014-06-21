@@ -27,7 +27,7 @@ In most cases you would need to perform some improvements in the templates, or e
 
 The running time of jobs is limited by predefined criterias. This is a very important mechanism responsible for avoiding infinite crawling loop traps under certain conditions. The limitation is required for checking the number of items extracted each fixed period of time. If this count does not reach a given threshold, the job will be automatically closed with status ``slybot_fewitems_scraped``. See `Job Outcomes`_ for details.
 
-You can also discover that in some cases the spider may consume a lot of time crawling pages that you don't need, thus reducing the items/pages ratio and, therefore, the spider's efficiency. By default, the autoscraping spider extracts every link it finds, and follows it. So a very important feature in spider development is *Link* filtering. By avoiding unnecessary pages the crawling will complete in less time and the items/pages ratio will increase, reducing the risk of a premature stop of the job as a result of an unaccomplished rate threshold.
+You can also discover that in some cases the spider may consume a lot of time crawling pages that you don't need, thus reducing the items/pages ratio and, therefore, the spider's efficiency. By default, the Autoscraping spider extracts every link it finds, and follows it. So a very important feature in spider development is *Link* filtering. By avoiding unnecessary pages the crawling will complete in less time and the items/pages ratio will increase, reducing the risk of a premature stop of the job as a result of an unaccomplished rate threshold.
 
 This section has been a basic (but essential) overview of the general concepts that you must know in order to better understand a more detailed description that will follow in the next sections. At the end of this document there is a list of common good practices for getting best results with less effort.
 
@@ -54,7 +54,7 @@ The most important parameters are the type of data and two flags, *Required* and
 Field Data Type
 ---------------
 
-The type of data specifies basic extraction patterns that the corresponding target region in the selected page must fulfill in order to actually be extracted. This feature helps the main extraction algorithm to spot the correct region in the page and resolve possible ambiguities. Additionally, it contains specifications on how to render the field value in the item browser, a feature that is used also when coping with code spiders (or manual spiders *MS*, as opposed to autoscraping spiders *AS*), which are out of the scope of this tutorial. Let's enumerate the available item types:
+The type of data specifies basic extraction patterns that the corresponding target region in the selected page must fulfill in order to actually be extracted. This feature helps the main extraction algorithm to spot the correct region in the page and resolve possible ambiguities. Additionally, it contains specifications on how to render the field value in the item browser, a feature that is used also when coping with code spiders (or manual spiders *MS*, as opposed to Autoscraping spiders *AS*), which are out of the scope of this tutorial. Let's enumerate the available item types:
 
 geopoint
   This is a special field type with no special extraction pattern, only serving for the purpose of rendering a tuple of latitude/longitude. This type is not currently supported in AS and only used for rendering purposes in MS, so you can safely ignore this one.
@@ -156,7 +156,7 @@ If you add a filter to follow only the pattern ``/products/``, you will exclude 
 Annotating a Template
 =====================
 
-The process of annotating a template consists in annotating elements on it, that is, marking elements in the template and mapping them to a given item field. At its most basical level, the autoscraping extraction involves trying to match the annotated elements in the templates to the target pages, extract the data from the matching regions, and assign it to the field specified in the corresponding annotation. The process is repeated with all the annotations in the template, and the final item is built using all the extracted data.
+The process of annotating a template consists in annotating elements on it, that is, marking elements in the template and mapping them to a given item field. At its most basical level, the Autoscraping extraction involves trying to match the annotated elements in the templates to the target pages, extract the data from the matching regions, and assign it to the field specified in the corresponding annotation. The process is repeated with all the annotations in the template, and the final item is built using all the extracted data.
 
 The usual way to annotate an element is by clicking on it. An annotation window will pop up enabling the user to set up various options: where the data must be extracted from (the text content of an element, or some of its attributes), the field that the extracted data must be assigned to, and other options that will be described later in this section and the following ones.
 
@@ -321,7 +321,7 @@ Of course, this method will only be useful if you can annotate a region that has
 Job Outcomes
 ============
 
-Apart from generic job outcomes that indicate a reason of a job termination (see :doc:`dash`), there is an autoscraping specific outcome, ``slybot_fewitems_scraped``.
+Apart from generic job outcomes that indicate a reason of a job termination (see :doc:`dash`), there is an Autoscraping specific outcome, ``slybot_fewitems_scraped``.
 
 AS spiders have a safety measure to avoid infinite crawling loops: if the number of scraped items did not reach a minimum threshold over a given period of time, the job is closed. By default, the period is 3600 seconds and the minimum number of items scraped during this period must be 200. Both values are controlled by the settings ``SLYCLOSE_SPIDER_CHECK_PERIOD`` (seconds) and ``SLYCLOSE_SPIDER_PERIOD_ITEMS`` (minimum number of items scraped during the defined period).
 

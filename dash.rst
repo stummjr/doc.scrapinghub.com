@@ -75,7 +75,7 @@ These are the most common job outcomes and their meanings:
 
 * ``memusage_exceeded`` - the memory consumed by the job has exceeded the limit assigned by default (512 Mb), which caused the job to be terminated. This typically happens with spiders that don't use memory efficiently (keeping state or references that grow quickly over time) and it's most often manifested on long spider runs of many pages. This outcome is triggered by Scrapy's `Memory Usage Extension`_.
 
-* ``slybot_fewitems_scraped`` - this outcome is autoscraping specific, see :doc:`autoscraping`.
+* ``slybot_fewitems_scraped`` - this outcome is Autoscraping specific, see :doc:`autoscraping`.
 
 Items Browser
 =============
