@@ -115,7 +115,7 @@ slybot_fewitems_scraped
 -----------------------
 
 The job was cancelled because it wasn't scraping enough new data. This is used
-:ref:`autoscraping` to prevent infinite crawling loops.
+in :ref:`autoscraping` to prevent infinite crawling loops.
 
 Items Browser
 =============
