@@ -29,9 +29,13 @@ Items API
 Reading items
 -------------
 
-The data can be retrieved by performing a GET::
+Items written by a job can be retrieved by performing a GET::
 
     $ curl https://storage.scrapinghub.com/items/53/34/7
+
+This retrieves all items for job id 53/34/7, that is project 57, spider 34 and
+run 7. Items are returned in item key order, which is the same as the order in
+which they were written.
 
 Get the first item in that job::
 
@@ -41,8 +45,9 @@ Get all items for spider 34::
 
     $ curl https://storage.scrapinghub.com/items/53/34
 
-The spider can be omitted to get all items in the project and if the project
-is omitted then all items in the database are returned.
+The spider can be omitted to get all items in the project. Items
+are returned grouped by spider, then job and in the order in which
+they were written within that job.
 
 Pagination and meta parameters are supported. See :ref:`pagination` and
 :ref:`metapar`.
