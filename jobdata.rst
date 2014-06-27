@@ -232,7 +232,7 @@ A job key can be used with the items, logs or requests APIs to retrieve data, fo
 
     $ curl https://storage.scrapinghub.com/items/53/7/81
 
-will get the items from the most recently finsihed job.
+will get the items from the most recently finished job.
 
 We recommend storing the key of the most recently finished job (53/7/81 in our example) along with the downloaded data. To update the dataset later, it is possible to list jobs, stopping at the previously downloaded job::
 
