@@ -219,7 +219,7 @@ Data is inserted by posting json lists::
 Listing Jobs
 ============
 
-It is often convenient to consume data from jobs once they finish running. The jobq API can provide an ordered list of finished jobs keys, with the most recently finished first::
+It is often convenient to consume data from jobs once they finish running. The jobq API can provide an ordered list of finished job keys, with the most recently finished first::
 
     $ curl https://storage.scrapinghub.com/jobq/53/list
     {"key":"53/7/81","ts":1397762393489}
@@ -228,7 +228,7 @@ It is often convenient to consume data from jobs once they finish running. The j
     {"key":"53/7/77","ts":1393972734215}
     ...
 
-The job key can be used with the items, logs or requests APIs to retrieve data, for example::
+A job key can be used with the items, logs or requests APIs to retrieve data, for example::
 
     $ curl https://storage.scrapinghub.com/items/53/7/81
 
@@ -243,7 +243,7 @@ We recommend storing the key of the most recently finished job (53/7/81 in our e
 which retrieves all jobs that have finished since that job.
 
 
-Ts is the timestamp at which the job was added to the finished queue. It is also possible to return jobs finished between two timestamps::
+Ts is the timestamp at which the job was added to the finished queue. It is possible to return jobs finished between two timestamps::
 
     $ curl 'https://storage.scrapinghub.com/jobq/53/list?startts=1359774955431&endts=1359774955440'
     {"key":"53/6/7","ts":1359774955439}
