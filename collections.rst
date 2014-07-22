@@ -2,26 +2,26 @@
 Collections
 ===========
 
-Scrapinghub Collections provide a way to store arbitrary number of records indexed by
+Scrapinghub's *Collections* provide a way to store an arbitrary number of records indexed by
 a key. They're often used by Scrapinghub projects as a single place to write
 information from multiple scraping jobs.
 
-The Collections API is described below.
+The :ref:`collections-api` is described below.
 
 .. _collections-api:
 
 Collections API
 ---------------
 
-The Collections API allows storing arbitrary objects in named sets. For example::
+The *Collections API* allows storing arbitrary objects in named sets. For example::
 
     $ curl -X POST -d '{"_key": "foo", "value": "bar"}' \
         https://storage.scrapinghub.com/collections/78/s/my_collection
 
-Posts an object to the 'my_collection' collection. A string _key field must be specified and
+Posts an object to the ``my_collection`` collection. A string ``_key`` field must be specified and
 multiple objects may be posted when separated by newlines.
 
-In the above example, the '/s/' in the path represents the collection type. The following
+In the above example, the ``/s/`` in the path represents the collection type. The following
 collection types are available:
 
 ====    =====================   ================================================================
@@ -44,12 +44,12 @@ Or they can be retrieved using a key parameter, which can be present multiple ti
     {"value":"bar1"}
     {"value":"bar2"}
 
-and the value of an item field can also be retrieved (text & html mime types supported)::
+And the value of an item field can also be retrieved (text & HTML MIME types supported)::
 
     $ curl https://storage.scrapinghub.com/collections/78/s/my_collection/foo/value
     bar
 
-Pagination and meta parameters are supported. See :ref:`pagination` and
+Pagination and meta parameters are supported, see :ref:`pagination` and
 :ref:`metapar`.
 
 However, there is an additional filter that allows efficient filtering on key
@@ -58,14 +58,14 @@ prefixes::
     $ curl https://storage.scrapinghub.com/collections/78/s/my_collection?prefix=f
     {"value":"bar"}
 
-Prefix filters should be used where possible as they use indexes, unlike other filters. Prefixes may be repeated and a `prefixcount` parameter may be used to specify the maximum number of values to return for each prefix.
+Prefix filters should be used where possible as they use indexes, unlike other filters. Prefixes may be repeated and a ``prefixcount`` parameter may be used to specify the maximum number of values to return for each prefix.
 
 You can also filter by records updated since a given timestamp::
 
     $ curl https://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000
     {"value":"bar"}
 
-A common pattern is to download all changes between two timestamps using `startts` and `endts` parameters and the current timestamp can first be retrieved if necessary::
+A common pattern is to download all changes between two timestamps using ``startts`` and ``endts`` parameters and the current timestamp can first be retrieved if necessary::
 
     $ curl https://storage.scrapinghub.com/system/ts
     1403039369570

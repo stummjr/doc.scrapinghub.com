@@ -2,18 +2,18 @@
 Activity Log
 ============
 
-Scrapinghub keeps track of certain project event such as when spiders are run
+Scrapinghub keeps track of certain project events such as when spiders are run
 or new spiders are deployed. This activity log can be accessed in :doc:`dash` by
-clicking on Activity in the left sidebar or programmatically through the
-Activity API described below.
+clicking on **Activity** in the left sidebar, or programmatically through the
+:ref:`activity-api` described below.
 
 .. _activity-api:
 
 Activity API
 ------------
 
-The Activity API collects messages for each project and returns them in reverse order
-that they are posted. It supports a count parameter to get the most recent N posts.
+The *Activity API* collects messages for each project and returns them in reverse order
+that they were posted. It supports a ``count`` parameter to get the most recent N posts.
 
 For example::
 
@@ -31,5 +31,5 @@ You can also get activity across multiple projects::
     {"_project": 2222222, "bar": 1}
     {"_project": 1111111, "foo": 4}
 
-As you can see, the count parameter is per project. A `p` parameter, which can be repeated, may be used to specify the projects and the meta parameter `_project` can be used to put the project id in the results. The number of results can be controlled by a `count` parameter and a `pcount` parameter limits the number of results per project.
+As you can see, the ``count`` parameter is per project. A ``p`` parameter, which can be repeated, may be used to specify the projects, and the meta parameter ``_project`` can be used to put the project ID in the results. The number of results can be controlled by a ``count`` parameter, and the number of results per project can be limited by ``pcount`` parameter.
 

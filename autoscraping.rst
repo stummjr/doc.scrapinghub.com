@@ -17,7 +17,7 @@ The general procedure for creating an autospider is the following one:
 
     #. Create and configure the spider (minimum configuration requires a name for the spider and the starting URL).
     #. Run it.
-    #. Go to captured pages (see *Pages* tab of the job) and find the one which you need to scrape data from.
+    #. Go to captured pages (see **Requests** tab of the job) and find the one which you need to scrape data from.
     #. Add and annotate a template.
     #. Go back to captured pages and check how items are extracted from them.
     #. Eventually improve current templates and/or jump to step 4.
@@ -31,7 +31,7 @@ You can also discover that in some cases the spider may consume a lot of time cr
 
 This section has been a basic (but essential) overview of the general concepts that you must know in order to better understand a more detailed description that will follow in the next sections. At the end of this document there is a list of common good practices for getting best results with less effort.
 
-Also please take a time to watch the AS tour video in http://scrapinghub.com/autoscraping before continuing, it will be of great help.
+Also please take a time to watch the *AS* tour video in http://scrapinghub.com/autoscraping before continuing, it will be of great help.
 
 
 How Templates Are Used in the Extraction Process
@@ -45,11 +45,11 @@ If your spider has more than one template, the templates are tried sequentially 
 Item Fields
 ===========
 
-Before adding the first spider, you must carefully design the set of item fields you will need. AS might not work at all if the design is wrong.
+Before adding the first spider, you must carefully design the set of item fields you will need. *AS* might not work at all if the design is wrong.
 
-You can create as many different item types as you need for different spiders of your project. Item types can be added, edited, and removed in the **Items** subsection of **Settings** section. When you add a new item, it will come with *url* field already defined by default, because AS backend automatically adds it to every scraped item in a job. The specifications of this field are not editable, because it already has the necessary flags and type specifications.
+You can create as many different item types as you need for different spiders of your project. Item types can be added, edited, and removed in the **Items** subsection of **Settings** section. When you add a new item, it will come with ``url`` field already defined by default, because *AS* backend automatically adds it to every scraped item in a job. The specifications of this field are not editable, because it already has the necessary flags and type specifications.
 
-The most important parameters are the type of data and two flags, *Required* and *Vary*.
+The most important parameters are the type of data and two flags, **Required** and **Vary**.
 
 Field Data Type
 ---------------
@@ -57,7 +57,7 @@ Field Data Type
 The type of data specifies basic extraction patterns that the corresponding target region in the selected page must fulfill in order to actually be extracted. This feature helps the main extraction algorithm to spot the correct region in the page and resolve possible ambiguities. Additionally, it contains specifications on how to render the field value in the item browser, a feature that is used also when coping with code spiders (or manual spiders *MS*, as opposed to Autoscraping spiders *AS*), which are out of the scope of this tutorial. Let's enumerate the available item types:
 
 geopoint
-  This is a special field type with no special extraction pattern, only serving for the purpose of rendering a tuple of latitude/longitude. This type is not currently supported in AS and only used for rendering purposes in MS, so you can safely ignore this one.
+  This is a special field type with no special extraction pattern, only serving for the purpose of rendering a tuple of latitude/longitude. This type is not currently supported in *AS* and only used for rendering purposes in *MS*, so you can safely ignore this one.
 
 image
   This field type demands the spotted HTML code to fulfill the format of an image URL and renders as an image in the item browser.
@@ -89,25 +89,25 @@ Required
   When a field is marked as **Required**, it means that an extracted item must contain the field in order to be actually extracted. We will return to this concept in the next section.
 
 Vary
-  Autoscraping has a duplicate item detection system which will reject any item that has already been scraped. In order to accomplish this task the duplicates detector needs to know which fields must be compared in order to effectively find duplicate items. If a field is marked as **Vary**, it is not included in the checks to detect duplicates. This means that two items that have the same data in all fields except those marked as **Vary**, will be considered identical and, therefore, the second scraped item will be dropped. Or, to put it another way, when you mark a field as **Vary** you are declaring that the same item may be found with different values in this field. It is for this reason that *url* field must always be marked as **Vary** (and the user interface does not allow to unselect it): if it wasn't a **Vary** field, then items from different URLs would always be considered different and the duplicates detector would never work.
+  Autoscraping has a duplicate item detection system which will reject any item that has already been scraped. In order to accomplish this task the duplicates detector needs to know which fields must be compared in order to effectively find duplicate items. If a field is marked as **Vary**, it is not included in the checks to detect duplicates. This means that two items that have the same data in all fields except those marked as **Vary**, will be considered identical and, therefore, the second scraped item will be dropped. Or, to put it another way, when you mark a field as **Vary** you are declaring that the same item may be found with different values in this field. It is for this reason that ``url`` field must always be marked as **Vary** (and the user interface does not allow to unselect it): if it wasn't a **Vary** field, then items from different URLs would always be considered different and the duplicates detector would never work.
 
-  Let's illustrate with an example. Suppose we have an item type with fields *name*, *price*, *description*, *category* and *url*, while the fields *category* and *url* are marked as **Vary**. Now suppose that the Autoscraping bot has scraped the following item first:
+  Let's illustrate with an example. Suppose we have an item type with fields ``name``, ``price``, ``description``, ``category`` and ``url``, while the fields ``category`` and ``url`` are marked as **Vary**. Now suppose that the Autoscraping bot has scraped the following item first:
 
-  * *name*: Louis XIV Table
-  * *price*: 1000.00
-  * *description*: Very high quality Louis XIV style table
-  * *category*: Tables
-  * *url*: \http://www.furniture.com/tables/louis-xiv-table.html
+  * ``name``: Louis XIV Table
+  * ``price``: 1000.00
+  * ``description``: Very high quality Louis XIV style table
+  * ``category``: Tables
+  * ``url``: \http://www.furniture.com/tables/louis-xiv-table.html
 
   Then later it extracts the following item in a different place on the site:
 
-  * *name*: Louis XIV Table
-  * *price*: 1000.00
-  * *description*: Very high quality Louis XIV style table
-  * *category*: Living Room
-  * *url*: \http://www.furniture.com/living-room/louis-xiv-table.html
+  * ``name``: Louis XIV Table
+  * ``price``: 1000.00
+  * ``description``: Very high quality Louis XIV style table
+  * ``category``: Living Room
+  * ``url``: \http://www.furniture.com/living-room/louis-xiv-table.html
 
-  It is, of course, the same product, but the specific map of the site allows it to appear in two different places under different product categories. Because *url* and *category* are marked as **Vary**, only *name*, *price* and *description* are checked by the duplicates detector. Since all of these fields have the same value in both items, the second one is considered a duplicate of the first, and so it is rejected. Note that if *url* and *category* were not marked as **Vary**, then the duplicates detection system would consider them as different products, and so both would be generated. The term *Vary* is used to indicate that fields marked in this way may vary their values, still allowing items to be treated as identical.
+  It is, of course, the same product, but the specific map of the site allows it to appear in two different places under different product categories. Because ``url`` and ``category`` are marked as **Vary**, only ``name``, ``price`` and ``description`` are checked by the duplicates detector. Since all of these fields have the same value in both items, the second one is considered a duplicate of the first, and so it is rejected. Note that if ``url`` and ``category`` were not marked as **Vary**, then the duplicates detection system would consider them as different products, and so both would be generated. The term *Vary* is used to indicate that fields marked in this way may vary their values, still allowing items to be treated as identical.
 
 Shortcut Key
 ------------
@@ -127,15 +127,15 @@ There is a filter that is always applied, and two kinds of custom filters. The f
 
 The offsite filter restricts the bot to only visit links that belong to the web domains specified in the start URLs and the template URLs (if any), everything else gets filtered out. It has precedence over any other kind of URL filter. One might wonder whether there is a redundancy in adding template URLs domains, since the templates were obtained from the crawling limited to the start URLs domains. This is true in most cases, but it also can happen that you use one start URL for creating templates and a different one for scraping items, both being from different domains.
 
-The other two kinds of URL filters are user custom ones: **Exclude Pattern** and **Follow Patterns**, both configurable in the autospider properties (select an autospider in *Autoscraping* section and click *Edit*).
+The other two kinds of URL filters are user custom ones: **Exclude Pattern** and **Follow Patterns**, both configurable in the autospider properties (select an autospider in **Autoscraping** section and click **Edit**).
 
 **Exclude Patterns** option allows to filter out URL patterns (regular expressions) that must not be visited. You can add as many as you want, one per line in the corresponding widget. **Exclude Patterns** has precedence over **Follow Patterns**.
 
 You can select between 3 modes of link following:
 
-  * **Follow all links within the spider domains** (except those defined in *Excluded Patterns*) - here the spider domains mean the ones described above: the domains specified in start URLs and template URLs 
+  * **Follow all links within the spider domains** (except those defined in **Exclude Patterns**) - here the spider domains mean the ones described above: the domains specified in start URLs and template URLs 
   * **Don't follow links** - limit crawling to the start URLs only
-  * **Follow links that match the following patterns** - when this mode is selected, a new text widget becomes visible where you can write the *Follow Patterns* (regular expressions) that the links have to match in order to be followed
+  * **Follow links that match the following patterns** - when this mode is selected, a new text widget becomes visible where you can write the **Follow Patterns** (regular expressions) that the links have to match in order to be followed
 
 The **Follow Patterns** are the filters with less precedence. It means that you can't force a spider to follow links on a different domain by adding it in this category of filters. The only domains that will be accepted are those contained in the start URLs and the template URLs.
 
@@ -228,10 +228,10 @@ Example 1
 
 Consider the following case. We have:
 
-  * item types which include *name*, *price*, *description* and *manufacturer*, where *name* and *price* are required fields
+  * item types which include ``name``, ``price``, ``description`` and ``manufacturer``, where ``name`` and ``price`` are **Required** fields
   * a template with annotations for all 4 of them
 
-The result of the extraction: captured pages contain many items correctly scraped (from target set A), and many others (from target set B) which have no manufacturer, but, owing to their particular layouts, the algorithm matched the items description with the *manufacturer* annotation, while the field *description* was not extracted at all because its annotation did not match any similar region in the target. We can illustrate the situation visually as follows:
+The result of the extraction: captured pages contain many items correctly scraped (from target set A), and many others (from target set B) which have no manufacturer, but, owing to their particular layouts, the algorithm matched the items description with the ``manufacturer`` annotation, while the field ``description`` was not extracted at all because its annotation did not match any similar region in the target. We can illustrate the situation visually as follows:
 
 Layout A: 
 
@@ -251,12 +251,12 @@ Layout B:
 |      description       |
 +------------------------+
 
-In a related move, we add a new template to one of the pages of the target set B, and annotate *name*, *price* and *description*. We would expect that 
-by adding this new template, the problem will be fixed. But this is not the case because the first template has more annotations than the second, so it will be tried first. And since all required fields (*name* and *price*) will be extracted, the item will still be created with the wrong data because the second template will never be applied.
+In a related move, we add a new template to one of the pages of the target set B, and annotate ``name``, ``price`` and ``description``. We would expect that 
+by adding this new template, the problem will be fixed. But this is not the case because the first template has more annotations than the second, so it will be tried first. And since all required fields (``name`` and ``price``) will be extracted, the item will still be created with the wrong data because the second template will never be applied.
 
-We have to add a new constraint by opening the first template in the annotation tool and marking the *description* annotation as required. With this in place the items of target set B will not be created by the first template because *description* field will not be extracted with it. So the algorithm will try the second template, which now will correctly extract three fields.
+We have to add a new constraint by opening the first template in the annotation tool and marking the ``description`` annotation as **Required**. With this in place the items of target set B will not be created by the first template because ``description`` field will not be extracted with it. So the algorithm will try the second template, which now will correctly extract three fields.
 
-Note that the template with three annotations could be tried first if the templates were not tried in decreasing order of annotations quantity. As a result we could get erroneously extracted data from the pages of target set A. In particular, we would most probably get the manufacturer data in *description* field while missing the actual description. But in this case, if there is no other way to differentiate between description and manufacturer data, it is not possible to apply any constraint. The first approach would be to constrain the application of the template with four annotations by requiring to extract the missing field, because from target set A we extract four fields, and from target set B we extract three. The second approach would be to allow the first tried template (the one with three annotations) extract three fields for both target sets.
+Note that the template with three annotations could be tried first if the templates were not tried in decreasing order of annotations quantity. As a result we could get erroneously extracted data from the pages of target set A. In particular, we would most probably get the manufacturer data in ``description`` field while missing the actual description. But in this case, if there is no other way to differentiate between description and manufacturer data, it is not possible to apply any constraint. The first approach would be to constrain the application of the template with four annotations by requiring to extract the missing field, because from target set A we extract four fields, and from target set B we extract three. The second approach would be to allow the first tried template (the one with three annotations) extract three fields for both target sets.
 
 As previously stated, the more annotations we have, the more constraints we can add.
 
@@ -271,7 +271,7 @@ It's not the only approach to try in this instance though. It may be possible to
 Sticky Annotations
 ==================
 
-Another instrument for solving certain problems is the use of *sticky annotations*, available in the annotation tool as *_stickyN* (N being a number) together with the field names. Sticky annotations can be used for creating additional annotations without generating additional extracted data. For example, when you are extracting undesired targets with some of the templates, and you don't have the choice to filter by URL or mark certain annotations as required, you can still add new annotations in the template to match particular features of the desired targets that do not exist in the undesired ones: a particular logo, an image, a button, a piece of text, etc.
+Another instrument for solving certain problems is the use of *sticky annotations*, available in the annotation tool as ``_stickyN`` (*N* being a number) together with the field names. Sticky annotations can be used for creating additional annotations without generating additional extracted data. For example, when you are extracting undesired targets with some of the templates, and you don't have the choice to filter by URL or mark certain annotations as required, you can still add new annotations in the template to match particular features of the desired targets that do not exist in the undesired ones: a particular logo, an image, a button, a piece of text, etc.
 
 Sticky annotations are assigned implicitly, and can be added as many as needed. It's to be recalled that adding more annotations to a template increases its precedence level in the template try sequence.
 
@@ -279,7 +279,7 @@ Sticky annotations are assigned implicitly, and can be added as many as needed. 
 Template Extractors
 ===================
 
-Consider the following situation. We have a set of target pages containing user profiles, in turn consisting of tabulated data of the same type -- *name*, *gender*, *occupation*, *country*, *favorite books* and *favorite movies*:
+Consider the following situation. We have a set of target pages containing user profiles, in turn consisting of tabulated data of the same type: ``name``, ``gender``, ``occupation``, ``country``, ``favorite_books`` and ``favorite_movies``:
 
 +--------------+-------------------+
 |      Name:   |       Olive       |
@@ -295,18 +295,18 @@ Consider the following situation. We have a set of target pages containing user 
 |  Fav.Movies: |    Casablanca     |
 +--------------+-------------------+
 
-Fields are not required to be filled out in all user profiles, except the page we have chosen for our template. This condition will make a positional matching on its own to fail, and we will obtain mixed data as a result. For example, if a user did not provide *occupation* and *country*, we would get the favorite books in the *occupation* field, the favorite movies in the *country* field, and nothing in the fields *favorite books* and *favorite movies*. We can't mark as required any of the annotations because actually all of them are optional (besides, it would not solve the positional problem anyway).
+Fields are not required to be filled out in all user profiles, except the page we have chosen for our template. This condition will make a positional matching on its own to fail, and we will obtain mixed data as a result. For example, if a user did not provide **Occupation** and **Country**, we would get **Favorite Books** in ``occupation`` field, **Favorite Movies** in ``country`` field, and nothing in the fields ``favorite_books`` and ``favorite_movies``. We can't mark as required any of the annotations because actually all of them are optional (besides, it would not solve the positional problem anyway).
 
-Here the template extractors come to help, by adding pattern constraints to the template annotations. First, we annotate the entire field row ("Name: Olive", "Gender: Female", etc.) instead of the field value cell ("Olive", "Female", etc.). Then, in the template properties, we add *Regular Expression* extractors for each field in the following form:
+Here the template extractors come to help, by adding pattern constraints to the template annotations. First, we annotate the entire field row (**Name: Olive**, **Gender: Female**, etc.) instead of the field value cell (**Olive**, **Female**, etc.). Then, in the template properties, we add *Regular Expression* extractors for each field in the following form:
 
 +--------------+--------------------+--------------------+
-|  Field name  |        Type        |    Specification   |
+|  Field Name  |        Type        |    Specification   |
 +==============+====================+====================+
-|    *name*    | Regular expression |    Name:\\s+(.*)   |
+|    *name*    | Regular Expression |    Name:\\s+(.*)   |
 +--------------+--------------------+--------------------+
-|   *gender*   | Regular expression |   Gender:\\s+(.*)  |
+|   *gender*   | Regular Expression |   Gender:\\s+(.*)  |
 +--------------+--------------------+--------------------+
-| *occupation* | Regular expression | Occupation:\\s+(.*)|
+| *occupation* | Regular Expression | Occupation:\\s+(.*)|
 +--------------+--------------------+--------------------+
 |     ...      |        ...         |        ...         |
 +--------------+--------------------+--------------------+
@@ -323,22 +323,21 @@ Job Outcomes
 
 Apart from generic job outcomes that indicate a reason of a job termination (see :doc:`dash`), there is an Autoscraping specific outcome, ``slybot_fewitems_scraped``.
 
-AS spiders have a safety measure to avoid infinite crawling loops: if the number of scraped items did not reach a minimum threshold over a given period of time, the job is closed. By default, the period is 3600 seconds and the minimum number of items scraped during this period must be 200. Both values are controlled by the settings ``SLYCLOSE_SPIDER_CHECK_PERIOD`` (seconds) and ``SLYCLOSE_SPIDER_PERIOD_ITEMS`` (minimum number of items scraped during the defined period).
+*AS* spiders have a safety measure to avoid infinite crawling loops: if the number of scraped items did not reach a minimum threshold over a given period of time, the job is closed. By default, the period is 3600 seconds and the minimum number of items scraped during this period must be 200. Both values are controlled by the settings ``SLYCLOSE_SPIDER_CHECK_PERIOD`` (seconds) and ``SLYCLOSE_SPIDER_PERIOD_ITEMS`` (minimum number of items scraped during the defined period).
 
-If you are crawling a big site with thousands of pages, of which only a small portion generates items with current templates, the bot can consume long periods of time crawling while scraping only a few items. Another reason that leads to the same situation is that the bot spends a lot of time scraping duplicated products
-(see *Vary* flag in `Field Flags`_ section) which are dropped instead of issued, and so they don't count for the minimum threshold of items. In both cases the spider may unexpectedly stop with ``slybot_fewitems_scraped`` outcome.
+If you are crawling a big site with thousands of pages, of which only a small portion generates items with current templates, the bot can consume long periods of time crawling while scraping only a few items. Another reason that leads to the same situation is that the bot spends a lot of time scraping duplicated products (see **Vary** flag in `Field Flags`_ section) which are dropped instead of issued, and so they don't count for the minimum threshold of items. In both cases the spider may unexpectedly stop with ``slybot_fewitems_scraped`` outcome.
 
-The solution depends on what exactly happens. In order to diagnose the problem, the first move would be to switch the ``LOG_LEVEL`` setting for the spider to ``DEBUG``, and start a new job (select the spider in *Spiders* section, click *Settings* tab (next to *Details*), click ``+`` button under *Project Settings* to add a new entry and choose ``LOG_LEVEL`` from the list of options). This way the bot will generate a lot of debugging data that you can browse in the job log. In ``DEBUG`` log level you will see, among other information, a line for each crawled page and each dropped product, enabling you to decide whether it's worth adding more templates and URL filters to avoid unneeded pages during the crawling (URL filters must be designed with care so as not to unintentionally block pages leading to the pages you want).
+The solution depends on what exactly happens. In order to diagnose the problem, the first move would be to switch the ``LOG_LEVEL`` setting for the spider to ``DEBUG``, and start a new job (select the spider in **Spiders** section, click **Settings** tab (next to **Details**), click ``+`` button under **Project Settings** to add a new entry and choose ``LOG_LEVEL`` from the list of options). This way the bot will generate a lot of debugging data that you can browse in the job log. In ``DEBUG`` log level you will see, among other information, a line for each crawled page and each dropped product, enabling you to decide whether it's worth adding more templates and URL filters to avoid unneeded pages during the crawling (URL filters must be designed with care so as not to unintentionally block pages leading to the pages you want).
 
 
 Extending the Autoscraping Bot
 ==============================
 
-The autoscraping method is limited by its nature. Sometimes there's a need to do custom operations that are beyond the scope of AS core, tasks that can be performed by extending the bot's capabilities in some fashion and reduced to a post-processing task.
+The Autoscraping method is limited by its nature. Sometimes there's a need to do custom operations that are beyond the scope of *AS* core, tasks that can be performed by extending the bot's capabilities in some fashion and reduced to a post-processing task.
 
-Scrapinghub provides *Addons*, standard components for performing common tasks, which can be enabled and configured from *Scrapinghub Dash*. Many of them are generic for any project, but others are considered as autoscraping-specific. See :doc:`addons` documentation for more information.
+Scrapinghub provides *Addons*, standard components for performing common tasks, which can be enabled and configured from *Scrapinghub Dash*. Many of them are generic for any project, but others are considered as Autoscraping-specific. See :doc:`addons` documentation for more information.
 
-Another way to extend an autoscraping project with custom post-processing is by deploying a custom *Scrapy* project with extensions, middlewares and settings written for your specific needs. Since a Scrapy project may contain both autoscraping spiders and your custom coded ones, you will need a way to separate their settings. For this purpose you can resort to environment variables set up by Scrapinghub backend. The most common structure of a project ``setting.py`` file that separates the configuration for the autoscraping spiders is as follows::
+Another way to extend an Autoscraping project with custom post-processing is by deploying a custom `Scrapy`_ project with extensions, middlewares and settings written for your specific needs. Since a Scrapy project may contain both Autoscraping spiders and your custom coded ones, you will need a way to separate their settings. For this purpose you can resort to environment variables set up by Scrapinghub backend. The most common structure of a project ``setting.py`` file that separates the configuration for the Autoscraping spiders is as follows::
 
     import os
 
@@ -354,19 +353,20 @@ Another way to extend an autoscraping project with custom post-processing is by 
     else:
         <import/set not-autoscraping project settings>
 
-The environment variable ``SHUB_SPIDER_TYPE`` will be set to *auto* by Scrapinghub backend if the spider that loads the basic settings module is an
-autoscraping spider.
+The environment variable ``SHUB_SPIDER_TYPE`` will be set to *auto* by Scrapinghub backend if the spider that loads the basic settings module is an Autoscraping spider.
 
 
 Autoscraping and ScrapingHub API
 ================================
 
-If you want to manage AS job scheduling with the use of ScrapingHub :ref:`schedule-api`, AS spiders support additional parameters in order to override the spider
-properties per job. For instance, you may want to set a list of start URLs for a specific job, or scrape only one specific URL. You can pass ``start_urls`` as a list of URLs separated by new lines. This feature is very useful for passing a list of URLs from a text file, one URL per line. Example::
+If you want to manage *AS* job scheduling with the use of ScrapingHub :ref:`schedule-api`, *AS* spiders support additional parameters in order to override the spider
+properties per job. For instance, you may want to set a list of start URLs for a specific job, or scrape only one specific URL. You can pass ``start_urls`` as a list of URLs separated by new lines. This feature is very useful for passing a list of URLs from a text file, one URL per line. 
+
+*Example*::
 
     curl https://dash.scrapinghub.com/api/schedule.json -d project=155 -d spider=myspider -u <your api key>: -d start_urls="$(cat start_urls.txt)"
 
-or, using `Scrapinghub Python API <https://github.com/scrapinghub/python-scrapinghub>`_::
+Or, using `Scrapinghub Python API <https://github.com/scrapinghub/python-scrapinghub>`_::
 
     >>> from scrapinghub import Connection
     >>> conn = Connection('<your api key>')
@@ -390,7 +390,7 @@ For specific Autoscraping API calls, check :ref:`autoscraping-api`.
 Good Practices for Best Results with Less Effort
 ================================================
 
-Autoscraping is an advanced set of tools which for some cases requires a bit of practice and experience in order to avoid common mistakes and get the best results faster. Every resource is thoroughly described in the previous sections. Nevertheless we provide a recap below in order to summarize important tips that you should bear in mind when developing autoscraping spiders as it should improve the learning curve:
+Autoscraping is an advanced set of tools which for some cases requires a bit of practice and experience in order to avoid common mistakes and get the best results faster. Every resource is thoroughly described in the previous sections. Nevertheless we provide a recap below in order to summarize important tips that you should bear in mind when developing Autoscraping spiders as it should improve the learning curve:
 
 1. **When defining the item fields, be sure to mark as required only those fields that you expect to be present in all items of that class.** Required fields are of great importance in governing the templates not to extract data from wrong targets, but if you don't annotate a required field in a given template, then the template will not extract anything.
 
@@ -418,7 +418,7 @@ Autoscraping API
 as/project-slybot.zip
 ---------------------
 
-Retrieves the project specifications in slybot format, zip compressed. By default includes the specification of all the spiders in the project.
+Retrieves the project specifications in Slybot format, zip compressed. By default includes the specification of all the spiders in the project.
 
 * Supported Request Methods: ``GET``
 
@@ -440,9 +440,9 @@ To download only the spider with name ``myspider``::
 as/spider-properties.json
 -------------------------
 
-Retrieves or updates an autoscraping spider properties. If no update parameters are given, the call returns the current properties of the spider.
+Retrieves or updates an Autoscraping spider properties. If no update parameters are given, the call returns the current properties of the spider.
 
-1. Retrieves an autoscraping spider properties.
+1. Retrieves an Autoscraping spider properties.
 
 * Supported Methods: ``GET``
 
@@ -451,7 +451,7 @@ Retrieves or updates an autoscraping spider properties. If no update parameters 
   * ``project`` *(required)* - the project's numeric ID
   * ``spider`` *(required)* - the spider name
 
-2. Updates an autoscraping spider properties.
+2. Updates an Autoscraping spider properties.
 
 * Supported Methods: ``POST``
 
@@ -474,4 +474,6 @@ To update the start URLs of a spider::
             -d start_url=http://www.example.com/listB \
             https://dash.scrapinghub.com/api/as/spider-properties.json
 
+
+.. _Scrapy: http://scrapy.org
 
