@@ -59,7 +59,7 @@ Similar in usage to `items.json`_ and `items.jl`_, but returns items in CSV form
 
 *Examples:*
 
-To retrieve all items scraped by job ``123/1/4``, this time in CSV format, and dump *name*, *url* and *price* fields, excluding headers::
+To retrieve all items scraped by job ``123/1/4``, this time in CSV format, and dump ``name``, ``url`` and ``price`` fields, excluding headers::
 
     curl -L -u APIKEY: "https://dash.scrapinghub.com/api/items.csv?project=123&job=123/1/4&include_headers=0&fields=name,url,price"
 
@@ -78,7 +78,7 @@ Retrieves the log of a job.
 
   * ``project`` *(required)* - the project's numeric ID
   * ``job`` *(required)* - the job to retrieve items from
-  * ``level`` - the minimum log level to return, e.g. DEBUG, WARNING, ERROR, etc. (if not given, returns all log levels)
+  * ``level`` - the minimum log level to return, e.g. *DEBUG*, *WARNING*, *ERROR*, etc. (if not given, returns all log levels)
   * ``count`` - maximum number of records to return
 
 *Example:*
@@ -95,7 +95,7 @@ Similar to `log.txt`_ but returns the log entries as a list of JSON objects cont
 log.jl
 --------
 
-Similar to `log.json`_ but returns the log entries in jsonlines format.
+Similar to `log.json`_ but returns the log entries in JSON Lines format.
 
 
 Old Spiders API

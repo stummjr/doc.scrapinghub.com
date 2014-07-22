@@ -2,8 +2,7 @@
 Job & Project Reports
 =====================
 
-Using the Reports API you can upload and publish custom reports attached to
-jobs or the entire project.
+Using the :ref:`reports-api` you can upload and publish custom reports attached to jobs or the entire project.
 
 .. _reports-api:
 
@@ -12,10 +11,10 @@ Reports API
 
 This API provides a means for uploading reports which are attached to an entire project or to a single scraping job:
 
- * Project reports can be accessed through the *Reports* link on the left menu of the Jobs Dashboard in Dash.
- * Job reports can be accessed through the *Reports* tab of each Job Page in Dash.
+ * Project reports can be accessed through **Reports** link in the left sidebar of Dash.
+ * Job reports can be accessed through the **Reports** tab of each job page in Dash.
 
-Multiple reports can be attached to a project or job. Each report is uniquely identified by a key (within a given project or job).
+Multiple reports can be attached to a project or a job. Each report is uniquely identified by a key (within a given project or job).
 
 reports/add.json
 ----------------

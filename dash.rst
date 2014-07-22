@@ -11,6 +11,7 @@ When you login to Dash, you go to your home page (also known as your profile pag
 .. image:: _static/dash-home.png
    :width: 500px
 
+|
 
 The Search Bar
 ==============
@@ -20,19 +21,21 @@ You can use the search bar to jump quickly to any project, user or Crawlera acco
 .. image:: _static/dash-searchbar.png
    :width: 200px
 
+|
 
 Jobs Dashboard
 ==============
 
-The *Jobs* dashboard can be used to monitor and control your spiders.
+The **Jobs** dashboard can be used to monitor and control your spiders.
 
-To schedule a spider for running select the spider in the `Schedule spider` box and click the `Schedule` button.
+To schedule a spider for running select the spider in the **Schedule** box and click the `Schedule` button.
 
-If you click on any project, you go to the *Jobs* dashboard page where you will see the spider jobs that are completed, running or pending to run.
+If you click on any project, you go to the **Jobs** dashboard page where you will see the spider jobs that are completed, running or pending to run.
 
 .. image:: _static/dash-jobs.png
    :width: 500px
 
+|
 
 * **Pending Jobs** - the list of jobs that are waiting to start. Jobs may not start immediately after being scheduled, sometimes they must wait for resources to be available. If you need better capacity guarantees, consider purchasing a dedicated server.
 
@@ -47,12 +50,14 @@ Job Page
 .. image:: _static/dash-job-click.png
    :width: 500px
 
+|
 
 Clicking on any job ID (see the picture above) will take you to the job page, where you can see stats about the job alongside items scraped from it:
 
 .. image:: _static/dash-jobpage.png
    :width: 500px
 
+|
 
 Job Outcomes
 ============
@@ -61,6 +66,8 @@ The job outcome indicates whether the job succeeded or failed. By default, it co
 
 .. image:: _static/dash-outcome.png
    :width: 500px
+
+|
 
 Here is a summary of the Scrapinghub built-in job outcomes. Click on the name
 for more details about the outcome.
@@ -93,7 +100,7 @@ shutdown
 
 The job was cancelled manually, either from :ref:`Dash <dash>` or the :ref:`API
 <api>`. Incidentally, this is the same close reason used by Scrapy when
-terminating a spider pressing Ctrl-C.
+terminating a spider pressing ``Ctrl-C``.
 
 cancel_timeout
 --------------
@@ -120,17 +127,19 @@ in :ref:`autoscraping` to prevent infinite crawling loops.
 Items Browser
 =============
 
-You can review items by clicking on the *Items* tab:
+You can review items by clicking on the **Items** tab:
 
 .. image:: _static/dash-items.png
    :width: 500px
 
+|
 
-You can also download the items in CSV or JSON format through the *Items* menu:
+You can also download the items in CSV or JSON format through the **Items** menu:
 
 .. image:: _static/dash-items-download.png
    :width: 500px
 
+|
 
 This covers the basics of the dashboard, but there is much more. Feel free to play around and check our `knowledge base`_ for more information on specific topics. If you have any questions, don't hesitate to ask them in the `support forum`_.
 

@@ -2,7 +2,7 @@
 Job Management
 ==============
 
-There are two ways to run and monitor spiders in Scrapinghub: manually through
+There are two ways of running and monitoring spiders in Scrapinghub: manually through
 the UI (see :doc:`dash`) or programmatically through the :ref:`jobs-api` that
 is described below.
 
@@ -28,11 +28,11 @@ Schedules a job.
   * ``priority`` - set the job priority: possible values range from ``0`` (lowest priority) to ``4`` (highest priority), default is ``2``
   * any other parameter is passed as a spider argument
 
-Example request::
+*Example request*::
 
     $ curl -u APIKEY: https://dash.scrapinghub.com/api/schedule.json -d project=123 -d spider=somespider -d add_tag=sometag
 
-Example response::
+*Example response*::
 
     {"status": "ok", "jobid": "123/1/1"}
 
@@ -69,9 +69,7 @@ To get all jobs not marked with tag ``consumed`` from project ``123``::
 jobs/list.jl
 ------------
 
-Similar to `jobs/list.json`_ but returns the jobs in jsonlines format, which allows to retrieve all jobs without having to paginate the results.
-
-The first line of the result is special and contains metadata.
+Similar to `jobs/list.json`_ but returns the jobs in JSON Lines format, which allows to retrieve all jobs without having to paginate the results. The first line of the result is special and contains metadata.
 
 See `jobs/list.json`_ for examples.
 

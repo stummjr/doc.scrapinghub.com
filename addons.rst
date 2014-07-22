@@ -4,16 +4,16 @@
 Addons
 ======
 
-Addons allow to extend bot capabilities and configure them easily from the *Dash*. Each addon provides a particular feature. There are two flavours of addons: builtin addons and user addons. Builtin addons are always enabled and cannot be disabled by users.
+Addons allow to extend bot capabilities and configure them easily from Dash. Each addon provides a particular feature. There are two flavours of addons: builtin addons and user addons. Builtin addons are always enabled and cannot be disabled by users.
 
 Addons are very popular among Autoscraping users as a way of obtaining additional functionality without writing any code. Scrapy Cloud users often tend to write the extensions themselves. In fact, addons are no more than a fancy UI to configure `Scrapy`_ extensions.
 
 To put an addon to use, you have to:
 
-    #. Add it to your project, by going to *Settings -> Addons* in the *Scrapinghub Dash*.
-    #. Enable it. Some addons are enabled automatically when added, while others require configuring (e.g. editing ADDON_ENABLED setting). It should be clear from the addon page in the Dash which case it is.
+    #. Add it to your project, by going to **Settings -> Addons** in the Scrapinghub Dash.
+    #. Enable it. Some addons are enabled automatically when added, while others require configuring (e.g. editing ``ADDON_ENABLED`` setting). It should be clear from the addon page in the Dash which case it is.
 
-You can also enable addons per spider, instead of project-wide: select the spider in *Spiders* section, click *Settings* tab (next to *Details*), click ``+`` button in the corresponding Addon field to add a new entry and choose ``ADDON_ENABLED`` from the list of options.
+You can also enable addons per spider, instead of project-wide: select the spider in **Spiders** section, click **Settings** tab (next to **Details**), click ``+`` button in the corresponding addon field to add a new entry and choose ``ADDON_ENABLED`` from the list of options.
 
 
 Autothrottle
@@ -23,9 +23,9 @@ Allows the bot to crawl the target site with more caution, by dynamically adjust
 
 This addon is loaded by default in every Dash project. The basic settings controlling its behaviour are:
 
-* ``CONCURRENT_REQUESTS_PER_DOMAIN`` - limits the maximum number of concurrent requests sent to the same host domain; default value is ``8``
-* ``DOWNLOAD_DELAY`` - limits the minimum download delay (in seconds) between each burst of requests; default value is ``0``
-* ``AUTOTHROTTLE_ENABLED`` - enables or disables *Autothrottle* addon; default value is ``True`` (enabled)
+* ``CONCURRENT_REQUESTS_PER_DOMAIN`` - limits the maximum number of concurrent requests sent to the same host domain (default value is ``8``)
+* ``DOWNLOAD_DELAY`` - limits the minimum download delay (in seconds) between each burst of requests (default value is ``0``)
+* ``AUTOTHROTTLE_ENABLED`` - enables or disables *Autothrottle* addon (default value is ``True``, i.e. enabled)
 
 **How to adjust these parameters?** The settings greatly depend on the user's needs, there are no values that will work for any target server. The default values are in general a good starting point and most servers tolerate them. Still there's a possibility of blocking and a need to slow down the crawling rate may emerge. Or quite the contrary, you may want the bot to crawl faster, in such instance you should fully realize that the risk of blocking increases. 
 
@@ -44,7 +44,7 @@ There is a single setting for controlling this addon:
 
 * ``DELTAFETCH_ENABLED`` - enables or disables *DeltaFetch* addon (either project-wide or per spider)
 
-Note that this addon depends on the `DotScrapy Persistence`_ addon, so make sure it's enabled first.
+Note that this addon depends on the `DotScrapy Persistence`_ addon, so make sure it's enabled first. Also please be informed that *DeltaFetch* does not operate on **Start URLs**.
 
 
 DotScrapy Persistence
@@ -70,19 +70,19 @@ Images
 
 This addon downloads images from extracted image URLs and stores them into an Amazon S3 storage. The addon is enabled by updating the ``IMAGES_STORE`` setting and defining two item fields:
 
-* a field ``image_urls`` with type ``image``, which is used for annotating image URLs in the template. This will be the source field from which the addon will get URLs of the images to be downloaded.
-* a field ``images``, where the addon will save important information about the stored image, including Amazon S3 path relative to the ``IMAGES_STORE`` setting and the original image URL. The type of this field doesn't matter, as it is defined by the pipeline, not by the AS extraction algorithm. That said, be sure that it is **NOT** flagged as required, otherwise the data will not be extracted, because you will not be able to annotate this field in the templates.
+* ``image_urls`` with type *image*, which is used for annotating image URLs in the template. This will be the source field from which the addon will get URLs of the images to be downloaded.
+* ``images``, where the addon will save important information about the stored image, including Amazon S3 path relative to the ``IMAGES_STORE`` setting and the original image URL. The type of this field doesn't matter, as it is defined by the pipeline, not by the *AS* extraction algorithm. That said, be sure that it is **NOT** flagged as required, otherwise the data will not be extracted, because you will not be able to annotate this field in the templates.
 
-Those field names are the default ones, but can be overriden with the settings ``IMAGES_URLS_FIELD`` and ``IMAGES_RESULT_FIELD``. The source and target fields defined by these two settings do not need to be different -- you can make both be the same. It will ease you from defining an additional field in the item. The addon will just overwrite the data extracted by AS with the data it generates (which is a dict already including the origin URL).
+Those field names are the default ones, but can be overriden with the settings ``IMAGES_URLS_FIELD`` and ``IMAGES_RESULT_FIELD``. The source and target fields defined by these two settings do not need to be different -- you can make both be the same. It will ease you from defining an additional field in the item. The addon will just overwrite the data extracted by *AS* with the data it generates (which is a dict already including the origin URL).
 
 Settings:
 
 * ``IMAGES_STORE`` - provide a complete Amazon S3 base path (in format *s3://<bucket name>/<base path>/*) where the images should be stored
-* ``IMAGES_MIN_WIDTH`` - images with a smaller width (in pixels) are ignored; default value is ``0``
-* ``IMAGES_MIN_HEIGHT`` - images with a smaller height (in pixels) are ignored; default value is ``0``
-* ``IMAGES_EXPIRES`` - when an image is already in store, update it only when its age is older than the given value (in days); default value is ``90``
-* ``IMAGES_URLS_FIELD`` - specify the item field from which the addon will read the image URLs to download/store; default value is ``image_urls``
-* ``IMAGES_RESULT_FIELD`` - specify the item field where the addon will save the stored image information; default value is ``images``
+* ``IMAGES_MIN_WIDTH`` - images with a smaller width (in pixels) are ignored (default value is ``0``)
+* ``IMAGES_MIN_HEIGHT`` - images with a smaller height (in pixels) are ignored (default value is ``0``)
+* ``IMAGES_EXPIRES`` - when an image is already in store, update it only when its age is older than the given value in days (default value is ``90``)
+* ``IMAGES_URLS_FIELD`` - specify the item field from which the addon will read the image URLs to download/store (default value is ``image_urls``)
+* ``IMAGES_RESULT_FIELD`` - specify the item field where the addon will save the stored image information (default value is ``images``)
 
 You will also need to provide the standard ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY`` settings so the addon will be able to upload the images in your
 Amazon S3 storage.

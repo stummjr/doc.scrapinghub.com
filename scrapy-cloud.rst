@@ -71,12 +71,14 @@ Now you should go to your project page and schedule the spider to run:
 .. image:: _static/sc-schedule.png
    :width: 300px
 
+|
 
 Once the job has finished, or while it's running, you can click on the job to review the scraped data and other information about the job:
 
 .. image:: _static/sc-items-scraped.png
    :width: 500px
 
+|
 
 Dependencies and External Libraries
 ===================================
@@ -96,7 +98,7 @@ See `setuptools`_ for details about egg concepts, preparation and building. If y
     )
 
 #. Run ``python setup.py bdist_egg`` to deploy in your project.
-#. In Dash, go to *Settings -> Eggs -> Add Egg*, and fill the requested data in the upload form.
+#. In Dash, go to **Settings -> Eggs -> Add Egg**, and fill the requested data in the upload form.
 
 
 .. _eggs-api:
