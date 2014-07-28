@@ -6,8 +6,9 @@ The *Hub Crawl Frontier* (HCF) stores pages visited and outstanding requests to
 make. It can be thought of as a persistent shared storage for a crawl scheduler.
 
 Web pages are identified by a fingerprint. This can be the URL of the page, but
-crawlers may use something different (e.g. a hash of post parameters if it
-processes post requests), so there is no requirement for the URL to be valid.
+crawlers may use any other string (e.g. a hash of post parameters, if it
+processes post requests), so there is no requirement for the fingerprint to be
+a valid URL.
 
 A project can have many frontiers and each frontier is broken down into slots.
 A separate priority queue is maintained per slot. This means that requests
@@ -29,7 +30,7 @@ Frontier API
 The following method enqueues a request if the fingerprint has not been seen
 before and adds it to the set of fingerprints::
 
-    $ curl -d '{"fp":"/some/path.html"}'  \
+    $ curl -u <API_KEY>: -d '{"fp":"/some/path.html"}'  \
         https://storage.scrapinghub.com/hcf/78/test/s/example.com
     {"newcount":1}
 
@@ -51,16 +52,16 @@ p       Priority: lower priority numbers are returned first (default is ``0``)
 
 Here is a more complete example::
 
-    $ curl -d $'{"fp":"/"}\n{"fp":"page1.html", "p": 1, "qdata": {"depth": 1}}' \
+    $ curl -u <API_KEY>: -d $'{"fp":"/"}\n{"fp":"page1.html", "p": 1, "qdata": {"depth": 1}}' \
         https://storage.scrapinghub.com/hcf/78/test/s/example.com
     {"newcount":2}
 
 By using the same priority as request depth, the website can be traversed in
-breath first order from the starting URL.
+breadth-first order from the starting URL.
 
 Requests can be retrieved from the request queue::
 
-    $ curl https://storage.scrapinghub.com/hcf/78/test/s/example.com/q
+    $ curl -u <API_KEY>: https://storage.scrapinghub.com/hcf/78/test/s/example.com/q
     {"id":"00013967d8af7b0001","requests":[["/",null]]}
     {"id":"01013967d8af7e0001","requests":[["page1.html",{"depth":1}]]}
 
@@ -77,25 +78,25 @@ completed so that it will be removed and no longer returned when new batches
 are requested. This can be achieved by posting the IDs of the completed
 batches::
 
-    $ curl -d '"00013967d8af7b0001"' https://storage.scrapinghub.com/hcf/78/test/s/example.com/q/deleted
+    $ curl -u <API_KEY>: -d '"00013967d8af7b0001"' https://storage.scrapinghub.com/hcf/78/test/s/example.com/q/deleted
 
 IDs can be specified as arrays, or as single values. As with the previous
 examples, multiple lines of input is accepted.
 
 This now leaves only a single batch remaining in the crawl queue::
 
-    $ curl https://storage.scrapinghub.com/hcf/78/test/s/example.com/q
+    $ curl -u <API_KEY>: https://storage.scrapinghub.com/hcf/78/test/s/example.com/q
     {"id":"01013967d8af7e0001","requests":[["page1.html",{"depth":1}]]}
 
 All fingerprints can be downloaded by requesting the fingerprint set::
 
-    $ curl https://storage.scrapinghub.com/hcf/78/test/s/example.com/f
+    $ curl -u <API_KEY>: https://storage.scrapinghub.com/hcf/78/test/s/example.com/f
     {"fp":"/"}
     {"fp":"page1.html"}
 
-They are ordered lexographically by fingerprint value.
+They are ordered lexicographically by fingerprint value.
 
 Slots can be deleted::
 
-    $ curl -X DELETE https://storage.scrapinghub.com/hcf/78/test/s/example.com/
+    $ curl -u <API_KEY>: -X DELETE https://storage.scrapinghub.com/hcf/78/test/s/example.com/
 
