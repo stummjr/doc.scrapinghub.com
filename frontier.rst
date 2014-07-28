@@ -6,8 +6,9 @@ The *Hub Crawl Frontier* (HCF) stores pages visited and outstanding requests to
 make. It can be thought of as a persistent shared storage for a crawl scheduler.
 
 Web pages are identified by a fingerprint. This can be the URL of the page, but
-crawlers may use something different (e.g. a hash of post parameters if it
-processes post requests), so there is no requirement for the URL to be valid.
+crawlers may use any other string (e.g. a hash of post parameters, if it
+processes post requests), so there is no requirement for the fingerprint to be
+a valid URL.
 
 A project can have many frontiers and each frontier is broken down into slots.
 A separate priority queue is maintained per slot. This means that requests
@@ -56,7 +57,7 @@ Here is a more complete example::
     {"newcount":2}
 
 By using the same priority as request depth, the website can be traversed in
-breath first order from the starting URL.
+breadth-first order from the starting URL.
 
 Requests can be retrieved from the request queue::
 
@@ -93,7 +94,7 @@ All fingerprints can be downloaded by requesting the fingerprint set::
     {"fp":"/"}
     {"fp":"page1.html"}
 
-They are ordered lexographically by fingerprint value.
+They are ordered lexicographically by fingerprint value.
 
 Slots can be deleted::
 
