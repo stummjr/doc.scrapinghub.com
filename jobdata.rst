@@ -108,7 +108,7 @@ The *Content-Range* header can be used to specify a start index. This is used in
 
 For example::
 
-    $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7 -X POST -T items.jl -H "ontent-range: items 500-/*"
+    $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7 -X POST -T items.jl -H "content-range: items 500-/*"
 
 In all cases, the server will only return ``200 OK`` when the data has been committed securely.
 
