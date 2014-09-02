@@ -75,6 +75,7 @@ following formats are supported at present::
 
 - application/x-jsonlines
 - application/json
+- application/xml
 - text/csv
 
 For example, to get items in JSON format using *curl*::
@@ -82,7 +83,7 @@ For example, to get items in JSON format using *curl*::
     $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7/ -H "Accept: application/json"
 
 An alternative to the *Accept* header is to pass in the URL the ``format`` parameter
-who can take values of ``text``, ``csv``, ``json`` or ``jl``. It can be used
+who can take values of ``text``, ``csv``, ``xml``, ``json`` or ``jl``. It can be used
 interchangeably with the *Accept* header::
 
     $ curl -u APIKEY: "https://storage.scrapinghub.com/items/53/34/7?format=json"
@@ -130,6 +131,7 @@ supported at present::
 
 - application/x-jsonlines
 - application/json
+- application/xml
 - text/plain
 - text/csv
 
