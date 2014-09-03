@@ -40,11 +40,12 @@ DeltaFetch
 
 The purpose of this addon is to ignore requests to pages containing items seen in previous crawls of the same spider, thus producing a *delta crawl* containing only new items. For more details on the algorithm, you can check `DeltaFetch code`_.
 
-There is a single setting for controlling this addon:
+There are two main setting for controlling this addon:
 
 * ``DELTAFETCH_ENABLED`` - enables or disables *DeltaFetch* addon (either project-wide or per spider)
+* ``DELTAFETCH_RESET`` - reset the state, forgetting visited pages in previous runs (remember to remove this setting once you complete a crawl with this setting activated)
 
-Note that this addon depends on the `DotScrapy Persistence`_ addon, so make sure it's enabled first. Also please be informed that *DeltaFetch* does not operate on **Start URLs**.
+Note that this addon depends on the `DotScrapy Persistence`_ addon, so make sure it's enabled first. Also please be informed that *DeltaFetch* does not operate on **Start URLs** (without this logic, spider may not work at all)
 
 
 DotScrapy Persistence
