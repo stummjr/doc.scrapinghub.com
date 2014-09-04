@@ -88,6 +88,8 @@ interchangeably with the *Accept* header::
 
     $ curl -u APIKEY: "https://storage.scrapinghub.com/items/53/34/7?format=json"
 
+`XML-RPC data types`_ is used for XML format output.
+
 If CSV output format is used, a ``fields`` parameter must be specified to indicate the required fields and their order (a comma-separated list). An optional parameter is ``include_headers``, whose value can be ``1``, ``Y`` or ``y``, indicating whether to include the names of the fields in the top row of the CSV output::
 
     $ curl -u APIKEY: "https://storage.scrapinghub.com/items/53/34/7?format=csv&fields=id,name&include_headers=1"
@@ -243,3 +245,5 @@ This retrieves all jobs that have finished since the specified job.
     {"key":"53/6/7","ts":1359774955439}
     {"key":"53/3/3","ts":1359774955437}
     {"key":"53/9/1","ts":1359774955431}
+
+.. _XML-RPC data types: http://en.wikipedia.org/wiki/XML-RPC#Data_types
