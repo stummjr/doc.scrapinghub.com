@@ -22,7 +22,6 @@ Table of Contents
    jobdata
    comments
    autoscraping
-   reports
    activity
    collections
    frontier
