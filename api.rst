@@ -44,6 +44,7 @@ should be used (best practices, etc.).
 * :ref:`logs-api`
 * :ref:`requests-api`
 * :ref:`collections-api`
+* :ref:`reports-api`
 * :ref:`activity-api`
 * :ref:`autoscraping-api`
 * :ref:`eggs-api`
