@@ -135,7 +135,12 @@ a:visited{ color: {{ theme_link_color }}; }
 a:hover,
 a:active{ color: {{ theme_link_hovercolor }}; }
 
-a.headerlink{ visibility: hidden; }
+a.headerlink{
+	visibility: hidden;
+	font-size: 18px;
+	margin-left: 10px;
+	color: #428BCA;
+}
 
 	:hover > a.headerlink { visibility: visible; }
 
