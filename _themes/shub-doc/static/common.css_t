@@ -364,6 +364,10 @@ fieldset{ border: 0; }
 		border-bottom: 1px solid #D0D0D0;
 	}
 
+	.sidebar-docs li:last-child {
+		border:0px;
+	}
+
 
 	.sidebar-docs li.current {
 		background-color:#fff;
