@@ -49,7 +49,7 @@ h1{ font-size: 28px; }
 
 h2{ font-size: 24px; }
 
-h2, h3{ border-bottom: 2px solid #EEEEEE; padding: 0 0 3px; }
+h2, h3{ border-bottom: 2px solid #EEEEEE; padding: 0 0 3px; margin-bottom: 25px;} 
 
 h3{ border-color: #E5E5E5; border-width: 1px; }
 
@@ -76,20 +76,20 @@ h3, h5, h6{ font-size: 18px; margin: 20px 0; }
 p, li, dd, dt, pre{ line-height: 1.5; }
 
 table{
-	background-color: #F5FBFF;
-	border: 1px solid #C8DEF0;
+	background-color: #FAFAFA;
+	border: 1px solid #E5E5E5;
 	border-collapse: collapse;
 	margin-bottom: 20px;
 }
 
 	th, td{
 		border: 0;
-		border-bottom: 1px solid #C8DEF0;
+		border-bottom: 1px solid #E5E5E5;
 		padding: 8px;
 	}
 
 		th{
-			background-color: #326B95;
+			background-color: #cc0b0f;
 			color: #FFFFFF;
 			text-align: left;
 		}
@@ -165,10 +165,10 @@ fieldset{ border: 0; }
 .cp-path,
 .important,
 .note{
-	background-color: #F5FBFF;
-	border: 1px solid #C8DEF0;
+	background-color: #fafafa;
+	border: 1px solid #cc0b0f;
 	margin: 20px 0;
-	padding: 10px 10px 8px;
+	padding:0px;
 }
 
 	.highlight-ci,
@@ -182,20 +182,26 @@ fieldset{ border: 0; }
 	}
 
 	.cp-path{ background-color: #FFFDED; border-color: #D1CDB0; }
-	.important, .note{ background-color: #F2FFE8; border-color: #B9D3A6; }
+	.important, .note{ background-color: #fafafa; border-color: #cc0b0f; }
 	.highlight-rst{ background-color: #F9FEFE; border-color: #AACFCF; }
 
 	.important p,
 	.note p{ margin: 0; }
 
 .admonition-title{
-	float: left;
 	font-weight: bold;
 	padding-right: 4px;
 	text-transform: uppercase;
+	background-color:#cc0b0f;
+	color:#fff;
+	padding: 10px;
 }
 
 .admonition-title:after{ content: ':  '; }
+
+.note p {
+	padding:10px;
+}
 
 #table-contents{
 	bottom: 0;
@@ -454,9 +460,17 @@ fieldset{ border: 0; }
 
 
 	/* Footer Syles */
-#footer{ background-color: #1c1c1b; padding: 20px; }
+#footer{ background-color: #1c1c1b; padding: 20px; text-align:center;}
 
-	#footer a {color:#fff;}
+	#footer a {
+		color: #fff;
+		padding: 7px;
+		background-color: #cc0b0f;
+		border-radius: 6px;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		font-weight: bold;
+	}
 	#footer p{ margin: 0; color: #cc0b0f;}
 
 @media (max-width:800px){
