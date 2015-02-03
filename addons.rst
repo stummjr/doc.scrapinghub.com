@@ -15,6 +15,7 @@ To put an addon to use, you have to:
 
 You can also enable addons per spider, instead of project-wide: select the spider in **Spiders** section, click **Settings** tab (next to **Details**), click ``+`` button in the corresponding addon field to add a new entry and choose ``ADDON_ENABLED`` from the list of options.
 
+.. _autothrottle-addon:
 
 Autothrottle
 ============
