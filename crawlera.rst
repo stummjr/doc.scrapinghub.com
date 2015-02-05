@@ -153,7 +153,7 @@ This header allows to disable internal cookies tracking performed by Crawlera.
 
 X-Crawlera-Session
 -------------------
-:sub:`Only available to Enterprise users.`
+:sub:`An experimental beta feature. Only available to Enterprise users.`
 
 This header instructs Crawlera to use sessions which will tie requests to a particular slave until it gets banned.
 
