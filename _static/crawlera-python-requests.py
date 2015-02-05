@@ -14,11 +14,15 @@ headers = {
 
 r = requests.get(url, proxies=proxies, headers=headers)
 
-print "\nRequesting    [", url, "]"
-print "through proxy [", proxy, "]"
-print "\n\nResponse Time:", r.elapsed.total_seconds()
-print "\n\nResponse Code:", r.status_code
-print "\n\nResponse Headers:\n"
-print r.headers
-print "\n\nResponse Body:\n"
-print r.text
+print("""
+Requesting [{}]
+troguh proxy [{}]
+
+Response Time: {}
+Response Code: {}
+Response Headers:
+{}
+
+Response Body:
+{}
+""".format(url, proxy, r.elapsed.total_seconds(), r.status_code, r.headers, r.text))

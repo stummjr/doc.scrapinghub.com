@@ -66,8 +66,8 @@ slavebanned            503            website crawl ban
 serverbusy             503            server busy - too many outstanding requests
 timeout                504            timeout from upstream server
 msgtimeout             504            timeout processing http stream
-\                      523            domain forbidden. please contact support@scrapinghub.com
-\                      540            bad header value for *<some_header>*
+\                      523            Domain forbidden. Please visit http://scrapinghub.com/contact/
+\                      540            Bad Header Value for *<some_header>*
 ====================== =============  ======================
 
 
@@ -76,6 +76,8 @@ Sessions and Request Limits
 
 Sessions
 --------
+
+.. note:: Please be advised that the Sessions is an experimental feature and currently under development.
 
 Crawlera supports sessions, allowing to use the same slave for every request. A session has a lifetime of one hour (counting from the time of the session's last use) and each Crawlera user is limited to 10 concurrent sessions.
 
