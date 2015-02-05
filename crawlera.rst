@@ -77,9 +77,11 @@ Sessions and Request Limits
 Sessions
 --------
 
-.. note:: Please be advised that the Sessions is an experimental feature and currently under development.
+.. warning:: 
 
-Crawlera supports sessions, allowing to use the same slave for every request. A session has a lifetime of one hour (counting from the time of the session's last use) and each Crawlera user is limited to 10 concurrent sessions.
+    Please be advised that the Sessions is an experimental feature and currently under development.
+
+Sessions allow reusing the same slave for every request. A session has a lifetime of one hour (counting from the time of the session's last use) and each Crawlera user is limited to 10 concurrent sessions.
 
 Sessions are managed using the :ref:`x-crawlera-session` header. To create a new session send::
 
@@ -153,7 +155,12 @@ This header allows to disable internal cookies tracking performed by Crawlera.
 
 X-Crawlera-Session
 -------------------
-:sub:`An experimental beta feature. Only available to Enterprise users.`
+
+.. warning:: 
+    
+    An experimental beta feature.
+
+:sub:`Only available to Enterprise users.`
 
 This header instructs Crawlera to use sessions which will tie requests to a particular slave until it gets banned.
 
