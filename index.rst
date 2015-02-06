@@ -26,6 +26,7 @@ Table of Contents
    activity
    collections
    frontier
+   crawlera
    addons
    oldapi
 
