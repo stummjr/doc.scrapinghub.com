@@ -4,6 +4,8 @@
 Crawlera
 ========
 
+Crawlera is a HTTP/HTTPS downloader that routes your requests through a pool of IP addresses, introducing delays and discarding IPs where necessary to evade anti-crawling measures. Crawlera is useful if you want to save yourself the hassle of tinkering with download delays and concurrent requests, dealing with cookies, user-agents, referrers to avoid getting banned.
+
 First Steps
 ===========
 
