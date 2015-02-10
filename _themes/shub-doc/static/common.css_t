@@ -164,11 +164,26 @@ fieldset{ border: 0; }
 .highlight-perl,
 .cp-path,
 .important,
-.note{
+.note {
 	background-color: #fafafa;
 	border: 1px solid #cc0b0f;
 	margin: 20px 0;
 	padding:0px;
+}
+
+.warning {
+	background-color: #fafafa;
+	border: 1px solid #cc0b0f;
+	padding: 0px 0px;
+}
+
+.warning .admonition-title {
+	margin: 0px 0px;
+	padding-left: 15px;
+}
+
+.warning p {
+	padding-left: 15px;
 }
 
 	.highlight-ci,
