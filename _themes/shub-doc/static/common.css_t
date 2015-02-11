@@ -163,12 +163,22 @@ fieldset{ border: 0; }
 .highlight-bash,
 .highlight-perl,
 .cp-path,
-.important,
-.note {
+.important {
 	background-color: #fafafa;
 	border: 1px solid #cc0b0f;
 	margin: 20px 0;
 	padding:0px;
+}
+
+.note {
+	background-color: #fafafa;
+	border: 1px solid #666;
+	margin: 20px 0;
+	padding: 0px;
+}
+
+.note .admonition-title {
+	background-color: #666;
 }
 
 .warning {
@@ -197,7 +207,7 @@ fieldset{ border: 0; }
 	}
 
 	.cp-path{ background-color: #FFFDED; border-color: #D1CDB0; }
-	.important, .note{ background-color: #fafafa; border-color: #cc0b0f; }
+	.important background-color: #fafafa; border-color: #cc0b0f; }
 	.highlight-rst{ background-color: #F9FEFE; border-color: #AACFCF; }
 
 	.important p,
