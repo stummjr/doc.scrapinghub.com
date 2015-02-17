@@ -54,22 +54,22 @@ When an error occurs, Crawlera sends a response containing an :ref:`x-crawlera-e
 ====================== =============  ======================
 X-Crawlera-Error       Response Code  Error Message
 ====================== =============  ======================
-bad_session_id         400            incorrect session id
-user_session_limit     400            session limit exceeded
+bad_session_id         400            Incorrect session ID
+user_session_limit     400            Session limit exceeded
 \                      407
-\                      500            unexpected error
-nxdomain               502            error looking up domain
-econnrefused           502            connection refused
-econnreset             502            connection reset
-socket_closed_remotely 502            server closed socket connection
-send_failed            502            send failed
-noslaves               503            no available proxies
-slavebanned            503            website crawl ban
-serverbusy             503            server busy - too many outstanding requests
-timeout                504            timeout from upstream server
-msgtimeout             504            timeout processing http stream
-\                      523            Domain forbidden. Please visit http://scrapinghub.com/contact/
-\                      540            Bad Header Value for *<some_header>*
+\                      500            Unexpected error
+nxdomain               502            Error looking up domain
+econnrefused           502            Connection refused
+econnreset             502            Connection reset
+socket_closed_remotely 502            Server closed socket connection
+send_failed            502            Send failed
+noslaves               503            No available proxies
+slavebanned            503            Website crawl ban
+serverbusy             503            Server busy: too many outstanding requests
+timeout                504            Timeout from upstream server
+msgtimeout             504            Timeout processing HTTP stream
+\                      523            Domain forbidden. Please contact support@scrapinghub.com
+\                      540            Bad header value for *<some_header>*
 ====================== =============  ======================
 
 
