@@ -85,7 +85,7 @@ Sessions
 
     Please be advised that the Sessions is an experimental feature and currently under development.
 
-Sessions allow reusing the same slave for every request. A session has a lifetime of one hour (counting from the time of the session's last use) and each Crawlera user is limited to 10 concurrent sessions.
+Sessions allow reusing the same slave for every request. Sessions expire 30 minutes after their last use and Crawlera limits the number of concurrent sessions to 100 for standard users, and 5000 for enterprise users.
 
 Sessions are managed using the :ref:`x-crawlera-session` header. To create a new session send::
 
@@ -100,6 +100,30 @@ From then onward, subsequent requests can be made through the same slave by send
     X-Crawlera-Session: <session ID>
 
 If an incorrect session ID is sent, Crawlera responds with a ``bad_session_id`` error.
+
+
+.. _/sessions:
+
+List sessions
+~~~~~~~~~~~~~
+
+Issue the endpoint :ref:`/sessions` with the ``GET`` method to list your sessions. The endpoint returns a JSON document in which each key is a session ID and the associated value is a slave.
+
+*Example*::
+
+    curl -u USER:PASS paygo.crawlera.com:8010/sessions
+    {"1836172": "<SLAVE1>", "1691272": "<SLAVE2>"}
+
+.. _/sessions/<session ID>:
+
+Delete a session
+~~~~~~~~~~~~~~~~
+
+Issue the endpoint :ref:`/sessions/<session ID>` with the ``DELETE`` method in order to delete a session.
+
+*Example*::
+
+    curl -u USER:PASS paygo.crawlera.com:8010/sessions/1836172 -X DELETE
 
 Request Limits
 --------------
