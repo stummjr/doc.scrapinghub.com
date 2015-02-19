@@ -73,8 +73,8 @@ msgtimeout             504            Timeout processing HTTP stream
 ====================== =============  ======================
 
 
-Sessions and Request Limits
-===========================
+Sessions, Request Limits and Concurrent Connections Limits
+==========================================================
 
 Sessions
 --------
@@ -103,6 +103,15 @@ Request Limits
 --------------
 
 Crawlera’s default request limit is 5 requests per second (rps) for each website. There is a default delay of 200ms between each request and a default delay of 12s between requests through the same slave. These delays can differ for more popular domains. If the requests per second limit is exceeded, further requests will be delayed for up to 15 minutes. Each request made after exceeding the limit will increase the request delay. If the request delay reaches the soft limit (120 seconds), then each subsequent request will contain :ref:`x-crawlera-next-request-in` header with the calculated delay as the value.
+
+Concurrent Connections Limits
+-----------------------------
+
+Crawlera disallows making too many concurrent connections.
+
+.. warning::
+
+    If you reach the limitation you will receive the response "Too many connections" with the status code "429".
 
 
 Request Headers
