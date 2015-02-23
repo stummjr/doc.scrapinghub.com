@@ -56,8 +56,10 @@ X-Crawlera-Error       Response Code  Error Message
 ====================== =============  ======================
 bad_session_id         400            Incorrect session ID
 user_session_limit     400            Session limit exceeded
-\                      407
+bad_auth               401            Unauthorized mashape request
+bad_auth               407            
 too_many_conns         429            Too many connections*
+header_auth            470            Unauthorized Crawlera header
 \                      500            Unexpected error
 nxdomain               502            Error looking up domain
 econnrefused           502            Connection refused
@@ -69,8 +71,8 @@ slavebanned            503            Website crawl ban
 serverbusy             503            Server busy: too many outstanding requests
 timeout                504            Timeout from upstream server
 msgtimeout             504            Timeout processing HTTP stream
-\                      523            Domain forbidden. Please contact support@scrapinghub.com
-\                      540            Bad header value for *<some_header>*
+domain_forbidden       523            Domain forbidden. Please contact support@scrapinghub.com
+bad_header             540            Bad header value for *<some_header>*
 ====================== =============  ======================
 
 \* Crawlera limits the number of concurrent connections to 500 for standard users, and 5000 for enterprise users.
