@@ -33,7 +33,7 @@ Items written by a job can be retrieved by performing a GET::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7
 
-This retrieves all items for job ``53/34/7``, i.e project *57*, spider *34* and
+This retrieves all items for job ``53/34/7``, i.e project *53*, spider *34* and
 run *7*. Items are returned in item key order, which is the same as the order in
 which they were written.
 
