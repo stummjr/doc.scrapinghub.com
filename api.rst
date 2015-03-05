@@ -110,6 +110,8 @@ A random sample of results can be fetched by setting the ``start`` parameter to 
 keyword ``random``. The ``count`` parameter specifies the size of the sample. This
 is limited to up to 20 results and does not work across multiple jobs.
 
+.. note:: :ref:`collections-api` currently does not support getting specific items
+   with ``index`` parameter nor random sampling using ``start=random``
 
 .. _metapar:
 
