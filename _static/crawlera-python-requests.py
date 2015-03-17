@@ -16,7 +16,7 @@ r = requests.get(url, proxies=proxies, headers=headers)
 
 print("""
 Requesting [{}]
-troguh proxy [{}]
+through proxy [{}]
 
 Response Time: {}
 Response Code: {}
