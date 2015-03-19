@@ -9,7 +9,7 @@ The `Scrapinghub Dashboard`_ (or *Dash* for short) allows you to control and mon
 When you login to Dash, you go to your home page (also known as your profile page). There you can see all your Scrapy Cloud projects and Crawlera users:
 
 .. image:: _static/dash-home.png
-   :width: 500px
+   :width: 600px
 
 |
 
@@ -38,8 +38,8 @@ The Search Bar
 
 You can use the search bar to jump quickly to any project, user or Crawlera account.
 
-.. image:: _static/dash-searchbar.png
-   :width: 200px
+.. image:: _static/dash-search.png
+   :width: 400px
 
 |
 
@@ -53,7 +53,7 @@ To schedule a spider for running select the spider in the **Schedule** box and c
 If you click on any project, you go to the **Jobs** dashboard page where you will see the spider jobs that are completed, running or pending to run.
 
 .. image:: _static/dash-jobs.png
-   :width: 500px
+   :width: 600px
 
 |
 
@@ -68,14 +68,14 @@ Job Page
 ========
 
 .. image:: _static/dash-job-click.png
-   :width: 500px
+   :width: 600px
 
 |
 
 Clicking on any job ID (see the picture above) will take you to the job page, where you can see stats about the job alongside items scraped from it:
 
 .. image:: _static/dash-jobpage.png
-   :width: 500px
+   :width: 600px
 
 |
 
@@ -84,8 +84,8 @@ Job Outcomes
 
 The job outcome indicates whether the job succeeded or failed. By default, it contains the value of the spider close reason from Scrapy. It's available in the table of completed jobs:
 
-.. image:: _static/dash-outcome.png
-   :width: 500px
+.. image:: _static/dash-job-outcome.png
+   :width: 600px
 
 |
 
@@ -150,14 +150,14 @@ Items Browser
 You can review items by clicking on the **Items** tab:
 
 .. image:: _static/dash-items.png
-   :width: 500px
+   :width: 600px
 
 |
 
 You can also download the items in CSV or JSON format through the **Items** menu:
 
 .. image:: _static/dash-items-download.png
-   :width: 500px
+   :width: 600px
 
 |
 
