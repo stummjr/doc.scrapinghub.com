@@ -13,6 +13,26 @@ When you login to Dash, you go to your home page (also known as your profile pag
 
 |
 
+Organizations
+=============
+
+Before you create your first project, you will need to create an organization. An organization represents a group of users collaborating on one or more projects. To create an organization, click the 'Create an organization' button at the top right of the Dash homepage. You can only have one trial organization, and once its has expired you will no longer be able to create projects under that organization. If you create a project before having created an organization, you can choose 'Create a default Scrapy Cloud trial organization' and a default organization will be created using your username.
+
+.. image:: _static/create-organization.png
+   :width: 400px 
+
+Billing is done per organization, so if you are using a paid account you will receive a separate invoice for each organization you own. You can invite users to your organization's project without them belonging to the organization. If you need other people to be able to create projects under your organization, you can add them as a manager:
+
+.. image:: _static/add-manager.png
+    :width: 600px
+
+If you want to upgrade to a paid account, you can do so on your organization's billing page:
+
+.. image:: _static/upgrade-paid.png
+    :width: 400px
+
+Crawlera accounts are linked to organizations rather than users. When signing up for Crawlera your user will be linked to your organization. If you wish to move a Crawlera user to a different organization, please contact support. 
+
 The Search Bar
 ==============
 
