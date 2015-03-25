@@ -30,7 +30,12 @@ There is also the Crawlera middleware provided by the ``scrapylib`` library and 
     CRAWLERA_USER = 'your_username'
     CRAWLERA_PASS = 'your_password'
 
-When using Crawlera with Scrapy, it’s recommended to disable the :ref:`autothrottle-addon` extension and increase the maximum number of concurrent requests.
+To achieve higher crawl rates when using Crawlera with Scrapy, it’s recommended to disable the :ref:`autothrottle-addon` extension and increase the maximum number of concurrent requests. You may also want to increase the download timeout. Here's an example::
+
+    CONCURRENT_REQUESTS = 32
+    CONCURRENT_REQUESTS_PER_DOMAIN = 32
+    AUTOTHROTTLE_ENABLED = False
+    DOWNLOAD_TIMEOUT = 600
 
 To enable Crawlera in `Dash <http://dash.scrapinghub.com/>`_, see :ref:`crawlera-scrapy-cloud` section.
 
