@@ -145,7 +145,7 @@ Crawlera supports a number of headers which can be used to control its behaviour
 
 X-Crawlera-NO-UA
 -----------------
-:sub:`Only available to Enterprise users.`
+:sub:`Not available on Pay-as-You-Go plan.`
 
 This header is deprecated, use :ref:`X-Crawlera-UA <x-crawlera-ua>` instead with the value ``pass``.
 
@@ -153,7 +153,7 @@ This header is deprecated, use :ref:`X-Crawlera-UA <x-crawlera-ua>` instead with
 
 X-Crawlera-UA
 --------------
-:sub:`Only available to Enterprise users.`
+:sub:`Not available on Pay-as-You-Go plan.`
 
 This header controls Crawlera User-Agent behaviour. The supported values are:
 
@@ -168,7 +168,7 @@ More User-Agent types will be supported in the future (``chrome``, ``firefox``) 
 
 X-Crawlera-No-Bancheck
 -----------------------
-:sub:`Only available to Enterprise users.`
+:sub:`Not available on Pay-as-You-Go plan.`
 
 This header instructs Crawlera not to check responses against its ban rules and pass any received response to the client. The presence of this header (with any value) is assumed to be a flag to disable ban checks.
 
@@ -178,7 +178,7 @@ This header instructs Crawlera not to check responses against its ban rules and 
 
 X-Crawlera-Cookies
 -------------------
-:sub:`Only available to Enterprise users.`
+:sub:`Not available on Pay-as-You-Go plan.`
 
 This header allows to disable internal cookies tracking performed by Crawlera.
 
@@ -195,7 +195,7 @@ X-Crawlera-Session
     
     An experimental beta feature.
 
-:sub:`Only available to Enterprise users.`
+:sub:`Not available on Pay-as-You-Go plan.`
 
 This header instructs Crawlera to use sessions which will tie requests to a particular slave until it gets banned.
 
