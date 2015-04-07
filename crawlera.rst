@@ -40,39 +40,40 @@ To achieve higher crawl rates when using Crawlera with Scrapy, it’s recommende
 
 To enable Crawlera in `Dash <http://dash.scrapinghub.com/>`_, see :ref:`crawlera-scrapy-cloud` section.
 
+.. _working-with-https:
+
 Working with HTTPS
 ------------------
 
-The caveat of Crawlera’s HTTP proxy interface is that it doesn’t support the *CONNECT* method, so HTTPS URLs won’t work with a standard proxy configuration. While some HTTP clients support HTTPS requests through standard HTTP proxies, resorting to the *fetch API* is suggested::
+The caveat of Crawlera’s HTTP proxy interface is that it doesn’t support the *CONNECT* method, so HTTPS URLs won’t work with a standard proxy configuration. While some HTTP clients support HTTPS requests through standard HTTP proxies, it's recommended you use the :ref:`fetch-api`; however, if you're using the Crawlera middleware it's recommended you use the :ref:`x-crawlera-use-https` header instead.
 
-    curl -U USER:PASS http://paygo.crawlera.com/fetch?url=https://twitter.com
 
-Note that it’s not recommended to use the *fetch API* with the Crawlera middleware. Another option is the :ref:`x-crawlera-use-https` header.
-
+.. _fetch-api:
 
 Fetch API
 =========
-| Crawlera provides HTTP API interface for URL fetching.
-| Supports GET/HEAD methods.
-| Basic authorization required.
 
-Query string fields:
---------------------
+Crawlera's fetch API let's you request URLs as an alternative to Crawlera's proxy interface. As explained in the :ref:`working-with-https` section, Crawlera's proxy interface doesn't support the *CONNECT* method, and it's recommended that you use the fetch API when making HTTPS requests if you're not using the Crawlera middleware.
 
-============== ========== ========================================================== ========================================================
-Field          Mandatory  Description                                                Example
-============== ========== ========================================================== ========================================================
-url            yes        URL to fetch                                               `http://crawlera.com`
-headers        no         additional headers which will be used in outgoing request  `Header1:Value1;Header2:Value2`
-============== ========== ========================================================== ========================================================
+Parameters
+----------
 
-.. warning::
+.. note:: Parameter values should always be encoded.
 
-    It's always a good idea to encode field values, otherwise fetched result can be incorrect.
+============== ======== ========================================= ===============================
+Parameter      Required Description                               Example
+============== ======== ========================================= ===============================
+url            yes      URL to fetch                              `http://crawlera.com`
+headers        no       Headers to send in the outgoing request   `header1:value1;header2:value2`
+============== ======== ========================================= ===============================
 
-Examples::
+Basic example::
 
-    curl -v 'http://USER:USER@paygo.crawlera.com:8010/fetch?url=http%3A//crawlera.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
+    curl -U USER:PASS http://paygo.crawlera.com:8010/fetch?url=https://twitter.com
+
+Headers example::
+
+    curl -U USER:PASS 'http://paygo.crawlera.com:8010/fetch?url=http%3A//crawlera.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
 
 
 Errors
