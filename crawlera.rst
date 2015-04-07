@@ -55,17 +55,17 @@ Fetch API
 
 Crawlera's fetch API let's you request URLs as an alternative to Crawlera's proxy interface. As explained in the :ref:`working-with-https` section, Crawlera's proxy interface doesn't support the *CONNECT* method, and it's recommended that you use the fetch API when making HTTPS requests if you're not using the Crawlera middleware.
 
-Parameters
-----------
+Fields
+------
 
-.. note:: Parameter values should always be encoded.
+.. note:: Field values should always be encoded.
 
-============== ======== ========================================= ===============================
-Parameter      Required Description                               Example
-============== ======== ========================================= ===============================
-url            yes      URL to fetch                              `http://crawlera.com`
-headers        no       Headers to send in the outgoing request   `header1:value1;header2:value2`
-============== ======== ========================================= ===============================
+=========== ======== ========================================= ===============================
+Field       Required Description                               Example
+=========== ======== ========================================= ===============================
+url         yes      URL to fetch                              `http://crawlera.com`
+headers     no       Headers to send in the outgoing request   `header1:value1;header2:value2`
+=========== ======== ========================================= ===============================
 
 Basic example::
 
