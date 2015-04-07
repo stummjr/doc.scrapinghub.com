@@ -16,6 +16,7 @@ Testing Crawlera Credentials
 
     curl -vx paygo.crawlera.com:8010 -U USER:PASS http://crawlera.com
 
+
 Using Crawlera with Scrapy
 --------------------------
 
@@ -47,6 +48,31 @@ The caveat of Crawlera’s HTTP proxy interface is that it doesn’t support the
     curl -U USER:PASS http://paygo.crawlera.com/fetch?url=https://twitter.com
 
 Note that it’s not recommended to use the *fetch API* with the Crawlera middleware. Another option is the :ref:`x-crawlera-use-https` header.
+
+
+Fetch API
+=========
+| Crawlera provides HTTP API interface for URL fetching.
+| Supports GET/HEAD methods.
+| Basic authorization required.
+
+Query string fields:
+--------------------
+
+============== ========== ========================================================== ========================================================
+Field          Mandatory  Description                                                Example
+============== ========== ========================================================== ========================================================
+url            yes        URL to fetch                                               `http://crawlera.com`
+headers        no         additional headers which will be used in outgoing request  `Header1:Value1;Header2:Value2`
+============== ========== ========================================================== ========================================================
+
+.. warning::
+
+    It's always a good idea to encode field values, otherwise fetched result can be incorrect.
+
+Examples::
+
+    curl -v 'http://USER:USER@paygo.crawlera.com:8010/fetch?url=http%3A//crawlera.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
 
 
 Errors
