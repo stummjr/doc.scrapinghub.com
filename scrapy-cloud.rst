@@ -83,6 +83,12 @@ Once the job has finished, or while it's running, you can click on the job to re
 Dependencies and External Libraries
 ===================================
 
+The Scrapy Cloud platform comes with some libraries pre-installed that you can
+use in your code without uploading an egg. `This support article
+<http://support.scrapinghub.com/topic/205467-supported-libraries-on-scrapy-cloud/>`_
+describes exactly which library versions are availble, and you can also
+subscribe to get notified of changes to such libraries.
+
 If your project needs code from an external Python library, you need to upload a Python egg of that dependency.
 
 See `setuptools`_ for details about egg concepts, preparation and building. If you want to provide your own library for your project, proceed as described below:
