@@ -104,7 +104,7 @@ You can list the existing frontiers for a project::
 
 And list the slots for a given frontier::
 
-    $ curl -u $SHUB_APIKEY: https://storage.scrapinghub.com/hcf/78/test/list
+    $ curl -u <API_KEY>: https://storage.scrapinghub.com/hcf/78/test/list
     ["example.com"]
 
 Slots can be deleted::
