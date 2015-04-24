@@ -96,6 +96,17 @@ All fingerprints can be downloaded by requesting the fingerprint set::
 
 They are ordered lexicographically by fingerprint value.
 
+
+You can list the existing frontiers for a project::
+
+    $ curl -u <API_KEY>: https://storage.scrapinghub.com/hcf/78/list
+    ["test"]
+
+And list the slots for a given frontier::
+
+    $ curl -u $SHUB_APIKEY: https://storage.scrapinghub.com/hcf/78/test/list
+    ["example.com"]
+
 Slots can be deleted::
 
     $ curl -u <API_KEY>: -X DELETE https://storage.scrapinghub.com/hcf/78/test/s/example.com/
