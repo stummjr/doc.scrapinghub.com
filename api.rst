@@ -147,4 +147,4 @@ There is a Python client library for Scrapinghub API available here:
 
 .. _curl: http://curl.haxx.se/
 .. _HTTP basic auth: http://en.wikipedia.org/wiki/Basic_access_authentication
-.. _JSONView extension: http://benhollis.net/software/jsonview/
+.. _JSONView extension: http://jsonview.com/
