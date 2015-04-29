@@ -2,8 +2,21 @@
 Scrapy Cloud
 ============
 
-*Scrapy Cloud* is a service provided by the Scrapinghub platform that allows to deploy and run `Scrapy`_ spiders.
+*Scrapy Cloud* is a Scrapinghub service to deploy and run `Scrapy`_ spiders.
 
+Plans & Pricing
+===============
+
+Scrapy Cloud comes in two plans:
+
+* *Pay-as-You-Go* where we run your spiders on shared infrastructure that is
+  allocated to deal with the capacity demand of all Scrapinghub users
+
+* *Dedicated Server* where we provision a dedicated server where all your
+  spiders will run, not sharing any computing resources with other customers'
+  spiders.
+
+Check `Scrapinghub Pricing`_ page for more details.
 
 Creating a Scrapy Spider
 ========================
@@ -175,3 +188,4 @@ To list all eggs in project ``123``::
 .. _account page: https://dash.scrapinghub.com/account/
 .. _Scrapy documentation: http://doc.scrapy.org/
 .. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
+.. _Scrapinghub documentation: http://scrapinghub.com/pricing/
