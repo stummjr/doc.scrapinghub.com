@@ -33,4 +33,3 @@ Table of Contents
 .. _Support center: http://support.scrapinghub.com
 .. _Knowledge Base: http://support.scrapinghub.com/forum/24895-knowledge-base/
 .. _Scrapy: http://scrapy.org
-.. _Autoscraping: http://scrapinghub.com/autoscraping

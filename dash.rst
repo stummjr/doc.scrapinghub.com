@@ -100,7 +100,7 @@ Outcome                      Meaning
 `shutdown`_                  the job was cancelled manually
 `cancel_timeout`_            the job was cancelled due to inactivity
 `memusage_exceeded`_         the job was cancelled due to high memory usage
-`slybot_fewitems_scraped`_   the job was not scraping enough data (:doc:`autoscraping` specific)
+`slybot_fewitems_scraped`_   the job was not scraping enough data (:doc:`portia` specific)
 ==========================   ===============================================================
 
 finished
@@ -142,7 +142,7 @@ slybot_fewitems_scraped
 -----------------------
 
 The job was cancelled because it wasn't scraping enough new data. This is used
-in :ref:`autoscraping` to prevent infinite crawling loops.
+in :ref:`portia` to prevent infinite crawling loops.
 
 Items Browser
 =============
