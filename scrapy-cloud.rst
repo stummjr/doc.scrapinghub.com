@@ -104,7 +104,7 @@ See `setuptools`_ for details about egg concepts, preparation and building. If y
     )
 
 #. Run ``python setup.py bdist_egg`` to deploy in your project.
-#. In Dash, go to **Settings -> Eggs -> Add Egg**, and fill the requested data in the upload form.
+#. In Scrapinghub, go to **Settings -> Eggs -> Add Egg**, and fill the requested data in the upload form.
 
 
 .. _eggs-api:

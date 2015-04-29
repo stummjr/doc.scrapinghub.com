@@ -4,14 +4,14 @@
 Addons
 ======
 
-Addons allow to extend bot capabilities and configure them easily from Dash. Each addon provides a particular feature. There are two flavours of addons: builtin addons and user addons. Builtin addons are always enabled and cannot be disabled by users.
+Addons allow to extend bot capabilities and configure them easily from Scrapinghub. Each addon provides a particular feature. There are two flavours of addons: builtin addons and user addons. Builtin addons are always enabled and cannot be disabled by users.
 
 Addons are very popular among Autoscraping users as a way of obtaining additional functionality without writing any code. Scrapy Cloud users often tend to write the extensions themselves. In fact, addons are no more than a fancy UI to configure `Scrapy`_ extensions.
 
 To put an addon to use, you have to:
 
-    #. Add it to your project, by going to **Settings -> Addons** in the Scrapinghub Dash.
-    #. Enable it. Some addons are enabled automatically when added, while others require configuring (e.g. editing ``ADDON_ENABLED`` setting). It should be clear from the addon page in the Dash which case it is.
+    #. Add it to your project, by going to **Settings -> Addons** in the Scrapinghub dashboard.
+    #. Enable it. Some addons are enabled automatically when added, while others require configuring (e.g. editing ``ADDON_ENABLED`` setting). It should be clear from the addon page in the dashboard which case it is.
 
 You can also enable addons per spider, instead of project-wide: select the spider in **Spiders** section, click **Settings** tab (next to **Details**), click ``+`` button in the corresponding addon field to add a new entry and choose ``ADDON_ENABLED`` from the list of options.
 
@@ -22,7 +22,7 @@ Autothrottle
 
 Allows the bot to crawl the target site with more caution, by dynamically adjusting request concurrency and delay according to the site lag and user control parameters. For details see `Scrapy Autothrottle`_ documentation.
 
-This addon is loaded by default in every Dash project. The basic settings controlling its behaviour are:
+This addon is loaded by default in every project. The basic settings controlling its behaviour are:
 
 * ``CONCURRENT_REQUESTS_PER_DOMAIN`` - limits the maximum number of concurrent requests sent to the same host domain (default value is ``8``)
 * ``DOWNLOAD_DELAY`` - limits the minimum download delay (in seconds) between each burst of requests (default value is ``0``)

@@ -13,7 +13,7 @@ Reports API
 
 This API provides means for uploading reports attached to a single scraping job:
 
- * Job reports can be accessed through the **Reports** tab of each job page in Dash.
+ * Job reports can be accessed through the **Reports** tab of each job page in our dashboard.
 
 Multiple reports can be attached to a job. Each report is uniquely identified by a key (within a given job).
 

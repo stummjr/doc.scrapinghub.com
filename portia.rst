@@ -4,12 +4,12 @@
 Portia
 ======
 
-Portia let's you create spiders through a visual interface and then export them to Scrapy Cloud. This page mostly covers using Portia with Dash, for information on how Portia itself works take a look at the `documentation <https://github.com/scrapinghub/portia>`_.
+Portia let's you create spiders through a visual interface and then export them to Scrapy Cloud. This page mostly covers using Portia with Scrapinghub, for information on how Portia itself works take a look at the `documentation <https://github.com/scrapinghub/portia>`_.
 
 Creating a Portia Project
 =========================
 
-You can create a new Portia project from Dash's homepage. When you create a new project, you will be redirected to Portia and can begin creating spiders. Existing spiders can be accessed on the right.
+You can create a new Portia project from Scrapinghub's homepage. When you create a new project, you will be redirected to Portia and can begin creating spiders. Existing spiders can be accessed on the right.
 
 If you want to create Portia spiders within an existing project, you can enable Portia in the project's Addons section. You can then access Portia by clicking the Portia tab on the left.
 
@@ -38,12 +38,12 @@ Even if you're only extracting a single item, in many cases you will need to use
 
 Extractors allow you to further refine field values extracted from a page using regexes or a predefined type. This is useful if you only want a subselection of an element's content or attribute.
 
-Publishing to Dash
-==================
+Publishing to Scrapinghub
+=========================
 
-Once your have tested your spiders, you're ready to publish your project to Dash. Click the project name in the breadcrumbs on the top left to enter the project context. From here you can click the 'Publish changes' button found in the toolbox menu on the right.
+Once your have tested your spiders, you're ready to publish your project to Scrapinghub. Click the project name in the breadcrumbs on the top left to enter the project context. From here you can click the 'Publish changes' button found in the toolbox menu on the right.
 
-When you publish your project, if successful you will be asked if you want to be redirected to the schedule page. Click 'OK' and you will be taken to the spiders page in Dash, here you can schedule your spider by clicking the 'Schedule' button located at the top right.
+When you publish your project, if successful you will be asked if you want to be redirected to the schedule page. Click 'OK' and you will be taken to the spiders page in Scrapinghub, here you can schedule your spider by clicking the 'Schedule' button located at the top right.
 
 .. image:: _static/portia-scraped-items.png
     :width: 600px

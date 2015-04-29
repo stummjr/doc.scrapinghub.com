@@ -1,12 +1,12 @@
 .. _dash:
 
-====
-Dash
-====
+=============
+The Dashboard
+=============
 
-The `Scrapinghub Dashboard`_ (or *Dash* for short) allows you to control and monitor your spiders, as well as other Scrapinghub services such as Crawlera.
+The `Scrapinghub Dashboard`_ allows you to control and monitor your spiders, as well as other Scrapinghub services such as Crawlera.
 
-When you login to Dash, you go to your home page (also known as your profile page). There you can see all your Scrapy Cloud projects and Crawlera users:
+When you login to Scrapinghub, you go to your home page (also known as your profile page). There you can see all your Scrapy Cloud projects and Crawlera users:
 
 .. image:: _static/dash-home.png
    :width: 600px
@@ -16,7 +16,7 @@ When you login to Dash, you go to your home page (also known as your profile pag
 Organizations
 =============
 
-Before you create your first project, you will need to create an organization. An organization represents a group of users collaborating on one or more projects. To create an organization, click the 'Create an organization' button at the top right of the Dash homepage. You can only have one trial organization, and once its has expired you will no longer be able to create projects under that organization. If you create a project before having created an organization, you can choose 'Create a default Scrapy Cloud trial organization' and a default organization will be created using your username.
+Before you create your first project, you will need to create an organization. An organization represents a group of users collaborating on one or more projects. To create an organization, click the 'Create an organization' button at the top right of the Scrapinghub homepage. You can only have one trial organization, and once its has expired you will no longer be able to create projects under that organization. If you create a project before having created an organization, you can choose 'Create a default Scrapy Cloud trial organization' and a default organization will be created using your username.
 
 .. image:: _static/create-organization.png
    :width: 400px 
@@ -118,9 +118,9 @@ last lines of the job log for more information.
 shutdown
 --------
 
-The job was cancelled manually, either from :ref:`Dash <dash>` or the :ref:`API
-<api>`. Incidentally, this is the same close reason used by Scrapy when
-terminating a spider pressing ``Ctrl-C``.
+The job was cancelled manually, either from :ref:`the dashboard <dash>` or the
+:ref:`API <api>`. Incidentally, this is the same close reason used by Scrapy
+when terminating a spider pressing ``Ctrl-C``.
 
 cancel_timeout
 --------------

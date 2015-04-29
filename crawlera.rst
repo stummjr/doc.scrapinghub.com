@@ -38,7 +38,7 @@ To achieve higher crawl rates when using Crawlera with Scrapy, it’s recommende
     AUTOTHROTTLE_ENABLED = False
     DOWNLOAD_TIMEOUT = 600
 
-To enable Crawlera in `Dash <http://dash.scrapinghub.com/>`_, see :ref:`crawlera-scrapy-cloud` section.
+To enable Crawlera via `Scrapinghub dashboard <http://dash.scrapinghub.com/>`_, see :ref:`crawlera-scrapy-cloud` section.
 
 .. _working-with-https:
 
@@ -425,4 +425,4 @@ You can use `crawlera-bench tool <https://github.com/scrapinghub/crawlera-tools>
 Where Can I Monitor My Crawlera Usage?
 --------------------------------------
 
-On your main page in Dash (i.e. ``https://dash.scrapinghub.com/USERNAME/``), under **Crawlera** you should see Crawlera users linked to your Dash account. If you click on a user, you will be able review the number of requests per day/month for that user.
+Go to your Scrapinghub home page (i.e. ``https://dash.scrapinghub.com/USERNAME/``), and you should see your Crawlera accounts in the Crawlera section. If you click on a user, you will be able review the number of requests per day/month for that user.
