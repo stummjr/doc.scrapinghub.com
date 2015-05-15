@@ -148,12 +148,12 @@ Issue the endpoint :ref:`/sessions` with the ``GET`` method to list your session
     curl -u USER:PASS paygo.crawlera.com:8010/sessions
     {"1836172": "<SLAVE1>", "1691272": "<SLAVE2>"}
 
-.. _/sessions/<session ID>:
+.. _/sessions/SESSION_ID:
 
 Delete a session
 ~~~~~~~~~~~~~~~~
 
-Issue the endpoint :ref:`/sessions/<session ID>` with the ``DELETE`` method in order to delete a session.
+Issue the endpoint :ref:`/sessions/SESSION_ID` with the ``DELETE`` method in order to delete a session.
 
 *Example*::
 

@@ -16,7 +16,7 @@ Scrapy Cloud comes in two plans:
   spiders will run, not sharing any computing resources with other customers'
   spiders.
 
-Check `Scrapinghub Pricing`_ page for more details.
+Check the `Scrapinghub Pricing`_ page for more details.
 
 Creating a Scrapy Spider
 ========================
@@ -188,4 +188,4 @@ To list all eggs in project ``123``::
 .. _account page: https://dash.scrapinghub.com/account/
 .. _Scrapy documentation: http://doc.scrapy.org/
 .. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
-.. _Scrapinghub documentation: http://scrapinghub.com/pricing/
+.. _Scrapinghub Pricing: http://scrapinghub.com/pricing/
