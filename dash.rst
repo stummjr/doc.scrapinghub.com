@@ -89,18 +89,24 @@ The job outcome indicates whether the job succeeded or failed. By default, it co
 
 |
 
-Here is a summary of the Scrapinghub built-in job outcomes. Click on the name
-for more details about the outcome.
+Here is a summary of the most common job outcomes. Click on the name for more
+details:
 
 ==========================   ===============================================================
 Outcome                      Meaning
 ==========================   ===============================================================
-`finished`_                  the job finished successfully
+`finished`_                  the job finished OK
+`no_reason`_                 the job finished OK but didn't set an outcome
 `failed`_                    the job failed to start
-`shutdown`_                  the job was cancelled manually
-`cancel_timeout`_            the job was cancelled due to inactivity
+`cancelled`_                 the job was cancelled from Scrapinghub Dashboard or API
+`shutdown`_                  the job was cancelled from Scrapy code
 `memusage_exceeded`_         the job was cancelled due to high memory usage
+`banned`_                    the job was cancelled because target site banned the spider
 `slybot_fewitems_scraped`_   the job was not scraping enough data (:doc:`portia` specific)
+closespider_errorcount       set by `Scrapy CloseSpider extension`_
+closespider_pagecount        set by `Scrapy CloseSpider extension`_
+closespider_timeout          set by `Scrapy CloseSpider extension`_
+closespider_itemcount        set by `Scrapy CloseSpider extension`_
 ==========================   ===============================================================
 
 finished
@@ -109,25 +115,33 @@ finished
 The job finished successfully. However, it may have produced errors, which you
 can inspect through the logs.
 
+no_reason
+---------
+
+The job finished successfully but did not set an outcome explicitly. For Scrapy
+jobs the outcome is taken from the spider close reason (which defaults to
+`finished`_) but on non-Scrapy jobs this is not the case and jobs will get this
+outcome.
+
 failed
 ------
 
 The job failed to start, typically due to a bug in the spider's code. Check the
 last lines of the job log for more information.
 
+cancelled
+---------
+
+The job was cancelled from :ref:`the dashboard <dash>`, the :ref:`API <api>` or
+by the system if it got inactive and failed to produce anything (not even log
+entries) for an hour.
+
 shutdown
 --------
 
-The job was cancelled manually, either from :ref:`the dashboard <dash>` or the
-:ref:`API <api>`. Incidentally, this is the same close reason used by Scrapy
-when terminating a spider pressing ``Ctrl-C``.
-
-cancel_timeout
---------------
-
-The job was cancelled because either it has failed to shutdown gracefully after
-cancellation (taking more than 5 minutes) or it hasn't been producing anything
-(not even log entries) for an hour.
+The spider was cancelled prematurely, typically from code. `shutdown`_ is the
+default close reason (outcome) used by Scrapy for such cases. It is what you
+get, for example, when you cancel a Scrapy spider pressing ``Ctrl-C``.
 
 memusage_exceeded
 -----------------
@@ -137,6 +151,12 @@ and it was cancelled by the system. This typically happens with spiders that
 don't use memory efficiently (keeping state or references that grow quickly
 over time) and it's most often manifested on long spider runs of many pages.
 This outcome is triggered by Scrapy's `Memory Usage Extension`_.
+
+banned
+------
+
+The job was termianted because the spider got banned from the target website.
+This outcome is often set by the Crawlera extension.
 
 slybot_fewitems_scraped
 -----------------------
@@ -168,3 +188,4 @@ This covers the basics of the dashboard, but there is much more. Feel free to pl
 .. _`knowledge base`: http://support.scrapinghub.com/forum/24895-knowledge-base/
 .. _`support forum`: http://support.scrapinghub.com/
 .. _`Memory Usage Extension`: http://doc.scrapy.org/en/latest/topics/extensions.html#module-scrapy.contrib.memusage
+.. _`Scrapy CloseSpider extension`: http://doc.scrapy.org/en/latest/topics/exceptions.html#closespider
