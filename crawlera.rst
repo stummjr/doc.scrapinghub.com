@@ -14,8 +14,6 @@ Creating a Crawlera User
 
 You can create a new Crawlera user from the homepage by clicking the 'Add a crawlera user' button. A modal will pop up. Select the organization you wish to assign the user to and click 'Create'. Your Crawlera user will take the name of the organization you selected. You can only create one Crawlera user per organization, if you wish to create more than one please contact support.
 
-.. note:: If you have previously used a username and password to authenticate, you can continue to do so if you don't wish to use the API key. Please note, however, that this method of authentication is likely to be removed in the future.
-
 The API key for your Crawlera user can be found on the user's 'Details' page. When authenticating use your API key as the username, leaving the password blank. You can also generate a new API key if you wish.
 
 Testing Credentials
@@ -39,8 +37,7 @@ There is also the Crawlera middleware provided by the ``scrapylib`` library and 
 
     DOWNLOADER_MIDDLEWARES = {'scrapylib.crawlera.CrawleraMiddleware': 600}
     CRAWLERA_ENABLED = True
-    CRAWLERA_USER = '<API key or username>'
-    CRAWLERA_PASS = '<password if required>'
+    CRAWLERA_USER = '<API key>'
 
 To achieve higher crawl rates when using Crawlera with Scrapy, it’s recommended to disable the :ref:`autothrottle-addon` extension and increase the maximum number of concurrent requests. You may also want to increase the download timeout. Here's an example::
 
@@ -335,7 +332,7 @@ Settings
 ========================= ===================================================
 CRAWLERA_URL              proxy URL (default: ``http://paygo.crawlera.com:8010``)
 CRAWLERA_ENABLED          tick the checkbox to enable Crawlera
-CRAWLERA_USER             Crawlera API key or username
+CRAWLERA_USER             Crawlera API key 
 CRAWLERA_PASS             Crawlera password (not required if using an API key)
 CRAWLERA_MAXBANS          number of bans to ignore before closing the spider (default: ``20``)
 CRAWLERA_DOWNLOAD_TIMEOUT timeout for requests (default: ``1800``)
