@@ -12,7 +12,7 @@ First Steps
 Creating a Crawlera User
 ------------------------
 
-You can create a new Crawlera user from the homepage by clicking the 'Add a crawlera user' button. A modal will pop up. Select the organization you wish to assign the user to and click 'Create'. Your Crawlera user will take the name of the organization you selected.
+You can create a new Crawlera user from the homepage by clicking the 'Add a crawlera user' button. A modal will pop up. Select the organization you wish to assign the user to and click 'Create'. Your Crawlera user will take the name of the organization you selected. You can only create one Crawlera user per organization, if you wish to create more than one please contact support.
 
 .. note:: If you have previously used a username and password to authenticate, you can continue to do so if you don't wish to use the API key. Please note, however, that this method of authentication is likely to be removed in the future.
 
