@@ -39,8 +39,8 @@ There is also the Crawlera middleware provided by the ``scrapylib`` library and 
 
     DOWNLOADER_MIDDLEWARES = {'scrapylib.crawlera.CrawleraMiddleware': 600}
     CRAWLERA_ENABLED = True
-    CRAWLERA_USER = 'your_username'
-    CRAWLERA_PASS = 'your_password'
+    CRAWLERA_USER = '<API key or username>'
+    CRAWLERA_PASS = '<password if required>'
 
 To achieve higher crawl rates when using Crawlera with Scrapy, it’s recommended to disable the :ref:`autothrottle-addon` extension and increase the maximum number of concurrent requests. You may also want to increase the download timeout. Here's an example::
 
@@ -335,8 +335,8 @@ Settings
 ========================= ===================================================
 CRAWLERA_URL              proxy URL (default: ``http://paygo.crawlera.com:8010``)
 CRAWLERA_ENABLED          tick the checkbox to enable Crawlera
-CRAWLERA_USER             Crawlera username
-CRAWLERA_PASS             Crawlera password
+CRAWLERA_USER             Crawlera API key or username
+CRAWLERA_PASS             Crawlera password (not required if using an API key)
 CRAWLERA_MAXBANS          number of bans to ignore before closing the spider (default: ``20``)
 CRAWLERA_DOWNLOAD_TIMEOUT timeout for requests (default: ``1800``)
 ========================= ===================================================
