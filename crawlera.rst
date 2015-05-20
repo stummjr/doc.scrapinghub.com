@@ -9,12 +9,23 @@ Crawlera is a HTTP/HTTPS downloader that routes your requests through a pool of 
 First Steps
 ===========
 
-Testing Crawlera Credentials
-----------------------------
+Creating a Crawlera User
+------------------------
+
+You can create a new Crawlera user from the homepage by clicking the 'Add a crawlera user' button. A modal will pop up. Select the organization you wish to assign the user to and click 'Create'. Your Crawlera user will take the name of the organization you selected.
+
+.. note:: If you have previously used a username and password to authenticate, you can continue to do so if you don't wish to use the API key. Please note, however, that this method of authentication is likely to be removed in the future.
+
+The API key for your Crawlera user can be found on the user's 'Details' page. When authenticating use your API key as the username, leaving the password blank. You can also generate a new API key if you wish.
+
+Testing Credentials
+-------------------
+
+You can test your credentials using ``curl``, like so:
 
 .. code-block:: text
 
-    curl -vx paygo.crawlera.com:8010 -U USER:PASS http://crawlera.com
+    curl -vx paygo.crawlera.com:8010 -U <API key>: http://crawlera.com
 
 
 Using Crawlera with Scrapy
@@ -22,7 +33,7 @@ Using Crawlera with Scrapy
 
 Crawlera provides HTTP proxy interface allowing to employ Crawlera with any software supporting standard HTTP proxies. Scrapy supports HTTP proxies through the ``http_proxy`` environment variable, so it’s possible to use Crawlera this way::
 
-    export http_proxy=http://USER:PASS@paygo.crawlera.com:8010
+    export http_proxy=http://<API key>:@paygo.crawlera.com:8010
 
 There is also the Crawlera middleware provided by the ``scrapylib`` library and enabled by adding the following lines to your Scrapy project settings::
 
@@ -69,11 +80,11 @@ headers     no       Headers to send in the outgoing request   `header1:value1;h
 
 Basic example::
 
-    curl -u USER:PASS http://paygo.crawlera.com:8010/fetch?url=https://twitter.com
+    curl -U <API key>: http://paygo.crawlera.com:8010/fetch?url=https://twitter.com
 
 Headers example::
 
-    curl -u USER:PASS 'http://paygo.crawlera.com:8010/fetch?url=http%3A//crawlera.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
+    curl -U <API key>: 'http://paygo.crawlera.com:8010/fetch?url=http%3A//crawlera.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
 
 
 Errors
@@ -145,7 +156,7 @@ Issue the endpoint :ref:`/sessions` with the ``GET`` method to list your session
 
 *Example*::
 
-    curl -u USER:PASS paygo.crawlera.com:8010/sessions
+    curl -U <API key>: paygo.crawlera.com:8010/sessions
     {"1836172": "<SLAVE1>", "1691272": "<SLAVE2>"}
 
 .. _/sessions/SESSION_ID:
@@ -157,7 +168,7 @@ Issue the endpoint :ref:`/sessions/SESSION_ID` with the ``DELETE`` method in ord
 
 *Example*::
 
-    curl -u USER:PASS paygo.crawlera.com:8010/sessions/1836172 -X DELETE
+    curl -U <API key>: paygo.crawlera.com:8010/sessions/1836172 -X DELETE
 
 Request Limits
 --------------
@@ -239,7 +250,7 @@ X-Crawlera-Use-HTTPS
 
 This header forces Crawlera to retrieve the URL using HTTPS scheme instead of HTTP. For example, to fetch https://twitter.com::
 
-    curl -x paygo.crawlera.com:8010 -U USER:PASS http://twitter.com -H x-crawlera-use-https:1
+    curl -x paygo.crawlera.com:8010 -U <API key>: http://twitter.com -H x-crawlera-use-https:1
 
 X-Crawlera-JobId
 ----------------
@@ -329,7 +340,7 @@ Using Crawlera with Selenium and Polipo
 Since it's not so trivial to set up proxy authentication in Selenium, a popular option is to employ `Polipo <http://www.pps.univ-paris-diderot.fr/~jch/software/polipo/>`_ as a proxy. Update Polipo configuration file ``/etc/polipo/config`` to include Crawlera credentials (if the file is not present, copy and rename ``config.sample`` found in Polipo source folder)::
 
     parentProxy = "paygo.crawlera.com:8010"
-    parentAuthCredentials = "USER:PASS"
+    parentAuthCredentials = "<API key>:"
 
 For password safety reasons this content is displayed as ``(hidden)`` in the Polipo `web interface manager <http://www.pps.univ-paris-diderot.fr/~jch/software/polipo/polipo.html#Web-interface>`_. The next step is to specify Polipo proxy details in the Selenium automation script, e.g. for Python and Firefox:
 
