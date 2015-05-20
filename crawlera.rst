@@ -59,6 +59,14 @@ Working with HTTPS
 The caveat of Crawlera’s HTTP proxy interface is that it doesn’t support the *CONNECT* method, so HTTPS URLs won’t work with a standard proxy configuration. While some HTTP clients support HTTPS requests through standard HTTP proxies, it's recommended you use the :ref:`fetch-api`; however, if you're using the Crawlera middleware it's recommended you use the :ref:`x-crawlera-use-https` header instead.
 
 
+.. _upgrading-your-account:
+
+Upgrading Your Account
+=====================
+
+You can upgrade your Crawlera account on your Crawlera user's 'Details' page. Under the 'Upgrade Crawlera' heading you can choose to upgrade to either the Shared Monthly plan or the Enterprise plan. To find out more about these plans please visit the `Pricing & Plans <http://scrapinghub.com/pricing>`_ page.
+
+
 .. _fetch-api:
 
 Fetch API
