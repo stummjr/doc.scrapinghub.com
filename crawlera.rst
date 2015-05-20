@@ -25,7 +25,7 @@ You can test your credentials using ``curl``, like so:
 
 .. code-block:: text
 
-    curl -vx paygo.crawlera.com:8010 -U <API key>: http://crawlera.com
+    curl -vx paygo.crawlera.com:8010 -U <API key>: http://www.food.com/
 
 
 Using Crawlera with Scrapy
@@ -74,7 +74,7 @@ Fields
 =========== ======== ========================================= ===============================
 Field       Required Description                               Example
 =========== ======== ========================================= ===============================
-url         yes      URL to fetch                              `http://crawlera.com`
+url         yes      URL to fetch                              `http://www.food.com/`
 headers     no       Headers to send in the outgoing request   `header1:value1;header2:value2`
 =========== ======== ========================================= ===============================
 
@@ -84,7 +84,7 @@ Basic example::
 
 Headers example::
 
-    curl -U <API key>: 'http://paygo.crawlera.com:8010/fetch?url=http%3A//crawlera.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
+    curl -U <API key>: 'http://paygo.crawlera.com:8010/fetch?url=http%3A//www.food.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
 
 
 Errors
