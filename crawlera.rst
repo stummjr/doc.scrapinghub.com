@@ -47,14 +47,16 @@ Working with HTTPS
 
 Crawlera provides four ways for working with HTTPS:
 
-#. :ref:`x-crawlera-use-https` header
-#. :ref:`fetch-api`
-#. Normal HTTP request (e.g. ``GET https://example.org``)
-#. CONNECT method
+#. the :ref:`x-crawlera-use-https` header
+#. the :ref:`fetch-api`
+#. CONNECT method (standard mechanism used by browsers)
+#. HTTPs request over HTTP proxy
 
-Crawlera's support of the CONNECT method is experimental. It's recommended you use either the :ref:`x-crawlera-use-https` header or the :ref:`fetch-api`.
+CONNECT method support is still experimental. To use it you need to download
+and install the certificate file for Crawlera Certificate Authority or disable
+SSL certificate verification in your HTTP client.
 
-If you wish to use the CONNECT method, you will need to install our :download:`certificate <crawlera-ca.crt>` or disable certificate verification in your HTTP client.
+The Crawlera Certificate authority can be downloaded here: :download:`crawlera-ca.crt`
 
 .. _fetch-api:
 
