@@ -45,15 +45,23 @@ To enable Crawlera via `Scrapinghub dashboard <http://dash.scrapinghub.com/>`_, 
 Working with HTTPS
 ------------------
 
-The caveat of Crawlera’s HTTP proxy interface is that it doesn’t support the *CONNECT* method, so HTTPS URLs won’t work with a standard proxy configuration. While some HTTP clients support HTTPS requests through standard HTTP proxies, it's recommended you use the :ref:`fetch-api`; however, if you're using the Crawlera middleware it's recommended you use the :ref:`x-crawlera-use-https` header instead.
+Crawlera provides four ways for working with HTTPS:
 
+#. :ref:`x-crawlera-use-https` header
+#. :ref:`fetch-api`
+#. Normal HTTP request (e.g. ``GET https://example.org``)
+#. CONNECT method
+
+Crawlera's support of the CONNECT method is experimental. It's recommended you use either the :ref:`x-crawlera-use-https` header or the :ref:`fetch-api`.
+
+If you wish to use the CONNECT method, you will need to install our :download:`certificate <crawlera-ca.crt>` or disable certificate verification in your HTTP client.
 
 .. _fetch-api:
 
 Fetch API
 =========
 
-Crawlera's fetch API let's you request URLs as an alternative to Crawlera's proxy interface. As explained in the :ref:`working-with-https` section, Crawlera's proxy interface doesn't support the *CONNECT* method, and it's recommended that you use the fetch API when making HTTPS requests if you're not using the Crawlera middleware.
+Crawlera's fetch API let's you request URLs as an alternative to Crawlera's proxy interface.
 
 Fields
 ------
