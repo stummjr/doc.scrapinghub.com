@@ -1,4 +1,4 @@
-.. _api:
+.. _api-basics:
 
 ==========
 API Basics
@@ -35,9 +35,9 @@ We highly recommend installing the `JSONView extension`_ (available for Firefox 
 Available APIs
 ==============
 
-This is a summary of the available APIs for reference. It is advised to read
-their respective documentation chapter to understand how they work and how they
-should be used (best practices, etc.).
+:ref:`Here <api>` is a summary of the available APIs for reference. It is
+advised to read their respective documentation chapter to understand how they
+work and how they should be used (best practices, etc.).
 
 * :ref:`jobs-api`
 * :ref:`items-api`

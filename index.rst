@@ -7,27 +7,65 @@ Spiders can be written in Python using `Scrapy`_, built visually using `Portia`_
 
 Here you will find reference documentation. For more articles, guides and other help resources please visit our `Knowledge Base`_ in our `Support center`_.
 
-Table of Contents
------------------
+Products
+--------
+
+* :doc:`scrapy-cloud`
+* :doc:`crawlera`
+* :doc:`portia`
+
+Platform Concepts, Features & Tools
+-----------------------------------
+
+* :doc:`dash`
+* :doc:`jobs`
+* :doc:`jobdata`
+* :doc:`shub`
+* :doc:`comments`
+* :doc:`reports`
+* :doc:`activity`
+* :doc:`addons`
+
+.. _api:
+
+API
+---
 
 .. toctree::
    :maxdepth: 2
 
-   dash
-   shub
-   scrapy-cloud
+* :ref:`api-basics`
+* :ref:`jobs-api`
+* :ref:`items-api`
+* :ref:`logs-api`
+* :ref:`requests-api`
+* :ref:`collections-api`
+* :ref:`reports-api`
+* :ref:`activity-api`
+* :ref:`eggs-api`
+* :ref:`frontier-api`
+
+.. toctree::
+   :hidden:
+
    api
+
+   scrapy-cloud
+   crawlera
+   portia
+
+   dash
    jobs
    jobdata
+   shub
    comments
-   portia
    reports
+   addons
+
    activity
    collections
    frontier
-   crawlera
-   addons
-   oldapi
+
 
 .. _Support center: http://support.scrapinghub.com
 .. _Knowledge Base: http://support.scrapinghub.com/forum/24895-knowledge-base/
