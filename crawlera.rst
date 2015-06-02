@@ -33,7 +33,11 @@ Crawlera provides HTTP proxy interface allowing to employ Crawlera with any soft
 
     export http_proxy=http://<API key>:@paygo.crawlera.com:8010
 
-There is also the Crawlera middleware provided by the ``scrapy-crawlera`` library which can be enabled by adding the following lines to your Scrapy project settings::
+Another way to use Crawlera with Scrapy is with the Crawlera middleware provided by the ``scrapy-crawlera`` library::
+
+    pip install scrapy-crawlera
+
+You can enable the middleware by adding the following lines to your Scrapy project settings::
 
     DOWNLOADER_MIDDLEWARES = {'scrapy_crawlera.CrawleraMiddleware': 600}
     CRAWLERA_ENABLED = True
