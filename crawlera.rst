@@ -29,11 +29,7 @@ You can test your credentials using ``curl``, like so:
 Using Crawlera with Scrapy
 --------------------------
 
-Crawlera provides HTTP proxy interface allowing to employ Crawlera with any software supporting standard HTTP proxies. Scrapy supports HTTP proxies through the ``http_proxy`` environment variable, so it’s possible to use Crawlera this way::
-
-    export http_proxy=http://<API key>:@paygo.crawlera.com:8010
-
-Another way to use Crawlera with Scrapy is with the Crawlera middleware provided by the ``scrapy-crawlera`` library::
+You can use Crawlera with Scrapy with the Crawlera middleware provided by the ``scrapy-crawlera`` library::
 
     pip install scrapy-crawlera
 
