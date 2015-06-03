@@ -344,7 +344,7 @@ Settings
 CRAWLERA_URL              proxy URL (default: ``http://paygo.crawlera.com:8010``)
 CRAWLERA_ENABLED          tick the checkbox to enable Crawlera
 CRAWLERA_USER             Crawlera API key 
-CRAWLERA_PASS             Crawlera password (not required if using an API key)
+CRAWLERA_PASS             Crawlera password (set as empty string if using an API key)
 CRAWLERA_MAXBANS          number of bans to ignore before closing the spider (default: ``20``)
 CRAWLERA_DOWNLOAD_TIMEOUT timeout for requests (default: ``1800``)
 ========================= ===================================================
