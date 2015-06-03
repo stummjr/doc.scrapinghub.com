@@ -38,6 +38,7 @@ You can enable the middleware by adding the following lines to your Scrapy proje
     DOWNLOADER_MIDDLEWARES = {'scrapy_crawlera.CrawleraMiddleware': 600}
     CRAWLERA_ENABLED = True
     CRAWLERA_USER = '<API key>'
+    CRAWLERA_PASS = ''
 
 To achieve higher crawl rates when using Crawlera with Scrapy, it’s recommended to disable the :ref:`autothrottle-addon` extension and increase the maximum number of concurrent requests. You may also want to increase the download timeout. Here's an example::
 
