@@ -9,7 +9,7 @@ namespace ProxyRequest
         public static void Main (string[] args)
         {
             var myProxy = new WebProxy("http://paygo.crawlera.com:8010");
-            myProxy.Credentials = new NetworkCredential("USER", "PASS");
+            myProxy.Credentials = new NetworkCredential("<API KEY>", "");
 
             WebRequest request = WebRequest.Create("http://twitter.com");
             request.Headers["X-Crawlera-Use-HTTPS"] = "1";

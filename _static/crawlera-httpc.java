@@ -16,7 +16,7 @@ public class ClientProxyAuthentication {
         CredentialsProvider credsProvider = new BasicCredentialsProvider();
         credsProvider.setCredentials(
                 new AuthScope("paygo.crawlera.com", 8010),
-                new UsernamePasswordCredentials("USER", "PASS"));
+                new UsernamePasswordCredentials("<API KEY>", ""));
         CloseableHttpClient httpclient = HttpClients.custom()
                 .setDefaultCredentialsProvider(credsProvider).build();
         try {
