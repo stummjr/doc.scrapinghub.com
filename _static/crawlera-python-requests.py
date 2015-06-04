@@ -2,7 +2,7 @@ import requests
 
 url = "http://twitter.com"
 proxy = "paygo.crawlera.com:8010"
-proxy_auth = "USER:PASS"
+proxy_auth = "<API KEY>:"
 
 proxies = {
     "http": "http://{0}@{1}/".format(proxy_auth, proxy)
