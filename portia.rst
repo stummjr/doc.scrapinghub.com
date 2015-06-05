@@ -5,6 +5,7 @@ Portia
 ======
 
 Portia let's you create spiders through a visual interface and then export them to Scrapy Cloud. This page mostly covers using Portia with Scrapinghub, for information on how Portia itself works take a look at the `documentation <https://github.com/scrapinghub/portia>`_.
+There also is a tutorial on how to use Portia on `youtube <https://www.youtube.com/watch?v=fHXHB3oKudM>`_ and `vimeo <https://vimeo.com/129663101>`_ that will help you get started.
 
 Creating a Portia Project
 =========================
