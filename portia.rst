@@ -9,7 +9,7 @@ There also is a tutorial on how to use Portia on `vimeo <https://vimeo.com/12966
 
 .. raw:: html
 
-<iframe src="https://player.vimeo.com/video/129663101" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/129663101">Build a spider with Portia for allrecipes.com</a> from <a href="https://vimeo.com/scrapinghub">Scrapinghub</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+   <div style="text-align: center"><iframe src="https://player.vimeo.com/video/129663101" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/129663101">Build a spider with Portia for allrecipes.com</a>.</p></div>
 
 Creating a Portia Project
 =========================
