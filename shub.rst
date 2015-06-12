@@ -16,9 +16,30 @@ To install ``shub`` use::
 Usage
 =====
 
-To see available commands just type::
+Here are the available commands:
 
-    shub
+.. BEGIN_SHUB_USAGE
+::
+
+    $ shub --help
+    Usage: shub [OPTIONS] COMMAND [ARGS]...
+    
+      Scrapinghub command-line client
+    
+    Options:
+      --help  Show this message and exit.
+    
+    Commands:
+      deploy       Deploy Scrapy project to Scrapy Cloud
+      deploy-egg   Build and deploy egg from source
+      deploy-reqs  Build and deploy eggs from requirements.txt
+      fetch-eggs   Download a project's eggs from the Scrapy...
+      login        add Scrapinghug API key into the netrc file
+.. END_SHUB_USAGE
+
+To see the usage for each command, use::
+
+    shub <COMMAND> --help
 
 Configuration
 =============
