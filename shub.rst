@@ -35,6 +35,8 @@ Here are the available commands:
       deploy-reqs  Build and deploy eggs from requirements.txt
       fetch-eggs   Download a project's eggs from the Scrapy...
       login        add Scrapinghug API key into the netrc file
+      logout       remove Scrapinghug API key from the netrc...
+      version      Show shub version
 .. END_SHUB_USAGE
 
 To see the usage for each command, use::
