@@ -26,6 +26,7 @@ help:
 	@echo "  changes   to make an overview of all changed/added/deprecated items"
 	@echo "  linkcheck to check all external links for integrity"
 	@echo "  doctest   to run all doctests embedded in the documentation (if enabled)"
+	@echo "  syncshub  to update shub usage according to locally installed shub"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
@@ -85,6 +86,16 @@ linkcheck:
 
 htmlview: html
 	python -c "import webbrowser; webbrowser.open('_build/html/index.html')"
+
+syncshub: TMPFILE:=$(shell mktemp)
+syncshub:
+	@echo "Checking if shub is installed (install with: pip install shub)"
+	shub --help >/dev/null
+	@echo "Updating shub.rst ..."
+	awk '/BEGIN_SHUB_USAGE/ { print; skip=1; next; }; /END_SHUB_USAGE/ { skip=0; system("echo ::; echo; echo \"    $$ shub --help\"; shub --help | sed \"s/^/    /\"")}; !skip {print}' shub.rst > $(TMPFILE)
+	cat $(TMPFILE) > shub.rst
+	rm -f $(TMPFILE)
+	@echo "Done"
 
 doctest:
 	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) $(BUILDDIR)/doctest
