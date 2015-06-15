@@ -429,27 +429,27 @@ C#
 FAQ
 ===
 
-How Do I Add My Own Proxies to Crawlera?
+How do I add my own proxies to Crawlera?
 ----------------------------------------
 
 You can send a list of proxies (hosts/IPs) along with your Crawlera username to crawlera@scrapinghub.com, or you can create a private ticket in `UserEcho <http://support.scrapinghub.com/>`_.
 
-How Do I Change My User-Agent?
+How do I change my user-agent?
 ------------------------------
 
 To change your User-Agent you will need to use the :ref:`x-crawlera-ua` header with value ``pass``. This will instruct Crawlera to use the User-Agent header you send in the request.
 
-How Do I Find the Slave Used in a Request?
+How do I find the slave used in a request?
 ------------------------------------------
 
 Crawlera sends ``X-Crawlera-Slave`` response header containing the IP address and port of the slave used to make the request.
 
-How Do I Measure Crawlera's Speed for a Particular Domain?
+How do I measure Crawlera's speed for a particular domain?
 ----------------------------------------------------------
 
 You can use `crawlera-bench tool <https://github.com/scrapinghub/crawlera-tools>`_.
 
-Where Can I Monitor My Crawlera Usage?
+Where can I monitor my Crawlera usage?
 --------------------------------------
 
 Go to your Scrapinghub home page (i.e. ``https://dash.scrapinghub.com/USERNAME/``), and you should see your Crawlera accounts in the Crawlera section. If you click on a user, you will be able review the number of requests per day/month for that user.
