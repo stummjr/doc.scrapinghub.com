@@ -453,3 +453,10 @@ Where can I monitor my Crawlera usage?
 --------------------------------------
 
 Go to your Scrapinghub home page (i.e. ``https://dash.scrapinghub.com/USERNAME/``), and you should see your Crawlera accounts in the Crawlera section. If you click on a user, you will be able review the number of requests per day/month for that user.
+
+Why are requests slower through Crawlera as opposed to using proxies directly?
+------------------------------------------------------------------------------
+
+If you're using your own proxies, you may notice a discrepancy in speed between using your own proxies and using them with Crawlera. This is because there is some overhead when routing requests through Crawlera as the request has to go through the Crawlera endpoint before going through the proxy.
+
+Crawlera also throttles requests and introduces delays to avoid being banned on the target website. These delays can differ depending on the target domain, as some popular sites have more rigorous anti-scraping measures than others.
