@@ -130,7 +130,7 @@ slavebanned            503            Website crawl ban
 serverbusy             503            Server busy: too many outstanding requests
 timeout                504            Timeout from upstream server
 msgtimeout             504            Timeout processing HTTP stream
-domain_forbidden       523            Domain forbidden. Please contact support@scrapinghub.com
+domain_forbidden       523            Domain forbidden. Please contact help@scrapinghub.com
 bad_header             540            Bad header value for *<some_header>*
 ====================== =============  ======================
 
