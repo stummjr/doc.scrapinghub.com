@@ -457,6 +457,6 @@ Go to your Scrapinghub home page (i.e. ``https://dash.scrapinghub.com/USERNAME/`
 Why are requests slower through Crawlera as opposed to using proxies directly?
 ------------------------------------------------------------------------------
 
-If you're using your own proxies, you may notice a discrepancy in speed between using your own proxies and using them with Crawlera. This is because there is some overhead when routing requests through Crawlera as the request has to go through the Crawlera endpoint before going through the proxy.
+If you're using your own proxies, you may notice a discrepancy in speed between using your own proxies and using them with Crawlera. This is because Crawlera throttles requests by introducting delays to avoid being banned on the target website.
 
-Crawlera also throttles requests and introduces delays to avoid being banned on the target website. These delays can differ depending on the target domain, as some popular sites have more rigorous anti-scraping measures than others.
+These delays can differ depending on the target domain, as some popular sites have more rigorous anti-scraping measures than others. Throttling also helps prevent inadvertently bringing down the target website should it lack the resources to handle a large volume of requests. 
