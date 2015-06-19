@@ -42,10 +42,3 @@ Here are the available commands:
 To see the usage for each command, use::
 
     shub <COMMAND> --help
-
-Configuration
-=============
-
-Configuration is currently read from the Scrapy project's ``scrapy.cfg`` file as well as the home ``~/.scrapy.cfg`` file, and it's compatible with `scrapyd-deploy`_ command.
-
-.. _scrapyd-deploy: http://scrapyd.readthedocs.org/en/latest/deploy.html
