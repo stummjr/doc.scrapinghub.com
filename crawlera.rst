@@ -288,6 +288,17 @@ This header limits the number of retries performed by Crawlera.
 
 Passing ``1`` in the header instructs Crawlera to do up to 1 retry. Default number of retries is 5 (which is also the allowed maximum value, the minimum being 0).
 
+X-Crawlera-Timeout
+------------------
+
+This header sets Crawlera's timeout in milliseconds for receiving a response from the target website. The timeout must be specified in milliseconds and be between 0 and 180,000. It's not possible to set the timeout higher than 180,000 milliseconds or lower than 0 milliseconds.
+
+*Example*::
+    
+    X-Crawlera-Timeout: 40000
+
+The example above sets the response timeout to 40,000 milliseconds. In the case of a streaming response, each chunk has 40,000 milliseconds to be received. If no response is received after 40,000 milliseconds, a 504 response will be returned.
+
 Response Headers
 ================
 
