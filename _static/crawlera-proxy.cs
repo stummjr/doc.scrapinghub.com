@@ -11,9 +11,10 @@ namespace ProxyRequest
             var myProxy = new WebProxy("http://paygo.crawlera.com:8010");
             myProxy.Credentials = new NetworkCredential("<API KEY>", "");
 
-            WebRequest request = WebRequest.Create("http://twitter.com");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://twitter.com");
             request.Headers["X-Crawlera-Use-HTTPS"] = "1";
             request.Proxy = myProxy;
+            request.PreAuthenticate = true;
 
             WebResponse response = request.GetResponse();
             Console.WriteLine("Response Status: " 
