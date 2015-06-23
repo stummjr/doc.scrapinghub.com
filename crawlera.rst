@@ -378,6 +378,10 @@ For password safety reasons this content is displayed as ``(hidden)`` in the Pol
 Basic Examples in Various Programming Languages
 ================================================
 
+.. warning::
+
+    Some HTTP client libraries including Apache HttpClient and .NET don't send authentication headers by default. This can result in doubled requests so pre-emptive authentication should be enabled where this is the case.
+
 In the following examples we'll be making HTTPS requests to https://twitter.com through Crawlera. Note that HTTPS transfer is enabled by :ref:`x-crawlera-use-https` header. For this reason, indicating ``https://`` in URLs is not required.
 
 Python
