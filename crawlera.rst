@@ -387,14 +387,9 @@ In the following examples we'll be making HTTPS requests to https://twitter.com 
 Python
 ------
 
-Making use of `Requests <http://docs.python-requests.org/en/latest/>`_ library:
+Making use of `Requests <http://docs.python-requests.org/en/latest/>`_ HTTP Proxy Authentication and re-writing the URL for HTTPS transfer:
 
-.. literalinclude:: _static/crawlera-python-requests.py
-    :language: python
-
-Or, making use of `Requests <http://docs.python-requests.org/en/latest/>`_ HTTP Proxy Authentication and re-writing the URL for HTTPS transfer:
-
-.. literalinclude:: _static/crawlera-python-requests-2.py
+.. literalinclude:: _static/crawlera-python-requests-httpproxyauth.py
     :language: python
 
 PHP
