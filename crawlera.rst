@@ -257,7 +257,7 @@ This header instructs Crawlera to use sessions which will tie requests to a part
 
     X-Crawlera-Session: create
 
-When ``create`` value is passed, Crawlera creates a new session an ID of which will be returned in the response header with the same name. All subsequent requests should use that returned session ID to prevent random slave switching between requests. Crawlera sessions currently have maximum lifetime of 1 hour and each user is limited to a maximum of 10 concurrent sessions.
+When ``create`` value is passed, Crawlera creates a new session an ID of which will be returned in the response header with the same name. All subsequent requests should use that returned session ID to prevent random slave switching between requests. Crawlera sessions currently have maximum lifetime of 30 minutes and each user is limited to a maximum of 100 concurrent sessions.
 
 .. _x-crawlera-use-https:
 
