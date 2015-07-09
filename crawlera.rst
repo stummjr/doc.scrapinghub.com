@@ -172,7 +172,7 @@ Issue the endpoint :ref:`/sessions` with the ``GET`` method to list your session
 
 *Example*::
 
-    curl -U <API key>: paygo.crawlera.com:8010/sessions
+    curl -u <API key>: paygo.crawlera.com:8010/sessions
     {"1836172": "<SLAVE1>", "1691272": "<SLAVE2>"}
 
 .. _/sessions/SESSION_ID:
