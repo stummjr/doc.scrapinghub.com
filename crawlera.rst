@@ -184,7 +184,7 @@ Issue the endpoint :ref:`/sessions/SESSION_ID` with the ``DELETE`` method in ord
 
 *Example*::
 
-    curl -U <API key>: paygo.crawlera.com:8010/sessions/1836172 -X DELETE
+    curl -u <API key>: paygo.crawlera.com:8010/sessions/1836172 -X DELETE
 
 Request Limits
 --------------
