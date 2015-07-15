@@ -136,6 +136,8 @@ bad_header             540            Bad header value for *<some_header>*
 
 \* Crawlera limits the number of concurrent connections to 500 for standard users, and 5000 for enterprise users.
 
+.. _sessions-request-limits:
+
 Sessions and Request Limits 
 ===========================
 
@@ -172,7 +174,7 @@ Issue the endpoint :ref:`/sessions` with the ``GET`` method to list your session
 
 *Example*::
 
-    curl -U <API key>: paygo.crawlera.com:8010/sessions
+    curl -u <API key>: paygo.crawlera.com:8010/sessions
     {"1836172": "<SLAVE1>", "1691272": "<SLAVE2>"}
 
 .. _/sessions/SESSION_ID:
@@ -184,7 +186,7 @@ Issue the endpoint :ref:`/sessions/SESSION_ID` with the ``DELETE`` method in ord
 
 *Example*::
 
-    curl -U <API key>: paygo.crawlera.com:8010/sessions/1836172 -X DELETE
+    curl -u <API key>: paygo.crawlera.com:8010/sessions/1836172 -X DELETE
 
 Request Limits
 --------------
@@ -257,7 +259,7 @@ This header instructs Crawlera to use sessions which will tie requests to a part
 
     X-Crawlera-Session: create
 
-When ``create`` value is passed, Crawlera creates a new session an ID of which will be returned in the response header with the same name. All subsequent requests should use that returned session ID to prevent random slave switching between requests. Crawlera sessions currently have maximum lifetime of 1 hour and each user is limited to a maximum of 10 concurrent sessions.
+When ``create`` value is passed, Crawlera creates a new session an ID of which will be returned in the response header with the same name. All subsequent requests should use that returned session ID to prevent random slave switching between requests. Crawlera sessions currently have maximum lifetime of 30 minutes. See :ref:`sessions-request-limits` for information on the maximum number of sessions.
 
 .. _x-crawlera-use-https:
 
