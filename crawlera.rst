@@ -382,7 +382,7 @@ Basic Examples in Various Programming Languages
 
 .. warning::
 
-    Some HTTP client libraries including Apache HttpClient and .NET don't send authentication headers by default. This can result in doubled requests so pre-emptive authentication should be enabled where this is the case.
+    Some HTTP client libraries including Apache HttpComponents Client and .NET don't send authentication headers by default. This can result in doubled requests so pre-emptive authentication should be enabled where this is the case.
 
 In the following examples we'll be making HTTPS requests to https://twitter.com through Crawlera. Note that HTTPS transfer is enabled by :ref:`x-crawlera-use-https` header. For this reason, indicating ``https://`` in URLs is not required.
 
@@ -425,6 +425,8 @@ Making use of `request <https://github.com/request/request>`_, an HTTP client:
 
 Java
 ----
+
+.. note:: Because of `HTTPCLIENT-1649 <https://issues.apache.org/jira/browse/HTTPCLIENT-1649>`_ you should use version 4.5 of HttpComponents Client or later.
 
 Quoting from an example published at `The Apache HttpComponents™ <http://hc.apache.org/httpcomponents-client-ga/examples.html>`_ project website and inserting Crawlera details:
 
