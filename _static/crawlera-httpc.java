@@ -1,3 +1,4 @@
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -12,6 +13,7 @@ import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 
 public class ClientProxyAuthentication {
@@ -30,7 +32,10 @@ public class ClientProxyAuthentication {
             AuthCache authCache = new BasicAuthCache();
 
             BasicScheme basicAuth = new BasicScheme();
-            authCache.put(target, basicAuth);
+            basicAuth.processChallenge(
+                    new BasicHeader(HttpHeaders.PROXY_AUTHENTICATE,
+                                    "Basic realm=\"Crawlera\""));
+            authCache.put(proxy, basicAuth);
 
             HttpClientContext ctx = HttpClientContext.create();
             ctx.setAuthCache(authCache);
