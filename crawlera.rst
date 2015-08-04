@@ -251,8 +251,6 @@ X-Crawlera-Session
     
     An experimental beta feature.
 
-:sub:`Not available on Pay-as-You-Go plan.`
-
 This header instructs Crawlera to use sessions which will tie requests to a particular slave until it gets banned.
 
 *Example*::
