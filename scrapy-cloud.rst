@@ -2,7 +2,8 @@
 Scrapy Cloud
 ============
 
-*Scrapy Cloud* is a Scrapinghub service to deploy and run `Scrapy`_ spiders.
+*Scrapy Cloud* is a Scrapinghub service to deploy and run `Scrapy`_ spiders and
+:ref:`custom python scripts <sc-scripts>`.
 
 Plans & Pricing
 ===============
@@ -49,6 +50,7 @@ Here is the code (for simplicity we are defining the item in the same file):
 
 For more information about Scrapy please refer to the `Scrapy documentation`_.
 
+.. _deploy:
 
 Deploying a Scrapy Spider
 =========================
@@ -118,6 +120,39 @@ See `setuptools`_ for details about egg concepts, preparation and building. If y
 
 #. Run ``python setup.py bdist_egg`` to deploy in your project.
 #. In Scrapinghub, go to **Settings -> Eggs -> Add Egg**, and fill the requested data in the upload form.
+
+.. _sc-scripts:
+
+Running custom python scripts
+=============================
+
+You can also run custom python scripts (ie. non Scrapy spiders) on Scrapy
+Cloud. They need to be declared in the ``scripts`` section of your project
+``setup.py`` file.
+
+.. note:: Keep in mind that the project deployed needs to be a Scrapy project. This is a limitation for now, which will be removed in the future.
+
+Here is a ``setup.py`` example for a project that ships a ``hello.py`` script::
+
+    from setuptools import setup, find_packages
+
+    setup(
+        name         = 'myproject',
+        version      = '1.0',
+        packages     = find_packages(),
+        scripts      = ['bin/hello.py'],
+        entry_points = {'scrapy': ['settings = myproject.settings']},
+    )
+
+After you :ref:`deploy <deploy>` your project, you will see the ``hello.py``
+script right below the list of spiders, in the schedule box (on Scrapinghub
+dashboard).
+
+You can also setup periodic jobs to run the script or do it via the API.
+
+For running the script through the API, you need to use a private API (which may subject to change in the future). Here is an example using ``curl``::
+
+    curl -X POST -d '{"job_cmd": ["py:hello.py"]}' https://storage.scrapinghub.com/jobq/1/push
 
 
 .. _eggs-api:
