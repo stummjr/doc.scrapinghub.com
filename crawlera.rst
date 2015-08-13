@@ -70,7 +70,7 @@ The Crawlera Certificate authority can be downloaded here: :download:`crawlera-c
 .. _upgrading-your-account:
 
 Upgrading Your Account
-=====================
+======================
 
 You can upgrade your Crawlera account on your Crawlera user's 'Details' page. Under the 'Upgrade Crawlera' heading you can choose to upgrade to either the Shared Monthly plan or the Enterprise plan. To find out more about these plans please visit the `Pricing & Plans <http://scrapinghub.com/pricing>`_ page.
 
@@ -116,7 +116,7 @@ X-Crawlera-Error       Response Code  Error Message
 bad_session_id         400            Incorrect session ID
 user_session_limit     400            Session limit exceeded
 bad_auth               401            Unauthorized mashape request
-bad_auth               407            
+bad_auth               407
 too_many_conns         429            Too many connections*
 header_auth            470            Unauthorized Crawlera header
 \                      500            Unexpected error
@@ -138,13 +138,13 @@ bad_header             540            Bad header value for *<some_header>*
 
 .. _sessions-request-limits:
 
-Sessions and Request Limits 
+Sessions and Request Limits
 ===========================
 
 Sessions
 --------
 
-.. warning:: 
+.. warning::
 
     Please be advised that the Sessions is an experimental feature and currently under development.
 
@@ -200,7 +200,7 @@ Request Headers
 Crawlera supports a number of headers which can be used to control its behaviour.
 
 X-Crawlera-NO-UA
------------------
+----------------
 :sub:`Not available on Pay-as-You-Go plan.`
 
 This header is deprecated, use :ref:`X-Crawlera-UA <x-crawlera-ua>` instead with the value ``pass``.
@@ -208,7 +208,7 @@ This header is deprecated, use :ref:`X-Crawlera-UA <x-crawlera-ua>` instead with
 .. _x-crawlera-ua:
 
 X-Crawlera-UA
---------------
+-------------
 :sub:`Not available on Pay-as-You-Go plan.`
 
 This header controls Crawlera User-Agent behaviour. The supported values are:
@@ -223,7 +223,7 @@ If ``X-Crawlera-UA`` isn’t specified, it will default to ``crawlera``. If an u
 More User-Agent types will be supported in the future (``chrome``, ``firefox``) and added to the list above.
 
 X-Crawlera-No-Bancheck
------------------------
+----------------------
 :sub:`Not available on Pay-as-You-Go plan.`
 
 This header instructs Crawlera not to check responses against its ban rules and pass any received response to the client. The presence of this header (with any value) is assumed to be a flag to disable ban checks.
@@ -233,7 +233,7 @@ This header instructs Crawlera not to check responses against its ban rules and 
     X-Crawlera-No-Bancheck: 1
 
 X-Crawlera-Cookies
--------------------
+------------------
 :sub:`Not available on Pay-as-You-Go plan.`
 
 This header allows to disable internal cookies tracking performed by Crawlera.
@@ -245,10 +245,10 @@ This header allows to disable internal cookies tracking performed by Crawlera.
 .. _x-crawlera-session:
 
 X-Crawlera-Session
--------------------
+------------------
 
-.. warning:: 
-    
+.. warning::
+
     An experimental beta feature.
 
 This header instructs Crawlera to use sessions which will tie requests to a particular slave until it gets banned.
@@ -294,7 +294,7 @@ X-Crawlera-Timeout
 This header sets Crawlera's timeout in milliseconds for receiving a response from the target website. The timeout must be specified in milliseconds and be between 0 and 180,000. It's not possible to set the timeout higher than 180,000 milliseconds or lower than 0 milliseconds.
 
 *Example*::
-    
+
     X-Crawlera-Timeout: 40000
 
 The example above sets the response timeout to 40,000 milliseconds. In the case of a streaming response, each chunk has 40,000 milliseconds to be received. If no response is received after 40,000 milliseconds, a 504 response will be returned.
@@ -354,7 +354,7 @@ Settings
 ========================= ===================================================
 CRAWLERA_URL              proxy URL (default: ``http://paygo.crawlera.com:8010``)
 CRAWLERA_ENABLED          tick the checkbox to enable Crawlera
-CRAWLERA_USER             Crawlera API key 
+CRAWLERA_USER             Crawlera API key
 CRAWLERA_PASS             Crawlera password (set as empty string if using an API key)
 CRAWLERA_MAXBANS          number of bans to ignore before closing the spider (default: ``20``)
 CRAWLERA_DOWNLOAD_TIMEOUT timeout for requests (default: ``1800``)
@@ -374,9 +374,21 @@ For password safety reasons this content is displayed as ``(hidden)`` in the Pol
 .. literalinclude:: _static/crawlera-selenium.py
     :language: python
 
+Using Crawlera with CasperJS and PhantomJS
+==========================================
+There are two ways to set up crawlera to CasperJS:
+
+1. Providing ``--proxy=paygo.crawlera.com:8010"`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJs)
+
+e.g. ``casperjs|phantomjs yourscript.js --proxy=paygo.crawlera.com:8010 --proxy-auth=<API key>:``
+
+2. directly modifying script code to call urls through crawlera. Advantage here is being able to call only specific urls through crawlera.
+
+.. literalinclude:: _static/crawlera-casperjs.js
+    :language: javascript
 
 Basic Examples in Various Programming Languages
-================================================
+===============================================
 
 .. warning::
 
@@ -471,6 +483,6 @@ Why are requests slower through Crawlera as opposed to using proxies directly?
 
 If you're using your own proxies, you may notice a discrepancy in speed between using your own proxies and using them with Crawlera. This is because Crawlera throttles requests by introducing delays to avoid being banned on the target website.
 
-These delays can differ depending on the target domain, as some popular sites have more rigorous anti-scraping measures than others. Throttling also helps prevent inadvertently bringing down the target website should it lack the resources to handle a large volume of requests. 
+These delays can differ depending on the target domain, as some popular sites have more rigorous anti-scraping measures than others. Throttling also helps prevent inadvertently bringing down the target website should it lack the resources to handle a large volume of requests.
 
 .. _Scrapinghub dashboard: https://dash.scrapinghub.com/
