@@ -3,7 +3,7 @@ from requests.auth import HTTPProxyAuth
 
 url = "https://twitter.com"
 headers = {}
-proxy_host = "paygo.crawlera.com"
+proxy_host = "proxy.crawlera.com"
 proxy_auth = HTTPProxyAuth("<API KEY>", "")
 proxies = {"http": "http://{}:8010/".format(proxy_host)}
 

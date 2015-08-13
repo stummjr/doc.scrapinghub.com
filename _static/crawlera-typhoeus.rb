@@ -1,7 +1,7 @@
 require 'typhoeus'
 
 url = "http://twitter.com"
-proxy_host = "paygo.crawlera.com:8010"
+proxy_host = "proxy.crawlera.com:8010"
 proxy_auth = "<API KEY>:"
 
 request = Typhoeus::Request.new(
