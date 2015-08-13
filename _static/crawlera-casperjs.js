@@ -1,7 +1,3 @@
-// Might need this if --proxy argument doesn't work
-//phantom.casperPath = '<PATH TO CASPERJS>';
-//phantom.injectJs(phantom.casperPath +'/bin/bootstrap.js');
-
 var casper = require('casper').create();
 // 1. session authentication
 casper.start();
@@ -18,5 +14,4 @@ casper.start(encodeURI('http://<API key>:@paygo.crawlera.com:8010/fetch?url=http
 casper.then(function() {
     this.debugHTML();  // print page source
 });
-
 casper.run();

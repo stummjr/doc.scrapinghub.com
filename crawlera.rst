@@ -374,15 +374,34 @@ For password safety reasons this content is displayed as ``(hidden)`` in the Pol
 .. literalinclude:: _static/crawlera-selenium.py
     :language: python
 
-Using Crawlera with CasperJS and PhantomJS
-=======================================
-There are two ways to set up crawlera to CasperJS:
+Using Crawlera with CasperJS, PhantomJS and SpookyJS
+====================================================
 
-1. Providing ``--proxy=paygo.crawlera.com:8010"`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJs)
+To use session wide crawlera proxy with PhantomJs or CasperJS:
 
-e.g. ``casperjs|phantomjs yourscript.js --proxy=paygo.crawlera.com:8010 --proxy-auth=<API key>:``
+Provide ``--proxy=paygo.crawlera.com:8010"`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJs)
 
-2. directly modifying script code to call urls through crawlera. Advantage here is being able to call only specific urls through crawlera.
+*Example*::
+
+    casperjs|phantomjs yourscript.js --proxy=paygo.crawlera.com:8010 --proxy-auth=<API key>:
+
+For SpookyJS, it allows you to spawn multiple instances of CasperJS instances, so you will need to provide proxy and proxy-auth arguments when creating Spooky object.
+Like so:
+
+::
+
+    var spooky = new Spooky({
+        child: {
+            proxy: 'paygo.crawlera.com:8010',
+            proxy-auth: '<API key>:'
+            /* ... */
+        },
+        /* ... */
+    },
+
+If you want to use crawlera only on specific urls you'll need to wrap your urls according to :ref:`fetch-api`
+
+*Example in CasperJS*::
 
 .. literalinclude:: _static/crawlera-casperjs.js
     :language: javascript
