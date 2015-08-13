@@ -70,7 +70,7 @@ The Crawlera Certificate authority can be downloaded here: :download:`crawlera-c
 .. _upgrading-your-account:
 
 Upgrading Your Account
-======================
+=====================
 
 You can upgrade your Crawlera account on your Crawlera user's 'Details' page. Under the 'Upgrade Crawlera' heading you can choose to upgrade to either the Shared Monthly plan or the Enterprise plan. To find out more about these plans please visit the `Pricing & Plans <http://scrapinghub.com/pricing>`_ page.
 
@@ -200,7 +200,7 @@ Request Headers
 Crawlera supports a number of headers which can be used to control its behaviour.
 
 X-Crawlera-NO-UA
-----------------
+-----------------
 :sub:`Not available on Pay-as-You-Go plan.`
 
 This header is deprecated, use :ref:`X-Crawlera-UA <x-crawlera-ua>` instead with the value ``pass``.
@@ -208,7 +208,7 @@ This header is deprecated, use :ref:`X-Crawlera-UA <x-crawlera-ua>` instead with
 .. _x-crawlera-ua:
 
 X-Crawlera-UA
--------------
+--------------
 :sub:`Not available on Pay-as-You-Go plan.`
 
 This header controls Crawlera User-Agent behaviour. The supported values are:
@@ -223,7 +223,7 @@ If ``X-Crawlera-UA`` isn’t specified, it will default to ``crawlera``. If an u
 More User-Agent types will be supported in the future (``chrome``, ``firefox``) and added to the list above.
 
 X-Crawlera-No-Bancheck
-----------------------
+-----------------------
 :sub:`Not available on Pay-as-You-Go plan.`
 
 This header instructs Crawlera not to check responses against its ban rules and pass any received response to the client. The presence of this header (with any value) is assumed to be a flag to disable ban checks.
@@ -233,7 +233,7 @@ This header instructs Crawlera not to check responses against its ban rules and 
     X-Crawlera-No-Bancheck: 1
 
 X-Crawlera-Cookies
-------------------
+-------------------
 :sub:`Not available on Pay-as-You-Go plan.`
 
 This header allows to disable internal cookies tracking performed by Crawlera.
@@ -245,7 +245,7 @@ This header allows to disable internal cookies tracking performed by Crawlera.
 .. _x-crawlera-session:
 
 X-Crawlera-Session
-------------------
+-------------------
 
 .. warning::
 
@@ -375,7 +375,7 @@ For password safety reasons this content is displayed as ``(hidden)`` in the Pol
     :language: python
 
 Using Crawlera with CasperJS and PhantomJS
-==========================================
+=======================================
 There are two ways to set up crawlera to CasperJS:
 
 1. Providing ``--proxy=paygo.crawlera.com:8010"`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJs)
@@ -388,7 +388,7 @@ e.g. ``casperjs|phantomjs yourscript.js --proxy=paygo.crawlera.com:8010 --proxy-
     :language: javascript
 
 Basic Examples in Various Programming Languages
-===============================================
+================================================
 
 .. warning::
 
