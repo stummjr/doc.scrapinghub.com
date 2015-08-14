@@ -1,17 +1,18 @@
 var casper = require('casper').create();
-// 1. session authentication
 casper.start();
-casper.setHttpAuth('<API key>', '');  // set up authentication for entire session
-casper.start(encodeURI('http://paygo.crawlera.com:8010/fetch?url=http://wtfismyip.com/text'), function(response) {
-    this.echo(response.status);  // print response status
-});
-// or
-//  2. call url through authentication and crawlera directly for each url
-casper.start(encodeURI('http://<API key>:@paygo.crawlera.com:8010/fetch?url=http://wtfismyip.com/text'), function(response) {
-    this.echo(response.status);  // print response status
-});
+// always encode url components !
+var url_to_crawl = encodeURIComponent('http://wtfismyip.com/text'); // results in http%3A%2F%2Fwtfismyip.com%2Ftext
+// You can either
+// Authenticate session wide:
+casper.setHttpAuth('<API key>', '');
+casper.open('http://paygo.crawlera.com:8010/fetch?url=' + url_to_crawl);
+// or incorporate authentication into the url:
+casper.open('http://<API key>:@paygo.crawlera.com:8010/fetch?url=' + url_to_crawl);
 
-casper.then(function() {
+casper.then(function(response) {
+    this.echo(response.url);
+    this.echo(response.status);
     this.debugHTML();  // print page source
 });
 casper.run();
+
