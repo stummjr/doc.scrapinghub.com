@@ -14,7 +14,7 @@ app.get('/', function(req, res) {
     };
 
     var new_req = request.defaults({
-        'proxy': 'http://<API KEY>:@paygo.crawlera.com:8010'
+        'proxy': 'http://<API KEY>:@proxy.crawlera.com:8010'
     });
 
     function callback(error, response, body) {

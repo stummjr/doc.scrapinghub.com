@@ -5,7 +5,7 @@ $ch = curl_init();
 $url = 'http://twitter.com/';
 $request_headers = array();
 $request_headers[] = 'X-Crawlera-Use-HTTPS:1';
-$proxy = 'paygo.crawlera.com:8010';
+$proxy = 'proxy.crawlera.com:8010';
 $proxy_auth = '<API KEY>:';
 
 curl_setopt($ch, CURLOPT_URL, $url);

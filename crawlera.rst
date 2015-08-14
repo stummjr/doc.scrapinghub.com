@@ -23,7 +23,7 @@ You can test your credentials using ``curl``, like so:
 
 .. code-block:: text
 
-    curl -vx paygo.crawlera.com:8010 -U <API key>: http://www.food.com/
+    curl -vx proxy.crawlera.com:8010 -U <API key>: http://www.food.com/
 
 
 Using Crawlera with Scrapy
@@ -96,11 +96,11 @@ headers     no       Headers to send in the outgoing request   `header1:value1;h
 
 Basic example::
 
-    curl -U <API key>: http://paygo.crawlera.com:8010/fetch?url=https://twitter.com
+    curl -U <API key>: http://proxy.crawlera.com:8010/fetch?url=https://twitter.com
 
 Headers example::
 
-    curl -U <API key>: 'http://paygo.crawlera.com:8010/fetch?url=http%3A//www.food.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
+    curl -U <API key>: 'http://proxy.crawlera.com:8010/fetch?url=http%3A//www.food.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
 
 
 Errors
@@ -174,7 +174,7 @@ Issue the endpoint :ref:`/sessions` with the ``GET`` method to list your session
 
 *Example*::
 
-    curl -u <API key>: paygo.crawlera.com:8010/sessions
+    curl -u <API key>: proxy.crawlera.com:8010/sessions
     {"1836172": "<SLAVE1>", "1691272": "<SLAVE2>"}
 
 .. _/sessions/SESSION_ID:
@@ -186,7 +186,7 @@ Issue the endpoint :ref:`/sessions/SESSION_ID` with the ``DELETE`` method in ord
 
 *Example*::
 
-    curl -u <API key>: paygo.crawlera.com:8010/sessions/1836172 -X DELETE
+    curl -u <API key>: proxy.crawlera.com:8010/sessions/1836172 -X DELETE
 
 Request Limits
 --------------
@@ -199,17 +199,9 @@ Request Headers
 
 Crawlera supports a number of headers which can be used to control its behaviour.
 
-X-Crawlera-NO-UA
------------------
-:sub:`Not available on Pay-as-You-Go plan.`
-
-This header is deprecated, use :ref:`X-Crawlera-UA <x-crawlera-ua>` instead with the value ``pass``.
-
-.. _x-crawlera-ua:
-
 X-Crawlera-UA
 --------------
-:sub:`Not available on Pay-as-You-Go plan.`
+:sub:`Only available on C50, C100, C200 and Enterprise plans.`
 
 This header controls Crawlera User-Agent behaviour. The supported values are:
 
@@ -224,7 +216,7 @@ More User-Agent types will be supported in the future (``chrome``, ``firefox``) 
 
 X-Crawlera-No-Bancheck
 -----------------------
-:sub:`Not available on Pay-as-You-Go plan.`
+:sub:`Only available on C50, C100, C200 and Enterprise plans.`
 
 This header instructs Crawlera not to check responses against its ban rules and pass any received response to the client. The presence of this header (with any value) is assumed to be a flag to disable ban checks.
 
@@ -234,7 +226,7 @@ This header instructs Crawlera not to check responses against its ban rules and 
 
 X-Crawlera-Cookies
 -------------------
-:sub:`Not available on Pay-as-You-Go plan.`
+:sub:`Only available on C50, C100, C200 and Enterprise plans.`
 
 This header allows to disable internal cookies tracking performed by Crawlera.
 
@@ -266,7 +258,7 @@ X-Crawlera-Use-HTTPS
 
 This header forces Crawlera to retrieve the URL using HTTPS scheme instead of HTTP. For example, to fetch https://twitter.com::
 
-    curl -x paygo.crawlera.com:8010 -U <API key>: http://twitter.com -H x-crawlera-use-https:1
+    curl -x proxy.crawlera.com:8010 -U <API key>: http://twitter.com -H x-crawlera-use-https:1
 
 X-Crawlera-JobId
 ----------------
@@ -290,6 +282,7 @@ Passing ``1`` in the header instructs Crawlera to do up to 1 retry. Default numb
 
 X-Crawlera-Timeout
 ------------------
+:sub:`Only available on C50, C100, C200 and Enterprise plans.`
 
 This header sets Crawlera's timeout in milliseconds for receiving a response from the target website. The timeout must be specified in milliseconds and be between 0 and 180,000. It's not possible to set the timeout higher than 180,000 milliseconds or lower than 0 milliseconds.
 
@@ -352,7 +345,7 @@ Settings
 --------
 
 ========================= ===================================================
-CRAWLERA_URL              proxy URL (default: ``http://paygo.crawlera.com:8010``)
+CRAWLERA_URL              proxy URL (default: ``http://proxy.crawlera.com:8010``)
 CRAWLERA_ENABLED          tick the checkbox to enable Crawlera
 CRAWLERA_USER             Crawlera API key 
 CRAWLERA_PASS             Crawlera password (set as empty string if using an API key)
@@ -366,7 +359,7 @@ Using Crawlera with Selenium and Polipo
 
 Since it's not so trivial to set up proxy authentication in Selenium, a popular option is to employ `Polipo <http://www.pps.univ-paris-diderot.fr/~jch/software/polipo/>`_ as a proxy. Update Polipo configuration file ``/etc/polipo/config`` to include Crawlera credentials (if the file is not present, copy and rename ``config.sample`` found in Polipo source folder)::
 
-    parentProxy = "paygo.crawlera.com:8010"
+    parentProxy = "proxy.crawlera.com:8010"
     parentAuthCredentials = "<API key>:"
 
 For password safety reasons this content is displayed as ``(hidden)`` in the Polipo `web interface manager <http://www.pps.univ-paris-diderot.fr/~jch/software/polipo/polipo.html#Web-interface>`_. The next step is to specify Polipo proxy details in the Selenium automation script, e.g. for Python and Firefox:

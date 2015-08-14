@@ -21,13 +21,13 @@ public class ClientProxyAuthentication {
     public static void main(String[] args) throws Exception {
         CredentialsProvider credsProvider = new BasicCredentialsProvider();
         credsProvider.setCredentials(
-                new AuthScope("paygo.crawlera.com", 8010),
+                new AuthScope("proxy.crawlera.com", 8010),
                 new UsernamePasswordCredentials("<API KEY>", ""));
         CloseableHttpClient httpclient = HttpClients.custom()
                 .setDefaultCredentialsProvider(credsProvider).build();
         try {
             HttpHost target = new HttpHost("twitter.com", 443, "http");
-            HttpHost proxy = new HttpHost("paygo.crawlera.com", 8010);
+            HttpHost proxy = new HttpHost("proxy.crawlera.com", 8010);
 
             AuthCache authCache = new BasicAuthCache();
 

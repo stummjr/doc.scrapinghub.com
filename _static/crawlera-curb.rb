@@ -1,7 +1,7 @@
 require 'curb'
 
 url = "http://twitter.com"
-proxy = "paygo.crawlera.com:8010"
+proxy = "proxy.crawlera.com:8010"
 proxy_auth = "<API KEY>:"
 
 c = Curl::Easy.new(url) do |curl|
