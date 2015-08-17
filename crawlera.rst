@@ -116,7 +116,7 @@ X-Crawlera-Error       Response Code  Error Message
 bad_session_id         400            Incorrect session ID
 user_session_limit     400            Session limit exceeded
 bad_auth               401            Unauthorized mashape request
-bad_auth               407            
+bad_auth               407
 too_many_conns         429            Too many connections*
 header_auth            470            Unauthorized Crawlera header
 \                      500            Unexpected error
@@ -138,13 +138,13 @@ bad_header             540            Bad header value for *<some_header>*
 
 .. _sessions-request-limits:
 
-Sessions and Request Limits 
+Sessions and Request Limits
 ===========================
 
 Sessions
 --------
 
-.. warning:: 
+.. warning::
 
     Please be advised that the Sessions is an experimental feature and currently under development.
 
@@ -239,8 +239,8 @@ This header allows to disable internal cookies tracking performed by Crawlera.
 X-Crawlera-Session
 -------------------
 
-.. warning:: 
-    
+.. warning::
+
     An experimental beta feature.
 
 This header instructs Crawlera to use sessions which will tie requests to a particular slave until it gets banned.
@@ -287,7 +287,7 @@ X-Crawlera-Timeout
 This header sets Crawlera's timeout in milliseconds for receiving a response from the target website. The timeout must be specified in milliseconds and be between 0 and 180,000. It's not possible to set the timeout higher than 180,000 milliseconds or lower than 0 milliseconds.
 
 *Example*::
-    
+
     X-Crawlera-Timeout: 40000
 
 The example above sets the response timeout to 40,000 milliseconds. In the case of a streaming response, each chunk has 40,000 milliseconds to be received. If no response is received after 40,000 milliseconds, a 504 response will be returned.
@@ -347,7 +347,7 @@ Settings
 ========================= ===================================================
 CRAWLERA_URL              proxy URL (default: ``http://proxy.crawlera.com:8010``)
 CRAWLERA_ENABLED          tick the checkbox to enable Crawlera
-CRAWLERA_USER             Crawlera API key 
+CRAWLERA_USER             Crawlera API key
 CRAWLERA_PASS             Crawlera password (set as empty string if using an API key)
 CRAWLERA_MAXBANS          number of bans to ignore before closing the spider (default: ``20``)
 CRAWLERA_DOWNLOAD_TIMEOUT timeout for requests (default: ``1800``)
@@ -367,6 +367,37 @@ For password safety reasons this content is displayed as ``(hidden)`` in the Pol
 .. literalinclude:: _static/crawlera-selenium.py
     :language: python
 
+Using Crawlera with CasperJS, PhantomJS and SpookyJS
+====================================================
+
+To use session wide crawlera proxy with PhantomJs or CasperJS:
+
+Provide ``--proxy=paygo.crawlera.com:8010"`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJs)
+
+*Example*::
+
+    casperjs|phantomjs yourscript.js --proxy=paygo.crawlera.com:8010 --proxy-auth=<API key>:
+
+For SpookyJS, it allows you to spawn multiple instances of CasperJS instances, so you will need to provide proxy and proxy-auth arguments when creating Spooky object.
+Like so:
+
+::
+
+    var spooky = new Spooky({
+        child: {
+            proxy: 'paygo.crawlera.com:8010',
+            proxy-auth: '<API key>:'
+            /* ... */
+        },
+        /* ... */
+    },
+
+If you want to use crawlera only on specific urls you'll need to wrap your urls according to :ref:`fetch-api`
+
+*Example in CasperJS*::
+
+.. literalinclude:: _static/crawlera-casperjs.js
+    :language: javascript
 
 Basic Examples in Various Programming Languages
 ================================================
@@ -464,6 +495,6 @@ Why are requests slower through Crawlera as opposed to using proxies directly?
 
 If you're using your own proxies, you may notice a discrepancy in speed between using your own proxies and using them with Crawlera. This is because Crawlera throttles requests by introducing delays to avoid being banned on the target website.
 
-These delays can differ depending on the target domain, as some popular sites have more rigorous anti-scraping measures than others. Throttling also helps prevent inadvertently bringing down the target website should it lack the resources to handle a large volume of requests. 
+These delays can differ depending on the target domain, as some popular sites have more rigorous anti-scraping measures than others. Throttling also helps prevent inadvertently bringing down the target website should it lack the resources to handle a large volume of requests.
 
 .. _Scrapinghub dashboard: https://dash.scrapinghub.com/
