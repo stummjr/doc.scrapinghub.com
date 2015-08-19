@@ -72,8 +72,7 @@ The Crawlera Certificate authority can be downloaded here: :download:`crawlera-c
 Upgrading Your Account
 =====================
 
-You can upgrade your Crawlera account on your Crawlera user's 'Details' page. Under the 'Upgrade Crawlera' heading you can choose to upgrade to either the Shared Monthly plan or the Enterprise plan. To find out more about these plans please visit the `Pricing & Plans <http://scrapinghub.com/pricing>`_ page.
-
+You can upgrade your Crawlera account in the `Plans` section of your `Organizations's` page. You can choose to upgrade to a Shared, Dedicated or Enterprise plan. To find out more about these plans please visit the `Pricing & Plans <http://scrapinghub.com/pricing>`_ page.
 
 .. _fetch-api:
 
