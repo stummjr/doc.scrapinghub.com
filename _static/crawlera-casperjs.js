@@ -5,9 +5,9 @@ var url_to_crawl = encodeURIComponent('http://wtfismyip.com/text'); // results i
 // You can either
 // Authenticate session wide:
 casper.setHttpAuth('<API key>', '');
-casper.open('http://paygo.crawlera.com:8010/fetch?url=' + url_to_crawl);
+casper.open('http://proxy.crawlera.com:8010/fetch?url=' + url_to_crawl);
 // or incorporate authentication into the url:
-casper.open('http://<API key>:@paygo.crawlera.com:8010/fetch?url=' + url_to_crawl);
+casper.open('http://<API key>:@proxy.crawlera.com:8010/fetch?url=' + url_to_crawl);
 
 casper.then(function(response) {
     this.echo(response.url);
