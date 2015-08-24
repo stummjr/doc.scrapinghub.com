@@ -371,11 +371,11 @@ Using Crawlera with CasperJS, PhantomJS and SpookyJS
 
 To use session wide crawlera proxy with PhantomJs or CasperJS:
 
-Provide ``--proxy=paygo.crawlera.com:8010"`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJs)
+Provide ``--proxy=proxy.crawlera.com:8010`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJs)
 
 *Example*::
 
-    casperjs|phantomjs yourscript.js --proxy=paygo.crawlera.com:8010 --proxy-auth=<API key>:
+    casperjs|phantomjs --proxy="proxy.crawlera.com:8010" --proxy-auth="<API key>:''" yourscript.js
 
 For SpookyJS, it allows you to spawn multiple instances of CasperJS instances, so you will need to provide proxy and proxy-auth arguments when creating Spooky object.
 Like so:
@@ -393,7 +393,7 @@ Like so:
 
 If you want to use crawlera only on specific urls you'll need to wrap your urls according to :ref:`fetch-api`
 
-*Example in CasperJS*::
+*Example in CasperJS*:
 
 .. literalinclude:: _static/crawlera-casperjs.js
     :language: javascript
