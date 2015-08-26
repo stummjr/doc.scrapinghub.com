@@ -67,6 +67,13 @@ SSL certificate verification in your HTTP client.
 
 The Crawlera Certificate authority can be downloaded here: :download:`crawlera-ca.crt`
 
+.. _working-with-cookies:
+
+Working with Cookies
+--------------------
+
+Crawlera manages cookies for you by default and retains them for up to 15 minutes since the last request. If you want to store and manage cookies yourself, you should disable Crawlera cookie tracking via the :ref:`x-crawlera-cookies` header to avoid potential conflicts.
+
 .. _upgrading-your-account:
 
 Upgrading Your Account
@@ -222,6 +229,8 @@ This header instructs Crawlera not to check responses against its ban rules and 
 *Example*::
 
     X-Crawlera-No-Bancheck: 1
+
+.. _x-crawlera-cookies:
 
 X-Crawlera-Cookies
 -------------------
