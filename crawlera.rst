@@ -161,6 +161,13 @@ From then onward, subsequent requests can be made through the same slave by send
 
     X-Crawlera-Session: <session ID>
 
+Also you can create a session with the following API call::
+
+    curl -u <API key>: proxy.crawlera.com:8010/sessions -X POST
+    <session ID>
+
+This is helpful when you can't get the next request using `x-crawlera-session`. This `POST` request will return a `<session ID>` which then you can use as before adding it to the `X-Crawlera-Session` header.
+
 If an incorrect session ID is sent, Crawlera responds with a ``bad_session_id`` error.
 
 
