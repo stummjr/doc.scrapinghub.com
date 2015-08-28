@@ -72,7 +72,9 @@ The Crawlera Certificate authority can be downloaded here: :download:`crawlera-c
 Working with Cookies
 --------------------
 
-Crawlera manages cookies for you by default and retains them for up to 15 minutes since the last request. If you want to store and manage cookies yourself, you should disable Crawlera cookie tracking via the :ref:`x-crawlera-cookies` header to avoid potential conflicts.
+Crawlera manages cookies for you by default and retains them for up to 15 minutes since the last request. Crawlera stores cookies per proxy, and as a result consecutive requests will almost always have different cookies, so if you need to use cookies for things like authentication then you will want to manage them yourself.
+
+If you want to store and manage cookies yourself you will need to disable Crawlera cookie tracking via the :ref:`x-crawlera-cookies` header. If cookie tracking isn't disabled then Crawlera will discard the cookies and send its own instead.
 
 .. _upgrading-your-account:
 
