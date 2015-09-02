@@ -79,7 +79,7 @@ To store and manage cookies yourself you will need to disable Crawlera cookie ha
 .. _upgrading-your-account:
 
 Upgrading Your Account
-=====================
+======================
 
 You can upgrade your Crawlera account in the `Plans` section of your `Organizations's` page. You can choose to upgrade to a Shared, Dedicated or Enterprise plan. To find out more about these plans please visit the `Pricing & Plans <http://scrapinghub.com/pricing>`_ page.
 
@@ -207,8 +207,23 @@ Request Headers
 
 Crawlera supports a number of headers which can be used to control its behaviour.
 
+============================== ===========================
+Name                           Plans available
+============================== ===========================
+:ref:`x-crawlera-ua`           C50, C100, C200, Enterprise
+:ref:`x-crawlera-no-bancheck`  C50, C100, C200, Enterprise
+:ref:`x-crawlera-cookies`      C50, C100, C200, Enterprise
+:ref:`x-crawlera-session`      All
+:ref:`x-crawlera-use-https`    All
+:ref:`x-crawlera-jobid`        All
+:ref:`x-crawlera-max-retries`  All
+:ref:`x-crawlera-timeout`      C50, C100, C200, Enterprise
+============================== ===========================
+
+.. _x-crawlera-ua:
+
 X-Crawlera-UA
---------------
+-------------
 :sub:`Only available on C50, C100, C200 and Enterprise plans.`
 
 This header controls Crawlera User-Agent behaviour. The supported values are:
@@ -222,8 +237,10 @@ If ``X-Crawlera-UA`` isn’t specified, it will default to ``crawlera``. If an u
 
 More User-Agent types will be supported in the future (``chrome``, ``firefox``) and added to the list above.
 
+.. _x-crawlera-no-bancheck:
+
 X-Crawlera-No-Bancheck
------------------------
+----------------------
 :sub:`Only available on C50, C100, C200 and Enterprise plans.`
 
 This header instructs Crawlera not to check responses against its ban rules and pass any received response to the client. The presence of this header (with any value) is assumed to be a flag to disable ban checks.
@@ -235,7 +252,7 @@ This header instructs Crawlera not to check responses against its ban rules and 
 .. _x-crawlera-cookies:
 
 X-Crawlera-Cookies
--------------------
+------------------
 :sub:`Only available on C50, C100, C200 and Enterprise plans.`
 
 This header allows to disable internal cookies tracking performed by Crawlera.
@@ -270,6 +287,8 @@ This header forces Crawlera to retrieve the URL using HTTPS scheme instead of HT
 
     curl -x proxy.crawlera.com:8010 -U <API key>: http://twitter.com -H x-crawlera-use-https:1
 
+.. _x-crawlera-jobid:
+
 X-Crawlera-JobId
 ----------------
 
@@ -278,6 +297,8 @@ This header sets the job ID for the request (useful for tracking requests in the
 *Example*::
 
     X-Crawlera-JobId: 999
+
+.. _x-crawlera-max-retries:
 
 X-Crawlera-Max-Retries
 ----------------------
@@ -289,6 +310,8 @@ This header limits the number of retries performed by Crawlera.
     X-Crawlera-Max-Retries: 1
 
 Passing ``1`` in the header instructs Crawlera to do up to 1 retry. Default number of retries is 5 (which is also the allowed maximum value, the minimum being 0).
+
+.. _x-crawlera-timeout:
 
 X-Crawlera-Timeout
 ------------------
