@@ -205,20 +205,22 @@ Crawlera’s default request limit is 5 requests per second (rps) for each websi
 Request Headers
 ===============
 
-Crawlera supports a number of headers which can be used to control its behaviour.
+Crawlera supports multiple HTTP headers to control its behaviour.
 
-============================== ===========================
-Name                           Plans available
-============================== ===========================
-:ref:`x-crawlera-ua`           C50, C100, C200, Enterprise
-:ref:`x-crawlera-no-bancheck`  C50, C100, C200, Enterprise
-:ref:`x-crawlera-cookies`      C50, C100, C200, Enterprise
-:ref:`x-crawlera-session`      All
-:ref:`x-crawlera-use-https`    All
-:ref:`x-crawlera-jobid`        All
-:ref:`x-crawlera-max-retries`  All
-:ref:`x-crawlera-timeout`      C50, C100, C200, Enterprise
-============================== ===========================
+Not all headers are available in every plan, here is a chart of the headers available in each plan (C10, C50, etc):
+
+============================== === === ==== ==== ==========
+Header                         C10 C50 C100 C200 Enterprise
+============================== === === ==== ==== ==========
+:ref:`x-crawlera-ua`               ✔   ✔    ✔    ✔
+:ref:`x-crawlera-no-bancheck`      ✔   ✔    ✔    ✔
+:ref:`x-crawlera-cookies`          ✔   ✔    ✔    ✔
+:ref:`x-crawlera-timeout`          ✔   ✔    ✔    ✔
+:ref:`x-crawlera-session`      ✔   ✔   ✔    ✔    ✔
+:ref:`x-crawlera-use-https`    ✔   ✔   ✔    ✔    ✔
+:ref:`x-crawlera-jobid`        ✔   ✔   ✔    ✔    ✔
+:ref:`x-crawlera-max-retries`  ✔   ✔   ✔    ✔    ✔
+============================== === === ==== ==== ==========
 
 .. _x-crawlera-ua:
 
