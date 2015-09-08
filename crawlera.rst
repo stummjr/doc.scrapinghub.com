@@ -434,8 +434,8 @@ If you want to use crawlera only on specific urls you'll need to wrap your urls 
 .. literalinclude:: _static/crawlera-casperjs.js
     :language: javascript
 
-Basic Examples in Various Programming Languages
-================================================
+Using Crawlera from different languages
+=======================================
 
 .. warning::
 
