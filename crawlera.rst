@@ -503,7 +503,7 @@ FAQ
 How do I add my own proxies to Crawlera?
 ----------------------------------------
 
-Go to `Scrapinghub dashboard`_ and get in touch through the help icon in the bottom right corner. Someone will help you through the process.
+Go to `Scrapinghub dashboard <http://dash.scrapinghub.com/>`_ and get in touch through the help icon in the bottom right corner. Someone will help you through the process.
 
 How do I change my user-agent?
 ------------------------------
@@ -523,7 +523,7 @@ You can use the `crawlera-bench tool <https://github.com/scrapinghub/crawlera-to
 Where can I monitor my Crawlera usage?
 --------------------------------------
 
-Go to your profile page in `Scrapinghub dashboard`_ and you should see your Crawlera accounts in the Crawlera section. If you click on a user, you will be able review the number of requests per day/month for that user.
+Go to your profile page in `Scrapinghub dashboard <http://dash.scrapinghub.com/>`_ and you should see your Crawlera accounts in the Crawlera section. If you click on a user, you will be able review the number of requests per day/month for that user.
 
 Why are requests slower through Crawlera as opposed to using proxies directly?
 ------------------------------------------------------------------------------
@@ -532,4 +532,3 @@ If you're using your own proxies, you may notice a discrepancy in speed between 
 
 These delays can differ depending on the target domain, as some popular sites have more rigorous anti-scraping measures than others. Throttling also helps prevent inadvertently bringing down the target website should it lack the resources to handle a large volume of requests.
 
-.. _Scrapinghub dashboard: https://dash.scrapinghub.com/
