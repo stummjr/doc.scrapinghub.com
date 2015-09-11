@@ -18,8 +18,7 @@ Usage
 
 Here are the available commands:
 
-.. BEGIN_SHUB_USAGE - DO NOT EDIT MANUALLY THIS BLOCK
-::
+.. BEGIN_SHUB_USAGE - DO NOT EDIT MANUALLY THIS BLOCK::
 
     $ shub --help
     Usage: shub [OPTIONS] COMMAND [ARGS]...
