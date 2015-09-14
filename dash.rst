@@ -99,6 +99,7 @@ Outcome                      Meaning
 `no_reason`_                 the job finished OK but didn't set an outcome
 `failed`_                    the job failed to start
 `cancelled`_                 the job was cancelled from Scrapinghub Dashboard or API
+`cancel_timeout`_            the job failed to shutdown gracefully after cancellation
 `shutdown`_                  the job was cancelled from Scrapy code
 `memusage_exceeded`_         the job was cancelled due to high memory usage
 `banned`_                    the job was cancelled because target site banned the spider
@@ -135,6 +136,12 @@ cancelled
 The job was cancelled from :ref:`the dashboard <dash>`, the :ref:`API <api>` or
 by the system if it got inactive and failed to produce anything (not even log
 entries) for an hour.
+
+cancel_timeout
+--------------
+
+The job has failed to shutdown gracefully after cancellation (taking more than
+5 minutes).
 
 shutdown
 --------
