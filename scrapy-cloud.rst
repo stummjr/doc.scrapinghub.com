@@ -8,7 +8,7 @@ Scrapy Cloud
 Plans & Pricing
 ===============
 
-Scrapy cloud has four types of plans available:
+Scrapy Cloud has four types of plans available:
 
 * The *Free* plan is completely free and allows you to add a single project.
 * The *Shared* plan offers unlimited projects and allows you to run several crawls concurrently.
