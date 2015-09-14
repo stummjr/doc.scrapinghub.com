@@ -10,12 +10,12 @@ Plans & Pricing
 
 Scrapy Cloud comes in two plans:
 
-* *Pay-as-You-Go* where we run your spiders on shared infrastructure that is
-  allocated to deal with the capacity demand of all Scrapinghub users
+Scrapy cloud has four types of plans available:
 
-* *Dedicated Server* where we provision a dedicated server where all your
-  spiders will run, not sharing any computing resources with other customers'
-  spiders.
+* The *Free* plan is completely free and allows you to add a single project.
+* The *Shared* plan offers unlimited projects and allows you to run several crawls concurrently.
+* *Dedicated* plans provide a dedicated server for running your spiders with more resources. Dedicated plans can run a larger number of concurrent crawls and have longer data retention periods.
+* An *Enterprise* plan is a custom plan tailored to your needs.
 
 Check the `Scrapinghub Pricing`_ page for more details.
 
