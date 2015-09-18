@@ -104,11 +104,11 @@ headers     no       Headers to send in the outgoing request   `header1:value1;h
 
 Basic example::
 
-    curl -U <API key>: http://proxy.crawlera.com:8010/fetch?url=https://twitter.com
+    curl -u <API key>: http://proxy.crawlera.com:8010/fetch?url=https://twitter.com
 
 Headers example::
 
-    curl -U <API key>: 'http://proxy.crawlera.com:8010/fetch?url=http%3A//www.food.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
+    curl -u <API key>: 'http://proxy.crawlera.com:8010/fetch?url=http%3A//www.food.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
 
 
 Errors
