@@ -34,7 +34,7 @@ API
 .. toctree::
    :maxdepth: 2
 
-* :ref:`api-basics`
+* :ref:`api-overview`
 * :ref:`jobs-api`
 * :ref:`items-api`
 * :ref:`logs-api`
@@ -48,7 +48,7 @@ API
 .. toctree::
    :hidden:
 
-   api
+   api/overview
 
    scrapy-cloud
    crawlera
