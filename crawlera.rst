@@ -445,7 +445,7 @@ Using Crawlera from different languages
 
     Some HTTP client libraries including Apache HttpComponents Client and .NET don't send authentication headers by default. This can result in doubled requests so pre-emptive authentication should be enabled where this is the case.
 
-In the following examples we'll be making HTTPS requests to https://twitter.com through Crawlera. Note that HTTPS transfer is enabled by :ref:`x-crawlera-use-https` header. For this reason, indicating ``https://`` in URLs is not required.
+In the following examples we'll be making HTTPS requests to https://twitter.com through Crawlera. Note that HTTPS transfer is enabled by :ref:`x-crawlera-use-https` header. For this reason, indicating ``https://`` in URLs is not required. Alternatively, HTTPS requests can be performed without URL re-writing by means of `CONNECT method <http://doc.scrapinghub.com/crawlera.html#working-with-https>`_ (omit :ref:`x-crawlera-use-https` header for this to work).
 
 Python
 ------
