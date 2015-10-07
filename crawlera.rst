@@ -220,8 +220,8 @@ Header                         C10 C50 C100 C200 Enterprise
 ============================== === === ==== ==== ==========
 :ref:`x-crawlera-ua`               ✔   ✔    ✔    ✔
 :ref:`x-crawlera-no-bancheck`      ✔   ✔    ✔    ✔
-:ref:`x-crawlera-cookies`          ✔   ✔    ✔    ✔
-:ref:`x-crawlera-timeout`          ✔   ✔    ✔    ✔
+:ref:`x-crawlera-cookies`      ✔   ✔   ✔    ✔    ✔
+:ref:`x-crawlera-timeout`      ✔   ✔   ✔    ✔    ✔
 :ref:`x-crawlera-session`      ✔   ✔   ✔    ✔    ✔
 :ref:`x-crawlera-use-https`    ✔   ✔   ✔    ✔    ✔
 :ref:`x-crawlera-jobid`        ✔   ✔   ✔    ✔    ✔
@@ -261,7 +261,6 @@ This header instructs Crawlera not to check responses against its ban rules and 
 
 X-Crawlera-Cookies
 ------------------
-:sub:`Only available on C50, C100, C200 and Enterprise plans.`
 
 This header allows to disable internal cookies tracking performed by Crawlera.
 
@@ -323,7 +322,6 @@ Passing ``1`` in the header instructs Crawlera to do up to 1 retry. Default numb
 
 X-Crawlera-Timeout
 ------------------
-:sub:`Only available on C50, C100, C200 and Enterprise plans.`
 
 This header sets Crawlera's timeout in milliseconds for receiving a response from the target website. The timeout must be specified in milliseconds and be between 0 and 180,000. It's not possible to set the timeout higher than 180,000 milliseconds or lower than 0 milliseconds.
 
