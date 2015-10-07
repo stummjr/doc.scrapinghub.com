@@ -476,6 +476,11 @@ Making use of `typhoeus <https://github.com/typhoeus/typhoeus>`_, another Ruby b
 .. literalinclude:: _static/crawlera-typhoeus.rb
     :language: ruby
 
+Making use of `mechanize <https://github.com/sparklemotion/mechanize>`_, a Ruby library for automated web interaction:
+
+.. literalinclude:: _static/crawlera-mechanize.rb
+    :language: ruby
+
 Node.js
 -------
 
