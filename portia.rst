@@ -55,3 +55,35 @@ When you publish your project, if successful you will be asked if you want to be
 
 Portia spiders run just like any Scrapy spider, and you can view the results when the job is complete.
 
+Magic Fields
+============
+
+Sometimes, you need to add certain fields to your data. For example, you may need a timestamp for when an item was scraped, or you need to extract an identifier from a URL. This is where the Magic Fields addon comes in.
+
+You can enable the addon by going to ``Settings -> Addons`` and clicking ``Add`` on the Magic Fields addon.
+
+Navigate to the settings of the spider you want to modify. Let's use the ``$time`` magic variable as an example.
+
+Add ``{ 'timestamp': '$time' }`` to the ``MAGIC_FIELDS`` setting. This will add a ``timestamp`` field containing the time at which the item was scraped.
+
+The following magic variables are available:
+
+======================= ===========
+Name                    Description
+======================= ===========
+time                    The UTC timestamp at which the item was scraped, in the format '%Y-%m-%d %H:%M:%S'.
+unixtime                The Unix time at which the item was scraped.
+isotime                 The UTC timestamp at which the item was scraped, in the format '%Y-%m-%dT%H:%M:%S'.
+spider:<attribute>      The value of the specified attribute argument. 
+env:<variable>          The value of the specified variable. Note: the name of the variable will be omitted.
+jobid                   The job ID. Shortcut for $env:SCRAPY_JOB.
+jobtime                 The UTC timestamp at which the job started, in the format '%Y-%m-%d %H:%M:%S'.
+setting:<name>          The value for the specified setting.
+field:<name>            The value of the existing field specified.
+response:<property>     The value of the specified property of the response.
+======================= ===========
+
+You can also use regular expressions to extract a portion of the variable. 
+
+For example, let's say you need to extract a parameter from a URL like this: ``http://www.example.com/product.html?item_no=345``. The normal syntax, ``{ 'sku': '$field:url' }`` will store the full URL into the ``sku`` field. If we want to extract only the ``item_no`` value, we can use a regex like this: ``{ 'sku': "$field:url,r'item_no=(\d+)'" }``
+
