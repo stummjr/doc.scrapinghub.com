@@ -11,15 +11,18 @@ jobs/schedule.json
 
 Schedules a job.
 
-========= ==================================================================== ========
-Parameter Description                                                          Required
-========= ==================================================================== ========
-project   Project ID.                                                          Yes
-job       Job ID.                                                              No
-spider    Spider name.                                                         No
-add_tag   Add specified tag to job                                             No
-priority  Job priority. Support values: 0 (lowest) to 4 (highest). Default: 2. No
-========= ==================================================================== ========
+============ ==================================================================== ========
+Parameter    Description                                                          Required
+============ ==================================================================== ========
+project      Project ID.                                                          Yes
+job          Job ID.                                                              No
+spider       Spider name.                                                         No
+add_tag      Add specified tag to job                                             No
+priority     Job priority. Support values: 0 (lowest) to 4 (highest). Default: 2. No
+job_settings JSON array of job settings.                                          No
+============ ==================================================================== ========
+
+.. note:: Any other parameter will be treated as a spider argument.
 
 ====== =======================================
 Method Supported parameters
@@ -29,7 +32,7 @@ GET    project, job, spider, add_tag, priority
 
 Example::
 
-	$ curl -u APIKEY: https://dash.scrapinghub.com/api/schedule.json -d project=123 -d spider=somespider -d add_tag=sometag
+	$ curl -u APIKEY: https://dash.scrapinghub.com/api/schedule.json -d project=123 -d spider=somespider -d add_tag=sometag -d spiderarg1=example -d job_settings='{ "setting1": "value1", "setting2": "value2" }'
 	{"status": "ok", "jobid": "123/1/1"}
 
 
