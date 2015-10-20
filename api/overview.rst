@@ -1,4 +1,4 @@
-.. _api-oveview:
+.. _api-overview:
 
 ===============
 Scrapinghub API
@@ -6,42 +6,59 @@ Scrapinghub API
 
 Scrapinghub's API provides an interface for interacting with your spiders, jobs and scraped data.
 
-Example
-=======
-
-Want to schedule a spider? Simple::
-
-    curl -u <API key>: https://dash.scrapinghub.com/api/schedule.json -d project=<project id> -d spider=<spider>
-
-Where `<API key>` is your API key, `<project id>` is the spider's project ID, and `<spider>` is the name of the spider you want to schedule.
+Getting started
+===============
 
 Authentication
-==============
+--------------
 
-Authenticate using your `API key <https://dash.scrapinghub.com/account/apikey>`_. 
+You'll need to authenticate using your `API key <https://dash.scrapinghub.com/account/apikey>`_. 
 
-There are two ways to authenticate.
+There are two ways to authenticate:
 
 HTTP Basic::
 
-    curl -u <API key>: https://storage.scrapinghub.com/foo
+	$ curl -u APIKEY: https://storage.scrapinghub.com/foo
 
 URL Parameter::
 
-    curl https://storage.scrapinghub.com/foo?apikey=<API key>
+    $ curl https://storage.scrapinghub.com/foo?apikey=APIKEY
+
+Example
+-------
+
+Scheduling a spider is simple::
+
+	$ curl -u APIKEY: https://dash.scrapinghub.com/api/schedule.json -d project=PROJECT -d spider=SPIDER
+
+Where ``APIKEY`` is your API key, ``PROJECT`` is the spider's project ID, and ``SPIDER`` is the name of the spider you want to schedule.
+
 
 Endpoints
 =========
 
-* :ref:`api-activity`
-* :ref:`api-collections`
-* :ref:`api-comments`
-* :ref:`api-eggs`
-* :ref:`api-frontier`
-* :ref:`api-items`
-* :ref:`api-jobs`
-* :ref:`api-logs`
-* :ref:`api-reports`
+dash.scrapinghub.com
+---------------------
+
+.. toctree::
+
+	comments
+	eggs
+	jobs
+	reports
+
+storage.scrapinghub.com
+-----------------------
+
+.. toctree::
+
+	activity
+	collections
+	frontier
+	items
+	jobq
+	logs
+	requests
 
 Libraries
 =========
@@ -51,50 +68,102 @@ There are two libraries available for interacting with Scrapinghub.
 python-scrapinghub
 ------------------
 
+The python-scrapinghub library can be used to interface with ``dash.scrapinghub.com`` endpoints.
+
+
 https://github.com/scrapinghub/python-scrapinghub
 
 python-hubstorage
 -----------------
 
+The python-hubstorage library can be used to interface with ``storage.scrapinghub.com`` endpoints.
+
 https://github.com/scrapinghub/python-hubstorage
+
+.. _api-overview-pagination:
 
 Pagination
 ==========
 
 You can paginate the results for the majority of the APIs using a number of parameters.
 
-`start` parameter is the offset number of elements you want to start at. Setting the `start` parameter will return a random sample of results.
-`count` is the number of results per page.
+========= ====================================================================
+Parameter Description
+========= ====================================================================
+start     The offset from which to start retrieving results.
+count     Number of results per page.
+index     Can be used to retrieve specific records. Multiple values supported.
+========= ====================================================================
 
-The `index` parameter can be used to retrieve a specific value. You can provide multiple values per request to retrieve several specific records.
+.. _api-overview-resultformats:
+
+Result formats
+==============
+
+There are two ways to specify the format of results: Using the ``Accept`` header, or using the ``format`` parameter.
+
+The ``Accept`` header supports the following values:
+
+* application/x-jsonlines
+* application/json
+* application/xml
+* text/plain
+* text/csv
+
+The ``format`` parameter supports the following values:
+
+* json
+* jl
+* xml
+* csv
+* text
+
+`XML-RPC data types <http://en.wikipedia.org/wiki/XML-RPC#Data_types>`_ are used for XML output.
+
+CSV parameters
+--------------
+
+================ ======================================================================= ========
+Parameter        Description                                                             Required
+================ ======================================================================= ========
+fields           Comma delimited list of fields to include, in order from left to right. Yes
+include_headers  When set to '1' or 'Y', show header names in first row.                 No
+sep              Separator character.                                                    No
+quote            Quote character.														 No
+escape           Escape character.														 No
+lineend          Line end string.													     No
+================ ======================================================================= ========
+
+When using CSV, you will need to specify the ``fields`` parameter to indiciate required fields and their order. Example::
+
+    $ curl -u APIKEY: "https://storage.scrapinghub.com/items/53/34/7?format=csv&fields=id,name&include_headers=1"
 
 Headers
 =======
 
 *gzip* compression is supported. A client can specify that *gzip* responses can be handled using the ``accept-encoding: gzip`` request header. ``content-encoding: gzip`` header must be present in the response to signal the *gzip* content encoding.
 
-A ``saveas`` request parameter can be used to specify a filename for browser downloads. For example, specifying ``?saveas=foo.json`` will cause a header of ``Content-Disposition: Attachment; filename=foo.json`` to be returned.
+You can use the ``saveas`` request parameter to specify a filename for browser downloads. For example, specifying ``?saveas=foo.json`` will cause a header of ``Content-Disposition: Attachment; filename=foo.json`` to be returned.
+
+.. _api-overview-metapar:
 
 Meta parameters
 ===============
 
-The `meta` parameter instructs the endpoint to return metadata for the record in addition to its core data.
+You can use the ``meta`` parameter to return metadata for the record in addition to its core data.
 
 The following values are available:
 
-=========   ===========
-Parameter   Description
-=========   ===========
-_key        Unique key for the element.
-_ts         Timestamp in milliseconds for when the item was added.
-=========   ===========
-
+=========  =======================================================================
+Parameter  Description
+=========  =======================================================================
+_key       The item key in the format ``:project_id/:spider_id/:job_id/:item_no``.
+_ts        Timestamp in milliseconds for when the item was added.
+=========  =======================================================================
 
 Example::
 
-    $ curl https://storage.scrapinghub.com/items/53/34/7?meta=_key&meta=_ts
+    $ curl "https://storage.scrapinghub.com/items/53/34/7?meta=_key&meta=_ts"
     {"_key":"1111111/1/1/0","_ts":1342078473363, ... }
 
 .. note:: If the data contains fields with the same name as the requested fields, they will both appear in the result.
-
-

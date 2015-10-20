@@ -1,78 +1,97 @@
 .. _api-collections:
 
-===========
-Collections
-===========
-
-Scrapinghub's *Collections* provide a way to store an arbitrary number of records indexed by
-a key. They're often used by Scrapinghub projects as a single place to write
-information from multiple scraping jobs.
-
-The :ref:`collections-api` is described below.
-
-.. _collections-api:
-
+===============
 Collections API
----------------
+===============
+
+Scrapinghub's *Collections* provide a way to store an arbitrary number of records indexed by a key. They're often used by Scrapinghub projects as a single place to write information from multiple scraping jobs.
 
 The *Collections API* allows storing arbitrary objects in named sets. For example::
 
     $ curl -X POST -d '{"_key": "foo", "value": "bar"}' \
         https://storage.scrapinghub.com/collections/78/s/my_collection
 
-Posts an object to the ``my_collection`` collection. A string ``_key`` field must be specified and
-multiple objects may be posted when separated by newlines.
+Will post an object to the ``my_collection`` collection. You can submit multiple objects by separating them with newlines. The ``_key`` field is required and used to identify the item and should be unique.
 
-In the above example, the ``/s/`` in the path represents the collection type. The following
+The ``/s/`` in the path represents the collection type. See below for more details. 
+
+Collection types
+----------------
+
+In the above example,  The following
 collection types are available:
 
-====    =====================   ================================================================
-path    name
-====    =====================   ================================================================
-s       store                   Basic set store
-cs      cached store            Items expire after a month
-vs      versioned store         Up to 3 copies of each item will be retained
-vcs     versioned cache store   Multiple copies are retained, and each one expires after a month
-====    =====================   ================================================================
+====  ===================== ================================================================
+Type  Full name             Description
+====  ===================== ================================================================
+s     store                 Basic set store
+cs    cached store          Items expire after a month
+vs    versioned store       Up to 3 copies of each item will be retained
+vcs   versioned cache store Multiple copies are retained, and each one expires after a month
+====  ===================== ================================================================
 
-Individual items can be read directly (assuming the key is a string)::
+collections/:id/:type/:collection
+---------------------------------
 
-    $ curl https://storage.scrapinghub.com/collections/78/s/my_collection/foo
-    {"value":"bar"}
+Read or write items from or to a collection.
 
-Or they can be retrieved using a key parameter, which can be present multiple times::
+=========== ========================================================= ========
+Parameter   Description                                               Required
+=========== ========================================================= ========
+key         Read items with specified key. Multiple values supported. No
+prefix      Read items with specified key prefix.                     No
+prefixcount Maximum number of values to return per prefix.            No
+startts     UNIX timestamp at which to begin results.                 No
+endts       UNIX timestamp at which to end results.                   No
+=========== ========================================================= ========
 
-    $ curl https://storage.scrapinghub.com/collections/78/s/my_collection?key=foo1&key=foo2
+====== ========================================
+Method Supported parameters
+====== ========================================
+GET    key, prefix, prefixcount, startts, endts
+POST   key
+====== ========================================
+
+.. note:: Pagination and meta parameters are supported, see :ref:`api-overview-pagination` and :ref:`api-overview-metapar`.
+
+GET examples::
+
+    $ curl -u APIKEY: "https://storage.scrapinghub.com/collections/78/s/my_collection?key=foo1&key=foo2"
     {"value":"bar1"}
     {"value":"bar2"}
-
-And the value of an item field can also be retrieved (text & HTML MIME types supported)::
-
-    $ curl https://storage.scrapinghub.com/collections/78/s/my_collection/foo/value
-    bar
-
-Pagination and meta parameters are supported, see :ref:`pagination` and
-:ref:`metapar`.
-
-However, there is an additional filter that allows efficient filtering on key
-prefixes::
-
     $ curl https://storage.scrapinghub.com/collections/78/s/my_collection?prefix=f
     {"value":"bar"}
-
-Prefix filters should be used where possible as they use indexes, unlike other filters. Prefixes may be repeated and a ``prefixcount`` parameter may be used to specify the maximum number of values to return for each prefix.
-
-You can also filter by records updated since a given timestamp::
-
-    $ curl https://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000
+    $ curl "https://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000&endts=1403039369570"
     {"value":"bar"}
 
-A common pattern is to download all changes between two timestamps using ``startts`` and ``endts`` parameters and the current timestamp can first be retrieved if necessary::
+Prefix filters, unlikely other filters, use indexes and should be used when possible. You can use the ``prefixcount`` parameter to limit the number of values returned for each prefix.
+
+A common pattern is to download changes within a certain time period. You can use the ``startts`` and ``endts`` parameters to select records within a certain time window.
+
+The current timestamp can be retrieved like so::
 
     $ curl https://storage.scrapinghub.com/system/ts
     1403039369570
-    $ curl 'https://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000&endts=1403039369570'
+
+.. note:: Timestamp filters may perform poorly when selecting a small number of records from a large collection.
+
+
+collections/:id/:type/:collection/:item
+---------------------------------------
+
+Read an individual item.
+
+GET example::
+
+    $ curl -u APIKEY: https://storage.scrapinghub.com/collections/78/s/my_collection/foo
     {"value":"bar"}
 
-Timestamp filters are best used when fetching a large number of records and may have poor performance when selecting a very small number of records from a large collection.
+collections/:id/:type/:collection/:item/value
+---------------------------------------------
 
+Read an individual item value.
+
+GET example::
+
+    $ curl -u APIKEY: https://storage.scrapinghub.com/collections/78/s/my_collection/foo/value
+    bar

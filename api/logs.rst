@@ -3,48 +3,46 @@
 Logs API
 ========
 
-Example log record::
+The logs API lets you work with logs from your crawls.
 
-    {"message": "Spider opened", "level": 20, "time": 1338987938007}
+Log object
+----------
 
-All log data is returned in plain text format (one row per log) unless another
-format is specified in the *Accept* header. The following formats are
-supported at present::
+======= ===================================================
+Field   Description
+======= ===================================================
+message Log message.
+level   Log level as defined in the Python logging library.
+time    UNIX timestamp of the message.
+======= ===================================================
 
-- application/x-jsonlines
-- application/json
-- application/xml
-- text/plain
-- text/csv
+logs/:project/:spider/:job
+--------------------------
 
-For example, to get logs in JSON Lines format using *curl*::
+Retrieve or upload logs for a given job.
 
-    $ curl -u APIKEY: https://storage.scrapinghub.com/logs/1111111/1/1/ -X GET -H "Accept: application/x-jsonlines"
+========= ====================================================== ========
+Parameter Description                                            Required
+========= ====================================================== ========
+format    Results format. See :ref:`api-overview-resultformats`. No
+========= ====================================================== ========
 
-As is the case with job data, the *Accept* header can be substituted with the
-``format`` parameter::
+====== ============== ====================
+Method Description    Supported parameters
+====== ============== ====================
+GET    Retrieve logs. format
+POST   Upload logs.
+====== ============== ====================
 
-    $ curl -u APIKEY: "https://storage.scrapinghub.com/logs/1111111/1/1?format=jl" -X GET
+GET examples::
 
-CSV output accepts the same options as with items (``fields`` and
-``include_headers`` parameters) with the exception that ``fields`` is now optional and
-defaults to ``time,level,message`` (all headers).
+    $ curl -u APIKEY: https://storage.scrapinghub.com/logs/1111111/1/1/
+    {"time":1444822757227,"level":20,"message":"Log opened."}
+    {"time":1444822757229,"level":20,"message":"[scrapy.log] Scrapy 1.0.3.post6+g2d688cd started"}
+    ...
+	$ curl -u APIKEY: "https://storage.scrapinghub.com/logs/1111111/1/1?format=json"
+	[{"time":1444822757227,"level":20,"message":"Log opened."},{"time":1444822757229,"level":20,"message":"[scrapy.log] Scrapy 1.0.3.post6+g2d688cd started"}...]
 
-Like items, logs are also added by POSTing data to a particular job, for example::
+POST example::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/logs/53/34/7 -X POST -T log.jl
-
-With the restriction that the records in the *log.jl* file must contain the
-following fields:
-
-* time *(number)* - the UNIX timestamp of the log message in *milliseconds* (must
-  be integer)
-
-* level *(number)* - the numeric value of the log level as defined in the Python
-  logging library
-
-* message *(string)* - the log message
-
-Pagination and meta parameters are supported, see :ref:`pagination` and
-:ref:`metapar`.
-

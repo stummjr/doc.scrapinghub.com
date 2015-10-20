@@ -4,42 +4,56 @@
 Requests API
 ============
 
-HTTP requests and responses can be tracked using the :ref:`requests-api` and can reference
-item data.
+The requests API allows you to work with request and response data from your crawls.
+
+Request object
+--------------
+
+======== ==================================== ========
+Field    Description                          Required
+======== ==================================== ========
+parent   The index of the parent request.     No
+duration Request duration in milliseconds.    Yes
+status   HTTP response code.                  Yes
+method   HTTP method. Default: GET            No
+rs       Response size in bytes.              Yes
+url      Request URL.                         Yes
+fp       Request fingerprint.                 No
+======== ==================================== ========
+
+.. note:: Seed requests from start URLs will have no parent field.
+
+requests/:project_id/:spider_id/:job_id
+---------------------------------------
+
+Retrieve or insert request data.
 
 Here is an example of reading data::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/requests/53/34/7
     {"parent":0,"duration":12,"status":200,"method":"GET","rs":1024,"url":"http://scrapy.org/","time":1351521736957}
 
-Data can be read in JSON or JSON Lines format. Pagination and meta parameters
-are supported, see :ref:`pagination` and :ref:`metapar`.
+.. note:: Pagination and meta parameters are supported, see :ref:`api-overview-pagination` and :ref:`api-overview-metapar`.
 
-.. note:: ``method`` and ``time`` fields are not yet implemented.
-
-Currently, the only stats traced are the count of items inserted and the bytes occupied::
-
-    $ curl -u APIKEY: https://storage.scrapinghub.com/requests/53/34/7/stats
-    {"totals":{"input_bytes":64,"input_values":2}}
-
-The following fields are supported:
-
-=========   ========        ===================================================
-Field       Required        Description
-=========   ========        ===================================================
-parent      no              The index of the parent request (if unspecified,
-                            the request is a ``start_url``)
-duration    yes             Request duration in milliseconds
-status      yes             HTTP status code of the response
-method      no              HTTP method used (if unspecified, GET is used as the
-                            default)
-rs          yes             Response size in bytes
-url         yes             Request URL
-fp          no              Request fingerprint (string)
-=========   ========        ===================================================
-
-Data is inserted by POSTing JSON lists::
+POST example::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/requests/53/34/7 -X POST -T requests.jl
 
+requests/:project_id/:spider_id/:job_id/stats
+---------------------------------------------
+
+Retrieve request stats for a given job.
+
+=================== ========================================
+Field               Description
+=================== ========================================
+counts[field]       The number of times the field occurs.
+totals.input_bytes  The total size of all requests in bytes.
+totals.input_values The total number of requests.
+=================== ========================================
+
+GET example::
+
+    $ curl -u APIKEY: https://storage.scrapinghub.com/requests/53/34/7/stats
+    {"counts":{"url":21,"parent":19,"status":21,"method":21,"rs":21,"duration":21,"fp":21},"totals":{"input_bytes":2397,"input_values":21}}
 
