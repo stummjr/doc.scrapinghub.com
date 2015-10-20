@@ -82,7 +82,7 @@ Example::
       "51/418/2": 1
   }
 
-comments/:project_id/:spider_id/:job_id/:item_id[/:field]
+comments/:project_id/:spider_id/:job_id/:item_no[/:field]
 ---------------------------------------------------------
 
 Retrieves, updates or archives comments.

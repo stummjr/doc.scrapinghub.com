@@ -16,8 +16,8 @@ level   Log level as defined in the Python logging library.
 time    UNIX timestamp of the message.
 ======= ===================================================
 
-logs/:project/:spider/:job
---------------------------
+logs/:project_id/:spider_id/:job_id
+-----------------------------------
 
 Retrieve or upload logs for a given job.
 

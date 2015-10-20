@@ -46,8 +46,8 @@ fdata Data to be stored along with the fingerprint in the fingerprint set. No
 p     Priority: lower priority numbers are returned first. Defaults to 0.  No
 ===== ==================================================================== ========
 
-/hcf/:project/:frontier/s/:slot
--------------------------------
+/hcf/:project_id/:frontier/s/:slot
+----------------------------------
 
 ======== ================================================
 Field    Description
@@ -75,8 +75,8 @@ DELETE example::
 
     $ curl -u API_KEY: -X DELETE https://storage.scrapinghub.com/hcf/78/test/s/example.com/
 
-/hcf/:project/:frontier/s/:slot/q
----------------------------------
+/hcf/:project_id/:frontier/s/:slot/q
+------------------------------------
 
 Retrieve requests for a given slot.
 
@@ -92,8 +92,8 @@ Example::
     {"id":"00013967d8af7b0001","requests":[["/",null]]}
     {"id":"01013967d8af7e0001","requests":[["page1.html",{"depth":1}]]}
 
-/hcf/:project/:frontier/s/:slot/q/deleted
-------------------------------------------
+/hcf/:project_id/:frontier/s/:slot/q/deleted
+--------------------------------------------
 
 Delete a batch of requests.
 
@@ -105,8 +105,8 @@ This can be achieved by posting the IDs of the completed batches::
 
 You can specify the IDs as arrays or single values. As with the previous examples, multiple lines of input is accepted.
 
-/hcf/:project/:frontier/s/:slot/f
----------------------------------
+/hcf/:project_id/:frontier/s/:slot/f
+------------------------------------
 
 Retrieve fingerprints for a given slot.
 
@@ -118,8 +118,8 @@ Example::
 
 Results are ordered lexicographically by fingerprint value.
 
-/hcf/:project/:frontier/list
-----------------------------
+/hcf/:project_id/:frontier/list
+-------------------------------
 
 Lists the frontiers for a given project.
 
@@ -128,8 +128,8 @@ Example::
     $ curl -u API_KEY: https://storage.scrapinghub.com/hcf/78/list
     ["test"]
 
-/hcf/:project/:frontier/list
-----------------------------
+/hcf/:project_id/:frontier/list
+-------------------------------
 
 Lists the slots for a given frontier.
 
@@ -137,5 +137,3 @@ Example::
 
     $ curl -u API_KEY: https://storage.scrapinghub.com/hcf/78/test/list
     ["example.com"]
-
-
