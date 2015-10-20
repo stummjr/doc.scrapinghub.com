@@ -504,11 +504,6 @@ C#
 FAQ
 ===
 
-How do I add my own proxies to Crawlera?
-----------------------------------------
-
-Go to `Scrapinghub dashboard <http://dash.scrapinghub.com/>`_ and get in touch through the help icon in the bottom right corner. Someone will help you through the process.
-
 How do I change my user-agent?
 ------------------------------
 
