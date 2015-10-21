@@ -9,14 +9,14 @@ The jobs API makes it easy to work with your spider's jobs.
 jobs/schedule.json
 ------------------
 
-Schedules a job.
+Schedules a job for a given spider.
 
 ============ ==================================================================== ========
 Parameter    Description                                                          Required
 ============ ==================================================================== ========
 project      Project ID.                                                          Yes
 job          Job ID.                                                              No
-spider       Spider name.                                                         No
+spider       Spider name.                                                         Yes
 add_tag      Add specified tag to job                                             No
 priority     Job priority. Support values: 0 (lowest) to 4 (highest). Default: 2. No
 job_settings JSON array of job settings.                                          No
@@ -24,11 +24,11 @@ job_settings JSON array of job settings.                                        
 
 .. note:: Any other parameter will be treated as a spider argument.
 
-====== =======================================
-Method Supported parameters
-====== =======================================
-GET    project, job, spider, add_tag, priority
-====== =======================================
+====== ============================== =======================================
+Method Description                    Supported parameters
+====== ============================== =======================================
+GET    Schedule the specified spider. project, job, spider, add_tag, priority
+====== ============================== =======================================
 
 Example::
 
@@ -39,7 +39,7 @@ Example::
 jobs/list.{json,jl}
 --------------------
 
-Retrieves information about jobs.
+Retrieve job information for a given project, spider, or specific job.
 
 ========= ==================================== ========
 Parameter Description                          Required
@@ -52,11 +52,11 @@ has_tag   Return jobs with specified tag.      No
 lacks_tag Return jobs that lack specified tag. No
 ========= ==================================== ========
 
-====== ===============================================
-Method Supported parameters
-====== ===============================================
-GET    project, job, spider, state, has_tag, lacks_tag
-====== ===============================================
+====== ========================= ===============================================
+Method Description               Supported parameters
+====== ========================= ===============================================
+GET    Retrieve job information. project, job, spider, state, has_tag, lacks_tag
+====== ========================= ===============================================
 
 Examples::
 
@@ -81,11 +81,11 @@ add_tag    Add specified tag to job.      No
 remove_tag Remove specified tag from job. No
 ========== ============================== ========
 
-====== =================================
-Method Supported parameters
-====== =================================
-POST   project, job, add_tag, remove_tag
-====== =================================
+====== ======================= =================================
+Method Description             Supported parameters
+====== ======================= =================================
+POST   Update job information. project, job, add_tag, remove_tag
+====== ======================= =================================
 
 Example::
 
@@ -103,11 +103,11 @@ project    Project ID.                    Yes
 job        Job ID.                        Yes
 =========  ============================== ========
 
-====== ====================
-Method Supported parameters
-====== ====================
-POST   project, job
-====== ====================
+====== ============== =================================
+Method Description    Supported parameters
+====== ============== =================================
+POST   Delete job(s). project, job
+====== ============== =================================
 
 Example::
 
@@ -125,11 +125,11 @@ project    Project ID.                    Yes
 job        Job ID.                        Yes
 =========  ============================== ========
 
-====== ====================
-Method Supported parameters
-====== ====================
-POST   project, job
-====== ====================
+====== ============ =================================
+Method Description  Supported parameters
+====== ============ =================================
+POST   Stop job(s). project, job
+====== ============ =================================
 
 Example::
 

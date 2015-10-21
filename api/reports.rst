@@ -25,11 +25,11 @@ content      Report content.                                        Yes
 content_type Report content type. Supported: text/x-rst, text/plain Yes
 ============ ====================================================== ========
 
-====== ========================================
-Method Supported Parameters
-====== ========================================                 
-POST   project, job, key, content, content_type
-====== ========================================
+====== ========================= ========================================
+Method Description               Supported Parameters
+====== ========================= ========================================
+POST   Upload and attach report. project, job, key, content, content_type
+====== ========================= ========================================
 
 POST example::
 

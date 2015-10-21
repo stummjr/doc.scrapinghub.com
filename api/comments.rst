@@ -32,12 +32,12 @@ comment_id Comment ID.   Yes
 text       Comment text. PUT
 ========== ============= ========
 
-====== ====================
-Method Supported Parameters
-====== ====================
-PUT    comment_id, text
-DELETE comment_id
-====== ====================
+====== ==================== ====================
+Method Description          Supported Parameters
+====== ==================== ====================
+PUT    Update comment text. comment_id, text
+DELETE Delete comment.      comment_id
+====== ==================== ====================
 
 PUT example::
 

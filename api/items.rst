@@ -92,11 +92,11 @@ Parameter Description                       Required
 all       Include hidden fields in results. No
 ========= ================================= ========
 
-====== ====================
-Method Supported parameters
-====== ====================
-GET    all
-====== ====================
+====== ========================================== ====================
+Method Description                                Supported parameters
+====== ========================================== ====================
+GET    Retrieve item stats for the specified job. all
+====== ========================================== ====================
 
 Example::
 

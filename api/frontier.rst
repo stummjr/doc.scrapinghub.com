@@ -55,6 +55,7 @@ Field    Description
 newcount The number of new requests that have been added.
 ======== ================================================
 
+====== ========================================= ====================
 Method Description                               Supported parameters
 ====== ========================================= ====================
 POST   Enqueues a request in the specified slot. fp, qdata, fdata, p

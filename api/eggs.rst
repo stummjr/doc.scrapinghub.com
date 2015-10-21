@@ -20,11 +20,11 @@ version   Egg version. Yes
 egg       Egg file.    Yes
 ========= ============ ========
 
-====== ===========================
-Method Supported parameters
-====== ===========================
-POST   project, name, version, egg
-====== ===========================
+====== ==================================== ===========================
+Method Description                          Supported parameters
+====== ==================================== ===========================
+POST   Add Python egg to the given project. project, name, version, egg
+====== ==================================== ===========================
 
 Example::
 
@@ -42,11 +42,11 @@ project   Project ID. Yes
 name      Egg name.   Yes
 ========= =========== ========
 
-====== ====================
-Method Supported parameters
-====== ====================
-POST   project, name
-====== ====================
+====== ========================================= ====================
+Method Description                               Supported parameters
+====== ========================================= ====================
+POST   Delete Python egg from the given project. project, name
+====== ========================================= ====================
 
 Example::
 
@@ -63,11 +63,11 @@ Parameter Description Required
 project   Project ID. Yes
 ========= =========== ========
 
-====== ====================
-Method Supported parameters
-====== ====================
-GET    project
-====== ====================
+====== =========================================== ====================
+Method Description                                 Supported parameters
+====== =========================================== ====================
+POST   List Python eggs for the specified project. project
+====== =========================================== ====================
 
 Example::
 

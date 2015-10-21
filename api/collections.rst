@@ -45,12 +45,12 @@ startts     UNIX timestamp at which to begin results.                 No
 endts       UNIX timestamp at which to end results.                   No
 =========== ========================================================= ========
 
-====== ========================================
-Method Supported parameters
-====== ========================================
-GET    key, prefix, prefixcount, startts, endts
-POST   key
-====== ========================================
+====== ========================================= ========================================
+Method Description                               Supported parameters
+====== ========================================= ========================================
+GET    Read items from the specified collection. key, prefix, prefixcount, startts, endts
+POST   Write items to the specified collection.
+====== ========================================= ========================================
 
 .. note:: Pagination and meta parameters are supported, see :ref:`api-overview-pagination` and :ref:`api-overview-metapar`.
 

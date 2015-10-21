@@ -25,11 +25,11 @@ endts     UNIX timestamp at which to end results.       No
 stop      The job key at which to stop showing results. No
 ========= ============================================= ========
 
-====== ====================
-Method Supported parameters
-====== ====================
-GET    startts, endts, stop
-====== ====================
+====== ==================================== ====================
+Method Description                          Supported parameters
+====== ==================================== ====================
+GET    List jobs for the specified project. startts, endts, stop
+====== ==================================== ====================
 
 GET examples::
 
