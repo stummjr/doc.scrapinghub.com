@@ -26,7 +26,7 @@ To retrieve items scraped by job ``123/1/4``::
 
     curl -L -u APIKEY: "https://dash.scrapinghub.com/api/items.json?project=123&job=123/1/4"
 
-.. warning:: This only returns the first 100 items. See :ref:`pagination`. If you want to return all items in one stream, you can use `items.jl`_.
+.. warning:: This only returns the first 100 items. See :ref:`api-overview-pagination`. If you want to return all items in one stream, you can use `items.jl`_.
 
 To retrieve items scraped by the *last finished job* of the spider ``myspider``::
 

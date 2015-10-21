@@ -18,12 +18,7 @@ Platform Concepts, Features & Tools
 -----------------------------------
 
 * :doc:`dash`
-* :doc:`jobs`
-* :doc:`jobdata`
 * :doc:`shub`
-* :doc:`comments`
-* :doc:`reports`
-* :doc:`activity`
 * :doc:`addons`
 
 .. _api:
@@ -34,38 +29,30 @@ API
 .. toctree::
    :maxdepth: 2
 
-* :ref:`api-basics`
-* :ref:`jobs-api`
-* :ref:`items-api`
-* :ref:`logs-api`
-* :ref:`requests-api`
-* :ref:`collections-api`
-* :ref:`reports-api`
-* :ref:`activity-api`
-* :ref:`eggs-api`
-* :ref:`frontier-api`
+* :ref:`api-overview`
+* :ref:`api-comments`
+* :ref:`api-eggs`
+* :ref:`api-jobs`
+* :ref:`api-reports`
+* :ref:`api-activity`
+* :ref:`api-collections`
+* :ref:`api-frontier`
+* :ref:`api-items`
+* :ref:`api-logs`
+* :ref:`api-requests`
 
 .. toctree::
    :hidden:
 
-   api
+   api/overview
 
    scrapy-cloud
    crawlera
    portia
 
    dash
-   jobs
-   jobdata
    shub
-   comments
-   reports
    addons
-
-   activity
-   collections
-   frontier
-
 
 .. _Support center: http://support.scrapinghub.com
 .. _Knowledge Base: http://support.scrapinghub.com/forum/24895-knowledge-base/
