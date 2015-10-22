@@ -172,7 +172,7 @@ From then onward, subsequent requests can be made through the same slave by send
 
 Another way to create sessions is using the `/sessions` endpoint::
 
-    curl -u <API key>: proxy.crawlera.com:8010/sessions -X POST <session ID>
+    curl -u <API key>: proxy.crawlera.com:8010/sessions -X POST
 
 This will also return a session ID which you can pass to future requests with the `X-Crawlera-Session` header like before. This is helpful when you can't get the next request using `X-Crawlera-Session`. 
 
