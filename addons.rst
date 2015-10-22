@@ -39,6 +39,8 @@ As *Autothrottle* dynamically adjusts delay and concurrency depending on the sit
 DeltaFetch
 ==========
 
+.. important:: You'll need to enable the `DotScrapy Persistence`_ add on for DeltaFetch to work. 
+
 The purpose of this addon is to ignore requests to pages containing items seen in previous crawls of the same spider, thus producing a *delta crawl* containing only new items. For more details on the algorithm, you can check `DeltaFetch code`_.
 
 There are two main setting for controlling this addon:
@@ -46,8 +48,7 @@ There are two main setting for controlling this addon:
 * ``DELTAFETCH_ENABLED`` - enables or disables *DeltaFetch* addon (either project-wide or per spider)
 * ``DELTAFETCH_RESET`` - reset the state, forgetting visited pages in previous runs (remember to remove this setting once you complete a crawl with this setting activated)
 
-Note that this addon depends on the `DotScrapy Persistence`_ addon, so make sure it's enabled first. Also please be informed that *DeltaFetch* does not operate on **Start URLs** (without this logic, spider may not work at all)
-
+.. note:: DeltaFetch only checks for duplicate URLs of requests that contain items. Requests to URLs that haven't yielded items will still be revisited in subsequent crawls. Start URLs will also be revisited.
 
 DotScrapy Persistence
 =====================
