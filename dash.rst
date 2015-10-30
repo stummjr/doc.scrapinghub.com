@@ -162,14 +162,13 @@ This outcome is triggered by Scrapy's `Memory Usage Extension`_.
 banned
 ------
 
-The job was termianted because the spider got banned from the target website.
+The job was terminated because the spider got banned from the target website.
 This outcome is often set by the Crawlera extension.
 
 slybot_fewitems_scraped
 -----------------------
 
-The job was cancelled because it wasn't scraping enough new data. This is used
-in :ref:`portia` to prevent infinite crawling loops.
+The job was cancelled because it wasn't scraping enough items. This is used in :ref:`portia` to prevent infinite crawling loops. See `Minimum items threshold <http://portia.readthedocs.org/en/latest/spiders.html#minimum-items-threshold>`_ for more details.
 
 Items Browser
 =============
