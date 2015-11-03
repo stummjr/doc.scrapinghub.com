@@ -43,10 +43,16 @@ DeltaFetch
 
 The purpose of this addon is to ignore requests to pages containing items seen in previous crawls of the same spider, thus producing a *delta crawl* containing only new items. For more details on the algorithm, you can check `DeltaFetch code`_.
 
-There are two main setting for controlling this addon:
+There are two main settings for controlling this addon:
 
 * ``DELTAFETCH_ENABLED`` - enables or disables *DeltaFetch* addon (either project-wide or per spider)
 * ``DELTAFETCH_RESET`` - reset the state, forgetting visited pages in previous runs (remember to remove this setting once you complete a crawl with this setting activated)
+
+You can change how DeltaFetch detects duplicate requests by setting the ``deltafetch_key`` key in the Request meta parameter. Example::
+
+    Request(url, meta={'deltafetch_key': SOME_UNIQUE_KEY})
+
+The ``deltafetch_key`` value is used as a unique identifier for the request. If ``deltafetch_key`` is unspecified then the request fingerprint (see ``scrapy.utils.request.fingerprint``) is used instead. 
 
 .. note:: DeltaFetch only checks for duplicate URLs of requests that contain items. Requests to URLs that haven't yielded items will still be revisited in subsequent crawls. Start URLs will also be revisited.
 
