@@ -60,12 +60,174 @@ GET    Retrieve job information. project, job, spider, state, has_tag, lacks_tag
 
 Examples::
 
-  # Retrieve the latest 10 finished jobs
-  $ curl -u APIKEY: "https://dash.scrapinghub.com/api/jobs/list.json?project=123&spider=somespider&state=finished&count=10"
-  # Retrieve all running jobs
-  $ curl -u APIKEY: "https://dash.scrapinghub.com/api/jobs/list.json?project=123&state=running" 
-  # Retrieve all jobs with the tag ``consumed``
-  $ curl -u APIKEY: "https://dash.scrapinghub.com/api/jobs/list.json?project=123&lacks_tag=consumed" 
+    # Retrieve the latest 3 finished jobs
+    $ curl -u APIKEY: "https://dash.scrapinghub.com/api/jobs/list.json?project=123&spider=somespider&state=finished&count=3"
+    {
+      "status": "ok",
+      "count": 3,
+      "total": 3,
+      "jobs": [
+        {
+          "responses_received": 1,
+          "items_scraped": 2,
+          "close_reason": "finished",
+          "logs": 29,
+          "tags": [],
+          "spider": "somespider",
+          "updated_time": "2015-11-09T15:21:06",
+          "priority": 2,
+          "state": "finished",
+          "version": "1447064100",
+          "spider_type": "manual",
+          "started_time": "2015-11-09T15:20:25",
+          "id": "123/45/14544",
+          "errors_count": 0,
+          "elapsed": 138399
+        },
+        {
+          "responses_received": 1,
+          "items_scraped": 2,
+          "close_reason": "finished",
+          "logs": 29,
+          "tags": [
+            "consumed"
+          ],
+          "spider": "somespider",
+          "updated_time": "2015-11-09T14:21:02",
+          "priority": 2,
+          "state": "finished",
+          "version": "1447064100",
+          "spider_type": "manual",
+          "started_time": "2015-11-09T14:20:25",
+          "id": "123/45/14543",
+          "errors_count": 0,
+          "elapsed": 3433762
+        },
+        {
+          "responses_received": 1,
+          "items_scraped": 2,
+          "close_reason": "finished",
+          "logs": 29,
+          "tags": [
+            "consumed"
+          ],
+          "spider": "somespider",
+          "updated_time": "2015-11-09T13:21:08",
+          "priority": 2,
+          "state": "finished",
+          "version": "1447064100",
+          "spider_type": "manual",
+          "started_time": "2015-11-09T13:20:31",
+          "id": "123/45/14542",
+          "errors_count": 0,
+          "elapsed": 7034158
+        }
+      ]
+    }
+
+    # Retrieve all running jobs
+    $ curl -u APIKEY: "https://dash.scrapinghub.com/api/jobs/list.json?project=123&state=running"
+    {
+      "status": "ok",
+      "count": 2,
+      "total": 2,
+      "jobs": [
+        {
+          "responses_received": 483,
+          "items_scraped": 22,
+          "logs": 20,
+          "tags": [],
+          "spider": "somespider",
+          "elapsed": 17442,
+          "priority": 2,
+          "state": "running",
+          "version": "1447064100",
+          "spider_type": "manual",
+          "started_time": "2015-11-09T15:25:07",
+          "id": "123/45/13140",
+          "errors_count": 0,
+          "updated_time": "2015-11-09T15:26:43"
+        },
+        {
+          "responses_received": 207,
+          "items_scraped": 207,
+          "logs": 468,
+          "tags": [],
+          "spider": "someotherspider",
+          "elapsed": 4085,
+          "priority": 3,
+          "state": "running",
+          "version": "1447064100",
+          "spider_type": "manual",
+          "started_time": "2015-11-09T13:00:46",
+          "id": "123/67/11952",
+          "errors_count": 0,
+          "updated_time": "2015-11-09T15:26:57"
+        }
+      ]
+    }
+
+
+    # Retrieve all jobs with the tag ``consumed``
+    $ curl -u APIKEY: "https://dash.scrapinghub.com/api/jobs/list.json?project=123&lacks_tag=consumed" 
+    {
+      "status": "ok",
+      "count": 3,
+      "total": 3,
+      "jobs": [
+        {
+          "responses_received": 208,
+          "items_scraped": 208,
+          "logs": 471,
+          "tags": ["sometag"],
+          "spider": "somespider",
+          "elapsed": 1010,
+          "priority": 3,
+          "state": "running",
+          "version": "1447064100",
+          "spider_type": "manual",
+          "started_time": "2015-11-09T13:00:46",
+          "id": "123/45/11952",
+          "errors_count": 0,
+          "updated_time": "2015-11-09T15:28:27"
+        },
+        {
+          "responses_received": 619,
+          "items_scraped": 22,
+          "close_reason": "finished",
+          "logs": 29,
+          "tags": ["sometag"],
+          "spider": "someotherspider",
+          "updated_time": "2015-11-09T15:27:20",
+          "priority": 2,
+          "state": "finished",
+          "version": "1447064100",
+          "spider_type": "manual",
+          "started_time": "2015-11-09T15:25:07",
+          "id": "123/67/13140",
+          "errors_count": 0,
+          "elapsed": 67409
+        },
+        {
+          "responses_received": 3,
+          "items_scraped": 20,
+          "close_reason": "finished",
+          "logs": 58,
+          "tags": ["sometag", "someothertag"],
+          "spider": "yetanotherspider",
+          "updated_time": "2015-11-09T15:25:28",
+          "priority": 2,
+          "state": "finished",
+          "version": "1447064100",
+          "spider_type": "manual",
+          "started_time": "2015-11-09T15:25:07",
+          "id": "123/89/1627",
+          "errors_count": 0,
+          "elapsed": 179211
+        }
+      ]
+    }
+
 
 jobs/update.json
 ----------------
