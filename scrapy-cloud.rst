@@ -10,9 +10,9 @@ Plans & Pricing
 
 Scrapy Cloud has four types of plans available:
 
-* The *Free* plan is completely free and allows you to add a single project.
-* The *Shared* plan offers unlimited projects and allows you to run several crawls concurrently.
-* *Dedicated* plans provide a dedicated server for running your spiders with more resources. Dedicated plans can run a larger number of concurrent crawls and have longer data retention periods.
+* The *Free* plan is completely free and allows one concurrent crawl. Data is retained for 7 days.
+* The *Shared* plan offers 30 day data retention and lets you run up to four concurrent crawls.
+* *Dedicated* plans provide a dedicated server for running your spiders with more resources. Dedicated plans can run a larger number of concurrent crawls and have longer data retention periods (60+ days).
 * An *Enterprise* plan is a custom plan tailored to your needs.
 
 Check the `Scrapinghub Pricing`_ page for more details.
