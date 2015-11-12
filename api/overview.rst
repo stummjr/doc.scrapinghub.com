@@ -45,7 +45,6 @@ dash.scrapinghub.com
 	comments
 	eggs
 	jobs
-	reports
 
 storage.scrapinghub.com
 -----------------------

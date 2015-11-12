@@ -33,7 +33,6 @@ API
 * :ref:`api-comments`
 * :ref:`api-eggs`
 * :ref:`api-jobs`
-* :ref:`api-reports`
 * :ref:`api-activity`
 * :ref:`api-collections`
 * :ref:`api-frontier`
