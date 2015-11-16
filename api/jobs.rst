@@ -27,7 +27,7 @@ job_settings JSON array of job settings.                                        
 ====== ============================== =======================================
 Method Description                    Supported parameters
 ====== ============================== =======================================
-GET    Schedule the specified spider. project, job, spider, add_tag, priority
+POST   Schedule the specified spider. project, job, spider, add_tag, priority
 ====== ============================== =======================================
 
 Example::
