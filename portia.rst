@@ -64,7 +64,7 @@ You can enable the addon by going to ``Settings -> Addons`` and clicking ``Add``
 
 Navigate to the settings of the spider you want to modify. Let's use the ``$time`` magic variable as an example.
 
-Add ``{ 'timestamp': '$time' }`` to the ``MAGIC_FIELDS`` setting. This will add a ``timestamp`` field containing the time at which the item was scraped.
+Add ``{ "timestamp": "$time" }`` to the ``MAGIC_FIELDS`` setting. This will add a ``timestamp`` field containing the time at which the item was scraped.
 
 The following magic variables are available:
 
@@ -85,5 +85,5 @@ response:<property>     The value of the specified property of the response.
 
 You can also use regular expressions to extract a portion of the variable. 
 
-For example, let's say you need to extract a parameter from a URL like this: ``http://www.example.com/product.html?item_no=345``. The normal syntax, ``{ 'sku': '$field:url' }`` will store the full URL into the ``sku`` field. If we want to extract only the ``item_no`` value, we can use a regex like this: ``{ 'sku': "$field:url,r'item_no=(\d+)'" }``
+For example, let's say you need to extract a parameter from a URL like this: ``http://www.example.com/product.html?item_no=345``. The normal syntax, ``{ "sku": "$field:url" }`` will store the full URL into the ``sku`` field. If we want to extract only the ``item_no`` value, we can use a regex like this: ``{ "sku": "$field:url,r'item_no=(\d+)'" }``
 
