@@ -489,14 +489,17 @@ Java
 ----
 
 .. note:: Because of `HTTPCLIENT-1649 <https://issues.apache.org/jira/browse/HTTPCLIENT-1649>`_ you should use version 4.5 of HttpComponents Client or later.
-.. note:: :download:`crawlera-ca.crt` should be added to keystore, for instance with the use of `keytool`::
-    
-    keytool -import -file /path/to/crawlera-ca.crt -storepass password -keystore $JAVA_HOME/jre/lib/security/cacerts -alias crawleracert
 
 Extending an example published at `The Apache HttpComponents™ <http://hc.apache.org/httpcomponents-client-ga/examples.html>`_ project website and inserting Crawlera details:
 
 .. literalinclude:: _static/crawlera-httpc.java
     :language: java
+
+:download:`crawlera-ca.crt` should be added to keystore, for instance with *keytool*:
+
+.. code-block:: text
+
+    keytool -import -file /path/to/crawlera-ca.crt -storepass password -keystore $JAVA_HOME/jre/lib/security/cacerts -alias crawleracert
 
 C#
 --
