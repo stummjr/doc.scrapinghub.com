@@ -56,13 +56,12 @@ Working with HTTPS
 
 Crawlera provides four ways for working with HTTPS:
 
+#. CONNECT method (standard mechanism used by browsers)
 #. the :ref:`x-crawlera-use-https` header
 #. the :ref:`fetch-api`
-#. CONNECT method (standard mechanism used by browsers)
 #. HTTPs request over HTTP proxy
 
-CONNECT method support is still experimental. To use it you need to download
-and install the certificate file for Crawlera Certificate Authority or disable
+To use CONNECT method you need to download and install the certificate file for Crawlera Certificate Authority or disable
 SSL certificate verification in your HTTP client.
 
 The Crawlera Certificate authority can be downloaded here: :download:`crawlera-ca.crt`
@@ -409,18 +408,15 @@ For password safety reasons this content is displayed as ``(hidden)`` in the Pol
 Using Crawlera with CasperJS, PhantomJS and SpookyJS
 ====================================================
 
-To use session wide crawlera proxy with PhantomJs or CasperJS:
-
-Provide ``--proxy=proxy.crawlera.com:8010`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJs)
+To use session-wide Crawlera proxy with PhantomJs or CasperJS provide ``--proxy=proxy.crawlera.com:8010`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJS).
 
 *Example*::
 
     casperjs|phantomjs --proxy="proxy.crawlera.com:8010" --proxy-auth="<API key>:''" yourscript.js
 
-For SpookyJS, it allows you to spawn multiple instances of CasperJS instances, so you will need to provide proxy and proxy-auth arguments when creating Spooky object.
-Like so:
+SpookyJS allows you to spawn multiple instances of CasperJS suites, so ``proxy`` and ``proxy-auth`` arguments should be provided when creating a Spooky object.
 
-::
+*Example*::
 
     var spooky = new Spooky({
         child: {
@@ -431,26 +427,26 @@ Like so:
         /* ... */
     },
 
-If you want to use crawlera only on specific urls you'll need to wrap your urls according to :ref:`fetch-api`
+If it's preferred that Crawlera operated only on specific URLs, they should be wrapped according to :ref:`fetch-api`
 
 *Example in CasperJS*:
 
 .. literalinclude:: _static/crawlera-casperjs.js
     :language: javascript
 
-Using Crawlera from different languages
+Using Crawlera from Different Languages
 =======================================
 
 .. warning::
 
     Some HTTP client libraries including Apache HttpComponents Client and .NET don't send authentication headers by default. This can result in doubled requests so pre-emptive authentication should be enabled where this is the case.
 
-In the following examples we'll be making HTTPS requests to https://twitter.com through Crawlera. Note that HTTPS transfer is enabled by :ref:`x-crawlera-use-https` header. For this reason, indicating ``https://`` in URLs is not required. Alternatively, HTTPS requests can be performed without URL re-writing by means of `CONNECT method <http://doc.scrapinghub.com/crawlera.html#working-with-https>`_ (omit :ref:`x-crawlera-use-https` header for this to work).
+In the following examples we'll be making HTTPS requests to https://twitter.com through Crawlera. It is assumed that Crawlera Certificate has been installed, since `CONNECT method <http://doc.scrapinghub.com/crawlera.html#working-with-https>`_ will be employed. Alternatively, HTTPS requests can be performed by passing :ref:`x-crawlera-use-https` header and re-writing URLs (replacing ``https://`` with ``http://``).
 
 Python
 ------
 
-Making use of `Requests <http://docs.python-requests.org/en/latest/>`_ HTTP Proxy Authentication and re-writing the URL for HTTPS transfer:
+Making use of `Requests <http://docs.python-requests.org/en/latest/>`_ HTTP Proxy Authentication:
 
 .. literalinclude:: _static/crawlera-python-requests-httpproxyauth.py
     :language: python
