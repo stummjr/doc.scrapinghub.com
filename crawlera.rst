@@ -412,7 +412,13 @@ To use session-wide Crawlera proxy with PhantomJs or CasperJS provide ``--proxy=
 
 *Example*::
 
-    casperjs|phantomjs --proxy="proxy.crawlera.com:8010" --proxy-auth="<API key>:''" yourscript.js
+    casperjs|phantomjs --proxy="proxy.crawlera.com:8010" --proxy-auth="<API KEY>:''" yourscript.js
+
+When making HTTPS requests, the URLs should be wrapped in a :ref:`fetch-api` call.
+
+*Example*::
+
+    phantomjs --ssl-protocol=any phantomjs/examples/rasterize.js http://<API KEY>:@proxy.crawlera.com:8010/fetch?url=https://twitter.com twitter.jpg
 
 SpookyJS allows you to spawn multiple instances of CasperJS suites, so ``proxy`` and ``proxy-auth`` arguments should be provided when creating a Spooky object.
 
@@ -427,7 +433,7 @@ SpookyJS allows you to spawn multiple instances of CasperJS suites, so ``proxy``
         /* ... */
     },
 
-If it's preferred that Crawlera operated only on specific URLs, they should be wrapped according to :ref:`fetch-api`
+If it's preferred that Crawlera operated only on specific URLs, they should be wrapped according to :ref:`fetch-api`.
 
 *Example in CasperJS*:
 
@@ -457,6 +463,11 @@ PHP
 Making use of `PHP binding <http://curl.haxx.se/libcurl/php/examples>`_ for *libcurl* library:
 
 .. literalinclude:: _static/crawlera-php-binding.php
+    :language: php
+
+Making use of `Guzzle <https://github.com/guzzle/guzzle>`_, a PHP HTTP client, in the context of `Symfony <https://symfony.com/>`_ framework:
+
+.. literalinclude:: _static/crawlera-php-symfony.php
     :language: php
 
 Ruby
