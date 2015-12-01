@@ -89,7 +89,7 @@ You can paginate the results for the majority of the APIs using a number of para
 ========= ====================================================================
 Parameter Description
 ========= ====================================================================
-start     The offset from which to start retrieving results.
+offset    The offset from which to start retrieving results.
 count     Number of results per page.
 index     Can be used to retrieve specific records. Multiple values supported.
 ========= ====================================================================
