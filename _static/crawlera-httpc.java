@@ -26,7 +26,7 @@ public class ClientProxyAuthentication {
         CloseableHttpClient httpclient = HttpClients.custom()
                 .setDefaultCredentialsProvider(credsProvider).build();
         try {
-            HttpHost target = new HttpHost("twitter.com", 443, "http");
+            HttpHost target = new HttpHost("twitter.com");
             HttpHost proxy = new HttpHost("proxy.crawlera.com", 8010);
 
             AuthCache authCache = new BasicAuthCache();
