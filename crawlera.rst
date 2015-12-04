@@ -484,6 +484,8 @@ Making use of `typhoeus <https://github.com/typhoeus/typhoeus>`_, another Ruby b
     :language: ruby
 
 Making use of `mechanize <https://github.com/sparklemotion/mechanize>`_, a Ruby library for automated web interaction:
+Don't forget to load the Certificate file :download:`crawlera-ca.crt` and set it
+using the env variable `export SSL_CERT_FILE=/path/to/crawlera-ca.crt`
 
 .. literalinclude:: _static/crawlera-mechanize.rb
     :language: ruby
@@ -510,7 +512,7 @@ Extending an example published at `The Apache HttpComponents™ <http://hc.apach
 
 .. code-block:: text
 
-    keytool -import -file /path/to/crawlera-ca.crt -storepass password -keystore $JAVA_HOME/jre/lib/security/cacerts -alias crawleracert
+    keytool -import -file /path/to/crawlera-ca.crt -storepass changeit -keystore $JAVA_HOME/jre/lib/security/cacerts -alias crawleracert
 
 C#
 --
