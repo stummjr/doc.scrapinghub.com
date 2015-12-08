@@ -6,8 +6,8 @@ Jobs API
 
 The jobs API makes it easy to work with your spider's jobs.
 
-jobs/schedule.json
-------------------
+jobs/run.json
+-------------
 
 Schedules a job for a given spider.
 
@@ -32,12 +32,12 @@ POST   Schedule the specified spider. project, job, spider, add_tag, priority
 
 Example::
 
-	$ curl -u APIKEY: https://dash.scrapinghub.com/api/schedule.json -d project=123 -d spider=somespider -d add_tag=sometag -d spiderarg1=example -d job_settings='{ "setting1": "value1", "setting2": "value2" }'
+	$ curl -u APIKEY: https://dash.scrapinghub.com/api/run.json -d project=123 -d spider=somespider -d add_tag=sometag -d spiderarg1=example -d job_settings='{ "setting1": "value1", "setting2": "value2" }'
 	{"status": "ok", "jobid": "123/1/1"}
 
 
 jobs/list.{json,jl}
---------------------
+-------------------
 
 Retrieve job information for a given project, spider, or specific job.
 
@@ -276,7 +276,7 @@ Example::
   $ curl -u APIKEY: https://dash.scrapinghub.com/api/jobs/delete.json -d project=123 -d job=123/1/2 -d job=123/1/3
 
 jobs/stop.json
-----------------
+--------------
 
 Stops one or more running jobs.
 
