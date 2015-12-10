@@ -156,7 +156,7 @@ Sessions
 
     Please be advised that the Sessions is an experimental feature and currently under development.
 
-Sessions allow reusing the same slave for every request. Sessions expire 30 minutes after their last use and Crawlera limits the number of concurrent sessions to 100 for standard users, and 5000 for enterprise users.
+Sessions allow reusing the same slave for every request. Sessions expire 30 minutes after their last use and Crawlera limits the number of concurrent sessions to 100 for C10 plans, and 5000 for all other plans.
 
 Sessions are managed using the :ref:`x-crawlera-session` header. To create a new session send::
 
