@@ -11,16 +11,16 @@ jobs/schedule.json
 
 Schedules a job for a given spider.
 
-============ ==================================================================== ========
-Parameter    Description                                                          Required
-============ ==================================================================== ========
-project      Project ID.                                                          Yes
-job          Job ID.                                                              No
-spider       Spider name.                                                         Yes
-add_tag      Add specified tag to job                                             No
-priority     Job priority. Support values: 0 (lowest) to 4 (highest). Default: 2. No
-job_settings JSON array of job settings.                                          No
-============ ==================================================================== ========
+============ ====================================================================== ========
+Parameter    Description                                                            Required
+============ ====================================================================== ========
+project      Project ID.                                                            Yes
+job          Job ID.                                                                No
+spider       Spider name.                                                           Yes
+add_tag      Add specified tag to job                                               No
+priority     Job priority. Supported values: 0 (lowest) to 4 (highest). Default: 2. No
+job_settings JSON array of job settings.                                            No
+============ ====================================================================== ========
 
 .. note:: Any other parameter will be treated as a spider argument.
 
@@ -47,10 +47,12 @@ Parameter Description                          Required
 project   Project ID.                          Yes
 job       Job ID.                              No
 spider    Spider name.                         No
-state     Return jobs with specified state     No
+state     Return jobs with specified state.    No
 has_tag   Return jobs with specified tag.      No
 lacks_tag Return jobs that lack specified tag. No
 ========= ==================================== ========
+
+Supported ``state`` values: ``pending``, ``running``, ``finished``, ``deleted``.
 
 ====== ========================= ===============================================
 Method Description               Supported parameters
