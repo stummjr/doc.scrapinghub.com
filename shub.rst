@@ -26,15 +26,20 @@ Here are the available commands:
       Scrapinghub command-line client
     
     Options:
-      --help  Show this message and exit.
-    
+      --version  Show the version and exit.
+      --help     Show this message and exit.
+
     Commands:
       deploy       Deploy Scrapy project to Scrapy Cloud
       deploy-egg   Build and deploy egg from source
       deploy-reqs  Build and deploy eggs from requirements.txt
       fetch-eggs   Download a project's eggs from the Scrapy...
+      items        Get items of a given job on Scrapy Cloud
+      log          Get log of a given job on Scrapy Cloud
       login        add Scrapinghug API key into the netrc file
       logout       remove Scrapinghug API key from the netrc...
+      requests     Get requests made for a given job on Scrapy...
+      schedule     Schedule a spider to run on Scrapy Cloud
       version      Show shub version
 .. END_SHUB_USAGE
 
@@ -178,6 +183,53 @@ To show ``shub`` version::
 
 	$ shub --version
 	shub, version 1.3.0
+
+.. _shub-schedule:
+
+schedule
+--------
+
+Schedule a given spider::
+
+    $ shub schedule myspider
+    Spider myspider scheduled, watch it running here:
+    https://dash.scrapinghub.com/p/1/job/1/1
+
+.. _shub-items:
+
+items
+-----
+
+Show the items for a given job::
+
+    $ shub items 1/1/1
+    {"name": "Example product", description": "Example description"}
+    {"name": "Another product", description": "Another description"}
+    ...
+
+.. _shub-requests:
+
+requests
+--------
+
+Show the requests for a given job::
+
+    $ shub requests 1/1/1
+    {u'status': 200, u'fp': u'1ff11f1543809f1dbd714e3501d8f460b92a7a95', u'rs': 138137, u'_key': u'1/1/1/0', u'url': u'http://blog.scrapinghub.com', u'time': 1449834387621, u'duration': 238, u'method': u'GET'}
+    {u'status': 200, u'fp': u'418a0964a93e139166dbf9b33575f10f31f17a1', u'rs': 138137, u'_key': u'1/1/1/0', u'url': u'http://blog.scrapinghub.com', u'time': 1449834390881, u'duration': 163, u'method': u'GET'}
+    ...
+
+.. _shub-log:
+
+log
+---
+
+Show the log for a given job::
+
+    $ shub log 1/1/1
+    {u'_key': u'1/1/1/0', u'message': u'Log opened.', u'level': 20, u'time': 1449834381144}
+    {u'_key': u'1/1/1/1', u'message': u'[scrapy.log] Scrapy 1.0.3.post6+g2d688cd started', u'level': 20, u'time': 1449834381170}
+    ...
 
 Configuration
 =============
