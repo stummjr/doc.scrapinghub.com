@@ -133,7 +133,7 @@ Monitoring
 
 The *Monitoring* addon lets you monitor your spiders, generate reports and send notifications. It works by allowing you to set one or more actions to execute on a certain job event. 
 
-``Monitors`` consist of one or tests that check for one or more conditions. You can create a Monitor by clicking the ``Add monitor`` button. To then add a test to the monitor, click ``Add test``. Here you can enter a name and description, as well as an assert expression and fail message. The assert expression is used to check whether the test passed or failed. The fail message will be included in the report.
+``Monitors`` consist of one or more tests that check for one or more conditions. You can create a Monitor by clicking the ``Add monitor`` button. To then add a test to the monitor, click ``Add test``. Here you can enter a name and description, as well as an assert expression and fail message. The assert expression is used to check whether the test passed or failed. The fail message will be included in the report.
 
 In the ``Actions`` tab you can set up actions to occur when a certain event is triggered. The following triggers are available:
 
