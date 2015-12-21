@@ -127,3 +127,42 @@ We want to leave only the parameter ``pid``. To achieve this objective we can us
 .. _DeltaFetch code:  https://github.com/scrapinghub/scrapylib/blob/master/scrapylib/deltafetch.py
 .. _`Scrapy Autothrottle`: https://scrapy.readthedocs.org/en/latest/topics/autothrottle.html
 .. _`Scrapy Images Pipeline`: http://doc.scrapy.org/en/latest/topics/images.html
+
+Monitoring
+==========
+
+The *Monitoring* addon lets you monitor your spiders, generate reports and send notifications. It works by allowing you to set one or more actions to execute on a certain job event. 
+
+``Monitors`` consist of one or more tests that check for one or more conditions. You can create a Monitor by clicking the ``Add monitor`` button. To then add a test to the monitor, click ``Add test``. Here you can enter a name and description, as well as an assert expression and fail message. The assert expression is used to check whether the test passed or failed. The fail message will be included in the report.
+
+In the ``Actions`` tab you can set up actions to occur when a certain event is triggered. The following triggers are available:
+
+=============== ===========================================
+Event           Description
+=============== ===========================================
+Spider started  Run actions when a spider starts.
+Spider finished Run actions when a spider finishes
+Monitors passed Run actions when all monitors pass.
+Monitors failed Run actions when one or more monitors fail.
+=============== ===========================================
+
+You can set up actions to occur when a spider starts or finishes, or when all monitors pass or one or more fails. Let's walk through setting up a monitor that will send an email notification if a spider fails.
+
+First create a monitor, and click the ``Add test`` button.
+
+.. image:: _static/spidermon-add-test.png 
+    :width: 400px
+
+The ``Assert Expression`` field is where we write the logic to check the spider condition. The example below return true if the spider close reason is 'finished', otherwise it will return false::
+
+    $stats['finish_reason'] == 'finished'
+
+We can also add a fail message which will be included in the email report. Save the test, and click on the ``Actions`` tab. 
+
+Because we want to be notified when the test fails, we need to add a ``Monitors failed`` action. Click ``Add action`` and you'll see this dialogue:
+
+.. image:: _static/spidermon-add-action.png 
+    :width: 300px
+
+You can see we have a number of actions to choose from. Select the ``Send email notification`` option, and then enter your email address. Click ``Save`` and we're done!
+
