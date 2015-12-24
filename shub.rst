@@ -182,7 +182,7 @@ version
 To show ``shub`` version::
 
 	$ shub --version
-	shub, version 1.3.0
+	shub, version 1.5.0
 
 .. _shub-schedule:
 
@@ -215,8 +215,8 @@ requests
 Show the requests for a given job::
 
     $ shub requests 1/1/1
-    {u'status': 200, u'fp': u'1ff11f1543809f1dbd714e3501d8f460b92a7a95', u'rs': 138137, u'_key': u'1/1/1/0', u'url': u'http://blog.scrapinghub.com', u'time': 1449834387621, u'duration': 238, u'method': u'GET'}
-    {u'status': 200, u'fp': u'418a0964a93e139166dbf9b33575f10f31f17a1', u'rs': 138137, u'_key': u'1/1/1/0', u'url': u'http://blog.scrapinghub.com', u'time': 1449834390881, u'duration': 163, u'method': u'GET'}
+    {"status": 200, "fp": "1ff11f1543809f1dbd714e3501d8f460b92a7a95", "rs": 138137, "_key": "1/1/1/0", "url": "http://blog.scrapinghub.com", "time": 1449834387621, "duration": 238, "method": "GET"}
+    {"status": 200, "fp": "418a0964a93e139166dbf9b33575f10f31f17a1", "rs": 138137, "_key": "1/1/1/0", "url": "http://blog.scrapinghub.com", "time": 1449834390881, "duration": 163, "method": "GET"}
     ...
 
 .. _shub-log:
@@ -227,8 +227,8 @@ log
 Show the log for a given job::
 
     $ shub log 1/1/1
-    {u'_key': u'1/1/1/0', u'message': u'Log opened.', u'level': 20, u'time': 1449834381144}
-    {u'_key': u'1/1/1/1', u'message': u'[scrapy.log] Scrapy 1.0.3.post6+g2d688cd started', u'level': 20, u'time': 1449834381170}
+    2015-11-25 11:07:43 INFO Log opened.
+    2015-11-25 11:07:43 INFO [scrapy.log] Scrapy 1.0.3.post6+g2d688cd started
     ...
 
 Configuration
