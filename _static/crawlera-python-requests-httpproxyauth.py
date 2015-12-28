@@ -2,27 +2,24 @@ import requests
 from requests.auth import HTTPProxyAuth
 
 url = "https://twitter.com"
-headers = {}
 proxy_host = "proxy.crawlera.com"
+proxy_port = "8010"
 proxy_auth = HTTPProxyAuth("<API KEY>", "")
-proxies = {"http": "http://{}:8010/".format(proxy_host)}
+proxies = {"https": "https://{}:{}/".format(proxy_host, proxy_port)}
 
-if url.startswith("https:"):
-    url = "http://" + url[8:]
-    headers["X-Crawlera-Use-HTTPS"] = "1"
-
-r = requests.get(url, headers=headers, proxies=proxies, auth=proxy_auth)
+r = requests.get(url, proxies=proxies, auth=proxy_auth,
+                 verify='/path/to/crawlera-ca.crt')
 
 print("""
 Requesting [{}]
 through proxy [{}]
 
+Request Headers:
+{}
+
 Response Time: {}
 Response Code: {}
 Response Headers:
 {}
-
-Response Body:
-{}
-""".format(url, proxy_host, r.elapsed.total_seconds(), r.status_code, 
-           r.headers, r.text))
+""".format(url, proxy_host, r.request.headers, r.elapsed.total_seconds(),
+           r.status_code, r.headers, r.text))
