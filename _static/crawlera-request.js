@@ -2,15 +2,16 @@ module.exports = require('./lib/express');
 
 var express = require('express');
 var request = require('request');
+var fs = require('fs');
 var app = express();
 
 app.get('/', function(req, res) {
 
     var options = {
-        url: 'http://twitter.com',
-        headers: {
-            'X-Crawlera-Use-HTTPS': 1
-        }
+        url: 'https://twitter.com',
+        ca: fs.readFileSync("/path/to/crawlera-ca.crt"),
+        requestCert: true,
+        rejectUnauthorized: true
     };
 
     var new_req = request.defaults({
@@ -21,6 +22,9 @@ app.get('/', function(req, res) {
         if (!error && response.statusCode == 200) {
             console.log(response.headers);
             console.log(body);
+        }
+        else{
+            console.log(error, response, body);
         }
     }
 

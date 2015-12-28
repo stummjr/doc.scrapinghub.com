@@ -54,10 +54,9 @@ To enable Crawlera via `Scrapinghub dashboard <http://dash.scrapinghub.com/>`_, 
 Working with HTTPS
 ------------------
 
-Crawlera provides four ways for working with HTTPS:
+Crawlera provides three ways for working with HTTPS:
 
 #. CONNECT method (standard mechanism used by browsers)
-#. the :ref:`x-crawlera-use-https` header
 #. the :ref:`fetch-api`
 #. HTTPs request over HTTP proxy
 
@@ -222,7 +221,6 @@ Header                         C10 C50 C100 C200 Enterprise
 :ref:`x-crawlera-cookies`      ✔   ✔   ✔    ✔    ✔
 :ref:`x-crawlera-timeout`      ✔   ✔   ✔    ✔    ✔
 :ref:`x-crawlera-session`      ✔   ✔   ✔    ✔    ✔
-:ref:`x-crawlera-use-https`    ✔   ✔   ✔    ✔    ✔
 :ref:`x-crawlera-jobid`        ✔   ✔   ✔    ✔    ✔
 :ref:`x-crawlera-max-retries`  ✔   ✔   ✔    ✔    ✔
 ============================== === === ==== ==== ==========
@@ -283,15 +281,6 @@ This header instructs Crawlera to use sessions which will tie requests to a part
     X-Crawlera-Session: create
 
 When ``create`` value is passed, Crawlera creates a new session an ID of which will be returned in the response header with the same name. All subsequent requests should use that returned session ID to prevent random slave switching between requests. Crawlera sessions currently have maximum lifetime of 30 minutes. See :ref:`sessions-request-limits` for information on the maximum number of sessions.
-
-.. _x-crawlera-use-https:
-
-X-Crawlera-Use-HTTPS
---------------------
-
-This header forces Crawlera to retrieve the URL using HTTPS scheme instead of HTTP. For example, to fetch https://twitter.com::
-
-    curl -x proxy.crawlera.com:8010 -U <API key>: http://twitter.com -H x-crawlera-use-https:1
 
 .. _x-crawlera-jobid:
 
@@ -447,7 +436,10 @@ Using Crawlera from Different Languages
 
     Some HTTP client libraries including Apache HttpComponents Client and .NET don't send authentication headers by default. This can result in doubled requests so pre-emptive authentication should be enabled where this is the case.
 
-In the following examples we'll be making HTTPS requests to https://twitter.com through Crawlera. It is assumed that Crawlera Certificate has been installed, since `CONNECT method <http://doc.scrapinghub.com/crawlera.html#working-with-https>`_ will be employed. Alternatively, HTTPS requests can be performed by passing :ref:`x-crawlera-use-https` header and re-writing URLs (replacing ``https://`` with ``http://``).
+In the following examples we'll be making HTTPS requests to https://twitter.com
+through Crawlera. It is assumed that Crawlera Certificate has been installed,
+since `CONNECT method <http://doc.scrapinghub.com/crawlera.html#working-with-https>`_
+will be employed.
 
 Python
 ------
