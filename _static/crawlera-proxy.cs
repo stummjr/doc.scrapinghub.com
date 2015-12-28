@@ -11,8 +11,7 @@ namespace ProxyRequest
             var myProxy = new WebProxy("http://proxy.crawlera.com:8010");
             myProxy.Credentials = new NetworkCredential("<API KEY>", "");
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://twitter.com");
-            request.Headers["X-Crawlera-Use-HTTPS"] = "1";
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://twitter.com");
             request.Proxy = myProxy;
             request.PreAuthenticate = true;
 
