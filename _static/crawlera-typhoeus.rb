@@ -1,15 +1,12 @@
 require 'typhoeus'
 
-url = "http://twitter.com"
+url = "https://twitter.com"
 proxy_host = "proxy.crawlera.com:8010"
 proxy_auth = "<API KEY>:"
 
 request = Typhoeus::Request.new(
   url,
   method: :get,
-  headers: { 
-    "X-Crawlera-Use-HTTPS" => 1
-  },
   proxy: proxy_host,
   proxyuserpwd: proxy_auth
 )

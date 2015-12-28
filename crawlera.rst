@@ -56,13 +56,12 @@ Working with HTTPS
 
 Crawlera provides four ways for working with HTTPS:
 
+#. CONNECT method (standard mechanism used by browsers)
 #. the :ref:`x-crawlera-use-https` header
 #. the :ref:`fetch-api`
-#. CONNECT method (standard mechanism used by browsers)
 #. HTTPs request over HTTP proxy
 
-CONNECT method support is still experimental. To use it you need to download
-and install the certificate file for Crawlera Certificate Authority or disable
+To use CONNECT method you need to download and install the certificate file for Crawlera Certificate Authority or disable
 SSL certificate verification in your HTTP client.
 
 The Crawlera Certificate authority can be downloaded here: :download:`crawlera-ca.crt`
@@ -409,18 +408,21 @@ For password safety reasons this content is displayed as ``(hidden)`` in the Pol
 Using Crawlera with CasperJS, PhantomJS and SpookyJS
 ====================================================
 
-To use session wide crawlera proxy with PhantomJs or CasperJS:
-
-Provide ``--proxy=proxy.crawlera.com:8010`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJs)
+To use session-wide Crawlera proxy with PhantomJs or CasperJS provide ``--proxy=proxy.crawlera.com:8010`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJS).
 
 *Example*::
 
-    casperjs|phantomjs --proxy="proxy.crawlera.com:8010" --proxy-auth="<API key>:''" yourscript.js
+    casperjs|phantomjs --proxy="proxy.crawlera.com:8010" --proxy-auth="<API KEY>:''" yourscript.js
 
-For SpookyJS, it allows you to spawn multiple instances of CasperJS instances, so you will need to provide proxy and proxy-auth arguments when creating Spooky object.
-Like so:
+When making HTTPS requests, the URLs should be wrapped in a :ref:`fetch-api` call.
 
-::
+*Example*::
+
+    phantomjs --ssl-protocol=any phantomjs/examples/rasterize.js http://<API KEY>:@proxy.crawlera.com:8010/fetch?url=https://twitter.com twitter.jpg
+
+SpookyJS allows you to spawn multiple instances of CasperJS suites, so ``proxy`` and ``proxy-auth`` arguments should be provided when creating a Spooky object.
+
+*Example*::
 
     var spooky = new Spooky({
         child: {
@@ -431,26 +433,26 @@ Like so:
         /* ... */
     },
 
-If you want to use crawlera only on specific urls you'll need to wrap your urls according to :ref:`fetch-api`
+If it's preferred that Crawlera operated only on specific URLs, they should be wrapped according to :ref:`fetch-api`.
 
 *Example in CasperJS*:
 
 .. literalinclude:: _static/crawlera-casperjs.js
     :language: javascript
 
-Using Crawlera from different languages
+Using Crawlera from Different Languages
 =======================================
 
 .. warning::
 
     Some HTTP client libraries including Apache HttpComponents Client and .NET don't send authentication headers by default. This can result in doubled requests so pre-emptive authentication should be enabled where this is the case.
 
-In the following examples we'll be making HTTPS requests to https://twitter.com through Crawlera. Note that HTTPS transfer is enabled by :ref:`x-crawlera-use-https` header. For this reason, indicating ``https://`` in URLs is not required.
+In the following examples we'll be making HTTPS requests to https://twitter.com through Crawlera. It is assumed that Crawlera Certificate has been installed, since `CONNECT method <http://doc.scrapinghub.com/crawlera.html#working-with-https>`_ will be employed. Alternatively, HTTPS requests can be performed by passing :ref:`x-crawlera-use-https` header and re-writing URLs (replacing ``https://`` with ``http://``).
 
 Python
 ------
 
-Making use of `Requests <http://docs.python-requests.org/en/latest/>`_ HTTP Proxy Authentication and re-writing the URL for HTTPS transfer:
+Making use of `Requests <http://docs.python-requests.org/en/latest/>`_ HTTP Proxy Authentication:
 
 .. literalinclude:: _static/crawlera-python-requests-httpproxyauth.py
     :language: python
@@ -461,6 +463,11 @@ PHP
 Making use of `PHP binding <http://curl.haxx.se/libcurl/php/examples>`_ for *libcurl* library:
 
 .. literalinclude:: _static/crawlera-php-binding.php
+    :language: php
+
+Making use of `Guzzle <https://github.com/guzzle/guzzle>`_, a PHP HTTP client, in the context of `Symfony <https://symfony.com/>`_ framework:
+
+.. literalinclude:: _static/crawlera-php-symfony.php
     :language: php
 
 Ruby
@@ -476,6 +483,11 @@ Making use of `typhoeus <https://github.com/typhoeus/typhoeus>`_, another Ruby b
 .. literalinclude:: _static/crawlera-typhoeus.rb
     :language: ruby
 
+Making use of `mechanize <https://github.com/sparklemotion/mechanize>`_, a Ruby library for automated web interaction:
+
+.. literalinclude:: _static/crawlera-mechanize.rb
+    :language: ruby
+
 Node.js
 -------
 
@@ -489,10 +501,16 @@ Java
 
 .. note:: Because of `HTTPCLIENT-1649 <https://issues.apache.org/jira/browse/HTTPCLIENT-1649>`_ you should use version 4.5 of HttpComponents Client or later.
 
-Quoting from an example published at `The Apache HttpComponents™ <http://hc.apache.org/httpcomponents-client-ga/examples.html>`_ project website and inserting Crawlera details:
+Extending an example published at `The Apache HttpComponents™ <http://hc.apache.org/httpcomponents-client-ga/examples.html>`_ project website and inserting Crawlera details:
 
 .. literalinclude:: _static/crawlera-httpc.java
     :language: java
+
+:download:`crawlera-ca.crt` should be added to keystore, for instance with *keytool*:
+
+.. code-block:: text
+
+    keytool -import -file /path/to/crawlera-ca.crt -storepass password -keystore $JAVA_HOME/jre/lib/security/cacerts -alias crawleracert
 
 C#
 --
