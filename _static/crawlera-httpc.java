@@ -28,7 +28,7 @@ public class ClientProxyAuthentication {
         // Trust own CA and all self-signed certs
         SSLContext sslcontext = SSLContexts.custom()
                 .loadTrustMaterial(new File("/path/to/jre/lib/security/cacerts"),
-                                   "password".toCharArray(),
+                                   "changeit".toCharArray(),
                                    new TrustSelfSignedStrategy())
                 .build();
 
