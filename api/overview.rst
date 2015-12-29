@@ -46,6 +46,10 @@ dash.scrapinghub.com
 	eggs
 	jobs
 
+You can use the `python-scrapinghub <https://github.com/scrapinghub/python-scrapinghub>`_ library to interface with these endpoints. To install with pip::
+
+	$ pip install scrapinghub
+
 storage.scrapinghub.com
 -----------------------
 
@@ -59,25 +63,9 @@ storage.scrapinghub.com
 	logs
 	requests
 
-Libraries
-=========
+You can use the `python-hubstorage <https://github.com/scrapinghub/python-hubstorage>`_ library to interface with these endpoints. To install with pip::
 
-There are two libraries available for interacting with Scrapinghub.
-
-python-scrapinghub
-------------------
-
-The python-scrapinghub library can be used to interface with ``dash.scrapinghub.com`` endpoints.
-
-
-https://github.com/scrapinghub/python-scrapinghub
-
-python-hubstorage
------------------
-
-The python-hubstorage library can be used to interface with ``storage.scrapinghub.com`` endpoints.
-
-https://github.com/scrapinghub/python-hubstorage
+	$ pip install hubstorage
 
 .. _api-overview-pagination:
 
