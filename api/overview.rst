@@ -37,6 +37,8 @@ Where ``APIKEY`` is your API key, ``PROJECT`` is the spider's project ID, and ``
 Endpoints
 =========
 
+.. _api-overview-ep-dash:
+
 dash.scrapinghub.com
 ---------------------
 
@@ -49,6 +51,8 @@ dash.scrapinghub.com
 You can use the `python-scrapinghub <https://github.com/scrapinghub/python-scrapinghub>`_ library to interface with these endpoints. To install with pip::
 
 	$ pip install scrapinghub
+
+.. _api-overview-ep-storage:
 
 storage.scrapinghub.com
 -----------------------
