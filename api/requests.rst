@@ -37,7 +37,20 @@ Here is an example of reading data::
 
 POST example::
 
+
+
+Adding requests
+~~~~~~~~~~~~~~~
+
+HTTP::
+
     $ curl -u APIKEY: https://storage.scrapinghub.com/requests/53/34/7 -X POST -T requests.jl
+
+Python::
+
+	>>> job = hc.get_job('53/34/7')
+	>>> job.requests.add('http://scrapy.org/', 200, GET, 1024, 0, 12, 1351521736957)
+
 
 requests/:project_id/:spider_id/:job_id/stats
 ---------------------------------------------
