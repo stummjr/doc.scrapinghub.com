@@ -35,10 +35,6 @@ Here is an example of reading data::
 
 .. note:: Pagination and meta parameters are supported, see :ref:`api-overview-pagination` and :ref:`api-overview-metapar`.
 
-POST example::
-
-
-
 Adding requests
 ~~~~~~~~~~~~~~~
 
