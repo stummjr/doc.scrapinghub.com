@@ -77,8 +77,6 @@ HTTP::
 
 Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
 
-    >>> from hubstorage import HubstorageClient
-    >>> hc = HubstorageClient(auth=APIKEY)
     >>> frontier = hc.get_project('78').frontier
     >>> frontier.add('test', 'example.com', [{'fp': '/some/path.html'}])
     >>> frontier.flush()
